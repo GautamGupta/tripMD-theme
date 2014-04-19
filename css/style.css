@@ -1,0 +1,237 @@
+* {
+  transition: 0.1s;
+}
+
+::selection {
+  background: #7ecd94;
+  color: white;
+}
+
+html {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "freight-sans-pro",sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 120%;
+  line-height: 1.67;
+  text-rendering: optimizeLegibility;
+  position: relative;
+  z-index: 20;
+  background: white;
+  background-size: cover;
+  color: #415252;
+}
+
+a {
+  text-decoration: none;
+  color: #36adea;
+}
+
+.hero {
+  z-index: 20;
+  position: relative;
+  background-size: cover;
+  background: white;
+  /*background-image: url(../img/hero.png);*/
+}
+.hero .block {
+  text-align: center;
+  height: calc(100vh - 171px);
+}
+.hero .block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.hero .centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 90%;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+.hero .hero-text {
+  /*line-height: calc(100vh - 171px);*/
+}
+.hero .hero-text h1 {
+  margin: 0;
+  padding: 0;
+}
+.hero h1 {
+  font-weight: normal;
+  font-family: "freight-text-pro",sans-serif;
+  font-weight: 500;
+  font-size: 350%;
+  text-align: center;
+  background: white;
+}
+
+.go-on {
+  height: 61px;
+  line-height: 50px;
+  padding-top: 0;
+  text-align: center;
+  background: white;
+}
+.go-on p {
+  padding: 0;
+  margin: 5px 0 0 0;
+  font-size: 150%;
+}
+
+nav {
+  height: 80px;
+  /*outline: 1px solid black;*/
+  line-height: 80px;
+}
+nav img.logo {
+  height: 60px;
+  vertical-align: middle;
+}
+nav ul.menu {
+  list-style: none;
+  margin: 0;
+  /*padding: 0;*/
+  text-align: right;
+}
+nav ul.menu li {
+  display: inline-block;
+  margin-left: 30px;
+  font-weight: bold;
+}
+nav .grid-container {
+  padding: 30px 0 10px 0;
+  border-bottom: thin solid #f7f7f7;
+}
+
+.big.fat {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 110%;
+  padding: 10px 30px;
+  color: white;
+  margin: 40px 0;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.green {
+  background: #7ecd94;
+}
+
+.blue {
+  background: #36adea;
+}
+
+.dark-gray {
+  background: #415252;
+}
+
+.red {
+  background: #ea3636;
+}
+
+section.content:nth-child(odd) {
+  background: #fafafa;
+  /*color: white;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.15);*/
+}
+section.content:nth-child(even) {
+  background: white;
+}
+section.content .block {
+  text-align: center;
+  height: 100vh;
+}
+section.content .block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+section.content .centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 90%;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+section.content h2 {
+  font-weight: normal;
+  font-family: "freight-text-pro",sans-serif;
+  font-family: "freight-text-pro",sans-serif;
+  font-weight: 500;
+  font-size: 250%;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+section.third img {
+  -webkit-filter: grayscale(100%);
+  height: 100px;
+  margin-top: 20px;
+}
+section.third img:hover {
+  -webkit-filter: grayscale(0%);
+}
+
+.third {
+  margin-bottom: 80px;
+}
+.third h3 {
+  margin-bottom: -15px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #415252;
+  color: #fafafa;
+  z-index: -10;
+}
+footer .block {
+  text-align: center;
+  height: 80px;
+}
+footer .block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+footer .centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 90%;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+footer p {
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+}
+footer img {
+  height: 40px;
+  vertical-align: middle;
+  margin: 0 5px;
+}
+
+h3 {
+  font-weight: 200;
+  font-size: 160%;
+  color: #637d7d;
+  /*margin: 60px 0 -10px 0;*/
+}
