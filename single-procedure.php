@@ -19,6 +19,7 @@ WHERE $wpdb->posts.ID IN (
 		SELECT $wpdb->postmeta.post_id
 		FROM $wpdb->postmeta
 		WHERE FIND_IN_SET(%d, $wpdb->postmeta.meta_value)
+			 AND meta_key = 'specialities'
 	)
 )", $post->post_parent );
 
