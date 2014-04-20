@@ -26,9 +26,6 @@ $query = new WP_Query( $args );
 
 ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
 		<?php if ( $query->have_posts() ) : ?>
 
 			<header class="page-header">
@@ -59,13 +56,9 @@ $query = new WP_Query( $args );
 
 		<?php endif; ?>
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
-
 <?php
 // Restore original Post Data
 wp_reset_postdata();
 ?>
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

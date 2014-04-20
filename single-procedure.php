@@ -27,9 +27,6 @@ $hospitals = $wpdb->get_results( $querystr, OBJECT );
 
 ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
 		<?php if ( $hospitals ) : ?>
 
 			<header class="page-header">
@@ -60,13 +57,9 @@ $hospitals = $wpdb->get_results( $querystr, OBJECT );
 
 		<?php endif; ?>
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
-
 <?php
 // Restore original Post Data
 wp_reset_postdata();
 ?>
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -88,7 +88,7 @@ add_action( 'widgets_init', 'tripmd_widgets_init' );
  */
 function tripmd_scripts() {
 	// wp_enqueue_style( 'tripmd-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'tripmd-akshat', get_template_directory_uri() . '/css/style.css' );
+	wp_enqueue_style( 'tripmd-akshat', get_template_directory_uri() . '/css/' . ( is_home() ? 'home' : 'style' ) . '.css' );
 	wp_enqueue_style( 'unsemantic', get_template_directory_uri() . '/css/unsemantic.css' );
 	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
 	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );

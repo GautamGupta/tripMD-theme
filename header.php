@@ -42,22 +42,51 @@
 
 	<body <?php body_class(); ?>>
 
-		<header>
+		<header<?php if ( is_home() ) : ?>  class="hero"<?php endif; ?>>
 
 			<div class="grid-container">
+				
+				<?php if ( !is_home() ) : ?>
 
-				<div class="logo grid-30">
+					<div class="logo grid-30">
 
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image"></a>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image"></a>
 
-				</div>
+					</div>
 
-				<nav id="site-navigation" class="main-navigation" role="navigation">
-					<!-- <h1 class="menu-toggle"><?php _e( 'Menu', 'tripmd' ); ?></h1>
-					<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tripmd' ); ?></a> -->
+					<nav id="site-navigation" class="main-navigation" role="navigation">
+						<!-- <h1 class="menu-toggle"><?php _e( 'Menu', 'tripmd' ); ?></h1>
+						<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tripmd' ); ?></a> -->
 
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'menu grid-70' ) ); ?>
-				</nav><!-- #site-navigation -->
+						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'menu grid-70' ) ); ?>
+					</nav><!-- #site-navigation -->
+					
+				<?php else : ?>
+
+					<div class="logo grid-60">
+
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" alt="Logo" class="logo image"></a>
+
+					</div>
+
+					<ul class="menu grid-40">
+
+						<li><a href="#">Login <i class="fa fa-angle-down"></i></a></li>
+
+					</ul>
+
+					<div class="grid-container block hero-text grid-100">
+
+						<div class="centered">
+
+							<h1>Medical tourism, <i>simplified</i>.</h1>
+							<a class="big fat dark-gray button" href="#sect">Learn More</a>
+
+						</div>
+
+					</div>
+
+				<?php endif; ?>
 
 		</header>
 
