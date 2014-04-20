@@ -23,8 +23,6 @@ WHERE $wpdb->posts.ID IN (
 	)
 )", $post->post_parent );
 
-print( $querystr );
-
 $hospitals = $wpdb->get_results( $querystr, OBJECT );
 
 ?>
