@@ -8,11 +8,13 @@
  */
 ?>
 
+						</div>
+
 					</div>
 
 				</div>
 
-			</div>
+			</main>
 
 		</section>
 

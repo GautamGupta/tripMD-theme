@@ -63,10 +63,12 @@
 
 		<section class="content specialities vcen">
 
-			<div class="grid-container block">
+			<main id="main" class="site-main" role="main">
 
-				<div class="centered grid-container">
+				<div class="grid-container block">
 
-					<div class="grid-100">
+					<div class="centered grid-container">
+
+						<div class="grid-100">
 
 						

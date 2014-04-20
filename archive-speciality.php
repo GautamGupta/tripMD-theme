@@ -9,12 +9,7 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
 		<?php if ( have_posts() ) : ?>
-
-
 
 			<h2 class="animated fadeIn"><?php _e( 'What kind of treatment are you looking for?', 'tripmd' ); ?></h2>
 
@@ -36,8 +31,5 @@ get_header(); ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 
 		<?php endif; ?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
 
 <?php get_footer(); ?>
