@@ -16,20 +16,20 @@ WHERE $wpdb->posts.ID IN (
 	SELECT $wpdb->posts.post_parent
 	FROM $wpdb->posts
 	WHERE $wpdb->posts.ID IN (
-		SELECT $wpdb->posts.post_id
+		SELECT $wpdb->postmeta.post_id
 		FROM $wpdb->postmeta
 		WHERE FIND_IN_SET(%d, $wpdb->postmeta.meta_value)
 	)
 )", get_the_ID() );
 
-$procedures = $wpdb->get_results( $querystr, OBJECT );
+$hospitals = $wpdb->get_results( $querystr, OBJECT );
 
 ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-		<?php if ( $procedures ) : ?>
+		<?php if ( $hospitals ) : ?>
 
 			<header class="page-header">
 				<h1 class="page-title"><?php _e( 'Hospitals', 'tripmd' ); ?></h1>
@@ -43,7 +43,7 @@ $procedures = $wpdb->get_results( $querystr, OBJECT );
 			</header><!-- .page-header -->
 
 			<?php /* Start the Loop */ ?>
-			<?php foreach ( $procedures as $procedure ) : setup_postdata( $procedure ); ?>
+			<?php foreach ( $hospitals as $hospital ) : setup_postdata( $GLOBALS['post'] =& $hospital ); ?>
 
 				<?php
 					get_template_part( 'content', get_post_type() );
