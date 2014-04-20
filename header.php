@@ -63,24 +63,28 @@
 					
 				<?php else : ?>
 
-					<div class="logo grid-60">
+					<nav>
 
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" alt="Logo" class="logo image"></a>
+						<div class="logo grid-60">
 
-					</div>
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" alt="Logo" class="logo image"></a>
 
-					<ul class="menu grid-40">
+						</div>
 
-						<li><a href="#">Login <i class="fa fa-angle-down"></i></a></li>
+						<ul class="menu grid-40">
 
-					</ul>
+							<li><a href="#"><?php _e( 'Login', 'tripmd' ); ?> <i class="fa fa-angle-down"></i></a></li>
+
+						</ul>
+
+					</nav>
 
 					<div class="grid-container block hero-text grid-100">
 
 						<div class="centered">
 
-							<h1>Medical tourism, <i>simplified</i>.</h1>
-							<a class="big fat dark-gray button" href="#sect">Learn More</a>
+							<h1><?php _e( 'Medical tourism, <i>simplified</i>.', 'tripmd' ); ?></h1>
+							<a class="big fat dark-gray button" href="<?php echo site_url( 'specialities' ); ?>"><?php _e( 'Learn More', 'tripmd' ); ?></a>
 
 						</div>
 

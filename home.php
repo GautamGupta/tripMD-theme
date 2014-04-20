@@ -31,9 +31,9 @@ get_header(); ?>
 
 					<div class="grid-100">
 
-						<h2>Travel and live comfortably, with all of your important necessities.</h2>
+						<h2><?php _e( 'Travel and live comfortably, with all of your important necessities.', 'tripmd' ); ?></h2>
 
-						<h3>Explore the tastes, sights, and sounds of your host country.</h3>
+						<h3><?php _e( 'Explore the tastes, sights, and sounds of your host country.', 'tripmd' ); ?></h3>
 
 					</div>
 
