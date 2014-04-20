@@ -87,11 +87,20 @@ add_action( 'widgets_init', 'tripmd_widgets_init' );
  * Enqueue scripts and styles.
  */
 function tripmd_scripts() {
-	wp_enqueue_style( 'tripmd-style', get_stylesheet_uri() );
+	// wp_enqueue_style( 'tripmd-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'tripmd-akshat', get_template_directory_uri() . '/css/style.css' );
+	wp_enqueue_style( 'unsemantic', get_template_directory_uri() . '/css/unsemantic.css' );
+	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
+	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );
 
+	wp_enqueue_script( 'tripmd', get_template_directory_uri() . '/js/js.js', array( 'jquery' ), '0.1', true );
 	wp_enqueue_script( 'tripmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-
 	wp_enqueue_script( 'tripmd-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+	wp_enqueue_script( 'tripmd-ss-min', get_template_directory_uri() . '/js/ss-min.js', array(), '0.1', true );
+	wp_enqueue_script( 'tripmd-typekit', '//use.typekit.net/jlx8kbu.js', array(), '0.1', true );
+	wp_enqueue_script( 'classie', get_template_directory_uri() . '/js/classie.js', array(), '0.1', true );
+	wp_enqueue_script( 'sidebar-effects', get_template_directory_uri() . '/js/sidebarEffects.js', array(), '0.1', true );
+	wp_enqueue_script( 'ligature', get_template_directory_uri() . '/js/ligature.js', array(), '0.1', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

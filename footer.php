@@ -8,18 +8,24 @@
  */
 ?>
 
-	</div><!-- #content -->
+					</div>
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'tripmd' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'tripmd' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'tripmd' ), 'tripmd', '<a href="http://tripmd.co/" rel="designer">tripMD</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+				</div>
 
-<?php wp_footer(); ?>
+			</div>
 
-</body>
+		</section>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<p>&copy; <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>"></a> <?php echo date( 'Y' ); ?></p>
+
+		</footer>
+
+		<?php wp_footer(); ?>
+
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+	</body>
+
 </html>
