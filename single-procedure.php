@@ -20,7 +20,9 @@ WHERE $wpdb->posts.ID IN (
 		FROM $wpdb->postmeta
 		WHERE FIND_IN_SET(%d, $wpdb->postmeta.meta_value)
 	)
-)", get_the_ID() );
+)", $post->post_parent );
+
+print( $querystr );
 
 $hospitals = $wpdb->get_results( $querystr, OBJECT );
 
