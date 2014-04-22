@@ -112,10 +112,10 @@ $push = 0; ?>
 					<h6 class="subtitle"><?php the_excerpt(); ?></h6>
 
 					<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
-						<strong>Price</strong>$<?php echo get_post_meta( get_the_ID(), 'price', true ); ?> per night<br />
+						<div class="grid-100 price"><span>Price</span>$<?php echo get_post_meta( get_the_ID(), 'price', true ); ?> per night</div>
 					<?php endif; ?>
 					<?php if ( get_post_meta( get_the_ID(), 'amenities', true ) ) : ?>
-						<strong>Amenities</strong><?php echo get_post_meta( get_the_ID(), 'amenities', true ); ?>
+						<div class="grid-100 duration"><span>Amenities</span><?php echo get_post_meta( get_the_ID(), 'amenities', true ); ?></div>
 					<?php endif; ?>
 
 				</a>
