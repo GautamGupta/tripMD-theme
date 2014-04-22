@@ -489,10 +489,9 @@ a.card {
   color: #fad300;
 }
 
-
 .room.card {
   position: relative;
-  height: 658px;
+  height: 558px;
 }
 .room.card h3 {
   width: 205px;
@@ -516,17 +515,16 @@ a.card {
 .room.card .subtitle {
   margin: 0 0 10px 0;
 }
-.room.card .price, .room.card .duration {
+.room.card .price, .room.card .amenities {
   line-height: 40px;
   /*margin-top: 10px;*/
   border-top: thin solid #f2f2f2;
 }
 .room.card .price {
   margin-top: 0px;
-  margin-bottom: 100px !important;
   border-bottom: thin solid #f2f2f2;
 }
-.room.card .duration {
+.room.card .amenities {
   /*margin-top: 10px;*/
   border-top: thin solid #f2f2f2;
 }
