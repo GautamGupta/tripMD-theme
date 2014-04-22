@@ -47,7 +47,7 @@ $push = 0; ?>
 							<div class="grid-100 duration"><span>Price</span>$<?php echo get_post_meta( get_the_ID(), 'price', true ); ?></div>
 						<?php endif; ?>
 						<?php if ( get_post_meta( get_the_ID(), 'duration', true ) ) : ?>
-							<div class="grid-100 duration"><span>Duration</span>$<?php echo get_post_meta( get_the_ID(), 'duration', true ); ?></div>
+							<div class="grid-100 duration"><span>Duration</span><?php echo get_post_meta( get_the_ID(), 'duration', true ); ?></div>
 						<?php endif; ?>
 					</a>
 

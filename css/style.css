@@ -431,11 +431,15 @@ a.card {
   color: #fad300;
 }
 
-.doctors .card {
+.content {
+	text-align: left;
+}
+
+.doctor.card {
   position: relative;
   height: 438px;
 }
-.doctors .card h3 {
+.doctor.card h3 {
   width: 205px;
   white-space: nowrap;
   overflow: hidden;
@@ -444,7 +448,7 @@ a.card {
   font-size: 100%;
   color: #364444;
 }
-.doctors .card .image {
+.doctor.card .image {
   position: absolute;
   height: 250px;
   top: 0;
@@ -454,24 +458,24 @@ a.card {
   -webkit-background-size: cover;
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
 }
-.doctors .card .subtitle {
+.doctor.card .subtitle {
   margin: 0 0 10px 0;
 }
-.doctors .card .price, .doctors .card .duration {
+.doctor.card .price, .doctor.card .duration {
   line-height: 40px;
   /*margin-top: 10px;*/
   border-top: thin solid #f2f2f2;
 }
-.doctors .card .price {
+.doctor.card .price {
   margin-top: 0px;
   margin-bottom: 100px !important;
   border-bottom: thin solid #f2f2f2;
 }
-.doctors .card .duration {
+.doctor.card .duration {
   /*margin-top: 10px;*/
   border-top: thin solid #f2f2f2;
 }
-.doctors .card span {
+.doctor.card span {
   width: 90px;
   text-align: left;
   display: inline-block;
@@ -479,7 +483,7 @@ a.card {
   color: #aaa;
   margin-right: 4px;
 }
-.doctors .card i {
+.doctor.card i {
   position: relative;
   top: 2px;
   color: #fad300;

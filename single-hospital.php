@@ -8,12 +8,18 @@
  */
 
 get_header();
+setup_postdata($post); ?>
 
-foreach ( array( 'doctor', 'room' ) as $post_type ) :
+<h2 class="animated fadeIn"><?php the_title(); ?></h2>
 
+<div class="content">
+	<?php the_content(); ?>
+</div>
+
+<?php
 $args = array (
 	'post_parent'            => get_the_ID(),
-	'post_type'              => $post_type,
+	'post_type'              => 'doctor',
 	'post_status'            => 'publish',
 	'pagination'             => false,
 	'orderby'                => 'title',
@@ -23,74 +29,100 @@ $args = array (
 );
 
 // The Query
-$query = new WP_Query( $args ); ?>
+$query = new WP_Query( $args );
+?>
 
 	<?php if ( $query->have_posts() ) : ?>
 
-			<h2 class="animated fadeIn">Procedures for <?php the_title(); ?></h2>
-			<h4 class="animated fadeIn">Select a procedure that suits your time and budget.</h4>
+		<h3 class="animated fadeIn">Doctors</h2>
+		<h4 class="animated fadeIn">Our experienced doctors will ensure your safe treatment.</h4>
 
-			<div style="margin: 15px 0 120px 0">
-				<div class="grid-30" style="padding-top: 30px">Sort by <b>Price</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
-				<div class="grid-40"><input type="search" placeholder="Search&hellip;" x-webkit-speech></input></div>
-				<div class="grid-30" style="padding-top: 30px"><a href="#help">Need help?</a></div>
-			</div>
+		<div style="margin: 15px 0 120px 0">
+			<div class="grid-30" style="padding-top: 30px">Sort by <b>Price</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
+			<div class="grid-40"><input type="search" placeholder="Search&hellip;" x-webkit-speech></input></div>
+			<div class="grid-30" style="padding-top: 30px"><a href="#help">Need help?</a></div>
+		</div>
 
-			<div class="options grid-100 grid-parent">
+		<div class="options grid-100 grid-parent">
 
-				<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-					<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
-						<h3><?php the_title(); ?></h3>
-						<h6 class="subtitle"><?php the_content(); ?></h6>
-						<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
-							<div class="grid-100 duration"><span>Price</span>$<?php echo get_post_meta( get_the_ID(), 'price', true ); ?></div>
-						<?php endif; ?>
-						<?php if ( get_post_meta( get_the_ID(), 'duration', true ) ) : ?>
-							<div class="grid-100 duration"><span>Duration</span>$<?php echo get_post_meta( get_the_ID(), 'duration', true ); ?></div>
-						<?php endif; ?>
-					</a>
+				<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' ); ?>>
 
-				<?php
-					if ( $push == 10 ) $push = 0;
-					else $push += 5;
-				endwhile; ?>
+					<?php if ( has_post_thumbnail() ) :
+						$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
+						<div class="image" style="background: url(<?php echo $thumbnail['0']; ?>); background-size: cover"></div>
+					<?php endif; ?>
+					<h3>Dr. <?php the_title(); ?></h3>
+					<h6 class="subtitle"><?php the_content(); ?></h6>
 
-			</div>
+					<?php //if ( get_post_meta( get_the_ID(), 'accreditations', true ) ) : ?>
+						<div class="grid-100 duration"><span>Qualifications</span>MD, MAMS &hellip;</div>
+					<?php //endif; ?>
+					<?php //if ( get_post_meta( get_the_ID(), 'accommodation', true ) ) : ?>
+						<div class="grid-100 price"><span>Experience</span>20+ years</div>
+					<?php //endif; ?>
 
-		<header class="page-header">
-			<h1 class="page-title"><?php echo $post_type ?></h1>
-			<?php
-				// Show an optional term description.
-				$term_description = term_description();
-				if ( ! empty( $term_description ) ) :
-					printf( '<div class="taxonomy-description">%s</div>', $term_description );
-				endif;
-			?>
-		</header><!-- .page-header -->
+				</a>
 
-		<?php /* Start the Loop */ ?>
-		<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+			<?php endwhile; ?>
 
-			<?php
-				get_template_part( 'content', get_post_type() );
-			?>
+		</div>
 
-		<?php endwhile; ?>
+	<?php endif;
 
-		<?php tripmd_paging_nav(); ?>
+// Restore original Post Data
+wp_reset_postdata();
 
-	<?php else : ?>
+$args = array (
+	'post_parent'            => get_the_ID(),
+	'post_type'              => 'room',
+	'post_status'            => 'publish',
+	'pagination'             => false,
+	'orderby'                => 'title',
+	'cache_results'          => true,
+	'update_post_meta_cache' => true,
+	'update_post_term_cache' => true,
+);
 
-		<?php get_template_part( 'content', 'none' ); ?>
+// The Query
+$query = new WP_Query( $args );
+?>
 
-	<?php endif; ?>
+	<?php if ( $query->have_posts() ) : ?>
 
-	<?php
-	// Restore original Post Data
-	wp_reset_postdata();
+		<h3 class="animated fadeIn">Available Rooms</h2>
+		<h4 class="animated fadeIn">Perfect rooms that suit everyone's lifestyle.</h4>
 
-	endforeach;
-	?>
+		<div class="options grid-100 grid-parent">
+
+			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+
+				<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' ); ?>>
+
+					<?php if ( has_post_thumbnail() ) :
+						$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
+						<div class="image" style="background: url(<?php echo $thumbnail['0']; ?>); background-size: cover"></div>
+					<?php endif; ?>
+					<h3><?php the_title(); ?></h3>
+					<h6 class="subtitle"><?php the_content(); ?></h6>
+
+					<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
+						<strong>Price</strong><?php echo get_post_meta( get_the_ID(), 'price', true ); ?><br />
+					<?php endif; ?>
+					<?php if ( get_post_meta( get_the_ID(), 'duration', true ) ) : ?>
+						<strong>Duration</strong><?php echo get_post_meta( get_the_ID(), 'duration', true ); ?>
+					<?php endif; ?>
+
+				</a>
+
+			<?php endwhile; ?>
+
+		</div>
+
+	<?php endif;
+
+// Restore original Post Data
+wp_reset_postdata(); ?>
 
 <?php get_footer(); ?>
