@@ -102,6 +102,6 @@
 
 					<div class="centered grid-container">
 
-						<div class="grid-100">
+						<div class="grid-100 grid-parent">
 
 						

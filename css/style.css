@@ -22,7 +22,7 @@ body {
   text-rendering: optimizeLegibility;
   position: relative;
   z-index: 20;
-  background: white;
+  background: #fcfcfc;
   background-size: cover;
   color: #415252;
 }
@@ -36,7 +36,7 @@ a {
   z-index: 20;
   position: relative;
   background-size: cover;
-  background: white;
+  background: #fcfcfc;
   /*background-image: url(../img/hero.png);*/
 }
 .content .block {
@@ -59,11 +59,11 @@ a {
 }
 .content h1 {
   font-weight: normal;
-  font-family: "freight-text-pro",sans-serif;
+  font-family: "freight-text-pro", serif;
   font-weight: 500;
   font-size: 350%;
   text-align: center;
-  background: white;
+  background: #fcfcfc;
 }
 
 header {
@@ -81,7 +81,7 @@ header {
   text-transform: uppercase;
   border-bottom: thin solid #ededed;
   z-index: 999;
-  box-shadow: 0px 38px 52px white;
+  box-shadow: 0px 38px 52px #fcfcfc;
 }
 header img.logo {
   height: 50px;
@@ -143,14 +143,14 @@ header .grid-container {
 }
 
 section.content {
-  background: white;
+  background: #fcfcfc;
   /*color: white;
   text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.15);*/
 }
 section.content h2 {
   font-weight: normal;
-  font-family: "freight-text-pro",sans-serif;
-  font-family: "freight-text-pro",sans-serif;
+  font-family: "freight-text-pro", serif;
+  font-family: "freight-text-pro", serif;
   font-weight: 500;
   font-size: 225%;
   text-align: center;
@@ -158,11 +158,17 @@ section.content h2 {
   margin-top: 0;
 }
 
+section:not(.vcen) {
+  margin: 120px auto;
+}
+
+.vcen {
+  overflow: auto;
+}
 .vcen .block {
   text-align: center;
-  height: calc(100vh - 160px);
+  min-height: calc(100vh - 160px);
   margin-top: 80px;
-  overflow: auto;
 }
 .vcen .block:before {
   content: '';
@@ -179,32 +185,18 @@ section.content h2 {
   box-sizing: border-box;
 }
 
-section.third img {
-  -webkit-filter: grayscale(100%);
-  height: 100px;
-  margin-top: 20px;
-}
-section.third img:hover {
-  -webkit-filter: grayscale(0%);
-}
-
-.third {
-  margin-bottom: 80px;
-}
-.third h3 {
-  margin-bottom: -15px;
-}
-
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  /*	position: fixed;
+  	bottom: 0;
+  	left: 0;
+  	right: 0;*/
   background: transparent;
   color: #919191;
   z-index: 1;
   height: 80px;
   line-height: 80px;
+  clear: both;
+  margin-top: 100px;
 }
 footer p {
   text-align: center;
@@ -218,29 +210,33 @@ footer img {
   vertical-align: middle;
   margin: 0 5px;
 }
+footer .baap {
+  z-index: 999;
+}
 
 h3 {
   font-weight: 200;
   font-size: 160%;
-  color: #637d7d;
+  color: #586e6e;
   /*margin: 60px 0 -10px 0;*/
 }
 
 .card {
   display: inline-block;
   vertical-align: middle;
-  padding: 25px 20px 20px 20px;
   text-align: left;
   /*font-size: 150%;*/
   background: #fff;
-  margin: 30px 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: thin solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.06);
   /*border-radius: 6px;*/
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.06);
   transition: 0.2s;
   outline: 1px solid #f7f7f7;
   outline-offset: -1px;
-  z-index: 99;
+  z-index: -99;
+  height: 170px;
 }
 .card h3 {
   display: inline-block;
@@ -248,9 +244,17 @@ h3 {
   margin: 15px 0 -10px 0;
   padding: 0;
 }
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+  color: #586e6e;
+  font-weight: normal;
+}
 .card img {
   display: block;
   margin: 0 auto;
+}
+
+a.card {
+  color: #415252;
 }
 
 .specialities a {
@@ -261,11 +265,222 @@ h3 {
   text-align: center !important;
 }
 .specialities .card {
+  margin: 30px 50px;
+  height: 160px;
   font-size: 120%;
   text-align: center !important;
   width: 160px;
+  padding: 25px 20px 20px 20px;
 }
 .specialities .card:hover {
   /*background: lighten($green, 30%);*/
+}
+
+.procedures .card {
+  height: 183px;
+}
+.procedures .card h3 {
+  width: 205px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 100%;
+  color: #364444;
+}
+.procedures .card .subtitle {
+  margin: 0;
+}
+.procedures .card h4:nth-child(odd) {
+  font-weight: bold;
+  font-size: 85%;
+}
+.procedures .card h4:nth-child(odd):before {
+  font-size: 80%;
+  font-weight: normal;
+  content: "Duration";
+  font-family: "brandon-grotesque", sans-serif;
+  /*font-size: 84%;*/
+  text-transform: uppercase;
+  display: block;
+  color: #c4c4c4;
+}
+.procedures .card h4:nth-child(odd):after {
+  content: " days";
+  display: inline;
+  font-size: 80%;
+  font-weight: normal;
+  color: #c4c4c4;
+}
+.procedures .card h4:nth-child(even) {
+  font-size: 85%;
+}
+.procedures .card h4:nth-child(even):before {
+  font-size: 80%;
+  content: "Cost";
+  font-family: "brandon-grotesque", sans-serif;
+  color: #c4c4c4;
+  font-size: 84%;
+  text-transform: uppercase;
+  display: block;
+}
+.procedures .card h4:nth-child(even):after {
+  color: #dedede;
+  font-size: 80%;
+  content: " USD";
+  display: inline;
+}
+.procedures .card .price, .procedures .card .duration {
+  line-height: 40px;
+  margin-top: 10px;
+  border-top: thin solid #f2f2f2;
+}
+.procedures .card .price {
+  margin-top: 0px;
+  margin-bottom: 100px !important;
+  border-bottom: thin solid #f2f2f2;
+}
+.procedures .card .duration {
+  margin-top: 10px;
+  border-top: thin solid #f2f2f2;
+}
+.procedures .card span {
+  width: 70px;
+  text-align: left;
+  display: inline-block;
+  font-size: 80%;
+  color: #aaa;
+}
+
+input[type="search"] {
+  display: block;
+  width: 100%;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-family: "freight-sans-pro", sans-serif;
+  font-size: 110%;
+  -webkit-appearance: none;
+  border: thin solid #dedede;
+  border-radius: 100px;
+  outline: none;
+}
+
+.logo {
+  margin-left: 15px;
+  margin-right: -15px;
+}
+
+a.card:hover {
   background: #f7f7f7;
+}
+
+a.card {
+  z-index: 11;
+}
+
+.hospitals .card {
+  position: relative;
+  height: 378px;
+}
+.hospitals .card h3 {
+  width: 205px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 160px;
+  text-overflow: ellipsis;
+  font-size: 100%;
+  color: #364444;
+}
+.hospitals .card .image {
+  position: absolute;
+  height: 150px;
+  top: 0;
+  left: 0;
+  z-index: 98998;
+  right: 0;
+  -webkit-background-size: cover;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+}
+.hospitals .card .subtitle {
+  margin: 0 0 10px 0;
+}
+.hospitals .card .price, .hospitals .card .duration {
+  line-height: 40px;
+  /*margin-top: 10px;*/
+  border-top: thin solid #f2f2f2;
+}
+.hospitals .card .price {
+  margin-top: 0px;
+  margin-bottom: 100px !important;
+  border-bottom: thin solid #f2f2f2;
+}
+.hospitals .card .duration {
+  /*margin-top: 10px;*/
+  border-top: thin solid #f2f2f2;
+}
+.hospitals .card span {
+  width: 90px;
+  text-align: left;
+  display: inline-block;
+  font-size: 80%;
+  color: #aaa;
+  margin-right: 4px;
+}
+.hospitals .card i {
+  position: relative;
+  top: 2px;
+  color: #fad300;
+}
+
+.doctors .card {
+  position: relative;
+  height: 438px;
+}
+.doctors .card h3 {
+  width: 205px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 270px;
+  text-overflow: ellipsis;
+  font-size: 100%;
+  color: #364444;
+}
+.doctors .card .image {
+  position: absolute;
+  height: 250px;
+  top: 0;
+  left: 0;
+  z-index: 98998;
+  right: 0;
+  -webkit-background-size: cover;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+}
+.doctors .card .subtitle {
+  margin: 0 0 10px 0;
+}
+.doctors .card .price, .doctors .card .duration {
+  line-height: 40px;
+  /*margin-top: 10px;*/
+  border-top: thin solid #f2f2f2;
+}
+.doctors .card .price {
+  margin-top: 0px;
+  margin-bottom: 100px !important;
+  border-bottom: thin solid #f2f2f2;
+}
+.doctors .card .duration {
+  /*margin-top: 10px;*/
+  border-top: thin solid #f2f2f2;
+}
+.doctors .card span {
+  width: 90px;
+  text-align: left;
+  display: inline-block;
+  font-size: 80%;
+  color: #aaa;
+  margin-right: 4px;
+}
+.doctors .card i {
+  position: relative;
+  top: 2px;
+  color: #fad300;
 }

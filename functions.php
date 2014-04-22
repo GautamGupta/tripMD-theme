@@ -108,6 +108,16 @@ function tripmd_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'tripmd_scripts' );
 
+function tmd_specialities_order( $query ) {
+    if ( is_post_type_archive( 'speciality' ) ) {
+        $query->set( 'order', 'asc' );
+        $query->set( 'orderby', 'post_title' );
+    }
+}
+add_action( 'pre_get_posts', 'tmd_specialities_order' );
+
+
+
 /**
  * Implement the Custom Header feature.
  */

@@ -23,32 +23,43 @@ $args = array (
 
 // The Query
 $query = new WP_Query( $args );
+$push = 0;
 
 ?>
 
 		<?php if ( $query->have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php _e( 'Procedures', 'tripmd' ); ?></h1>
+			<h2 class="animated fadeIn">Procedures for <?php the_title(); ?></h2>
+			<h3 class="animated fadeIn">Select a procedure that suits your time and budget.</h3>
+
+
+			<div style="margin: 15px 0 120px 0">
+				<div class="grid-30" style="padding-top: 30px">Sort by <b>Price</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
+				<div class="grid-40"><input type="search" placeholder="Search&hellip;" x-webkit-speech></input></div>
+				<div class="grid-30" style="padding-top: 30px"><a href="#help">Need help?</a></div>
+			</div>
+
+			<div class="options grid-100 grid-parent">
+
+				<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+
+					<a href="<?php the_permalink(); ?>" class="card grid-30<?php if ( !empty( $push ) ) : ?> push-<?php echo $push; endif; ?>">
+						<h3><?php the_title(); ?></h3>
+						<h6 class="subtitle"><?php the_content(); ?></h6>
+						<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
+							<div class="grid-100 duration"><span>Price</span>: <?php echo get_post_meta( get_the_ID(), 'price', true ); ?> USD</div>
+						<?php endif; ?>
+						<?php if ( get_post_meta( get_the_ID(), 'duration', true ) ) : ?>
+							<div class="grid-100 duration"><span>Duration</span>: <?php echo get_post_meta( get_the_ID(), 'duration', true ); ?></div>
+						<?php endif; ?>
+					</a>
+
 				<?php
-					// Show an optional term description.
-					$term_description = term_description();
-					if ( ! empty( $term_description ) ) :
-						printf( '<div class="taxonomy-description">%s</div>', $term_description );
-					endif;
-				?>
-			</header><!-- .page-header -->
+					if ( $push == 10 ) $push = 0;
+					else $push += 5;
+				endwhile; ?>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
-
-				<?php
-					get_template_part( 'content', get_post_type() );
-				?>
-
-			<?php endwhile; ?>
-
-			<?php tripmd_paging_nav(); ?>
+			</div>
 
 		<?php else : ?>
 
