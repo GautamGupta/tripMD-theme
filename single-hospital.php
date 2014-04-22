@@ -57,12 +57,12 @@ $push = 0;
 					<h3>Dr. <?php the_title(); ?></h3>
 					<h6 class="subtitle"><?php the_excerpt(); ?></h6>
 
-					<?php //if ( get_post_meta( get_the_ID(), 'accreditations', true ) ) : ?>
-						<div class="grid-100 duration"><span>Qualifications</span>MD, MAMS &hellip;</div>
-					<?php //endif; ?>
-					<?php //if ( get_post_meta( get_the_ID(), 'accommodation', true ) ) : ?>
-						<div class="grid-100 price"><span>Experience</span>20+ years</div>
-					<?php //endif; ?>
+					<?php if ( get_post_meta( get_the_ID(), 'experience', true ) ) : ?>
+						<div class="grid-100 duration"><span>Experience</span><?php echo get_post_meta( get_the_ID(), 'experience', true ); ?>+ years</div>
+					<?php endif; ?>
+					<?php if ( get_post_meta( get_the_ID(), 'qualifications', true ) ) : ?>
+						<div class="grid-100 price"><span>Qualifications</span><?php echo get_post_meta( get_the_ID(), 'qualifications', true ); ?> &hellip;</div>
+					<?php endif; ?>
 
 				</a>
 

@@ -461,17 +461,17 @@ a.card {
 .doctor.card .subtitle {
   margin: 0 0 10px 0;
 }
-.doctor.card .price, .doctor.card .duration {
+.doctor.card .experience, .doctor.card .qualifications {
   line-height: 40px;
   /*margin-top: 10px;*/
   border-top: thin solid #f2f2f2;
 }
-.doctor.card .price {
+.doctor.card .experience {
   margin-top: 0px;
   margin-bottom: 100px !important;
   border-bottom: thin solid #f2f2f2;
 }
-.doctor.card .duration {
+.doctor.card .qualifications {
   /*margin-top: 10px;*/
   border-top: thin solid #f2f2f2;
 }
@@ -491,7 +491,7 @@ a.card {
 
 .room.card {
   position: relative;
-  height: 558px;
+  height: 518px;
 }
 .room.card h3 {
   width: 205px;
