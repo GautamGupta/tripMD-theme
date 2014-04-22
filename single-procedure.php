@@ -27,39 +27,52 @@ $hospitals = $wpdb->get_results( $querystr, OBJECT );
 
 ?>
 
-		<?php if ( $hospitals ) : ?>
+<?php if ( $hospitals ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php _e( 'Hospitals', 'tripmd' ); ?></h1>
-				<?php
-					// Show an optional term description.
-					$term_description = term_description();
-					if ( ! empty( $term_description ) ) :
-						printf( '<div class="taxonomy-description">%s</div>', $term_description );
-					endif;
-				?>
-			</header><!-- .page-header -->
+	<h2 class="animated fadeIn">Hospitals for <?php the_title(); ?></h2>
+	<h4 class="animated fadeIn">Select a procedure that suits your time and budget.</h4>
 
-			<?php /* Start the Loop */ ?>
-			<?php foreach ( $hospitals as $hospital ) : setup_postdata( $GLOBALS['post'] =& $hospital ); ?>
+	<div style="margin: 15px 0 120px 0">
+		<div class="grid-30" style="padding-top: 30px">Sort by <b>Rating</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
+		<div class="grid-40"><input type="search" placeholder="Search&hellip;" x-webkit-speech></input></div>
+		<div class="grid-30" style="padding-top: 30px"><a href="#help">Skip to Doctor Selection</a></div>
+	</div>
 
-				<?php
-					get_template_part( 'content', get_post_type() );
-				?>
+	<div class="options grid-100 grid-parent">
 
-			<?php endforeach; ?>
+		<?php foreach ( $hospitals as $hospital ) : setup_postdata( $GLOBALS['post'] =& $hospital ); ?>
 
-			<?php tripmd_paging_nav(); ?>
+			<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' ); ?>>
 
-		<?php else : ?>
+				<?php if ( has_post_thumbnail() ) :
+					$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
+					<div class="image" style="background: url(<?php echo $thumbnail['0']; ?>); background-size: cover"></div>
+				<?php endif; ?>
+				<h3><?php the_title(); ?></h3>
+				<h6 class="subtitle">New Delhi, India</h6>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+				<?php //if ( get_post_meta( get_the_ID(), 'rating', true ) ) : ?>
+					<div class="grid-100 duration"><span>Trust Rating</span><?php tmd_rating( /*get_post_meta( get_the_ID(), 'rating', true )*/ ); ?></div>
+				<?php //endif; ?>
+				<?php //if ( get_post_meta( get_the_ID(), 'accreditations', true ) ) : ?>
+					<div class="grid-100 duration"><span>Accreditations</span>JCI, ISO 9002</div>
+				<?php //endif; ?>
+				<?php //if ( get_post_meta( get_the_ID(), 'accommodation', true ) ) : ?>
+					<div class="grid-100 price"><span>Rooms</span>500+ rooms</div>
+				<?php //endif; ?>
 
-		<?php endif; ?>
+			</a>
 
-<?php
-// Restore original Post Data
-wp_reset_postdata();
-?>
+		<?php endforeach; ?>
+
+	</div>
+
+<?php else : ?>
+
+	<?php get_template_part( 'content', 'none' ); ?>
+
+<?php endif; ?>
+
+<?php wp_reset_postdata(); ?>
 
 <?php get_footer(); ?>

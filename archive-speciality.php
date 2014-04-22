@@ -18,7 +18,10 @@ get_header(); ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<a href="<?php the_permalink(); ?>" id="<?php echo get_post_type(); ?>-<?php the_ID(); ?>" <?php post_class( 'card' ); ?> rel="bookmark">
-						<?php if ( has_post_thumbnail() ) the_post_thumbnail(); ?>
+						<?php if ( has_post_thumbnail() ) :
+							$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
+							<img src="<?php echo $thumbnail['0']; ?>" alt="<?php the_title(); ?>" />
+						<?php endif; ?>
 						<h3><?php the_title(); ?></h3>
 					</a>
 

@@ -116,7 +116,14 @@ function tmd_specialities_order( $query ) {
 }
 add_action( 'pre_get_posts', 'tmd_specialities_order' );
 
-
+function tmd_rating( $rating = 3.5 ) {
+	for ( $i = 0; $i < $rating; $i += 1 ) {
+		if ( ( $rating - $i ) < 1 )
+			echo '<i class="fa fa-star-half-full"></i>';
+		else
+			echo '<i class="fa fa-star"></i>';
+	}
+}
 
 /**
  * Implement the Custom Header feature.

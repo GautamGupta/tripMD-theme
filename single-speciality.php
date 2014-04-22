@@ -23,15 +23,12 @@ $args = array (
 
 // The Query
 $query = new WP_Query( $args );
-$push = 0;
-
-?>
+$push = 0; ?>
 
 		<?php if ( $query->have_posts() ) : ?>
 
 			<h2 class="animated fadeIn">Procedures for <?php the_title(); ?></h2>
-			<h3 class="animated fadeIn">Select a procedure that suits your time and budget.</h3>
-
+			<h4 class="animated fadeIn">Select a procedure that suits your time and budget.</h4>
 
 			<div style="margin: 15px 0 120px 0">
 				<div class="grid-30" style="padding-top: 30px">Sort by <b>Price</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
@@ -47,10 +44,10 @@ $push = 0;
 						<h3><?php the_title(); ?></h3>
 						<h6 class="subtitle"><?php the_content(); ?></h6>
 						<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
-							<div class="grid-100 duration"><span>Price</span>: <?php echo get_post_meta( get_the_ID(), 'price', true ); ?> USD</div>
+							<div class="grid-100 duration"><span>Price</span>$<?php echo get_post_meta( get_the_ID(), 'price', true ); ?></div>
 						<?php endif; ?>
 						<?php if ( get_post_meta( get_the_ID(), 'duration', true ) ) : ?>
-							<div class="grid-100 duration"><span>Duration</span>: <?php echo get_post_meta( get_the_ID(), 'duration', true ); ?></div>
+							<div class="grid-100 duration"><span>Duration</span>$<?php echo get_post_meta( get_the_ID(), 'duration', true ); ?></div>
 						<?php endif; ?>
 					</a>
 
