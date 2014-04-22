@@ -336,7 +336,6 @@ a.card {
 }
 .procedure.card .price {
   margin-top: 0px;
-  margin-bottom: 100px !important;
   border-bottom: thin solid #f2f2f2;
 }
 .procedure.card .duration {
@@ -410,7 +409,6 @@ a.card {
 }
 .hospital.card .price {
   margin-top: 0px;
-  margin-bottom: 100px !important;
   border-bottom: thin solid #f2f2f2;
 }
 .hospital.card .duration {
@@ -468,7 +466,6 @@ a.card {
 }
 .doctor.card .experience {
   margin-top: 0px;
-  margin-bottom: 100px !important;
   border-bottom: thin solid #f2f2f2;
 }
 .doctor.card .qualifications {
