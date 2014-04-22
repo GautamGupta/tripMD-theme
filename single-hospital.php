@@ -102,7 +102,7 @@ $push = 0; ?>
 
 			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-				<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
+				<a <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
 
 					<?php if ( has_post_thumbnail() ) :
 						$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
