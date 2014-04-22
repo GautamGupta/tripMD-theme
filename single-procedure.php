@@ -51,9 +51,9 @@ $hospitals = $wpdb->get_results( $querystr, OBJECT );
 				<h3><?php the_title(); ?></h3>
 				<h6 class="subtitle">New Delhi, India</h6>
 
-				<?php //if ( get_post_meta( get_the_ID(), 'rating', true ) ) : ?>
-					<div class="grid-100 duration"><span>Trust Rating</span><?php tmd_rating( /*get_post_meta( get_the_ID(), 'rating', true )*/ ); ?></div>
-				<?php //endif; ?>
+				<?php if ( get_post_meta( get_the_ID(), 'rating', true ) ) : ?>
+					<div class="grid-100 duration"><span>Trust Rating</span><?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
+				<?php endif; ?>
 				<?php //if ( get_post_meta( get_the_ID(), 'accreditations', true ) ) : ?>
 					<div class="grid-100 duration"><span>Accreditations</span>JCI, ISO 9002</div>
 				<?php //endif; ?>

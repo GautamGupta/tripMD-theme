@@ -32,6 +32,22 @@ a {
   color: #36adea;
 }
 
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+}
+
 .content {
   z-index: 20;
   position: relative;
@@ -132,6 +148,11 @@ header .grid-container {
 
 .blue {
   background: #36adea;
+}
+
+.light-gray {
+  background: #f7f7f7;
+  color: #536969 !important;
 }
 
 .dark-gray {
@@ -378,7 +399,7 @@ a.card {
 
 .hospital.card {
   position: relative;
-  height: 378px;
+  height: 328px;
 }
 .hospital.card h3 {
   width: 205px;
@@ -435,7 +456,7 @@ a.card {
 
 .doctor.card {
   position: relative;
-  height: 438px;
+  height: 448px;
 }
 .doctor.card h3 {
   width: 205px;
