@@ -55,12 +55,12 @@ $push = 0;
 						<div class="image" style="background: url(<?php echo $thumbnail['0']; ?>); background-size: cover"></div>
 					<?php endif; ?>
 					<h3>Dr. <?php the_title(); ?></h3>
-
+					<p></p>
 					<?php if ( get_post_meta( get_the_ID(), 'experience', true ) ) : ?>
 						<div class="grid-100 experience"><span>Experience</span><?php echo get_post_meta( get_the_ID(), 'experience', true ); ?>+ years</div>
 					<?php endif; ?>
 					<?php if ( get_post_meta( get_the_ID(), 'qualifications', true ) ) : ?>
-						<div class="grid-100 qualifications"><span>Qualifications</span><?php echo get_post_meta( get_the_ID(), 'qualifications', true ); ?> &hellip;</div>
+						<div class="grid-100 qualifications"><span>Qualifications</span><?php echo get_post_meta( get_the_ID(), 'qualifications', true ); ?></div>
 					<?php endif; ?>
 
 				</a>

@@ -43,11 +43,11 @@ $push = 0; ?>
 					<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
 						<h3><?php the_title(); ?></h3>
 						<h6 class="subtitle"><?php the_content(); ?></h6>
-						<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
-							<div class="grid-100 price"><span>Price</span>$<?php echo get_post_meta( get_the_ID(), 'price', true ); ?></div>
-						<?php endif; ?>
 						<?php if ( get_post_meta( get_the_ID(), 'duration', true ) ) : ?>
 							<div class="grid-100 duration"><span>Duration</span><?php echo get_post_meta( get_the_ID(), 'duration', true ); ?></div>
+						<?php endif; ?>
+						<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
+							<div class="grid-100 price"><span>Price</span>$<?php echo get_post_meta( get_the_ID(), 'price', true ); ?></div>
 						<?php endif; ?>
 					</a>
 
