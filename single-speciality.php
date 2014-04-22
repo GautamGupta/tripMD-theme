@@ -43,7 +43,7 @@ $push = 0;
 
 				<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-					<a href="<?php the_permalink(); ?>" class="card grid-30<?php if ( !empty( $push ) ) : ?> push-<?php echo $push; endif; ?>">
+					<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
 						<h3><?php the_title(); ?></h3>
 						<h6 class="subtitle"><?php the_content(); ?></h6>
 						<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>

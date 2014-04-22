@@ -276,10 +276,10 @@ a.card {
   /*background: lighten($green, 30%);*/
 }
 
-.procedures .card {
+.procedure.card {
   height: 183px;
 }
-.procedures .card h3 {
+.procedure.card h3 {
   width: 205px;
   white-space: nowrap;
   overflow: hidden;
@@ -287,14 +287,14 @@ a.card {
   font-size: 100%;
   color: #364444;
 }
-.procedures .card .subtitle {
+.procedure.card .subtitle {
   margin: 0;
 }
-.procedures .card h4:nth-child(odd) {
+.procedure.card h4:nth-child(odd) {
   font-weight: bold;
   font-size: 85%;
 }
-.procedures .card h4:nth-child(odd):before {
+.procedure.card h4:nth-child(odd):before {
   font-size: 80%;
   font-weight: normal;
   content: "Duration";
@@ -304,17 +304,17 @@ a.card {
   display: block;
   color: #c4c4c4;
 }
-.procedures .card h4:nth-child(odd):after {
+.procedure.card h4:nth-child(odd):after {
   content: " days";
   display: inline;
   font-size: 80%;
   font-weight: normal;
   color: #c4c4c4;
 }
-.procedures .card h4:nth-child(even) {
+.procedure.card h4:nth-child(even) {
   font-size: 85%;
 }
-.procedures .card h4:nth-child(even):before {
+.procedure.card h4:nth-child(even):before {
   font-size: 80%;
   content: "Cost";
   font-family: "brandon-grotesque", sans-serif;
@@ -323,27 +323,27 @@ a.card {
   text-transform: uppercase;
   display: block;
 }
-.procedures .card h4:nth-child(even):after {
+.procedure.card h4:nth-child(even):after {
   color: #dedede;
   font-size: 80%;
   content: " USD";
   display: inline;
 }
-.procedures .card .price, .procedures .card .duration {
+.procedure.card .price, .procedure.card .duration {
   line-height: 40px;
   margin-top: 10px;
   border-top: thin solid #f2f2f2;
 }
-.procedures .card .price {
+.procedure.card .price {
   margin-top: 0px;
   margin-bottom: 100px !important;
   border-bottom: thin solid #f2f2f2;
 }
-.procedures .card .duration {
+.procedure.card .duration {
   margin-top: 10px;
   border-top: thin solid #f2f2f2;
 }
-.procedures .card span {
+.procedure.card span {
   width: 70px;
   text-align: left;
   display: inline-block;

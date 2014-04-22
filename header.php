@@ -94,7 +94,7 @@
 
 		</header>
 
-		<section class="content specialities vcen">
+		<section class="content vcen">
 
 			<main id="main" class="site-main" role="main">
 

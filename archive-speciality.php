@@ -13,7 +13,7 @@ get_header(); ?>
 
 			<h2 class="animated fadeIn"><?php _e( 'What kind of treatment are you looking for?', 'tripmd' ); ?></h2>
 
-			<div class="options">
+			<div class="specialities options">
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
