@@ -30,6 +30,7 @@ $args = array (
 
 // The Query
 $query = new WP_Query( $args );
+$push = 0;
 ?>
 
 	<?php if ( $query->have_posts() ) : ?>
@@ -38,7 +39,7 @@ $query = new WP_Query( $args );
 		<h4 class="animated fadeIn">Our experienced doctors will ensure your safe treatment.</h4>
 
 		<div style="margin: 15px 0 120px 0">
-			<div class="grid-30" style="padding-top: 30px">Sort by <b>Price</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
+			<div class="grid-30" style="padding-top: 30px">Sort by <b>Experience</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
 			<div class="grid-40"><input type="search" placeholder="Search&hellip;" x-webkit-speech></input></div>
 			<div class="grid-30" style="padding-top: 30px"><a href="#help">Need help?</a></div>
 		</div>
@@ -47,14 +48,14 @@ $query = new WP_Query( $args );
 
 			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-				<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' ); ?>>
+				<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
 
 					<?php if ( has_post_thumbnail() ) :
 						$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
 						<div class="image" style="background: url(<?php echo $thumbnail['0']; ?>); background-size: cover"></div>
 					<?php endif; ?>
 					<h3>Dr. <?php the_title(); ?></h3>
-					<h6 class="subtitle"><?php the_content(); ?></h6>
+					<h6 class="subtitle"><?php the_excerpt(); ?></h6>
 
 					<?php //if ( get_post_meta( get_the_ID(), 'accreditations', true ) ) : ?>
 						<div class="grid-100 duration"><span>Qualifications</span>MD, MAMS &hellip;</div>
@@ -65,7 +66,10 @@ $query = new WP_Query( $args );
 
 				</a>
 
-			<?php endwhile; ?>
+			<?php
+				if ( $push == 10 ) $push = 0;
+				else $push += 5;
+			endwhile; ?>
 
 		</div>
 
@@ -87,7 +91,7 @@ $args = array (
 
 // The Query
 $query = new WP_Query( $args );
-?>
+$push = 0; ?>
 
 	<?php if ( $query->have_posts() ) : ?>
 
@@ -98,14 +102,14 @@ $query = new WP_Query( $args );
 
 			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-				<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' ); ?>>
+				<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
 
 					<?php if ( has_post_thumbnail() ) :
 						$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
 						<div class="image" style="background: url(<?php echo $thumbnail['0']; ?>); background-size: cover"></div>
 					<?php endif; ?>
 					<h3><?php the_title(); ?></h3>
-					<h6 class="subtitle"><?php the_content(); ?></h6>
+					<h6 class="subtitle"><?php the_excerpt(); ?></h6>
 
 					<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
 						<strong>Price</strong><?php echo get_post_meta( get_the_ID(), 'price', true ); ?><br />
@@ -116,7 +120,10 @@ $query = new WP_Query( $args );
 
 				</a>
 
-			<?php endwhile; ?>
+			<?php
+				if ( $push == 10 ) $push = 0;
+				else $push += 5;
+			endwhile; ?>
 
 		</div>
 
