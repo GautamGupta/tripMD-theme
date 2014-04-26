@@ -92,6 +92,8 @@ function tripmd_scripts() {
 	wp_enqueue_style( 'unsemantic', get_template_directory_uri() . '/css/unsemantic.css' );
 	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
 	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );
+	if ( class_exists( 'bbPress' ) && is_bbpress() )
+			wp_enqueue_style( 'bbpress', site_url( '/wp-content/plugins/bbpress/src/templates/default/css/bbpress.css' ) );
 
 	wp_enqueue_script( 'tripmd', get_template_directory_uri() . '/js/js.js', array( 'jquery' ), '0.1', true );
 	wp_enqueue_script( 'tripmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
@@ -124,6 +126,9 @@ function tmd_rating( $rating = 3.5 ) {
 			echo '<i class="fa fa-star"></i>';
 	}
 }
+
+// Increase WP_Session time
+add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours
 
 /**
  * Implement the Custom Header feature.

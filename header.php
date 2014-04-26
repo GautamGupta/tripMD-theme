@@ -73,7 +73,7 @@
 
 						<ul class="menu grid-40">
 
-							<li><a href="#"><?php _e( 'Login', 'tripmd' ); ?> <i class="fa fa-angle-down"></i></a></li>
+							<li><a href="<?php echo esc_url( site_url( 'login' ) ); ?>"><?php _e( 'Login', 'tripmd' ); ?> <i class="fa fa-angle-down"></i></a></li>
 
 						</ul>
 
