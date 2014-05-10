@@ -57,14 +57,18 @@ $hospitals = $wpdb->get_results( $querystr, OBJECT );
 				<h6 class="subtitle">New Delhi, India</h6>
 
 				<?php if ( get_post_meta( get_the_ID(), 'rating', true ) ) : ?>
-					<div class="grid-100 duration"><span>Trust Rating</span><?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
+					<div class="grid-100 duration"><span class="title">Trust Rating</span><?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
 				<?php endif; ?>
-				<?php //if ( get_post_meta( get_the_ID(), 'accreditations', true ) ) : ?>
-					<div class="grid-100 duration"><span>Accreditations</span>JCI, ISO 9002</div>
-				<?php //endif; ?>
-				<?php //if ( get_post_meta( get_the_ID(), 'accommodation', true ) ) : ?>
-					<div class="grid-100 price"><span>Rooms</span>500+ rooms</div>
-				<?php //endif; ?>
+                <?php if ( get_post_meta( get_the_ID(), 'intl_treated', true ) ) : ?>
+                    <div class="grid-100 price"><span class="title">Intl Treated</span><?php echo number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ); ?></div>
+                <?php endif; ?>
+
+				<?php /* if ( get_post_meta( get_the_ID(), 'accreditations', true ) ) : ?>
+					<div class="grid-100 duration"><span class="title">Accreditations</span>JCI, ISO 9002</div>
+				<?php endif; ?>
+				<?php if ( get_post_meta( get_the_ID(), 'accommodation', true ) ) : ?>
+					<div class="grid-100 price"><span class="title">Rooms</span>500+ rooms</div>
+				<?php endif; */ ?>
 
 			</a>
 

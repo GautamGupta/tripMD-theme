@@ -61,11 +61,12 @@ $push = 0;
 					<?php endif; ?>
 					<h3>Dr. <?php the_title(); ?></h3>
 					<p></p>
-					<?php if ( get_post_meta( get_the_ID(), 'experience', true ) ) : ?>
-						<div class="grid-100 experience"><span>Experience</span><?php echo get_post_meta( get_the_ID(), 'experience', true ); ?>+ years</div>
+
+					<?php if ( get_post_meta( get_the_ID(), 'rating', true ) ) : ?>
+						<div class="grid-100 experience"><span class="title">Trust Rating</span><?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
 					<?php endif; ?>
-					<?php if ( get_post_meta( get_the_ID(), 'qualifications', true ) ) : ?>
-						<div class="grid-100 qualifications"><span>Qualifications</span><?php echo get_post_meta( get_the_ID(), 'qualifications', true ); ?></div>
+					<?php if ( get_post_meta( get_the_ID(), 'intl_treated', true ) ) : ?>
+						<div class="grid-100 qualifications"><span class="title">Intl Treated</span><?php echo number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ); ?></div>
 					<?php endif; ?>
 
 				</a>

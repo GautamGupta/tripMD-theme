@@ -427,12 +427,19 @@ a.card {
   margin-top: 10px;
   border-top: thin solid #f2f2f2;
 }
-.procedure.card span {
+.procedure.card span.title {
   width: 70px;
   text-align: left;
   display: inline-block;
   font-size: 80%;
   color: #aaa;
+}
+
+.procedure.card span.strike {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #ccc;
+    text-align: right;
 }
 
 input[type="search"] {
@@ -520,7 +527,7 @@ a.card {
 
 .doctor.card {
   position: relative;
-  height: 448px;
+  height: 418px;
 }
 .doctor.card h3 {
   width: 205px;
