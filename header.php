@@ -10,7 +10,7 @@
 <html <?php language_attributes(); ?>>
 	<head>
 
-		<title><?php wp_title( '|', true, 'right' ); ?></title>
+		<title><?php wp_title( '&middot;', true, 'right' ); ?></title>
 
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
@@ -43,58 +43,26 @@
 
 	<body <?php body_class(); ?>>
 
-		<header<?php if ( is_home() ) : ?>  class="hero"<?php endif; ?>>
+		<header>
 
-			<div class="grid-container">
-				
-				<?php if ( !is_home() ) : ?>
+			<nav id="site-navigation" class="main-navigation" role="navigation">
 
-					<div class="logo grid-30">
+				<div class="grid-container">
 
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image"></a>
-
+					<div class="logo grid-20">
+                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-white.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image" /></a>
 					</div>
 
-					<nav id="site-navigation" class="main-navigation" role="navigation">
-						<!-- <h1 class="menu-toggle"><?php _e( 'Menu', 'tripmd' ); ?></h1>
-						<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tripmd' ); ?></a> -->
+                    <!-- <h1 class="menu-toggle"><?php _e( 'Menu', 'tripmd' ); ?></h1>
+                    <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tripmd' ); ?></a> -->
+                    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'menu grid-80' ) ); ?>
 
-						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'menu grid-70' ) ); ?>
-					</nav><!-- #site-navigation -->
-					
-				<?php else : ?>
+                </div>
 
-					<nav>
-
-						<div class="logo grid-60">
-
-							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" alt="Logo" class="logo image"></a>
-
-						</div>
-
-						<ul class="menu grid-40">
-
-							<li><a href="<?php echo esc_url( site_url( 'login' ) ); ?>"><?php _e( 'Login', 'tripmd' ); ?> <i class="fa fa-angle-down"></i></a></li>
-
-						</ul>
-
-					</nav>
-
-					<div class="grid-container block hero-text grid-100">
-
-						<div class="centered">
-
-							<h1><?php _e( 'Medical tourism, <i>simplified</i>.', 'tripmd' ); ?></h1>
-							<a class="big fat dark-gray button" href="<?php echo site_url( 'specialities' ); ?>"><?php _e( 'Learn More', 'tripmd' ); ?></a>
-
-						</div>
-
-					</div>
-
-				<?php endif; ?>
+			</nav>
 
 		</header>
-
+<!--
 		<section class="content vcen">
 
 			<main id="main" class="site-main" role="main">
@@ -105,4 +73,4 @@
 
 						<div class="grid-100 grid-parent">
 
-						
+						-->

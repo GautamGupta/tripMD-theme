@@ -60,7 +60,7 @@ $hospitals = $wpdb->get_results( $querystr, OBJECT );
 					<div class="grid-100 duration"><span class="title">Trust Rating</span><?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
 				<?php endif; ?>
                 <?php if ( get_post_meta( get_the_ID(), 'intl_treated', true ) ) : ?>
-                    <div class="grid-100 price"><span class="title">Intl Treated</span><?php echo number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ); ?></div>
+                    <div class="grid-100 price"><span class="title">Intl Patients</span><?php echo number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ); ?>+</div>
                 <?php endif; ?>
 
 				<?php /* if ( get_post_meta( get_the_ID(), 'accreditations', true ) ) : ?>

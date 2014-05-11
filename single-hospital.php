@@ -19,6 +19,8 @@ setup_postdata($post); ?>
 
 <div class="content">
 	<?php the_content(); ?>
+
+    <?php if ( function_exists( 'wp_review_show_total' ) ) wp_review_show_total(); ?>
 </div>
 
 <?php
@@ -66,7 +68,7 @@ $push = 0;
 						<div class="grid-100 experience"><span class="title">Trust Rating</span><?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
 					<?php endif; ?>
 					<?php if ( get_post_meta( get_the_ID(), 'intl_treated', true ) ) : ?>
-						<div class="grid-100 qualifications"><span class="title">Intl Treated</span><?php echo number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ); ?></div>
+						<div class="grid-100 qualifications"><span class="title">Intl Patients</span><?php echo number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ); ?>+</div>
 					<?php endif; ?>
 
 				</a>
