@@ -21,7 +21,6 @@ get_header(); ?>
 	<div class="content">
 
 		<?php if ( has_post_thumbnail() ) the_post_thumbnail( 'full', array( 'class' => 'alignright' ) ); ?>
-		<?php endif; ?>
 		<?php else if ( get_post_meta( get_the_ID(), 'picture_url', true ) ) : ?>
 			<img src="<php echo get_post_meta( get_the_ID(), 'picture_url', true ); ?>" class="alignright wp-post-image" width="200px"/>
 		<?php endif; ?>
