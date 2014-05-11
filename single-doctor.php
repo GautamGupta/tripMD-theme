@@ -22,7 +22,7 @@ get_header(); ?>
 
 		<?php if ( has_post_thumbnail() ) the_post_thumbnail( 'full', array( 'class' => 'alignright' ) ); ?>
 		<?php if ( get_post_meta( get_the_ID(), 'picture_url', true ) ) : ?>
-			<img src="<php echo get_post_meta( get_the_ID(), 'picture_url', true ); ?>" class="alignright wp-post-image" width="200px"/>
+			<img src="<?php echo get_post_meta( get_the_ID(), 'picture_url', true ); ?>" class="alignright wp-post-image" width="200px"/>
 		<?php endif; ?>
 		<?php the_content(); ?>
 
