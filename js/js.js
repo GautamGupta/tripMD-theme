@@ -52,27 +52,31 @@ jQuery(document).ready(function($) {
 
 window.onscroll = function() {
 
-		var scroll = window.pageYOffset;
+    if (nav.classList.contains('home') === true) {
 
-		// Sticky Flag
-		if (scroll >= (window.innerHeight/2)) {
-			nav.classList.add('topo');
-			nav.style.position = "fixed";
-			logo_img.src = "/wp-content/themes/tripmd/img/logo-black.png";
-		} else {
-			nav.classList.remove('topo');
-		}
+        var scroll = window.pageYOffset;
 
-		// To move it to -100px
-		if (scroll >= (120)) {
-			nav.classList.add('sticky');
-			nav.style.top = "-80px";
-		} else {
-			logo_img.src = "/wp-content/themes/tripmd/img/logo-white.png";
-			nav.style.position = "absolute";
-			nav.classList.remove('sticky');
-			nav.style.top = "0px";
-		}
+        // Sticky Flag
+        if (scroll >= (window.innerHeight/2)) {
+            nav.classList.add('topo');
+            nav.style.position = "fixed";
+            logo_img.src = "/wp-content/themes/tripmd/img/logo-black.png";
+        } else {
+            nav.classList.remove('topo');
+        }
+
+        // To move it to -100px
+        if (scroll >= (120)) {
+            nav.classList.add('sticky');
+            nav.style.top = "-80px";
+        } else {
+            logo_img.src = "/wp-content/themes/tripmd/img/logo-white.png";
+            nav.style.position = "absolute";
+            nav.classList.remove('sticky');
+            nav.style.top = "0px";
+        }
+
+    }
 
 }
 

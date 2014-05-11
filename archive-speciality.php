@@ -11,9 +11,9 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<h2 class="animated fadeIn"><?php _e( 'What kind of treatment are you looking for?', 'tripmd' ); ?></h2>
+			<div class="heading grid-100"><h2 class="animated fadeIn"><?php _e( 'What kind of treatment are you looking for?', 'tripmd' ); ?></h2></div>
 
-			<div class="specialities options">
+			<div class="content specialities cards">
 
 				<?php while ( have_posts() ) : the_post(); ?>
 

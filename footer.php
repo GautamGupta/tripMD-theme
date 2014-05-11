@@ -7,17 +7,14 @@
  * @package tripmd
  */
 ?>
-<!--
-						</div>
+        <?php if ( !is_home() ) : ?>
 
-					</div>
-
-				</div>
-
-			</main>
+            </div>
 
 		</section>
--->
+
+        <?php endif; ?>
+
 		<footer id="colophon" class="site-footer" role="contentinfo">
 
 			<div class="grid-container block grid-100">

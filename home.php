@@ -218,6 +218,8 @@ get_header(); ?>
 
 				</div>
 
+            </div>
+
 		</section>
 
 		<section class="mock">
