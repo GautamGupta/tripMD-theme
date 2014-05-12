@@ -143,14 +143,17 @@ function tmd_amenities( $amenities = array() ) {
         return;
     
     $amenities_names = array(
-        'internet' => 'Internet',
-        'air-condition' => 'Air Conditioning',
-        'heating' => 'Heating',
+        'helper-staff' => __( 'Heler Staff', 'tripmd' ),
+        'companion' => __( 'Companion Lounge', 'tripmd' ),
+        'cafe' => __( 'Cafeteria', 'tripmd' ),
+        'ambulance' => __( 'Ambulance Services', 'tripmd' ),
+        'internet' => __( 'Internet', 'tripmd' ),
+        'air-condition' => __( 'Air Conditioning', 'tripmd' ),
+        'parking' => __( 'Free Parking', 'tripmd' ),
+        /* 'heating' => 'Heating',
         'smoking' => 'Smoking',
         'tv' => 'Television',
-        'elevator' => 'Elevators',
-        'handicap' => 'Handicap accessible',
-        'parking' => 'Free Parking'
+        'elevator' => 'Elevators', */
     );
     $amenities_not = array(); ?>
 

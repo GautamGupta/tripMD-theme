@@ -182,9 +182,10 @@ get_header(); ?>
 						</div>
 
 						<div class="grid-20 pull-80">
-
 							<img src="<?php echo get_template_directory_uri(); ?>/img/home-f4.png" alt="">
 						</div>
+
+                        <a class="big fat green button waitlist push-40" href="#su">Join the waitlist</a>
 
 					</div>
 
@@ -230,18 +231,24 @@ get_header(); ?>
 
 				<div class="content">
 
-					<p class="mpar grid-100"><img src="<?php echo get_template_directory_uri(); ?>/img/mockup.png" class="mockup" alt=""></p>
+					<div class="grid-50 et-custom-list mock-bullets">
 
-					<p class="grid-50">
-						<ol class="grid-50 pull-25">
+                        <ul>
 							<li>Live itinerary that's always up to date.</li>
 							<li>24X7 assistance: Tap-to-call each point of contact.</li>
 							<li>Secure transfer of your health records to and fro from the doctor</li>
 							<li>Post operative followup made easy</li>
-						</ol>
-					</p>
+						</ul>
 
-				</div>
+                    </div>
+
+					<p class="mpar grid-50"><img src="<?php echo get_template_directory_uri(); ?>/img/mockup.png" class="mockup" alt=""></p>
+
+                </div>
+
+                <a class="big fat green button waitlist push-40" href="#su">Join the waitlist</a>
+
+            </div>
 
 		</section>
 
@@ -249,13 +256,15 @@ get_header(); ?>
 
 			<div class="grid-container">
 
-				<div class="heading grid-100 suh"><h2>Sign up for more updates.</h2></div>
+				<div class="heading grid-100 suh"><h2>Get in the queue.</h2></div>
 
 				<div class="content">
 
 					<h4>We&rsquo;ll keep you updated on how we&rsquo;re doing.</h4>
 
-					<input type="text" class="email" placeholder="name@email.com">
+					<input type="text" class="name" placeholder="Full name">
+					<input type="email" class="email" placeholder="name@email.com">
+					<input type="phone" class="phone" placeholder="+1 971 139 5789">
 
 				</div>
 

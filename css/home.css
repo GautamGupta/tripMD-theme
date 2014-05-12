@@ -254,11 +254,17 @@
   text-align: center;
 }
 
-.mockup {
-  width: 70%;
+section.mock .mock-bullets {
+    font-size: 20px;
+    margin-top: 50px;
+    color: #637d7d;
 }
 
-.email {
+.mockup {
+  width: 100%;
+}
+
+#su input {
   outline: none;
   border: none;
   padding: 10px;
@@ -269,7 +275,7 @@
   background: #2a3636;
   color: white !important;
   width: 550px;
-  margin: 18px 0;
+  margin: 10px 0;
   border-radius: 1000px;
 }
 
@@ -282,4 +288,9 @@
 }
 .last h4 {
   font-size: 125%;
+}
+
+.waitlist.button {
+    margin: 20px 0 -10px 0;
+    font-size: 90%;
 }
