@@ -24,6 +24,13 @@ setup_postdata($post); ?>
         <strong>Amenities</strong><br />
         <?php tmd_amenities( get_post_meta( get_the_ID(), 'amenities', true ) ); ?>
     <?php endif; ?>
+
+    <?php
+        // If comments are open or we have at least one comment, load up the comment template
+        if ( comments_open() || '0' != get_comments_number() ) :
+            comments_template( '/testimonials.php' );
+        endif;
+    ?>
     
 </div>
 

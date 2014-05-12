@@ -16,7 +16,7 @@ get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-	<h2 class="animated fadeIn"><?php the_title(); ?></h2>
+    <div class="heading grid-100"><h2 class="animated fadeIn"><?php the_title(); ?></h2></div>
 
 	<div class="content">
 
@@ -40,6 +40,13 @@ get_header(); ?>
 		<?php if ( get_post_meta( get_the_ID(), 'qualifications', true ) ) : ?>
 			<p><strong>Qualifications</strong>: <?php echo get_post_meta( get_the_ID(), 'qualifications', true ); ?></p>
 		<?php endif; ?>
+
+        <?php
+            // If comments are open or we have at least one comment, load up the comment template
+            if ( comments_open() || '0' != get_comments_number() ) :
+                comments_template( '/testimonials.php' );
+            endif;
+        ?>
 
 	</div>
 

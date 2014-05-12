@@ -277,7 +277,7 @@ nav .button {
 3.0 Footer
 --------------------------------------------------------------*/
 
-footer {
+footer.site-footer {
   background: #fff;
   color: #919191;
   z-index: 1;
@@ -285,19 +285,19 @@ footer {
   line-height: 80px;
   clear: both;
 }
-footer p {
+footer.site-footer p {
   text-align: center;
   margin: 0;
   font-weight: lighter;
 }
-footer img {
+footer.site-footer img {
   height: 25px;
   opacity: 0.6;
   -webkit-filter: grayscale(100%);
   vertical-align: middle;
   margin: 0 5px;
 }
-footer img:hover {
+footer.site-footer img:hover {
     -webkit-filter: inherit;
     opacity: 1.0;
 }
@@ -504,7 +504,11 @@ a.card {
     text-align: right;
 }
 
-input[type="search"] {
+input[type="search"],
+.comment-form-author input,
+.comment-form-email input,
+.comment-form-url input,
+.comment-form-comment textarea {
   display: block;
   width: 100%;
   margin: 20px auto;
@@ -515,6 +519,10 @@ input[type="search"] {
   border: thin solid #dedede;
   border-radius: 100px;
   outline: none;
+}
+
+.comment-form-comment textarea {
+    border-radius: 10px;
 }
 
 .logo {
