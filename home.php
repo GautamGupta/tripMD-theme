@@ -185,7 +185,7 @@ get_header(); ?>
 							<img src="<?php echo get_template_directory_uri(); ?>/img/home-f4.png" alt="">
 						</div>
 
-                        <a class="big fat green button waitlist push-40" href="#su">Join the waitlist</a>
+                        <a class="big fat green button waitlist push-40" href="#su">Get early access</a>
 
 					</div>
 
@@ -246,7 +246,7 @@ get_header(); ?>
 
                 </div>
 
-                <a class="big fat green button waitlist push-40" href="#su">Join the waitlist</a>
+                <a class="big fat green button waitlist push-40" href="#su">Get early access</a>
 
             </div>
 
@@ -256,15 +256,14 @@ get_header(); ?>
 
 			<div class="grid-container">
 
-				<div class="heading grid-100 suh"><h2>Get in the queue.</h2></div>
+				<div class="heading grid-100 suh"><h2>Join the waiting list for exclusive early access.</h2></div>
 
 				<div class="content">
 
 					<h4>We&rsquo;ll keep you updated on how we&rsquo;re doing.</h4>
 
-					<input type="text" class="name" placeholder="Full name">
-					<input type="email" class="email" placeholder="name@email.com">
-					<input type="phone" class="phone" placeholder="+1 971 139 5789">
+					<input type="text" class="name" placeholder="Full name" />
+					<input type="email" class="email" placeholder="name@email.com" />
 
 				</div>
 
