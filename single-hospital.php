@@ -15,12 +15,16 @@ if ( class_exists( 'WP_Session' ) ) {
 get_header();
 setup_postdata($post); ?>
 
-<h2 class="animated fadeIn"><?php the_title(); ?></h2>
+<div class="heading grid-100"><h2 class="animated fadeIn"><?php the_title(); ?></h2></div>
 
 <div class="content">
 	<?php the_content(); ?>
 
-    <?php if ( function_exists( 'wp_review_show_total' ) ) wp_review_show_total(); ?>
+    <?php if ( get_post_meta( get_the_ID(), 'amenities', true ) ) : ?>
+        <strong>Amenities</strong><br />
+        <?php tmd_amenities( get_post_meta( get_the_ID(), 'amenities', true ) ); ?>
+    <?php endif; ?>
+    
 </div>
 
 <?php
@@ -42,7 +46,7 @@ $push = 0;
 
 	<?php if ( $query->have_posts() ) : ?>
 
-		<h3 class="animated fadeIn">Doctors</h2>
+		<h3 class="animated fadeIn">Doctors</h3>
 		<h4 class="animated fadeIn">Our experienced doctors will ensure your safe treatment.</h4>
 
 		<div style="margin: 15px 0 120px 0">

@@ -90,6 +90,7 @@ function tripmd_scripts() {
 
 	wp_enqueue_style( 'tripmd', get_template_directory_uri() . '/css/style.css' );
 	wp_enqueue_style( 'unsemantic', get_template_directory_uri() . '/css/unsemantic.css' );
+	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );
 	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
     if ( is_home() )  {
         wp_enqueue_style( 'royalslider', get_template_directory_uri() . '/css/royalslider/royalslider.css' );
@@ -103,8 +104,6 @@ function tripmd_scripts() {
     wp_enqueue_script( 'royalslider', get_template_directory_uri() . '/js/royalslider/jquery.royalslider.min.js', array( 'jquery', 'easing' ), '9.5.4', true );
 	
     /*
-	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );
-
     wp_enqueue_script( 'tripmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 	wp_enqueue_script( 'tripmd-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 	wp_enqueue_script( 'tripmd-ss-min', get_template_directory_uri() . '/js/ss-min.js', array(), '0.1', true );
@@ -112,7 +111,7 @@ function tripmd_scripts() {
 	wp_enqueue_script( 'classie', get_template_directory_uri() . '/js/classie.js', array(), '0.1', true );
 	wp_enqueue_script( 'sidebar-effects', get_template_directory_uri() . '/js/sidebarEffects.js', array(), '0.1', true );
 	wp_enqueue_script( 'ligature', get_template_directory_uri() . '/js/ligature.js', array(), '0.1', true );
-     */
+    */
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -136,6 +135,47 @@ function tmd_rating( $rating = 3.5 ) {
 			echo '<i class="fa fa-star"></i>';
 	}
 }
+
+function tmd_amenities( $amenities = array() ) {
+    if ( !is_array( $amenities ) && !empty( $amenities ) )
+        $amenities = array_map( 'trim', (array) explode( ',', $amenities ) );
+    elseif ( empty ($amenities ) )
+        return;
+    
+    $amenities_names = array(
+        'internet' => 'Internet',
+        'air-condition' => 'Air Conditioning',
+        'heating' => 'Heating',
+        'smoking' => 'Smoking',
+        'tv' => 'Television',
+        'elevator' => 'Elevators',
+        'handicap' => 'Handicap accessible',
+        'parking' => 'Free Parking'
+    );
+    $amenities_not = array(); ?>
+
+    <div class="grid-50">
+        <div class="et-custom-list">
+            <ul>
+                <?php foreach( $amenities_names as $key => $name ) {
+                    if ( in_array( $key, $amenities ) )
+                        echo "<li>{$name}</li>";
+                    else
+                        $amenities_not[$key] = $name;
+                } ?>
+            </ul>
+        </div> <!-- .et-custom-list -->
+    </div>
+
+    <div class="grid-50">
+        <div class="et-custom-list etlist-x">
+            <ul>
+                <?php foreach( $amenities_not as $key => $name )
+                        echo "<li>{$name}</li>"; ?>
+            </ul>
+        </div> <!-- .et-custom-list -->
+    </div>
+<?php }
 
 // Increase WP_Session time
 add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours
