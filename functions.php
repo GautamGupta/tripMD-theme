@@ -146,7 +146,7 @@ function tmd_register_home_handler() {
 add_action( 'login_init', 'tmd_register_home_handler' );
 
 	function tmd_register_home_handler_login() {
-		return !empty( $_POST['user_email'] ) ? sanitize_user( trim( $_POST['user_email'] ) ) : '';
+		return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : '';
 	}
     add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
 
