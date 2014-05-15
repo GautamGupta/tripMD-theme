@@ -138,25 +138,38 @@ function tmd_register_home_handler() {
     if ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) || empty( $_POST['user_email'] ) )
     	return false;
 
-    // add_filter( 'pre_user_login', 'tmd_register_home_handler_login' );
     add_filter( 'pre_user_first_name', 'tmd_register_home_handler_fn' );
-    add_filter( 'pre_user_first_name', 'tmd_register_home_handler_ln' );
+    add_filter( 'pre_user_last_name', 'tmd_register_home_handler_ln' );
 
     $_POST['user_login'] = $_POST['user_email'];
 }
 add_action( 'login_init', 'tmd_register_home_handler' );
-/*
+
 	function tmd_register_home_handler_login() {
 		return !empty( $_POST['user_email'] ) ? sanitize_title( trim( $_POST['user_email'] ) ) : '';
 	}
-*/
+    add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
+
 	function tmd_register_home_handler_fn() {
-		return !empty( $_POST['first_name'] ) ? sanitize_title( trim( $_POST['first_name'] ) ) : '';
+		return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : '';
 	}
 
 	function tmd_register_home_handler_ln() {
-		return !empty( $_POST['last_name'] ) ? sanitize_title( trim( $_POST['last_name'] ) ) : '';
+		return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : '';
 	}
+
+/**
+ * Customize header logo on login page
+ */
+function tmd_login_logo() {
+	echo '<style type="text/css">
+        h1 a {
+            background-image: url(' . get_template_directory_uri() . '/img/logo-black.png) !important;
+            background-size: 163px 62px !important;
+        }
+    </style>';
+}
+add_action( 'login_head', 'tmd_login_logo' );
 
 // Increase WP_Session time
 add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours
