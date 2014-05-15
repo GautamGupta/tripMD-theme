@@ -260,8 +260,6 @@ get_header(); ?>
 
 				<div class="content">
 
-					<h4>We&rsquo;ll keep you updated on how we&rsquo;re doing.</h4>
-
 					<input type="text" class="name" placeholder="Full name" />
 					<input type="email" class="email" placeholder="name@email.com" />
 

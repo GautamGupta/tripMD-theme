@@ -121,6 +121,7 @@ add_action( 'wp_enqueue_scripts', 'tripmd_scripts' );
 
 function tmd_specialities_order( $query ) {
     if ( is_post_type_archive( 'speciality' ) ) {
+        $query->set( 'posts_per_page', -1 );
         $query->set( 'order', 'asc' );
         $query->set( 'orderby', 'post_title' );
     }
