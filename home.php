@@ -205,14 +205,12 @@ get_header(); ?>
 
 					  <div>
 					    <span class="rsTmb">Patients</span>
-					    <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="https://www.youtube.com/watch?v=PzInUaLb37o" data-rsw="640" data-rsh="425">
-
+					    <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
 					  </div>
 
-					<div>
+					  <div>
 					    <span class="rsTmb">Doctors</span>
 					    <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425">
-
 					  </div>
 
 					</div>
@@ -252,21 +250,38 @@ get_header(); ?>
 
 		</section>
 
-		<section class="center last green" id="su">
+        <?php if ( is_user_logged_in() ) : ?>
 
-			<div class="grid-container">
+    		<section class="center last green" id="su">
 
-				<div class="heading grid-100 suh"><h2>Join the waiting list for exclusive early access.</h2></div>
+    			<div class="grid-container">
 
-				<div class="content">
+    				<div class="heading grid-100 suh"><h2>Join the waiting list for exclusive early access.</h2></div>
 
-					<input type="text" class="name" placeholder="Full name" />
-					<input type="email" class="email" placeholder="name@email.com" />
+    				<div class="content grid-60 push-20">
 
-				</div>
+                        <form method="post" action="wp-login.php">
 
-            </div>
+                            <input type="text"  class="first-name grid-45" name="user_login" placeholder="Matt" />
+                            <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Beck" />
+                            <input type="email" class="email grid-100" name="user_email" placeholder="beck.matthewb@gmail.com" />
 
-		</section>
+                            <input type="hidden" name="action"      value="register" />
+                            <input type="hidden" name="user-cookie" value="1" />
+                            <input type="hidden" name="tmd-home-register" value="1" />
+
+                            <?php wp_nonce_field( 'tmd-user-register' ); ?>
+
+                            <input type="submit" class="email grid-100" value="Signup" />
+
+                        </form>
+
+    				</div>
+
+                </div>
+
+    		</section>
+
+        <?php endif; ?>
 
 <?php get_footer(); ?>

@@ -123,7 +123,7 @@ function tmd_specialities_order( $query ) {
     if ( is_post_type_archive( 'speciality' ) ) {
         $query->set( 'posts_per_page', -1 );
         $query->set( 'order', 'asc' );
-        $query->set( 'orderby', 'post_title' );
+        $query->set( 'orderby', 'title' );
     }
 }
 add_action( 'pre_get_posts', 'tmd_specialities_order' );

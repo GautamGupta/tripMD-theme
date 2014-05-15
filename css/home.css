@@ -274,9 +274,21 @@ section.mock .mock-bullets {
   text-align: center;
   background: #2a3636;
   color: white !important;
-  width: 550px;
   margin: 10px 0;
   border-radius: 1000px;
+}
+
+#su input:active, #su input:hover {
+  background: #73c98b;
+}
+
+#su input[type="submit"] {
+    cursor: pointer;
+    background: #73c98b;
+}
+
+#su input[type="submit"]:hover {
+    background: #2a3636;
 }
 
 .last {

@@ -412,15 +412,20 @@ a.card {
   text-align: center !important;
 }
 .specialities .card {
-  margin: 30px 50px;
-  height: 160px;
-  font-size: 120%;
+  margin: 15px;
   text-align: center !important;
-  width: 160px;
-  padding: 25px 20px 20px 20px;
+  width: 250px;
+  padding: 20px;
+  height: 160px;
 }
 .specialities .card:hover {
   /*background: lighten($green, 30%);*/
+}
+.specialities .card h3.with-image {
+  width: 205px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .procedure.card {

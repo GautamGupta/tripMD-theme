@@ -22,7 +22,7 @@ get_header(); ?>
 							$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
 							<img src="<?php echo $thumbnail['0']; ?>" alt="<?php the_title(); ?>" />
 						<?php endif; ?>
-						<h3><?php the_title(); ?></h3>
+						<h3<?php echo has_post_thumbnail() ? ' class="with-image"' : ''; ?>><?php the_title(); ?></h3>
 					</a>
 
 				<?php endwhile; ?>
