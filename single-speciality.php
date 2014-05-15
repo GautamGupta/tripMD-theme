@@ -47,7 +47,7 @@ $push = 0; ?>
 
 					<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
 						<h3><?php the_title(); ?></h3>
-						<h6 class="subtitle"><?php the_content(); ?></h6>
+						<h6 class="subtitle"><?php the_excerpt(); ?></h6>
 						<?php if ( get_post_meta( get_the_ID(), 'duration', true ) ) : ?>
 							<div class="grid-100 duration"><span class="title">Duration</span><?php printf( __( '%d days', 'tripmd' ), get_post_meta( get_the_ID(), 'duration', true ) ); ?></div>
 						<?php endif; ?>

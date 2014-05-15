@@ -131,3 +131,56 @@ function tripmd_category_transient_flusher() {
 }
 add_action( 'edit_category', 'tripmd_category_transient_flusher' );
 add_action( 'save_post',     'tripmd_category_transient_flusher' );
+
+function tmd_rating( $rating = 3.5 ) {
+	for ( $i = 0; $i < $rating; $i += 1 ) {
+		if ( ( $rating - $i ) < 1 )
+			echo '<i class="fa fa-star-half-full"></i>';
+		else
+			echo '<i class="fa fa-star"></i>';
+	}
+}
+
+function tmd_amenities( $amenities = array() ) {
+    if ( !is_array( $amenities ) && !empty( $amenities ) )
+        $amenities = array_map( 'trim', (array) explode( ',', $amenities ) );
+    elseif ( empty ($amenities ) )
+        return;
+    
+    $amenities_names = array(
+        'helper-staff' => __( 'Heler Staff', 'tripmd' ),
+        'companion' => __( 'Companion Lounge', 'tripmd' ),
+        'cafe' => __( 'Cafeteria', 'tripmd' ),
+        'ambulance' => __( 'Ambulance Services', 'tripmd' ),
+        'internet' => __( 'Internet', 'tripmd' ),
+        'air-condition' => __( 'Air Conditioning', 'tripmd' ),
+        'parking' => __( 'Free Parking', 'tripmd' ),
+        /* 'heating' => 'Heating',
+        'smoking' => 'Smoking',
+        'tv' => 'Television',
+        'elevator' => 'Elevators', */
+    );
+    $amenities_not = array(); ?>
+
+    <div class="grid-50">
+        <div class="et-custom-list">
+            <ul>
+                <?php foreach( $amenities_names as $key => $name ) {
+                    if ( in_array( $key, $amenities ) )
+                        echo "<li>{$name}</li>";
+                    else
+                        $amenities_not[$key] = $name;
+                } ?>
+            </ul>
+        </div> <!-- .et-custom-list -->
+    </div>
+
+    <div class="grid-50">
+        <div class="et-custom-list etlist-x">
+            <ul>
+                <?php foreach( $amenities_not as $key => $name )
+                        echo "<li>{$name}</li>"; ?>
+            </ul>
+        </div> <!-- .et-custom-list -->
+    </div>
+<?php }

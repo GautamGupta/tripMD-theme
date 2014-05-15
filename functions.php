@@ -49,10 +49,10 @@ function tripmd_setup() {
 	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 
 	// Setup the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'tripmd_custom_background_args', array(
+	/* add_theme_support( 'custom-background', apply_filters( 'tripmd_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
-	) ) );
+	) ) ); */
 
 	// Enable support for HTML5 markup.
 	add_theme_support( 'html5', array(
@@ -119,67 +119,44 @@ function tripmd_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'tripmd_scripts' );
 
+/**
+ * Fix specialities order on archive page
+ */
 function tmd_specialities_order( $query ) {
     if ( is_post_type_archive( 'speciality' ) ) {
         $query->set( 'posts_per_page', -1 );
-        $query->set( 'order', 'asc' );
-        $query->set( 'orderby', 'title' );
+        $query->set( 'order', 'ASC' );
+        $query->set( 'orderby', 'menu_order title' );
     }
 }
 add_action( 'pre_get_posts', 'tmd_specialities_order' );
 
-function tmd_rating( $rating = 3.5 ) {
-	for ( $i = 0; $i < $rating; $i += 1 ) {
-		if ( ( $rating - $i ) < 1 )
-			echo '<i class="fa fa-star-half-full"></i>';
-		else
-			echo '<i class="fa fa-star"></i>';
-	}
+/**
+ * Handle homepage signups
+ */
+function tmd_register_home_handler() {
+    if ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) || empty( $_POST['user_email'] ) )
+    	return false;
+
+    // add_filter( 'pre_user_login', 'tmd_register_home_handler_login' );
+    add_filter( 'pre_user_first_name', 'tmd_register_home_handler_fn' );
+    add_filter( 'pre_user_first_name', 'tmd_register_home_handler_ln' );
+
+    $_POST['user_login'] = $_POST['user_email'];
 }
+add_action( 'login_init', 'tmd_register_home_handler' );
+/*
+	function tmd_register_home_handler_login() {
+		return !empty( $_POST['user_email'] ) ? sanitize_title( trim( $_POST['user_email'] ) ) : '';
+	}
+*/
+	function tmd_register_home_handler_fn() {
+		return !empty( $_POST['first_name'] ) ? sanitize_title( trim( $_POST['first_name'] ) ) : '';
+	}
 
-function tmd_amenities( $amenities = array() ) {
-    if ( !is_array( $amenities ) && !empty( $amenities ) )
-        $amenities = array_map( 'trim', (array) explode( ',', $amenities ) );
-    elseif ( empty ($amenities ) )
-        return;
-    
-    $amenities_names = array(
-        'helper-staff' => __( 'Heler Staff', 'tripmd' ),
-        'companion' => __( 'Companion Lounge', 'tripmd' ),
-        'cafe' => __( 'Cafeteria', 'tripmd' ),
-        'ambulance' => __( 'Ambulance Services', 'tripmd' ),
-        'internet' => __( 'Internet', 'tripmd' ),
-        'air-condition' => __( 'Air Conditioning', 'tripmd' ),
-        'parking' => __( 'Free Parking', 'tripmd' ),
-        /* 'heating' => 'Heating',
-        'smoking' => 'Smoking',
-        'tv' => 'Television',
-        'elevator' => 'Elevators', */
-    );
-    $amenities_not = array(); ?>
-
-    <div class="grid-50">
-        <div class="et-custom-list">
-            <ul>
-                <?php foreach( $amenities_names as $key => $name ) {
-                    if ( in_array( $key, $amenities ) )
-                        echo "<li>{$name}</li>";
-                    else
-                        $amenities_not[$key] = $name;
-                } ?>
-            </ul>
-        </div> <!-- .et-custom-list -->
-    </div>
-
-    <div class="grid-50">
-        <div class="et-custom-list etlist-x">
-            <ul>
-                <?php foreach( $amenities_not as $key => $name )
-                        echo "<li>{$name}</li>"; ?>
-            </ul>
-        </div> <!-- .et-custom-list -->
-    </div>
-<?php }
+	function tmd_register_home_handler_ln() {
+		return !empty( $_POST['last_name'] ) ? sanitize_title( trim( $_POST['last_name'] ) ) : '';
+	}
 
 // Increase WP_Session time
 add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours

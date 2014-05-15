@@ -250,33 +250,42 @@ get_header(); ?>
 
 		</section>
 
-        <?php if ( is_user_logged_in() ) : ?>
+        <?php if ( ! is_user_logged_in() ) : ?>
 
     		<section class="center last green" id="su">
 
     			<div class="grid-container">
 
-    				<div class="heading grid-100 suh"><h2>Join the waiting list for exclusive early access.</h2></div>
+                    <?php if ( !empty( $_GET['su'] ) ) : ?>
 
-    				<div class="content grid-60 push-20">
+    				    <div class="heading grid-100 suh"><h2>Thanks for registering. We'll keep you updated!</h2></div>
 
-                        <form method="post" action="wp-login.php">
+                    <?php else : ?>
 
-                            <input type="text"  class="first-name grid-45" name="user_login" placeholder="Matt" />
-                            <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Beck" />
-                            <input type="email" class="email grid-100" name="user_email" placeholder="beck.matthewb@gmail.com" />
+                        <div class="heading grid-100 suh"><h2>Join the waiting list for exclusive early access.</h2></div>
 
-                            <input type="hidden" name="action"      value="register" />
-                            <input type="hidden" name="user-cookie" value="1" />
-                            <input type="hidden" name="tmd-home-register" value="1" />
+        				<div class="content grid-60 push-20">
 
-                            <?php wp_nonce_field( 'tmd-user-register' ); ?>
+                            <form method="post" action="wp-login.php">
 
-                            <input type="submit" class="email grid-100" value="Signup" />
+                                <input type="text"  class="first-name grid-45" name="first_name" placeholder="Matt" />
+                                <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Beck" />
+                                <input type="email" class="email grid-100" name="user_email" placeholder="beck.matthewb@gmail.com" required="required" />
 
-                        </form>
+                                <input type="hidden" name="action"      value="register" />
+                                <input type="hidden" name="user-cookie" value="1" />
+                                <input type="hidden" name="tmd_home_register" value="1" />
+                                <input type="hidden" name="redirect_to" value="<?php echo home_url( '?su=1#su' ); ?>" />
 
-    				</div>
+                                <?php wp_nonce_field( 'tmd_home_register' ); ?>
+
+                                <input type="submit" class="email grid-100" value="Signup" />
+
+                            </form>
+
+        				</div>
+
+                    <?php endif; ?>
 
                 </div>
 
