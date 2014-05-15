@@ -145,17 +145,17 @@ function tmd_register_home_handler() {
 }
 add_action( 'login_init', 'tmd_register_home_handler' );
 
-	function tmd_register_home_handler_login() {
-		return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : '';
+	function tmd_register_home_handler_login( $username = '' ) {
+		return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
 	}
     add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
 
-	function tmd_register_home_handler_fn() {
-		return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : '';
+	function tmd_register_home_handler_fn( $firstname = '' ) {
+		return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
 	}
 
-	function tmd_register_home_handler_ln() {
-		return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : '';
+	function tmd_register_home_handler_ln( $lastname = '' ) {
+		return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
 	}
 
 /**
