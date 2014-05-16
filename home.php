@@ -204,15 +204,15 @@ get_header(); ?>
 					<div id="content-slider-1" class="royalSlider contentSlider rsDefault">
 
 					  <div>
-					    <span class="rsTmb">Patients</span>
+					    <?php /* <span class="rsTmb">Patients</span> */ ?>
 					    <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
 					  </div>
-
+                      <?php /*
 					  <div>
 					    <span class="rsTmb">Doctors</span>
 					    <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425">
 					  </div>
-
+                      */ ?>
 					</div>
 
 				</div>

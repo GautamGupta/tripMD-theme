@@ -132,6 +132,10 @@ function tripmd_category_transient_flusher() {
 add_action( 'edit_category', 'tripmd_category_transient_flusher' );
 add_action( 'save_post',     'tripmd_category_transient_flusher' );
 
+function tmd_price( $price = 0 ) {
+	echo '$' . join( ' - ', array_map( 'number_format_i18n', explode( '-', $price ) ) );
+}
+
 function tmd_rating( $rating = 3.5 ) {
 	for ( $i = 0; $i < $rating; $i += 1 ) {
 		if ( ( $rating - $i ) < 1 )

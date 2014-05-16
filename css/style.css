@@ -502,10 +502,13 @@ a.card {
   color: #aaa;
 }
 
-.procedure.card span.strike {
+.strike {
     text-decoration: line-through;
     font-size: 14px;
     color: #ccc;
+}
+
+.procedure.card span.strike {
     text-align: right;
 }
 

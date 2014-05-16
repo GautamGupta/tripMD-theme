@@ -12,9 +12,31 @@ if ( class_exists( 'WP_Session' ) ) {
 	$wp_session['procedure_id'] = get_the_ID();
 }
 
-get_header();
+get_header(); ?>
 
-$querystr = $wpdb->prepare( "
+
+
+<div class="heading grid-100">
+	<h2 class="animated fadeIn"><?php the_title(); ?></h2>
+	<small style="text-align: center"><?php the_excerpt(); ?></small>
+</div>
+
+<div class="content">
+
+	<?php if ( get_post_meta( get_the_ID(), 'duration', true ) ) : ?>
+		<p><strong>Duration</strong>: <?php printf( __( '%d days', 'tripmd' ), get_post_meta( get_the_ID(), 'duration', true ) ); ?></p>
+	<?php endif; ?>
+	<?php if ( get_post_meta( get_the_ID(), 'price', true ) ) : ?>
+		<p><strong>Price</strong>: <?php tmd_price( get_post_meta( get_the_ID(), 'price', true ) ); ?>
+            <?php if ( get_post_meta( get_the_ID(), 'price_original', true ) ) : ?>
+                <span class="strike"><?php tmd_price( get_post_meta( get_the_ID(), 'price_original', true ) ); ?></span>
+            <?php endif; ?>
+        </p>
+	<?php endif; ?>
+	<?php the_content(); ?>
+</div>
+
+<?php $querystr = $wpdb->prepare( "
 SELECT $wpdb->posts.*
 FROM $wpdb->posts
 WHERE $wpdb->posts.ID IN (
@@ -30,11 +52,9 @@ WHERE $wpdb->posts.ID IN (
 
 $hospitals = $wpdb->get_results( $querystr, OBJECT );
 
-?>
+if ( $hospitals ) : ?>
 
-<?php if ( $hospitals ) : ?>
-
-	<h2 class="animated fadeIn">Hospitals for <?php the_title(); ?></h2>
+	<div class="heading grid-100"><h2 class="animated fadeIn">Hospitals for <?php the_title(); ?></h2></div>
 	<h4 class="animated fadeIn">Select a procedure that suits your time and budget.</h4>
 
 	<div style="margin: 15px 0 120px 0">
@@ -43,11 +63,11 @@ $hospitals = $wpdb->get_results( $querystr, OBJECT );
 		<div class="grid-30" style="padding-top: 30px"><a href="#help">Skip to Doctor Selection</a></div>
 	</div>
 
-	<div class="options grid-100 grid-parent">
+	<div class="content cards grid-100 grid-parent">
 
 		<?php foreach ( $hospitals as $hospital ) : setup_postdata( $GLOBALS['post'] =& $hospital ); ?>
 
-			<a href="<?php the_permalink(); ?>" <?php post_class( 'card grid-30' ); ?>>
+			<a href="<?php the_permalink(); ?>" id="<?php echo get_post_type(); ?>-<?php the_ID(); ?>" <?php post_class( 'card grid-30' ); ?>>
 
 				<?php if ( has_post_thumbnail() ) :
 					$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
@@ -71,6 +91,8 @@ $hospitals = $wpdb->get_results( $querystr, OBJECT );
 				<?php endif; */ ?>
 
 			</a>
+
+			<div 
 
 		<?php endforeach; ?>
 
