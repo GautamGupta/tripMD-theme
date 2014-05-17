@@ -15,10 +15,23 @@ if ( class_exists( 'WP_Session' ) ) {
 get_header();
 setup_postdata($post); ?>
 
-<h2 class="animated fadeIn"><?php the_title(); ?></h2>
+<div class="heading grid-100"><h2 class="animated fadeIn"><?php the_title(); ?></h2></div>
 
 <div class="content">
 	<?php the_content(); ?>
+
+    <?php if ( get_post_meta( get_the_ID(), 'amenities', true ) ) : ?>
+        <strong>Amenities</strong><br />
+        <?php tmd_amenities( get_post_meta( get_the_ID(), 'amenities', true ) ); ?>
+    <?php endif; ?>
+
+    <?php
+        // If comments are open or we have at least one comment, load up the comment template
+        if ( comments_open() || '0' != get_comments_number() ) :
+            comments_template( '/testimonials.php' );
+        endif;
+    ?>
+    
 </div>
 
 <?php
@@ -40,7 +53,7 @@ $push = 0;
 
 	<?php if ( $query->have_posts() ) : ?>
 
-		<h3 class="animated fadeIn">Doctors</h2>
+		<h3 class="animated fadeIn">Doctors</h3>
 		<h4 class="animated fadeIn">Our experienced doctors will ensure your safe treatment.</h4>
 
 		<div style="margin: 15px 0 120px 0">
@@ -66,7 +79,7 @@ $push = 0;
 						<div class="grid-100 experience"><span class="title">Trust Rating</span><?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
 					<?php endif; ?>
 					<?php if ( get_post_meta( get_the_ID(), 'intl_treated', true ) ) : ?>
-						<div class="grid-100 qualifications"><span class="title">Intl Treated</span><?php echo number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ); ?></div>
+						<div class="grid-100 qualifications"><span class="title">Intl Patients</span><?php echo number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ); ?>+</div>
 					<?php endif; ?>
 
 				</a>

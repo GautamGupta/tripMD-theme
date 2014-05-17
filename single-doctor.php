@@ -16,8 +16,7 @@ get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-	<h2 class="animated fadeIn">Dr. <?php the_title(); ?></h2>
-
+	<div class="heading grid-100"><h2 class="animated fadeIn">Dr. <?php the_title(); ?></h2></div>
 	<div class="content">
 
 		<?php if ( has_post_thumbnail() ) the_post_thumbnail( 'full', array( 'class' => 'alignright' ) ); ?>
@@ -38,17 +37,26 @@ get_header(); ?>
 			<p><strong>Qualifications</strong>: <?php echo get_post_meta( get_the_ID(), 'qualifications', true ); ?></p>
 		<?php endif; ?>
 
+		<?php the_content(); ?>
+
+        <?php
+            // If comments are open or we have at least one comment, load up the comment template
+            if ( comments_open() || '0' != get_comments_number() ) :
+                comments_template( '/testimonials.php' );
+            endif;
+        ?>
+
 	</div>
 
-		<small class="animated fadeIn">You&rsquo;re nearly done.</small>
-		&nbsp;
-		<a class="big fat dark-gray button" href="<?php echo site_url( 'register' ); ?>">Book Consultation</a>
-		&nbsp;
-		<small class="animated fadeIn">or</small>
-		&nbsp;
-		<a class="big fat light-gray button" href="<?php echo get_permalink( $post->post_parent ); ?>">Go Back</a>
-		&nbsp;
-		<small class="animated fadeIn">to select another doctor.</small>
+    <small class="animated fadeIn">You&rsquo;re nearly done.</small>
+    &nbsp;
+    <a class="big fat dark-gray button" href="<?php echo site_url( 'register' ); ?>">Book Consultation</a>
+    &nbsp;
+    <small class="animated fadeIn">or</small>
+    &nbsp;
+    <a class="big fat light-gray button" href="<?php echo get_permalink( $post->post_parent ); ?>">Go Back</a>
+    &nbsp;
+    <small class="animated fadeIn">to select another doctor.</small>
 
 <?php endwhile; // end of the loop. ?>
 

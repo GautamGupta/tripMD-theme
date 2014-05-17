@@ -49,10 +49,10 @@ function tripmd_setup() {
 	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 
 	// Setup the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'tripmd_custom_background_args', array(
+	/* add_theme_support( 'custom-background', apply_filters( 'tripmd_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
-	) ) );
+	) ) ); */
 
 	// Enable support for HTML5 markup.
 	add_theme_support( 'html5', array(
@@ -87,20 +87,37 @@ add_action( 'widgets_init', 'tripmd_widgets_init' );
  * Enqueue scripts and styles.
  */
 function tripmd_scripts() {
-	// wp_enqueue_style( 'tripmd-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'tripmd-akshat', get_template_directory_uri() . '/css/' . ( is_home() ? 'home' : 'style' ) . '.css' );
+
+	wp_enqueue_style( 'tripmd', get_template_directory_uri() . '/css/style.css' );
 	wp_enqueue_style( 'unsemantic', get_template_directory_uri() . '/css/unsemantic.css' );
-	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
 	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );
+	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', array(), '4.0.3' );
+    if ( is_home() )  {
+        wp_enqueue_style( 'royalslider', get_template_directory_uri() . '/css/royalslider/royalslider.css', array(), '9.5.4' );
+        wp_enqueue_style( 'royalslider-skins-default', get_template_directory_uri() . '/css/royalslider/skins/default/rs-default.css', array( 'royalslider' ), '9.5.4' );
+        wp_enqueue_style( 'royalslider-skins-minimal-white', get_template_directory_uri() . '/css/royalslider/skins/minimal-white/rs-minimal-white.css', array( 'royalslider' ), '9.5.4' );
+        wp_enqueue_style( 'tripmd-home', get_template_directory_uri() . '/css/home.css', array( 'tripmd' ) );
+    }
+    // if ( is_single() && get_post_type() == 'speciality' )
+    //	wp_enqueue_style( 'fancybox', get_template_directory_uri() . '/css/fancybox/jquery.fancybox.css', array(), '2.1.5' );
 
 	wp_enqueue_script( 'tripmd', get_template_directory_uri() . '/js/js.js', array( 'jquery' ), '0.1', true );
-	wp_enqueue_script( 'tripmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+    wp_enqueue_script( 'easing', get_template_directory_uri() . '/js/royalslider/jquery.easing-1.3.js', array( 'jquery' ), '1.3', true );
+    wp_enqueue_script( 'royalslider', get_template_directory_uri() . '/js/royalslider/jquery.royalslider.min.js', array( 'jquery', 'easing' ), '9.5.4', true );
+	wp_enqueue_script( 'tripmd-typekit', '//use.typekit.net/jlx8kbu.js', array(), '0.1', true );
+    /* if ( is_single() && get_post_type() == 'speciality' ) {
+    	 wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/js/fancybox/jquery.fancybox.pack.js', array( 'jquery' ), '2.1.5', true );
+    	 add_action( 'wp_footer', 'tmd_fancybox_footjs_specialities', 500 );
+    } */
+	
+    /*
+    wp_enqueue_script( 'tripmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 	wp_enqueue_script( 'tripmd-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 	wp_enqueue_script( 'tripmd-ss-min', get_template_directory_uri() . '/js/ss-min.js', array(), '0.1', true );
-	wp_enqueue_script( 'tripmd-typekit', '//use.typekit.net/jlx8kbu.js', array(), '0.1', true );
 	wp_enqueue_script( 'classie', get_template_directory_uri() . '/js/classie.js', array(), '0.1', true );
 	wp_enqueue_script( 'sidebar-effects', get_template_directory_uri() . '/js/sidebarEffects.js', array(), '0.1', true );
 	wp_enqueue_script( 'ligature', get_template_directory_uri() . '/js/ligature.js', array(), '0.1', true );
+    */
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -108,22 +125,69 @@ function tripmd_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'tripmd_scripts' );
 
+/* Not using fancybox for the time being */
+/*
+function tmd_fancybox_footjs_specialities() { ?>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery(".card").fancybox();
+	});
+</script>
+
+<? }
+*/
+/**
+ * Fix specialities order on archive page
+ */
 function tmd_specialities_order( $query ) {
     if ( is_post_type_archive( 'speciality' ) ) {
-        $query->set( 'order', 'asc' );
-        $query->set( 'orderby', 'post_title' );
+        $query->set( 'posts_per_page', -1 );
+        $query->set( 'order', 'ASC' );
+        $query->set( 'orderby', 'menu_order title' );
     }
 }
 add_action( 'pre_get_posts', 'tmd_specialities_order' );
 
-function tmd_rating( $rating = 3.5 ) {
-	for ( $i = 0; $i < $rating; $i += 1 ) {
-		if ( ( $rating - $i ) < 1 )
-			echo '<i class="fa fa-star-half-full"></i>';
-		else
-			echo '<i class="fa fa-star"></i>';
-	}
+/**
+ * Handle homepage signups
+ */
+function tmd_register_home_handler() {
+    if ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) || empty( $_POST['user_email'] ) )
+    	return false;
+
+    add_filter( 'pre_user_first_name', 'tmd_register_home_handler_fn' );
+    add_filter( 'pre_user_last_name', 'tmd_register_home_handler_ln' );
+
+    $_POST['user_login'] = $_POST['user_email'];
 }
+add_action( 'login_init', 'tmd_register_home_handler' );
+
+	function tmd_register_home_handler_login( $username = '' ) {
+		return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
+	}
+    add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
+
+	function tmd_register_home_handler_fn( $firstname = '' ) {
+		return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
+	}
+
+	function tmd_register_home_handler_ln( $lastname = '' ) {
+		return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
+	}
+
+/**
+ * Customize header logo on login page
+ */
+function tmd_login_logo() {
+	echo '<style type="text/css">
+        h1 a {
+            background-image: url(' . get_template_directory_uri() . '/img/logo-black.png) !important;
+            background-size: 163px 62px !important;
+        }
+    </style>';
+}
+add_action( 'login_head', 'tmd_login_logo' );
 
 // Increase WP_Session time
 add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours

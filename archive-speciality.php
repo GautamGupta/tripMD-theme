@@ -11,9 +11,9 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<h2 class="animated fadeIn"><?php _e( 'What kind of treatment are you looking for?', 'tripmd' ); ?></h2>
+			<div class="heading grid-100"><h2 class="animated fadeIn"><?php _e( 'What kind of treatment are you looking for?', 'tripmd' ); ?></h2></div>
 
-			<div class="specialities options">
+			<div class="content specialities cards">
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
@@ -22,7 +22,7 @@ get_header(); ?>
 							$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
 							<img src="<?php echo $thumbnail['0']; ?>" alt="<?php the_title(); ?>" />
 						<?php endif; ?>
-						<h3><?php the_title(); ?></h3>
+						<h3<?php echo has_post_thumbnail() ? ' class="with-image"' : ''; ?>><?php the_title(); ?></h3>
 					</a>
 
 				<?php endwhile; ?>
