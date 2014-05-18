@@ -153,7 +153,7 @@ function tripmd_session_handler() {
 	// Do we need session -- only on single pages of reqd types
 	if ( !is_single() || ( is_single() && !in_array( get_post_type(), array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) ) )
 		return;
-	
+
 	switch ( get_post_type() ) {
 		case 'speciality' :
 			$wp_session['speciality_id'] = get_the_ID();
@@ -172,17 +172,24 @@ function tripmd_session_handler() {
 			break;
 	}
 }
-add_action( 'init', 'tripmd_session_handler' );
+add_action( 'wp', 'tripmd_session_handler' );
 
-	function tripmd_session_get_id( $key = '' ) {
-		if ( !in_array( get_post_type(), array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) )
-			return -1;
+/**
+ * Get the id of the supplied key from the session
+ * Used in single-*.php files
+ * 
+ * @param string $key
+ * @return int ID
+ */
+function tripmd_session_get_id( $key = '' ) {
+	if ( !in_array( $key, array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) )
+		return -1;
 
-		global $wp_session;
-		$wp_session = WP_Session::get_instance();
-		
-		return $wp_session[$key . '_id'];
-	}
+	global $wp_session;
+	$wp_session = WP_Session::get_instance();
+	
+	return $wp_session[$key . '_id'];
+}
 
 /**
  * Fix specialities order on archive page
