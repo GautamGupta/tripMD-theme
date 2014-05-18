@@ -7,14 +7,7 @@
  * @package tripmd
  */
 
-if ( class_exists( 'WP_Session' ) ) {
-	$wp_session = WP_Session::get_instance();
-	$wp_session['procedure_id'] = get_the_ID();
-}
-
 get_header(); ?>
-
-
 
 <div class="heading grid-100">
 	<h2 class="animated fadeIn"><?php the_title(); ?></h2>
@@ -42,7 +35,7 @@ FROM $wpdb->posts
 WHERE $wpdb->posts.ID IN (
 	SELECT $wpdb->posts.post_parent
 	FROM $wpdb->posts
-	WHERE $wpdb->posts.ID IN (
+	WHERE $wpdb->posts.ID IN ( /* The doctors who have this speciality */
 		SELECT $wpdb->postmeta.post_id
 		FROM $wpdb->postmeta
 		WHERE FIND_IN_SET(%d, $wpdb->postmeta.meta_value)

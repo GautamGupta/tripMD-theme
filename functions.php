@@ -137,6 +137,53 @@ function tmd_fancybox_footjs_specialities() { ?>
 
 <? }
 */
+
+/**
+ * Handle the session to store the spec, proc etc id's
+ * 
+ * @uses WP_Session WP Session plugin
+ */
+function tripmd_session_handler() {
+	if ( !class_exists( 'WP_Session' ) ) // Requires WP Session plugin
+		return;
+
+	global $wp_session;
+	$wp_session = WP_Session::get_instance();
+
+	// Do we need session -- only on single pages of reqd types
+	if ( !is_single() || ( is_single() && !in_array( get_post_type(), array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) ) )
+		return;
+	
+	switch ( get_post_type() ) {
+		case 'speciality' :
+			$wp_session['speciality_id'] = get_the_ID();
+			break;
+
+		case 'procedure' :
+			$wp_session['procedure_id'] = get_the_ID();
+			break;
+
+		case 'hospital' :
+			$wp_session['hospital_id'] = get_the_ID();
+			break;
+
+		case 'doctor' :
+			$wp_session['doctor_id'] = get_the_ID();
+			break;
+	}
+}
+add_action( 'init', 'tripmd_session_handler' );
+
+	function tripmd_session_get_id( $key = '' ) {
+		if ( !in_array( get_post_type(), array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) )
+			return -1;
+
+		global $wp_session;
+		$wp_session = WP_Session::get_instance();
+		
+		return $wp_session[$key . '_id'];
+	}
+
 /**
  * Fix specialities order on archive page
  */

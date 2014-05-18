@@ -204,7 +204,7 @@ get_header(); ?>
 					<div id="content-slider-1" class="royalSlider contentSlider rsDefault">
 
 					  <div>
-					    <?php /* <span class="rsTmb">Patients</span> */ ?>
+					    <span class="rsTmb">Patients</span>
 					    <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
 					  </div>
                       <?php /*

@@ -7,13 +7,8 @@
  * @package tripmd
  */
 
-if ( class_exists( 'WP_Session' ) ) {
-	$wp_session = WP_Session::get_instance();
-	$wp_session['hospital_id'] = get_the_ID();
-}
-
 get_header();
-setup_postdata($post); ?>
+setup_postdata( $post ); ?>
 
 <div class="heading grid-100"><h2 class="animated fadeIn"><?php the_title(); ?></h2></div>
 
@@ -44,6 +39,10 @@ $args = array (
 	'cache_results'          => true,
 	'update_post_meta_cache' => true,
 	'update_post_term_cache' => true,
+	'posts_per_page'         => -1,
+	'meta_key'               => 'speciality',
+	'meta_value'             => tripmd_session_get_id( 'speciality' ),
+	/* @todo Change to find in set (like single procedure page query) when we support multiple specialities per doctor */
 );
 
 // The Query
