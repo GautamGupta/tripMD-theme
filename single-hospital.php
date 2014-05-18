@@ -40,7 +40,7 @@ $args = array (
 	'update_post_meta_cache' => true,
 	'update_post_term_cache' => true,
 	'posts_per_page'         => -1,
-	'meta_key'               => 'speciality',
+	'meta_key'               => 'specialities',
 	'meta_value'             => tripmd_session_get_id( 'speciality' ),
 	/* @todo Change to find in set (like single procedure page query) when we support multiple specialities per doctor */
 );
