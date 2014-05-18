@@ -278,10 +278,6 @@ section.mock .mock-bullets {
   border-radius: 1000px;
 }
 
-#su input:active, #su input:hover {
-  background: #73c98b;
-}
-
 #su input[type="submit"] {
     cursor: pointer;
     background: #73c98b;

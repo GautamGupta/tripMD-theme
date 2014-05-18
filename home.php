@@ -268,9 +268,9 @@ get_header(); ?>
 
                             <form method="post" action="wp-login.php">
 
-                                <input type="text"  class="first-name grid-45" name="first_name" placeholder="Matt" />
-                                <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Beck" />
-                                <input type="email" class="email grid-100" name="user_email" placeholder="beck.matthewb@gmail.com" required="required" />
+                                <input type="text"  class="first-name grid-45" name="first_name" placeholder="First" />
+                                <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Last" />
+                                <input type="email" class="email grid-100" name="user_email" placeholder="name@gmail.com" required="required" />
 
                                 <input type="hidden" name="action"      value="register" />
                                 <input type="hidden" name="user-cookie" value="1" />
