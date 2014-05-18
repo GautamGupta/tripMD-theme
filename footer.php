@@ -25,6 +25,14 @@
 
 						<p>&copy; <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>"></a> <?php echo date( 'Y' ); ?></p>
 
+						<?php
+						if ( current_user_can( 'edit_users' ) ) {
+							foreach ( array( 'speciality', 'procedure', 'hospital', 'doctor' ) as $key ) {
+								echo $key_id . ' => ' . tripmd_session_get_id( $key ) . '; ';
+							}
+						}
+						?>
+
 					</div>
 
 				</div>
