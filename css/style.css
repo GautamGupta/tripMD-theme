@@ -66,12 +66,16 @@ h1, h2, h3, h4, h5, h6 {
 .heading {
   text-align: center;
   font-family: "minion-pro", serif;
-  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
 }
 
-.heading h2 {
+.heading h1, .heading h2 {
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
   margin: 10px 0;
   font-size: 250%;
+}
+
+.heading h1 a {
+  color: #415252 !important;
 }
 
 .heading h5 {
