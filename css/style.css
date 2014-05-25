@@ -32,7 +32,7 @@ body {
   font-size: 120%;
   line-height: 1.67;
   text-rendering: optimizeLegibility;
-  background: #f7f7f7;
+  background: #fff;
   background-size: cover;
   color: #415252;
 }
@@ -56,18 +56,30 @@ a {
 	clear: both;
 	display: block;
 	margin: 0 auto;
+  text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
-.heading h2 {
-  font-family: "minion-pro", serif;
-  font-size: 250%;
+.heading {
   text-align: center;
-  margin: 60px 0 10px 0;
+  font-family: "minion-pro", serif;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.heading h2 {
+  margin: 10px 0;
+  font-size: 250%;
+}
+
+.heading h5 {
+  margin: 0 0 10px 0;
+}
+
+.home .heading h2 {
+  margin-top: 60px;
 }
 
 .big.fat {
@@ -193,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 section:nth-child(odd) {
-  background: #edf1f1;
+  background: #f7f7f7;
 }
 
 section {
@@ -278,7 +290,7 @@ nav .button {
 --------------------------------------------------------------*/
 
 footer.site-footer {
-  background: #fff;
+  background: #f7f7f7;
   color: #919191;
   z-index: 1;
   height: 80px;

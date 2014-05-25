@@ -10,7 +10,12 @@
 get_header();
 setup_postdata( $post ); ?>
 
-<div class="heading grid-100"><h2 class="animated fadeIn"><?php the_title(); ?></h2></div>
+<div class="heading grid-100">
+	<h2 class="animated fadeIn"><?php the_title(); ?></h2>
+	<?php if ( get_post_meta( get_the_ID(), 'location', true ) ) : ?>
+		<h5 class="animated fadeIn"><?php echo get_post_meta( get_the_ID(), 'location', true ); ?></h5>
+	<?php endif; ?>
+</div>
 
 <div class="content">
 	<?php the_content(); ?>
