@@ -105,11 +105,11 @@ function tripmd_scripts() {
     wp_enqueue_script( 'easing', get_template_directory_uri() . '/js/royalslider/jquery.easing-1.3.js', array( 'jquery' ), '1.3', true );
     wp_enqueue_script( 'royalslider', get_template_directory_uri() . '/js/royalslider/jquery.royalslider.min.js', array( 'jquery', 'easing' ), '9.5.4', true );
 	wp_enqueue_script( 'tripmd-typekit', '//use.typekit.net/jlx8kbu.js', array(), '0.1', true );
-    /* if ( is_single() && get_post_type() == 'speciality' ) {
-    	 wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/js/fancybox/jquery.fancybox.pack.js', array( 'jquery' ), '2.1.5', true );
-    	 add_action( 'wp_footer', 'tmd_fancybox_footjs_specialities', 500 );
-    } */
-	
+    if ( is_front_page() ) {
+    	 wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/js/fancybox/jquery.fancybox.pack.js', array( 'jquery' ), '2.1.5', false );
+    	 add_action( 'wp_footer', 'tmd_fancybox_footjs', 500 );
+    }
+
     /*
     wp_enqueue_script( 'tripmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 	wp_enqueue_script( 'tripmd-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
@@ -126,17 +126,27 @@ function tripmd_scripts() {
 add_action( 'wp_enqueue_scripts', 'tripmd_scripts' );
 
 /* Not using fancybox for the time being */
-/*
-function tmd_fancybox_footjs_specialities() { ?>
+
+function tmd_fancybox_footjs() { ?>
 
 <script type="text/javascript">
-	jQuery(document).ready(function() {
-		jQuery(".card").fancybox();
+	$(document).ready(function() {
+		$(".hsign a").fancybox({
+			maxWidth	: 800,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '70%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
 	});
 </script>
 
 <? }
-*/
+
 /**
  * Fix specialities order on archive page
  */
