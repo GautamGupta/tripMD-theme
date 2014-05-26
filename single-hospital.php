@@ -7,15 +7,15 @@
  * @package tripmd
  */
 
-if ( class_exists( 'WP_Session' ) ) {
-	$wp_session = WP_Session::get_instance();
-	$wp_session['hospital_id'] = get_the_ID();
-}
-
 get_header();
-setup_postdata($post); ?>
+setup_postdata( $post ); ?>
 
-<div class="heading grid-100"><h2 class="animated fadeIn"><?php the_title(); ?></h2></div>
+<div class="heading grid-100">
+	<h2 class="animated fadeIn"><?php the_title(); ?></h2>
+	<?php if ( get_post_meta( get_the_ID(), 'location', true ) ) : ?>
+		<h5 class="animated fadeIn"><?php echo get_post_meta( get_the_ID(), 'location', true ); ?></h5>
+	<?php endif; ?>
+</div>
 
 <div class="content">
 	<?php the_content(); ?>
@@ -27,9 +27,9 @@ setup_postdata($post); ?>
 
     <?php
         // If comments are open or we have at least one comment, load up the comment template
-        if ( comments_open() || '0' != get_comments_number() ) :
+        /* if ( comments_open() || '0' != get_comments_number() ) :
             comments_template( '/testimonials.php' );
-        endif;
+        endif; */
     ?>
     
 </div>
@@ -44,6 +44,10 @@ $args = array (
 	'cache_results'          => true,
 	'update_post_meta_cache' => true,
 	'update_post_term_cache' => true,
+	'posts_per_page'         => -1,
+	'meta_key'               => 'specialities',
+	'meta_value'             => tripmd_session_get_id( 'speciality' ),
+	/* @todo Change to find in set (like single procedure page query) when we support multiple specialities per doctor */
 );
 
 // The Query

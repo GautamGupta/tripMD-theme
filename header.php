@@ -45,12 +45,12 @@
 
 		<header>
 
-			<nav id="site-navigation" class="main-navigation<?php if ( is_home() ) : ?> home<?php else : ?> sticky topo<?php endif; ?>" role="navigation">
+			<nav id="site-navigation" class="main-navigation<?php if ( is_front_page() ) : ?> home<?php else : ?> sticky topo<?php endif; ?>" role="navigation">
 
 				<div class="grid-container">
 
 					<div class="logo grid-20">
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-<?php echo is_home() ? 'white' : 'black'; ?>.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image" /></a>
+                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-<?php echo is_front_page() ? 'white' : 'black'; ?>.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image" /></a>
 					</div>
 
                     <!-- <h1 class="menu-toggle"><?php _e( 'Menu', 'tripmd' ); ?></h1>
@@ -63,7 +63,7 @@
 
 		</header>
 
-        <?php if ( !is_home() ) : ?>
+        <?php if ( !is_front_page() ) : ?>
 
 		<section id="main" class="site-main" role="main">
 

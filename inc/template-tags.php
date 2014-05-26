@@ -67,9 +67,9 @@ if ( ! function_exists( 'tripmd_posted_on' ) ) :
  */
 function tripmd_posted_on() {
 	$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
-	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+	/* if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
-	}
+	} */
 
 	$time_string = sprintf( $time_string,
 		esc_attr( get_the_date( 'c' ) ),
@@ -152,7 +152,7 @@ function tmd_amenities( $amenities = array() ) {
         return;
     
     $amenities_names = array(
-        'helper-staff' => __( 'Heler Staff', 'tripmd' ),
+        'helper-staff' => __( 'Helper Staff', 'tripmd' ),
         'companion' => __( 'Companion Lounge', 'tripmd' ),
         'cafe' => __( 'Cafeteria', 'tripmd' ),
         'ambulance' => __( 'Ambulance Services', 'tripmd' ),

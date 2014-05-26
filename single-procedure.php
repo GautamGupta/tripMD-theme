@@ -7,14 +7,7 @@
  * @package tripmd
  */
 
-if ( class_exists( 'WP_Session' ) ) {
-	$wp_session = WP_Session::get_instance();
-	$wp_session['procedure_id'] = get_the_ID();
-}
-
 get_header(); ?>
-
-
 
 <div class="heading grid-100">
 	<h2 class="animated fadeIn"><?php the_title(); ?></h2>
@@ -36,13 +29,16 @@ get_header(); ?>
 	<?php the_content(); ?>
 </div>
 
-<?php $querystr = $wpdb->prepare( "
+<?php
+
+$push = 0;
+$querystr = $wpdb->prepare( "
 SELECT $wpdb->posts.*
 FROM $wpdb->posts
 WHERE $wpdb->posts.ID IN (
 	SELECT $wpdb->posts.post_parent
 	FROM $wpdb->posts
-	WHERE $wpdb->posts.ID IN (
+	WHERE $wpdb->posts.ID IN ( /* The doctors who have this speciality */
 		SELECT $wpdb->postmeta.post_id
 		FROM $wpdb->postmeta
 		WHERE FIND_IN_SET(%d, $wpdb->postmeta.meta_value)
@@ -67,14 +63,14 @@ if ( $hospitals ) : ?>
 
 		<?php foreach ( $hospitals as $hospital ) : setup_postdata( $GLOBALS['post'] =& $hospital ); ?>
 
-			<a href="<?php the_permalink(); ?>" id="<?php echo get_post_type(); ?>-<?php the_ID(); ?>" <?php post_class( 'card grid-30' ); ?>>
+			<a href="<?php the_permalink(); ?>" id="<?php echo get_post_type(); ?>-<?php the_ID(); ?>" <?php post_class( 'card grid-30' . ( !empty( $push ) ? ' push-' . $push : '' ) ); ?>>
 
 				<?php if ( has_post_thumbnail() ) :
 					$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
 					<div class="image" style="background: url(<?php echo $thumbnail['0']; ?>); background-size: cover"></div>
 				<?php endif; ?>
 				<h3><?php the_title(); ?></h3>
-				<h6 class="subtitle">New Delhi, India</h6>
+				<h6 class="subtitle"><?php echo get_post_meta( get_the_ID(), 'location', true ) ? get_post_meta( get_the_ID(), 'location', true ) : '&nbsp;'; ?></h6>
 
 				<?php if ( get_post_meta( get_the_ID(), 'rating', true ) ) : ?>
 					<div class="grid-100 duration"><span class="title">Trust Rating</span><?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
@@ -92,9 +88,10 @@ if ( $hospitals ) : ?>
 
 			</a>
 
-			<div 
-
-		<?php endforeach; ?>
+		<?php
+		if ( $push == 10 ) $push = 0;
+			else $push += 5;
+		endforeach; ?>
 
 	</div>
 

@@ -7,7 +7,7 @@
  * @package tripmd
  */
 ?>
-        <?php if ( !is_home() ) : ?>
+        <?php if ( !is_front_page() ) : ?>
 
             </div>
 
@@ -23,7 +23,15 @@
 
 					<div class="grid-100">
 
-						<p>&copy; <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>"></a> <?php echo date( 'Y' ); ?></p>
+						<p>&copy; <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>"></a> <?php echo date( 'Y' ); ?>
+						<?php
+						if ( current_user_can( 'edit_users' ) && defined( 'WP_DEBUG' ) && WP_DEBUG == true ) {
+							echo '<br />';
+							foreach ( array( 'speciality', 'procedure', 'hospital', 'doctor' ) as $key ) {
+								echo $key . ' => ' . tripmd_session_get_id( $key ) . '; ';
+							}
+						}
+						?></p>
 
 					</div>
 

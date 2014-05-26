@@ -68,6 +68,7 @@ if ( post_password_required() ) {
     <div class="grid-50">
         <?php
         $req = get_option( 'require_name_email' );
+        $aria_req = $req == true ? ' required="required"' : '';
         $commenter = wp_get_current_commenter();
 
         comment_form( array(

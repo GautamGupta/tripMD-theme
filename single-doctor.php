@@ -7,11 +7,6 @@
  * @package tripmd
  */
 
-if ( class_exists( 'WP_Session' ) ) {
-	$wp_session = WP_Session::get_instance();
-	$wp_session['doctor_id'] = get_the_ID();
-}
-
 get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
@@ -20,8 +15,7 @@ get_header(); ?>
 	<div class="content">
 
 		<?php if ( has_post_thumbnail() ) the_post_thumbnail( 'full', array( 'class' => 'alignright' ) ); ?>
-		<?php the_content(); ?>
-
+		
 		<?php if ( get_post_meta( get_the_ID(), 'location', true ) ) : ?>
 			<p><strong>Location</strong>: <?php echo get_post_meta( get_the_ID(), 'location', true ); ?></p>
 		<?php endif; ?>
@@ -41,9 +35,9 @@ get_header(); ?>
 
         <?php
             // If comments are open or we have at least one comment, load up the comment template
-            if ( comments_open() || '0' != get_comments_number() ) :
+            /* if ( comments_open() || '0' != get_comments_number() ) :
                 comments_template( '/testimonials.php' );
-            endif;
+            endif; */
         ?>
 
 	</div>

@@ -1,12 +1,6 @@
 <?php
 /**
- * The main template file.
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ * Home page
  *
  * @package tripmd
  */
@@ -116,6 +110,10 @@ get_header(); ?>
 
 			<div class="grid-container">
 
+                <div class="aligncenter grid-100">
+                    <input type="text" name="s" id="s" class="tmd_search" placeholder="Search for a treatment or hospital..." />
+                </div>
+
 				<div class="heading howh grid-100"><h2>Here&rsquo;s how it works.</h2></div>
 
 				<div class="content">
@@ -204,7 +202,7 @@ get_header(); ?>
 					<div id="content-slider-1" class="royalSlider contentSlider rsDefault">
 
 					  <div>
-					    <?php /* <span class="rsTmb">Patients</span> */ ?>
+					    <span class="rsTmb">Patients</span>
 					    <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
 					  </div>
                       <?php /*
@@ -268,9 +266,9 @@ get_header(); ?>
 
                             <form method="post" action="wp-login.php">
 
-                                <input type="text"  class="first-name grid-45" name="first_name" placeholder="Matt" />
-                                <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Beck" />
-                                <input type="email" class="email grid-100" name="user_email" placeholder="beck.matthewb@gmail.com" required="required" />
+                                <input type="text"  class="first-name grid-45" name="first_name" placeholder="First" />
+                                <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Last" />
+                                <input type="email" class="email grid-100" name="user_email" placeholder="name@gmail.com" required="required" />
 
                                 <input type="hidden" name="action"      value="register" />
                                 <input type="hidden" name="user-cookie" value="1" />
@@ -299,18 +297,14 @@ get_header(); ?>
 
                     <form method="post" action="wp-login.php">
 
-                        <input type="text"  class="first-name grid-45" name="first_name" placeholder="Matt" />
-                        <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Beck" />
-                        <input type="email" class="email grid-100" name="user_email" placeholder="beck.matthewb@gmail.com" required="required" />
-
-                        <input type="hidden" name="action"      value="register" />
-                        <input type="hidden" name="user-cookie" value="1" />
-                        <input type="hidden" name="tmd_home_register" value="1" />
-                        <input type="hidden" name="redirect_to" value="<?php echo home_url( '?su=1#su' ); ?>" />
+                        <input type="text"  class="grid-100" name="medical_centre" placeholder="Name of the Medical Centre" />
+                        <input type="text"  class="grid-100" name="country" placeholder="Country" />
+                        <input type="text"  class="grid-100" name="poc" placeholder="Point of Contact" />
+                        <input type="text"  class="grid-100" name="email" placeholder="Email Address" />
 
                         <?php wp_nonce_field( 'tmd_home_register' ); ?>
 
-                        <input type="submit" class="email grid-100" value="Signup" />
+                        <input type="submit" class="grid-100" value="Signup" />
 
                     </form>
 

@@ -1,3 +1,13 @@
+/** Search */
+.tmd_search {
+  width: 500px;
+  height: 50px;
+  font-family: "minion-pro", serif;
+  margin-top: 50px;
+  font-size: 30px;
+  padding-left: 10px;
+}
+
 /** Slider */
 
 #slider-with-blocks-1 {
@@ -276,10 +286,6 @@ section.mock .mock-bullets {
   color: white !important;
   margin: 10px 0;
   border-radius: 1000px;
-}
-
-#su input:active, #su input:hover {
-  background: #73c98b;
 }
 
 #su input[type="submit"] {

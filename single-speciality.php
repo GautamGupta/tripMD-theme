@@ -7,11 +7,6 @@
  * @package tripmd
  */
 
-if ( class_exists( 'WP_Session' ) ) {
-	$wp_session = WP_Session::get_instance();
-	$wp_session['speciality_id'] = get_the_ID();
-}
-
 get_header();
 
 $args = array (
