@@ -224,7 +224,33 @@ function tmd_register_home_handler() {
 
     $_POST['user_login'] = $_POST['user_email'];
 }
+
+function tmd_register_hospital_handler() {
+	if ( empty( $_POST['hsign'] ) )
+		return false;
+
+    if ( empty( $_POST['medical_centre'] ) ||  empty($_POST['country']) ||  empty($_POST['poc']) || empty($_POST['email']) ||!wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) {
+    	wp_redirect( home_url( '?hsign=error#hs' ) );
+    	exit;
+    }
+
+	$new_post = array(
+		'post_title' => $_POST['medical_centre'],
+		'post_status' => 'draft',
+		'post_type' => 'hospital'
+	);
+	$post_id = wp_insert_post($new_post);
+	add_post_meta($post_id, 'country', trim($_POST['country']));
+	add_post_meta($post_id, 'poc', trim($_POST['poc']));
+	add_post_meta($post_id, 'email', trim($_POST['email']));
+	wp_redirect( home_url( '?hsign=success#hs' ) );
+	exit;
+
+}
+
+
 add_action( 'login_init', 'tmd_register_home_handler' );
+add_action( 'init', 'tmd_register_hospital_handler' );
 
 	function tmd_register_home_handler_login( $username = '' ) {
 		return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
