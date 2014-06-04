@@ -98,18 +98,19 @@ function tripmd_scripts() {
         wp_enqueue_style( 'royalslider-skins-minimal-white', get_template_directory_uri() . '/css/royalslider/skins/minimal-white/rs-minimal-white.css', array( 'royalslider' ), '9.5.4' );
         wp_enqueue_style( 'tripmd-home', get_template_directory_uri() . '/css/home.css', array( 'tripmd' ) );
     }
-
-	// We currently use Easy Fancybox plugin as this is not working    
-    /* if ( is_front_page() ) {
+    if ( is_front_page() )
     	wp_enqueue_style( 'fancybox', get_template_directory_uri() . '/css/fancybox/jquery.fancybox.css', array(), '2.1.5' );
-    	wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/js/fancybox/jquery.fancybox.pack.js', array( 'jquery' ), '2.1.5', false );
-    	add_action( 'wp_footer', 'tmd_fancybox_footjs', 500 );
-    } */
 
 	wp_enqueue_script( 'tripmd', get_template_directory_uri() . '/js/js.js', array( 'jquery' ), '0.1', true );
     wp_enqueue_script( 'easing', get_template_directory_uri() . '/js/royalslider/jquery.easing-1.3.js', array( 'jquery' ), '1.3', true );
     wp_enqueue_script( 'royalslider', get_template_directory_uri() . '/js/royalslider/jquery.royalslider.min.js', array( 'jquery', 'easing' ), '9.5.4', true );
 	wp_enqueue_script( 'tripmd-typekit', '//use.typekit.net/jlx8kbu.js', array(), '0.1', true );
+
+    if ( is_front_page() ) {
+    	 wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/js/fancybox/jquery.fancybox.pack.js', array( 'jquery' ), '2.1.5', false );
+    	 add_action( 'wp_footer', 'tmd_fancybox_footjs', 500 );
+    } 
+   wp_enqueue_script( 'tmd_media_upload', get_template_directory_uri() . '/js/upload.js', array( 'jquery' ), '0.0.1', false );
 
     /*
     wp_enqueue_script( 'tripmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
@@ -132,7 +133,7 @@ function tmd_fancybox_footjs() { ?>
 
 <script type="text/javascript">
 	jQuery(document).ready(function() {
-		jQuery(".fancybox").fancybox({
+		jQuery(".hsign a").fancybox({
 			maxWidth	: 800,
 			maxHeight	: 600,
 			fitToView	: false,
@@ -290,6 +291,8 @@ add_filter( 'wpseo_title', 'tmd_blog_page_title' );
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
+
+require get_template_directory() . '/inc/signup.php';
 
 /**
  * Custom functions that act independently of the theme templates.
