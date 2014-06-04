@@ -51,11 +51,22 @@ function show_extra_profile_fields ( $user )
                 <span class="description">Allergies.</span>
             </td>
         </tr>
+        <tr>
+            <th>Medical Records uploaded</th>
+            <td><ul><?php
+                    $medicals = esc_attr(get_the_author_meta('medical_records', $user->ID));
+                    $medicals = json_decode(htmlspecialchars_decode($medicals), true);
+                    foreach ($medicals['mystuff'] as $medical_record) {
+                        echo "<li>".$medical_record."</li>";
+                    } ?></ul></td>
+        </tr>
     </table>
 
     <div class="uploader">        
-        <button class="button" name="medical_records_button" id="medical_records_button" value="Upload">Upload medical records</button>
+        <button name="medical_records_button" id="medical_records_button" value="Upload">Upload medical records</button>
     </div>
+
+    <input name="medical_records" id="medical_records_files" value="" type="hidden">
 
 <?php
 }
@@ -75,6 +86,7 @@ function save_extra_profile_fields( $user_id )
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
+    update_user_meta( $user_id, 'medical_records', $_POST['medical_records'] );
 }
 
 /**
@@ -110,6 +122,8 @@ function show_extra_fields()
     
     <label for="allergies">Allergies</label><br/>
     <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" ></textarea><br/>
+
+
 
 <?php
 
@@ -158,4 +172,5 @@ function register_extra_fields ( $user_id, $password = "", $meta = array() )
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
+    update_user_meta( $user_id, 'medical_records', $_POST['medical_records']);
 }
