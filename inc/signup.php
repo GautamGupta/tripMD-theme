@@ -129,6 +129,7 @@ function check_fields ( $login, $email, $errors )
     {
         $errors->add( 'empty_gender', "<strong>ERROR</strong>: Please Enter your gender." );
     }
+    /*
     if ( $_POST['weight'] == '' )
     {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your Weight." );
@@ -145,6 +146,7 @@ function check_fields ( $login, $email, $errors )
     {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your past allergies." );
     }
+    */
 }
 
 function register_extra_fields ( $user_id, $password = "", $meta = array() )
