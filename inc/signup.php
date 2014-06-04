@@ -68,9 +68,14 @@ function save_extra_profile_fields( $user_id )
     if ( !current_user_can( 'edit_user', $user_id ) )
         return false;
     /* Copy and paste this line for additional fields. Make sure to change 'twitter' to the field ID. */
-    update_usermeta( $user_id, 'twitter', $_POST['twitter'] );
+    update_user_meta( $user_id, 'name', $_POST['name'] );
+    update_user_meta( $user_id, 'dob', $_POST['dob'] );
+    update_user_meta( $user_id, 'gender', $_POST['gender'] );
+    update_user_meta( $user_id, 'weight', $_POST['weight'] );
+    update_user_meta( $user_id, 'height', $_POST['height'] );
+    update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
+    update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
 }
-
 
 /**
  * Add cutom field to registration form
