@@ -307,7 +307,7 @@ get_header(); ?>
 
                                 <input type="text"  class="first-name grid-45" name="first_name" placeholder="First" />
                                 <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Last" />
-                                <input type="email" class="email grid-100" name="user_email" placeholder="name@gmail.com" required="required" />
+                                <input type="email" class="email grid-100" name="user_email" placeholder="Email id" required="required" />
 
                                 <input type="hidden" name="action"      value="register" />
                                 <input type="hidden" name="user-cookie" value="1" />
