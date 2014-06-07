@@ -53,12 +53,17 @@ function show_extra_profile_fields ( $user )
         </tr>
         <tr>
             <th>Medical Records uploaded</th>
-            <td><ul><?php
-                    $medicals = esc_attr(get_the_author_meta('medical_records', $user->ID));
-                    $medicals = json_decode(htmlspecialchars_decode($medicals), true);
-                    foreach ($medicals['mystuff'] as $medical_record) {
-                        echo "<li>".$medical_record."</li>";
-                    } ?></ul></td>
+            <td>
+                <ul>
+                    <?php
+                        $medicals = esc_attr(get_the_author_meta('medical_records', $user->ID));
+                        $medicals = json_decode(htmlspecialchars_decode($medicals), true);
+                        foreach ($medicals['mystuff'] as $medical_record) {
+                            echo "<li>".$medical_record."</li>";
+                        }
+                    ?>
+                </ul>
+            </td>
         </tr>
     </table>
 
@@ -109,21 +114,17 @@ function show_extra_fields()
     <label for="gender">Gender</label>
     <input type="text" name="gender" id="gender" value="<?php echo esc_attr( get_the_author_meta( 'gender', $user->ID ) ); ?>" class="regular-text" /><br />
 
-
     <label for="weight">Weight</label>
     <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" /><br />
     
     <label for="weight">Height</label>
     <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" /><br />
 
-
     <label for="gobs">General Observations</label>
     <textarea name="gobs" id="gobs" value="<?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?>" class="regular-text" /></textarea><br/>
     
     <label for="allergies">Allergies</label><br/>
     <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" ></textarea><br/>
-
-
 
 <?php
 
@@ -172,5 +173,22 @@ function register_extra_fields ( $user_id, $password = "", $meta = array() )
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
-    update_user_meta( $user_id, 'medical_records', $_POST['medical_records']);
+
+    if ( !class_exists( 'WP_Session' ) ) // Requires WP Session plugin
+        return;
+
+    $wp_session = WP_Session::get_instance();
+
+    // Do we need session -- only on single pages of reqd types
+    if ( !is_single() || ( is_single() && !in_array( get_post_type(), array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) ) )
+        return;
+
+    if (array_key_exists('speciality_id', $wp_session))
+        update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
+    if (array_key_exists('procedure_id', $wp_session))
+        update_user_meta( $user_id, 'procedure_id', $wp_session['procedure_id'] );
+    if (array_key_exists('hospital_id', $wp_session))
+        update_user_meta( $user_id, 'hospital_id', $wp_session['hospital_id'] );
+    if (array_key_exists('doctor_id', $wp_session))
+        update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
 }
