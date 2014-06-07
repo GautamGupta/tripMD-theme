@@ -12,66 +12,63 @@ add_action('wp_enqueue_scripts', 'add_media_upload_scripts');
 function show_extra_profile_fields ( $user )
 {
 ?>
-    <table class="form-table">
-        <tr>
-            <th><label for="twitter">Personal Details</label></th>
-            <td>
-                <input type="text" name="name" id="name" value="<?php echo esc_attr( get_the_author_meta( 'name', $user->ID ) ); ?>" class="regular-text" /><br />
-                <span class="description">Please enter your name.</span>
-            </td>
-            <td>
-                <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" /><br />
-                <span class="description">Please enter your date of birth.</span>
-            </td>
-            <td>
-                <input type="email" name="email" id="email" value="<?php echo esc_attr( get_the_author_meta( 'email', $user->ID ) ); ?>" class="regular-text" /><br />
-                <span class="description">Please enter your email.</span>
-            </td>
-            <td>
-                <input type="text" name="gender" id="gender" value="<?php echo esc_attr( get_the_author_meta( 'gender', $user->ID ) ); ?>" class="regular-text" /><br />
-                <span class="description">Please enter your gender.</span>
-            </td>
-        </tr>
-        <tr>
-            <th><label for="twitter">Medical Details</label></th>
-            <td>
-                <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" /><br />
-                <span class="description">Please enter your weight.</span>
-            </td>
-            <td>
-                <input type="number" name="height" id="name" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" /><br />
-                <span class="description">Please enter your height.</span>
-            </td>
-            <td>
-                <textarea name="gobs" id="gobs" class="regular-text"><?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?></textarea><br />
-                <span class="description">General Observations.</span>
-            </td>
-            <td>
-                <textarea name="allergies" id="allergies" class="regular-text"><?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?></textarea><br />
-                <span class="description">Allergies.</span>
-            </td>
-        </tr>
-        <tr>
-            <th>Medical Records uploaded</th>
-            <td>
-                <ul>
-                    <?php
-                        $medicals = esc_attr(get_the_author_meta('medical_records', $user->ID));
-                        $medicals = json_decode(htmlspecialchars_decode($medicals), true);
-                        foreach ($medicals['mystuff'] as $medical_record) {
-                            echo "<li>".$medical_record."</li>";
-                        }
-                    ?>
-                </ul>
-            </td>
-        </tr>
-    </table>
+    <h2 class="entry-title">Personal Details</h2>
+    <fieldset class="bbp-form">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="<?php echo esc_attr( get_the_author_meta( 'name', $user->ID ) ); ?>" class="regular-text" /><br />
+        </div>
+        <div>
+            <label for="dob">Date of birth</label>
+            <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" /><br />
+        </div>
+        <div>
+            <label for="gender">Gender</label>
+            <select name="gender">
+              <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected";  ?>>Male</option>
+              <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'female') echo "selected";  ?>>Female</option>
+            </select>
+        </div>
+    </fieldset>
+    <h2 class="entry-title">Medical Details</h2>
+    <fieldset class="bbp-form"> 
+        <div>
+            <label for="weight">Weight (in KGs)</label>
+            <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" /><br />
+        </div>
+        <div>
+            <label for="weight">Height (in CMs)</label>
+            <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" /><br />
+        </div>
+
+        <div>
+            <label for="gobs">General Observations</label>
+            <textarea name="gobs" id="gobs" value="<?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?>" class="regular-text" /></textarea><br/>
+        </div>
+
+        <div>
+            <label for="allergies">Allergies</label><br/>
+            <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" ></textarea><br/>
+        </div>
+    </fieldset>
+    <h2 class="entry-title">Medical Records uploaded</h2>
+    <fieldset class="bbp-form"> 
+        <ul>
+            <?php
+                $medicals = esc_attr(get_the_author_meta('medical_records', $user->ID));
+                $medicals = json_decode(htmlspecialchars_decode($medicals), true);
+                foreach ($medicals['mystuff'] as $medical_record) {
+                    echo "<li>".$medical_record."</li>";
+                }
+            ?>
+        </ul>
 
     <div class="uploader">        
         <button name="medical_records_button" id="medical_records_button" value="Upload">Upload medical records</button>
     </div>
 
     <input name="medical_records" id="medical_records_files" value="" type="hidden">
+    </fieldset> 
 
 <?php
 }
@@ -112,12 +109,15 @@ function show_extra_fields()
     <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" /><br />
    
     <label for="gender">Gender</label>
-    <input type="text" name="gender" id="gender" value="<?php echo esc_attr( get_the_author_meta( 'gender', $user->ID ) ); ?>" class="regular-text" /><br />
-
-    <label for="weight">Weight</label>
+    <select name="gender">
+      <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected";  ?>>Male</option>
+      <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'female') echo "selected";  ?>>Female</option>
+    </select>
+    
+    <label for="weight">Weight (in KGs)</label>
     <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" /><br />
     
-    <label for="weight">Height</label>
+    <label for="weight">Height (in CMs)</label>
     <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" /><br />
 
     <label for="gobs">General Observations</label>
