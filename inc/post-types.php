@@ -219,11 +219,57 @@ function tmd_register_post_types() {
 		'capability_type'     => 'page',
 	);
 	register_post_type( 'room', $args );
+
+
+	$labels = array(
+		'name'                => _x( 'Consultation', 'Post Type General Name', 'tripmd' ),
+		'singular_name'       => _x( 'Consultation', 'Post Type Singular Name', 'tripmd' ),
+		'menu_name'           => __( 'Consultation', 'tripmd' ),
+		'parent_item_colon'   => __( 'Parent:', 'tripmd' ),
+		'all_items'           => __( 'All Consultations', 'tripmd' ),
+		'view_item'           => __( 'View Consultation', 'tripmd' ),
+		'add_new_item'        => __( 'Add New Consultation', 'tripmd' ),
+		'add_new'             => __( 'Add New', 'tripmd' ),
+		'edit_item'           => __( 'Edit', 'tripmd' ),
+		'update_item'         => __( 'Update', 'tripmd' ),
+		'search_items'        => __( 'Search', 'tripmd' ),
+		'not_found'           => __( 'Not found', 'tripmd' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'tripmd' ),
+	);
+	$rewrite = array(
+		'slug'                => 'consultations',
+		'with_front'          => false,
+		'pages'               => false,
+		'feeds'               => false,
+	);
+	$args = array(
+		'label'               => __( 'consultation', 'tripmd' ),
+		'description'         => __( 'Consultation Listings', 'tripmd' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor', 'custom-fields', 'author', 'comments' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'menu_icon'           => '',
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'rewrite'             => $rewrite,
+		'capability_type'     => 'page',
+	);
+	register_post_type( 'consultation', $args );
+
+
 }
 add_action( 'init', 'tmd_register_post_types', 2 );
 
 function tmd_post_types() {
-	return array ( 'speciality', 'procedure', 'hospital', 'doctor', 'room' );
+	return array ( 'speciality', 'procedure', 'hospital', 'doctor', 'room', 'consultation' );
 }
 
 //Add the meta box callback function
