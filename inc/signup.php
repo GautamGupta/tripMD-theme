@@ -70,7 +70,29 @@ function show_extra_profile_fields ( $user )
     </div>
 
     <input name="medical_records" id="medical_records_files" value="" type="hidden">
-    </fieldset> 
+    </fieldset>
+
+    </fieldset>
+    <h2 class="entry-title">Appointments</h2>
+
+
+    <fieldset class="bbp-form"> 
+        <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', $wp_session['procedure_id'] ) ) : ?> 
+            <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', $wp_session['procedure_id'] ) ) : ?>
+                <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id' ) ) : ?>
+                    <p>Alrighty! Let's book some appointments!</p>
+                <?php else : ?>
+                    <p>Please select a hospital and a doctor (optional).
+                <?php endif; ?>    
+            <?php else : ?>
+                <p>Please select a procedure, hospital and a doctor (optional).
+            <?php endif; ?>
+        <?php else : ?>
+            <p>Please select a <a href="http://tripmd.com/specialities/">speciality</a>, procedure, hospital and a doctor (optional).
+        <?php endif; ?>
+
+    <input name="medical_records" id="medical_records_files" value="" type="hidden">
+    </fieldset>
 
 <?php
 }
