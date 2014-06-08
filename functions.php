@@ -298,6 +298,8 @@ require get_template_directory() . '/inc/template-tags.php';
 
 require get_template_directory() . '/inc/signup.php';
 
+require get_template_directory() . '/inc/post-types.php';
+
 /**
  * Custom functions that act independently of the theme templates.
  */
