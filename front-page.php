@@ -6,46 +6,44 @@
  */
 
 get_header(); ?>
-        <?php if( !is_user_logged_in() ) : ?>
-            <?php if ($_GET['hsign'] == 'error') : ?>
+
+        <div style="display:none" class="fancybox-hidden">
+            <div id="hosp-signup" style="width:460px; height:380px;">
+                <h1>Hospital Signup</h1>
+
+                <?php if ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'error' ) : ?>
                 <section class="center last green">
-                    <div class="grid-container">
-                        <p id="message">
-                            Oops! There was an error registering your hospital, please try again. Or you could try emailing us at contact@tripmd.co.
-                        </p>
-                    </div>
-                </section>
-                <?php elseif ($_GET['hsign'] == 'success') : ?>
-                <section class="center last green">
-                    <div class="grid-container">
-                        <p id="message">
-                            Thanks! Your hospital register request has been sent. We'll get back to you shortly.
-                        </p>
-                    </div>
-                </section>
-            <?php endif; ?>
+                        <div class="grid-container">
+                            <p id="message">
+                                Oops! There was an error registering your hospital, please try again. You can also try emailing us at help@tripmd.co.
+                            </p>
+                        </div>
+                    </section>
+                <?php elseif ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'success' ) : ?>
+                    <section class="center last green">
+                        <div class="grid-container">
+                            <p id="message">
+                                Thank you for registering. We'll get back to you shortly.
+                            </p>
+                        </div>
+                    </section>
+                <?php endif; ?>
 
-            <div style="display: none;">
-                    <div style="width:400px;height:100px;overflow:auto;" id="hosp-signup">
-                        <h1 >Hospital Signup</h1>
+                <form method="post" style="color: black;" action="<?php echo site_url( '/' ); ?>">
 
-                        <form method="post" style="color: black;" action="<?php echo site_url( '/' ); ?>">
+                    <input type="text"  class="grid-100" name="medical_centre" required="required" placeholder="Name of the Medical Centre" />
+                    <input type="text"  class="grid-100" name="country" required="required" placeholder="Country" />
+                    <input type="text"  class="grid-100" name="poc" required="required" placeholder="Point of Contact" />
+                    <input type="email"  class="grid-100" name="email" required="required" placeholder="Email Address" />
+                    <input type="hidden" name="hsign" value="1" />
+                    <?php wp_nonce_field( 'tmd_home_register' ); ?>
 
-                            <input type="text"  class="grid-100" name="medical_centre" required="required" placeholder="Name of the Medical Centre" />
-                            <input type="text"  class="grid-100" name="country" required="required" placeholder="Country" />
-                            <input type="text"  class="grid-100" name="poc" required="required" placeholder="Point of Contact" />
-                            <input type="email"  class="grid-100" name="email" required="required" placeholder="Email Address" />
-                            <input type="hidden" name="hsign" value="1" />
-                            <?php wp_nonce_field( 'tmd_home_register' ); ?>
+                    <input type="submit" class="grid-100" value="Signup" />
 
-                            <input type="submit" class="grid-100" value="Signup" />
+                </form>
 
-                        </form>
-
-                    </div>
-                </div>
-        <?php endif; ?>
-
+            </div>
+        </div>
         <div id="slider-with-blocks-1" class="slider royalSlider rsMinW">
 
             <div class="rsContent slide1">
