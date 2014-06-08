@@ -90,12 +90,8 @@ function save_extra_profile_fields( $user_id )
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
     $medicals = get_user_meta($user_id, 'medical_records', true);
 
-    echo "Medicals - > ";
-    echo $medicals;
-
     if ( !$medicals ||
-         !json_decode(htmlspecialchars_decode($medicals), true) ||
-         !json_decode(htmlspecialchars_decode($medicals), true)['mystuff']) { 
+         !json_decode(htmlspecialchars_decode($medicals), true)) { 
             update_user_meta( $user_id, 'medical_records', $_POST['medical_records'] );
     } else {
         $medicals = get_user_meta($user_id, 'medical_records', true);
