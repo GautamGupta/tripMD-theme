@@ -12,6 +12,7 @@ add_action('wp_enqueue_scripts', 'add_media_upload_scripts');
 function show_extra_profile_fields ( $user )
 {
 ?>
+ 
     <h2 class="entry-title">Personal Details</h2>
     <fieldset class="bbp-form">
         <div>
@@ -30,6 +31,7 @@ function show_extra_profile_fields ( $user )
             </select>
         </div>
     </fieldset>
+ 
     <h2 class="entry-title">Medical Details</h2>
     <fieldset class="bbp-form"> 
         <div>
