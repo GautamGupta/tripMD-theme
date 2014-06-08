@@ -270,7 +270,8 @@ get_header(); ?>
         </section>
 
         <?php if ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'error' ) : ?>
-        <section id="hs" class="center last green">
+        <hr/>
+            <section id="hs" class="center last green">
                 <div class="grid-container">
                     <p id="message">
                         Oops! There was an error registering your hospital, please try again. You can also try emailing us at help@tripmd.co.
@@ -285,6 +286,7 @@ get_header(); ?>
                     </p>
                 </div>
             </section>
+        <hr/>
         <?php endif; ?>
 
         <?php if ( ! is_user_logged_in() ) : ?>
