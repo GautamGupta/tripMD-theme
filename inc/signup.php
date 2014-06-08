@@ -88,7 +88,27 @@ function save_extra_profile_fields( $user_id )
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
-    update_user_meta( $user_id, 'medical_records', $_POST['medical_records'] );
+    $medicals = get_user_meta($user_id, 'medical_records', true);
+
+    echo "Medicals - > ";
+    echo $medicals;
+
+    if ( !$medicals ||
+         !json_decode(htmlspecialchars_decode($medicals), true) ||
+         !json_decode(htmlspecialchars_decode($medicals), true)['mystuff']) { 
+            update_user_meta( $user_id, 'medical_records', $_POST['medical_records'] );
+    } else {
+        $medicals = get_user_meta($user_id, 'medical_records', true);
+        $medicals = json_decode(htmlspecialchars_decode($medicals), true);
+
+
+        $new_medicals = $_POST['medical_records'];
+        $new_medicals = str_replace('\"', '"', $new_medicals);
+        $new_medicals = json_decode(htmlspecialchars_decode($new_medicals), true);
+
+        $medicals['mystuff'] = array_merge($medicals['mystuff'], $new_medicals['mystuff']);
+        update_user_meta( $user_id, 'medical_records', htmlspecialchars(json_encode($medicals)) );
+    }
 }
 
 /**

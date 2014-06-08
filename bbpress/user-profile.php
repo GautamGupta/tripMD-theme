@@ -57,23 +57,23 @@
 			<?php if ( bbp_get_displayed_user_field( 'gobs' ) ) : ?>
 			    <div>
 			        <label for="name">GObs: </label>
-			        <?php echo bbp_get_displayed_user_field( 'gobs' ); ?>Kgs
+			        <?php echo bbp_get_displayed_user_field( 'gobs' ); ?>
 			    </div>
 			<?php endif; ?>
 
 			<?php if ( bbp_get_displayed_user_field( 'allergies' ) ) : ?>
 			    <div>
 			        <label>Allergies: </label>
-			        <?php echo bbp_get_displayed_user_field( 'allergies' ); ?>Kgs
+			        <?php echo bbp_get_displayed_user_field( 'allergies' ); ?>
 			    </div>
 			<?php endif; ?>
 		</fieldset>
-		<?php if ( esc_attr(get_the_author_meta('medical_records', $user->ID)) ) : ?>
+		<?php if ( bbp_get_displayed_user_field('medical_records', $user->ID) ) : ?>
 		<h2 class="entry-title">Medical Records uploaded</h2>
 		<fieldset class="bbp-form"> 
 		    <ul>
 		        <?php
-		            $medicals = esc_attr(get_the_author_meta('medical_records', $user->ID));
+		            $medicals = esc_attr(bbp_get_displayed_user_field('medical_records', $user->ID));
 		            $medicals = json_decode(htmlspecialchars_decode($medicals), true);
 		            foreach ($medicals['mystuff'] as $medical_record) {
 		                echo "<li>".$medical_record."</li>";
