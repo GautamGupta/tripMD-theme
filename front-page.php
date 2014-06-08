@@ -7,27 +7,10 @@
 
 get_header(); ?>
 
+
         <div style="display:none" class="fancybox-hidden">
             <div id="hosp-signup" style="width:460px; height:380px;">
                 <h1>Hospital Signup</h1>
-
-                <?php if ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'error' ) : ?>
-                <section class="center last green">
-                        <div class="grid-container">
-                            <p id="message">
-                                Oops! There was an error registering your hospital, please try again. You can also try emailing us at help@tripmd.co.
-                            </p>
-                        </div>
-                    </section>
-                <?php elseif ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'success' ) : ?>
-                    <section class="center last green">
-                        <div class="grid-container">
-                            <p id="message">
-                                Thank you for registering. We'll get back to you shortly.
-                            </p>
-                        </div>
-                    </section>
-                <?php endif; ?>
 
                 <form method="post" style="color: black;" action="<?php echo site_url( '/' ); ?>">
 
@@ -285,6 +268,24 @@ get_header(); ?>
             </div>
 
         </section>
+
+        <?php if ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'error' ) : ?>
+        <section id="hs" class="center last green">
+                <div class="grid-container">
+                    <p id="message">
+                        Oops! There was an error registering your hospital, please try again. You can also try emailing us at help@tripmd.co.
+                    </p>
+                </div>
+            </section>
+        <?php elseif ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'success' ) : ?>
+            <section id="hs" class="center last green">
+                <div class="grid-container">
+                    <p id="message">
+                        Thank you for registering. We'll get back to you shortly.
+                    </p>
+                </div>
+            </section>
+        <?php endif; ?>
 
         <?php if ( ! is_user_logged_in() ) : ?>
 
