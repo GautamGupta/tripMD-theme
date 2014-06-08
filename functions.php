@@ -106,10 +106,13 @@ function tripmd_scripts() {
     wp_enqueue_script( 'royalslider', get_template_directory_uri() . '/js/royalslider/jquery.royalslider.min.js', array( 'jquery', 'easing' ), '9.5.4', true );
 	wp_enqueue_script( 'tripmd-typekit', '//use.typekit.net/jlx8kbu.js', array(), '0.1', true );
 
+
+	// We currently use Easy Fancybox plugin as this is not working
+	/*
     if ( is_front_page() ) {
     	 wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/js/fancybox/jquery.fancybox.pack.js', array( 'jquery' ), '2.1.5', false );
     	 add_action( 'wp_footer', 'tmd_fancybox_footjs', 500 );
-    } 
+    } */
    wp_enqueue_script( 'tmd_media_upload', get_template_directory_uri() . '/js/upload.js', array( 'jquery' ), '0.0.1', false );
 
     /*
@@ -133,7 +136,7 @@ function tmd_fancybox_footjs() { ?>
 
 <script type="text/javascript">
 	jQuery(document).ready(function() {
-		jQuery(".hsign a").fancybox({
+		jQuery(".fancybox").fancybox({
 			maxWidth	: 800,
 			maxHeight	: 600,
 			fitToView	: false,
