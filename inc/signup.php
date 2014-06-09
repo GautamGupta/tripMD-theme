@@ -81,18 +81,6 @@ function show_extra_profile_fields ( $user )
             global $wp_session;
             $wp_session = WP_Session::get_instance();
 
-            echo "speciality_id " . get_user_meta( bbp_get_user_id(), 'speciality_id', true);
-            echo "procedure_id " . get_user_meta( bbp_get_user_id(), 'procedure_id', true);
-            echo "hospital_id " . get_user_meta( bbp_get_user_id(), 'hospital_id', true);
-            echo "doctor_id " . get_user_meta( bbp_get_user_id(), 'doctor_id', true);
-
-            echo "sessions <br/>";
-
-            echo "speciality_id " .  $wp_session['speciality_id'];
-            echo "procedure_id " .  $wp_session['procedure_id'];
-            echo "hospital_id " .  $wp_session['hospital_id'];
-            echo "doctor_id " .  $wp_session['doctor_id'];
-
             if ( !get_user_meta( bbp_get_user_id(), 'speciality_id', true ) && 
                  !empty( $wp_session['speciality_id'] ) ) {
                 update_user_meta( $user->id, 'speciality_id', $wp_session['speciality_id'] );
