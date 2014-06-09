@@ -62,10 +62,11 @@ get_header();
 
 <h2>Register an Appointment</h2>
 
-<?php echo "Speciality" . get_user_meta( bbp_get_user_id(), 'speciality_id', true) ?>
-<?php echo "Proc" . get_user_meta( bbp_get_user_id(), 'procedure_id', true) ?>
-<?php echo "Hosp" . get_user_meta( bbp_get_user_id(), 'hospital_id', true) ?>
-<?php echo "Doc" . get_user_meta( bbp_get_user_id(), 'doctor_id', true) ?>
+<?php echo "user_id" . bbp_get_user_id(); ?>
+<?php echo "Speciality" . get_user_meta( bbp_get_user_id(), 'speciality_id', true); ?>
+<?php echo "Proc" . get_user_meta( bbp_get_user_id(), 'procedure_id', true); ?>
+<?php echo "Hosp" . get_user_meta( bbp_get_user_id(), 'hospital_id', true); ?>
+<?php echo "Doc" . get_user_meta( bbp_get_user_id(), 'doctor_id', true); ?>
 
 
 <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true) ) : ?>
