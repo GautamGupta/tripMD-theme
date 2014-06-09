@@ -95,6 +95,7 @@ function show_extra_profile_fields ( $user )
                  !empty( $wp_session['doctor_id'] ) )
                 update_user_meta( $user->id, 'doctor_id', $wp_session['doctor_id'] );
         ?>
+        <?php echo "Id: " . bbp_get_user_id(); ?>
         <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true) ) : ?>
             <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', true ) ) : ?>
                 <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) : ?>
