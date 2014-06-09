@@ -38,7 +38,7 @@ get_header();
 		$new_post = array(
 			'post_title' => "Consultation requested by " . $user->name,
 			'post_status' => 'draft',
-			'content' => $_POST['notes'],
+			'post_content' => $_POST['notes'],
 			'post_type' => 'consultation',
 			'author' => bbp_get_current_user_id(),
 		);
@@ -51,13 +51,13 @@ get_header();
 			add_post_meta($post_id, 'speciality_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
 	    }
 	    if ( get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) ) {
-			add_post_meta($post_id, 'procedure_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
+			add_post_meta($post_id, 'procedure_id', get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ));
 	    }
 	    if ( get_user_meta( bbp_get_current_user_id(), 'hospital_id', true ) ) {
-			add_post_meta($post_id, 'hospital_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
+			add_post_meta($post_id, 'hospital_id', get_user_meta( bbp_get_current_user_id(), 'hospital_id', true ));
 	    }
 	    if ( get_user_meta( bbp_get_current_user_id(), 'doctor_id', true ) ) {
-			add_post_meta($post_id, 'doctor_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
+			add_post_meta($post_id, 'doctor_id', get_user_meta( bbp_get_current_user_id(), 'doctor_id', true ));
 	    }
 	}
 ?>
