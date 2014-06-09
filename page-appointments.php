@@ -8,6 +8,8 @@
 get_header();
 ?>
 
+<?php if ( is_user_logged_in() ) : ?>
+
 <?php
     global $wp_session;
     $wp_session = WP_Session::get_instance();
@@ -64,17 +66,9 @@ get_header();
 
 <h2>Register an Appointment</h2>
 
-<?php echo "user_id" . bbp_get_current_user_id(); ?>
-<?php echo "Speciality" . get_user_meta( bbp_get_current_user_id(), 'speciality_id', true); ?>
-<?php echo "Proc" . get_user_meta( bbp_get_current_user_id(), 'procedure_id', true); ?>
-<?php echo "Hosp" . get_user_meta( bbp_get_current_user_id(), 'hospital_id', true); ?>
-<?php echo "Doc" . get_user_meta( bbp_get_current_user_id(), 'doctor_id', true); ?>
-
-
 <?php if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true) ) : ?>
     <?php if ( get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) ) : ?>
         <?php if ( get_user_meta( bbp_get_current_user_id(), 'hospital_id', true ) ) : ?>
-            <p>Alrighty! Let's book some <a href="/appointments/">appointments</a>!</p>
 			<div>
 			<form method="POST">
 				<h2 class="entry-title">Requested Dates</h2>
@@ -109,6 +103,7 @@ get_header();
     <p>Please select a <a href="http://tripmd.com/specialities/">speciality</a>, procedure, hospital and a doctor (optional).
 <?php endif; ?>
 
-
-
+<?php else : ?>
+<h2>Please <a href="http://tripmd.com/login">login</a>.</h2>
+<?php endif; ?>
 <?php get_footer(); ?>
