@@ -131,8 +131,8 @@ get_header(); ?>
 
             <div class="grid-container">
 
-                <div class="aligncenter grid-100">
-                    <input type="text" name="s" id="s" class="tmd_search" placeholder="Search for a treatment or hospital..." />
+                <div class="tmd-search-container aligncenter grid-100">
+                    <input type="text" name="s" id="s" class="tmd-search" placeholder="<?php _e( 'Search for a treatment or hospital...', 'tripmd' ); ?>" />
                 </div>
 
                 <div class="heading howh grid-100"><h2>Here&rsquo;s how it works.</h2></div>
