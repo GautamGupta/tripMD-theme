@@ -12,17 +12,17 @@ get_header();
     global $wp_session;
     $wp_session = WP_Session::get_instance();
 
-    if ( !get_user_meta( bbp_get_user_id(), 'speciality_id', true ) && 
+    if ( !get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ) && 
          !empty( $wp_session['speciality_id'] ) ) {
         update_user_meta( $user->id, 'speciality_id', $wp_session['speciality_id'] );
     }
-    if ( !get_user_meta( bbp_get_user_id(), 'procedure_id', true ) &&
+    if ( !get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) &&
          !empty( $wp_session['procedure_id'] ) )
         update_user_meta( $user->id, 'procedure_id', $wp_session['procedure_id'] );
-    if ( !get_user_meta( bbp_get_user_id(), 'hospital_id', true) &&
+    if ( !get_user_meta( bbp_get_current_user_id(), 'hospital_id', true) &&
          !empty( $wp_session['hospital_id'] ) )
         update_user_meta( $user->id, 'hospital_id', $wp_session['hospital_id'] );
-    if ( !get_user_meta( bbp_get_user_id(), 'doctor_id', true) &&
+    if ( !get_user_meta( bbp_get_current_user_id(), 'doctor_id', true) &&
          !empty( $wp_session['doctor_id'] ) )
         update_user_meta( $user->id, 'doctor_id', $wp_session['doctor_id'] );
 ?>
@@ -45,17 +45,17 @@ get_header();
 		$dates = [$_POST['date1'], $_POST['date2'], $_POST['date3']];
 		$dates_s = serialize($arr);
 		add_post_meta($post_id, 'dates', $dates_s);
-	    if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true ) ) {
-			add_post_meta($post_id, 'speciality_id', get_user_meta( bbp_get_user_id(), 'speciality_id', true ));
+	    if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ) ) {
+			add_post_meta($post_id, 'speciality_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
 	    }
-	    if ( get_user_meta( bbp_get_user_id(), 'procedure_id', true ) ) {
-			add_post_meta($post_id, 'procedure_id', get_user_meta( bbp_get_user_id(), 'speciality_id', true ));
+	    if ( get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) ) {
+			add_post_meta($post_id, 'procedure_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
 	    }
-	    if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) {
-			add_post_meta($post_id, 'hospital_id', get_user_meta( bbp_get_user_id(), 'speciality_id', true ));
+	    if ( get_user_meta( bbp_get_current_user_id(), 'hospital_id', true ) ) {
+			add_post_meta($post_id, 'hospital_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
 	    }
-	    if ( get_user_meta( bbp_get_user_id(), 'doctor_id', true ) ) {
-			add_post_meta($post_id, 'doctor_id', get_user_meta( bbp_get_user_id(), 'speciality_id', true ));
+	    if ( get_user_meta( bbp_get_current_user_id(), 'doctor_id', true ) ) {
+			add_post_meta($post_id, 'doctor_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
 	    }
 	}
 ?>
@@ -69,9 +69,9 @@ get_header();
 <?php echo "Doc" . get_user_meta( bbp_get_user_id(), 'doctor_id', true); ?>
 
 
-<?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true) ) : ?>
-    <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', true ) ) : ?>
-        <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) : ?>
+<?php if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true) ) : ?>
+    <?php if ( get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) ) : ?>
+        <?php if ( get_user_meta( bbp_get_current_user_id(), 'hospital_id', true ) ) : ?>
             <p>Alrighty! Let's book some <a href="/appointments/">appointments</a>!</p>
 			<div>
 			<form method="POST">
