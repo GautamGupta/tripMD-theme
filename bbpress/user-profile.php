@@ -38,49 +38,51 @@
 			<?php endif; ?>
 
 		</fieldset>
-		<h2 class="entry-title">Medical Details</h2>
-		    
-		<fieldset class="bbp-form"> 
-		    <?php if ( bbp_get_displayed_user_field( 'weight' ) ) : ?>
-		    <div>
-		        <label>Weight: </label>
-		        <?php echo bbp_get_displayed_user_field( 'weight' ); ?>Kgs
-		    </div>
-			<?php endif; ?>
-			<?php if ( bbp_get_displayed_user_field( 'height' ) ) : ?>
+		<?php if ( current_user_can( 'edit_user', bbp_get_user_id() ) ) : ?>
+			<h2 class="entry-title">Medical Details</h2>
+			    
+			<fieldset class="bbp-form"> 
+			    <?php if ( bbp_get_displayed_user_field( 'weight' ) ) : ?>
 			    <div>
-			        <label for="name">Height: </label>
-			        <?php echo bbp_get_displayed_user_field( 'height' ); ?>cms
+			        <label>Weight: </label>
+			        <?php echo bbp_get_displayed_user_field( 'weight' ); ?>Kgs
 			    </div>
-			<?php endif; ?>
+				<?php endif; ?>
+				<?php if ( bbp_get_displayed_user_field( 'height' ) ) : ?>
+				    <div>
+				        <label for="name">Height: </label>
+				        <?php echo bbp_get_displayed_user_field( 'height' ); ?>cms
+				    </div>
+				<?php endif; ?>
 
-			<?php if ( bbp_get_displayed_user_field( 'gobs' ) ) : ?>
-			    <div>
-			        <label for="name">GObs: </label>
-			        <?php echo bbp_get_displayed_user_field( 'gobs' ); ?>
-			    </div>
-			<?php endif; ?>
+				<?php if ( bbp_get_displayed_user_field( 'gobs' ) ) : ?>
+				    <div>
+				        <label for="name">GObs: </label>
+				        <?php echo bbp_get_displayed_user_field( 'gobs' ); ?>
+				    </div>
+				<?php endif; ?>
 
-			<?php if ( bbp_get_displayed_user_field( 'allergies' ) ) : ?>
-			    <div>
-			        <label>Allergies: </label>
-			        <?php echo bbp_get_displayed_user_field( 'allergies' ); ?>
-			    </div>
+				<?php if ( bbp_get_displayed_user_field( 'allergies' ) ) : ?>
+				    <div>
+				        <label>Allergies: </label>
+				        <?php echo bbp_get_displayed_user_field( 'allergies' ); ?>
+				    </div>
+				<?php endif; ?>
+			</fieldset>
+			<?php if ( bbp_get_displayed_user_field('medical_records', $user->ID) ) : ?>
+			<h2 class="entry-title">Medical Records uploaded</h2>
+			<fieldset class="bbp-form"> 
+			    <ul>
+			        <?php
+			            $medicals = esc_attr(bbp_get_displayed_user_field('medical_records', $user->ID));
+			            $medicals = json_decode(htmlspecialchars_decode($medicals), true);
+			            foreach ($medicals['mystuff'] as $medical_record) {
+			                echo "<li>".$medical_record."</li>";
+			            }
+			        ?>
+			    </ul>
+			</fieldset>
 			<?php endif; ?>
-		</fieldset>
-		<?php if ( bbp_get_displayed_user_field('medical_records', $user->ID) ) : ?>
-		<h2 class="entry-title">Medical Records uploaded</h2>
-		<fieldset class="bbp-form"> 
-		    <ul>
-		        <?php
-		            $medicals = esc_attr(bbp_get_displayed_user_field('medical_records', $user->ID));
-		            $medicals = json_decode(htmlspecialchars_decode($medicals), true);
-		            foreach ($medicals['mystuff'] as $medical_record) {
-		                echo "<li>".$medical_record."</li>";
-		            }
-		        ?>
-		    </ul>
-		</fieldset>
 		<?php endif; ?>
 
 			<!-- XXX: Do we even need this? -->

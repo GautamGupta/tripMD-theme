@@ -232,18 +232,18 @@ function tmd_register_home_handler() {
 }
 add_action( 'login_init', 'tmd_register_home_handler' );
 
-	function tmd_register_home_handler_login( $username = '' ) {
-		return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
-	}
-    add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
+function tmd_register_home_handler_login( $username = '' ) {
+	return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
+}
+add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
 
-	function tmd_register_home_handler_fn( $firstname = '' ) {
-		return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
-	}
+function tmd_register_home_handler_fn( $firstname = '' ) {
+	return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
+}
 
-	function tmd_register_home_handler_ln( $lastname = '' ) {
-		return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
-	}
+function tmd_register_home_handler_ln( $lastname = '' ) {
+	return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
+}
 
 function tmd_register_hospital_handler() {
 	if ( empty( $_POST['hsign'] ) )
@@ -297,6 +297,8 @@ add_filter( 'wpseo_title', 'tmd_blog_page_title' );
 require get_template_directory() . '/inc/template-tags.php';
 
 require get_template_directory() . '/inc/signup.php';
+
+require get_template_directory() . '/inc/post-types.php';
 
 /**
  * Custom functions that act independently of the theme templates.

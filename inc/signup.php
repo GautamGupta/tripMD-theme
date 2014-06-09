@@ -12,6 +12,7 @@ add_action('wp_enqueue_scripts', 'add_media_upload_scripts');
 function show_extra_profile_fields ( $user )
 {
 ?>
+ 
     <h2 class="entry-title">Personal Details</h2>
     <fieldset class="bbp-form">
         <div>
@@ -30,6 +31,7 @@ function show_extra_profile_fields ( $user )
             </select>
         </div>
     </fieldset>
+ 
     <h2 class="entry-title">Medical Details</h2>
     <fieldset class="bbp-form"> 
         <div>
@@ -43,12 +45,12 @@ function show_extra_profile_fields ( $user )
 
         <div>
             <label for="gobs">General Observations</label>
-            <textarea name="gobs" id="gobs" value="<?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?>" class="regular-text" /></textarea><br/>
+            <textarea name="gobs" id="gobs" class="regular-text" /><?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?></textarea><br/>
         </div>
 
         <div>
             <label for="allergies">Allergies</label><br/>
-            <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" ></textarea><br/>
+            <textarea name="allergies" id="allergies" class="regular-text" ><?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?></textarea><br/>
         </div>
     </fieldset>
     <h2 class="entry-title">Medical Records uploaded</h2>
@@ -68,7 +70,47 @@ function show_extra_profile_fields ( $user )
     </div>
 
     <input name="medical_records" id="medical_records_files" value="" type="hidden">
-    </fieldset> 
+    </fieldset>
+
+    </fieldset>
+    <h2 class="entry-title">Appointments</h2>
+
+
+    <fieldset class="bbp-form"> 
+        <?php
+            global $wp_session;
+            $wp_session = WP_Session::get_instance();
+
+            if ( !get_user_meta( bbp_get_user_id(), 'speciality_id', true ) && 
+                 !empty( $wp_session['speciality_id'] ) ) {
+                update_user_meta( $user->id, 'speciality_id', $wp_session['speciality_id'] );
+            }
+            if ( !get_user_meta( bbp_get_user_id(), 'procedure_id', true ) &&
+                 !empty( $wp_session['procedure_id'] ) )
+                update_user_meta( $user->id, 'procedure_id', $wp_session['procedure_id'] );
+            if ( !get_user_meta( bbp_get_user_id(), 'hospital_id', true) &&
+                 !empty( $wp_session['hospital_id'] ) )
+                update_user_meta( $user->id, 'hospital_id', $wp_session['hospital_id'] );
+            if ( !get_user_meta( bbp_get_user_id(), 'doctor_id', true) &&
+                 !empty( $wp_session['doctor_id'] ) )
+                update_user_meta( $user->id, 'doctor_id', $wp_session['doctor_id'] );
+        ?>
+        <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true) ) : ?>
+            <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', true ) ) : ?>
+                <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) : ?>
+                    <p>Alrighty! Let's book some <a href="/appointments/">appointments</a>!</p>
+                <?php else : ?>
+                    <p>Please select a hospital and a doctor (optional).
+                <?php endif; ?>
+            <?php else : ?>
+                <p>Please select a procedure, hospital and a doctor (optional).
+            <?php endif; ?>
+        <?php else : ?>
+            <p>Please select a <a href="http://tripmd.com/specialities/">speciality</a>, procedure, hospital and a doctor (optional).
+        <?php endif; ?>
+
+    <input name="medical_records" id="medical_records_files" value="" type="hidden">
+    </fieldset>
 
 <?php
 }
@@ -90,12 +132,8 @@ function save_extra_profile_fields( $user_id )
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
     $medicals = get_user_meta($user_id, 'medical_records', true);
 
-    echo "Medicals - > ";
-    echo $medicals;
-
     if ( !$medicals ||
-         !json_decode(htmlspecialchars_decode($medicals), true) ||
-         !json_decode(htmlspecialchars_decode($medicals), true)['mystuff']) { 
+         !json_decode(htmlspecialchars_decode($medicals), true)) { 
             update_user_meta( $user_id, 'medical_records', $_POST['medical_records'] );
     } else {
         $medicals = get_user_meta($user_id, 'medical_records', true);
@@ -122,29 +160,54 @@ add_action('user_register', 'register_extra_fields');
 function show_extra_fields()
 {
 ?>
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" value="<?php echo esc_attr( get_the_author_meta( 'name', $user->ID ) ); ?>" class="regular-text" /><br />
-    
-    <label for="dob">Date of birth</label>
-    <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" /><br />
-   
-    <label for="gender">Gender</label>
-    <select name="gender">
-      <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected";  ?>>Male</option>
-      <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'female') echo "selected";  ?>>Female</option>
-    </select>
-    
-    <label for="weight">Weight (in KGs)</label>
-    <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" /><br />
-    
-    <label for="weight">Height (in CMs)</label>
-    <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" /><br />
+    <a id="step1" href="javascript:void(0);">Step 1</a> | <a id="step2" href="javascript:void(0);">Step 2</a>
+    <div id="step2_container" style="display:none;">
+        <label for="weight">Weight (in KGs)</label>
+        <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" /><br />
+        
+        <label for="weight">Height (in CMs)</label>
+        <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" /><br />
 
-    <label for="gobs">General Observations</label>
-    <textarea name="gobs" id="gobs" value="<?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?>" class="regular-text" /></textarea><br/>
-    
-    <label for="allergies">Allergies</label><br/>
-    <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" ></textarea><br/>
+        <label for="gobs">General Observations</label>
+        <textarea name="gobs" id="gobs" value="<?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?>" class="regular-text" /></textarea><br/>
+        
+        <label for="allergies">Allergies</label><br/>
+        <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" ></textarea><br/>
+    </div>
+
+    <div id="step1_container">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="<?php echo esc_attr( get_the_author_meta( 'name', $user->ID ) ); ?>" class="regular-text" /><br />
+
+        <label for="dob">Date of birth</label>
+        <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" /><br />
+
+        <label for="gender">Gender</label>
+        <select name="gender">
+          <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected";  ?>>Male</option>
+          <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'female') echo "selected";  ?>>Female</option>
+        </select>
+    </div>
+
+    <script type="text/javascript">
+    var current = 1;
+    jQuery("#step1").click(function(e) {
+        if (current == 1) return;
+        else {
+            jQuery("#step1_container").css("display", "block");
+            jQuery("#step2_container").css("display", "none");
+            current = 1;
+        }
+    });
+    jQuery("#step2").click(function(e) {
+        if (current == 2) return;
+        else {
+            jQuery("#step1_container").css("display", "none");
+            jQuery("#step2_container").css("display", "block");
+            current = 2;
+        }
+    });
+    </script>
 
 <?php
 
@@ -203,12 +266,12 @@ function register_extra_fields ( $user_id, $password = "", $meta = array() )
     if ( !is_single() || ( is_single() && !in_array( get_post_type(), array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) ) )
         return;
 
-    if (array_key_exists('speciality_id', $wp_session))
+    if ( !empty( $wp_session['speciality_id'] ) )
         update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
-    if (array_key_exists('procedure_id', $wp_session))
+    if ( !empty( $wp_session['procedure_id'] ) )
         update_user_meta( $user_id, 'procedure_id', $wp_session['procedure_id'] );
-    if (array_key_exists('hospital_id', $wp_session))
+    if ( !empty( $wp_session['hospital_id'] ) )
         update_user_meta( $user_id, 'hospital_id', $wp_session['hospital_id'] );
-    if (array_key_exists('doctor_id', $wp_session))
+    if ( !empty( $wp_session['doctor_id'] ) )
         update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
 }
