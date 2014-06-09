@@ -45,12 +45,12 @@ function show_extra_profile_fields ( $user )
 
         <div>
             <label for="gobs">General Observations</label>
-            <textarea name="gobs" id="gobs" value="<?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?>" class="regular-text" /></textarea><br/>
+            <textarea name="gobs" id="gobs" class="regular-text" /><?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?></textarea><br/>
         </div>
 
         <div>
             <label for="allergies">Allergies</label><br/>
-            <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" ></textarea><br/>
+            <textarea name="allergies" id="allergies" class="regular-text" ><?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?></textarea><br/>
         </div>
     </fieldset>
     <h2 class="entry-title">Medical Records uploaded</h2>
@@ -80,14 +80,18 @@ function show_extra_profile_fields ( $user )
         <?php
             global $wp_session;
             $wp_session = WP_Session::get_instance();
-                    
-            if (array_key_exists('speciality_id', $wp_session))
+
+            if ( !get_user_meta( bbp_get_user_id(), 'speciality_id' ) && 
+                  array_key_exists('speciality_id', $wp_session))
                 update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
-            if (array_key_exists('procedure_id', $wp_session))
+            if ( !get_user_meta( bbp_get_user_id(), 'procedure_id' ) &&
+                  array_key_exists('procedure_id', $wp_session))
                 update_user_meta( $user_id, 'procedure_id', $wp_session['procedure_id'] );
-            if (array_key_exists('hospital_id', $wp_session))
+            if ( !get_user_meta( bbp_get_user_id(), 'hospital_id' ) &&
+                  array_key_exists('hospital_id', $wp_session) )
                 update_user_meta( $user_id, 'hospital_id', $wp_session['hospital_id'] );
-            if (array_key_exists('doctor_id', $wp_session))
+            if ( !get_user_meta( bbp_get_user_id(), 'doctor_id' ) &&
+                  array_key_exists('doctor_id', $wp_session) )
                 update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
         ?>
         <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id' ) ) : ?>
