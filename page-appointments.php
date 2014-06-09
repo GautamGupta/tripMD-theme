@@ -14,17 +14,17 @@ get_header();
 
     if ( !get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ) && 
          !empty( $wp_session['speciality_id'] ) ) {
-        update_user_meta( $user->id, 'speciality_id', $wp_session['speciality_id'] );
+        update_user_meta( bbp_get_current_user_id(), 'speciality_id', $wp_session['speciality_id'] );
     }
     if ( !get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) &&
          !empty( $wp_session['procedure_id'] ) )
-        update_user_meta( $user->id, 'procedure_id', $wp_session['procedure_id'] );
+        update_user_meta( bbp_get_current_user_id(), 'procedure_id', $wp_session['procedure_id'] );
     if ( !get_user_meta( bbp_get_current_user_id(), 'hospital_id', true) &&
          !empty( $wp_session['hospital_id'] ) )
-        update_user_meta( $user->id, 'hospital_id', $wp_session['hospital_id'] );
+        update_user_meta( bbp_get_current_user_id(), 'hospital_id', $wp_session['hospital_id'] );
     if ( !get_user_meta( bbp_get_current_user_id(), 'doctor_id', true) &&
          !empty( $wp_session['doctor_id'] ) )
-        update_user_meta( $user->id, 'doctor_id', $wp_session['doctor_id'] );
+        update_user_meta( bbp_get_current_user_id(), 'doctor_id', $wp_session['doctor_id'] );
 ?>
 
 <?php
@@ -62,11 +62,11 @@ get_header();
 
 <h2>Register an Appointment</h2>
 
-<?php echo "user_id" . bbp_get_user_id(); ?>
-<?php echo "Speciality" . get_user_meta( bbp_get_user_id(), 'speciality_id', true); ?>
-<?php echo "Proc" . get_user_meta( bbp_get_user_id(), 'procedure_id', true); ?>
-<?php echo "Hosp" . get_user_meta( bbp_get_user_id(), 'hospital_id', true); ?>
-<?php echo "Doc" . get_user_meta( bbp_get_user_id(), 'doctor_id', true); ?>
+<?php echo "user_id" . bbp_get_current_user_id(); ?>
+<?php echo "Speciality" . get_user_meta( bbp_get_current_user_id(), 'speciality_id', true); ?>
+<?php echo "Proc" . get_user_meta( bbp_get_current_user_id(), 'procedure_id', true); ?>
+<?php echo "Hosp" . get_user_meta( bbp_get_current_user_id(), 'hospital_id', true); ?>
+<?php echo "Doc" . get_user_meta( bbp_get_current_user_id(), 'doctor_id', true); ?>
 
 
 <?php if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true) ) : ?>
