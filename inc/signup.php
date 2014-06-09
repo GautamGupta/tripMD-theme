@@ -98,7 +98,7 @@ function show_extra_profile_fields ( $user )
         <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true) ) : ?>
             <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', true ) ) : ?>
                 <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) : ?>
-                    <p>Alrighty! Let's book some <a href="/new_appointment.php">appointments</a>!</p>
+                    <p>Alrighty! Let's book some <a href="/appointments/">appointments</a>!</p>
                 <?php else : ?>
                     <p>Please select a hospital and a doctor (optional).
                 <?php endif; ?>

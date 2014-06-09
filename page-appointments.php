@@ -9,6 +9,25 @@ get_header();
 ?>
 
 <?php
+    global $wp_session;
+    $wp_session = WP_Session::get_instance();
+
+    if ( !get_user_meta( bbp_get_user_id(), 'speciality_id', true ) && 
+         !empty( $wp_session['speciality_id'] ) ) {
+        update_user_meta( $user->id, 'speciality_id', $wp_session['speciality_id'] );
+    }
+    if ( !get_user_meta( bbp_get_user_id(), 'procedure_id', true ) &&
+         !empty( $wp_session['procedure_id'] ) )
+        update_user_meta( $user->id, 'procedure_id', $wp_session['procedure_id'] );
+    if ( !get_user_meta( bbp_get_user_id(), 'hospital_id', true) &&
+         !empty( $wp_session['hospital_id'] ) )
+        update_user_meta( $user->id, 'hospital_id', $wp_session['hospital_id'] );
+    if ( !get_user_meta( bbp_get_user_id(), 'doctor_id', true) &&
+         !empty( $wp_session['doctor_id'] ) )
+        update_user_meta( $user->id, 'doctor_id', $wp_session['doctor_id'] );
+?>
+
+<?php
 	// handle the post request
 	if ( ( !empty( $_POST['date1'] ) ||
 		   !empty( $_POST['date2'] ) ||
@@ -43,28 +62,11 @@ get_header();
 
 <h2>Register an Appointment</h2>
 
-<?php
-    global $wp_session;
-    $wp_session = WP_Session::get_instance();
-
-    if ( !get_user_meta( bbp_get_user_id(), 'speciality_id', true ) && 
-         !empty( $wp_session['speciality_id'] ) ) {
-        update_user_meta( $user->id, 'speciality_id', $wp_session['speciality_id'] );
-    }
-    if ( !get_user_meta( bbp_get_user_id(), 'procedure_id', true ) &&
-         !empty( $wp_session['procedure_id'] ) )
-        update_user_meta( $user->id, 'procedure_id', $wp_session['procedure_id'] );
-    if ( !get_user_meta( bbp_get_user_id(), 'hospital_id', true) &&
-         !empty( $wp_session['hospital_id'] ) )
-        update_user_meta( $user->id, 'hospital_id', $wp_session['hospital_id'] );
-    if ( !get_user_meta( bbp_get_user_id(), 'doctor_id', true) &&
-         !empty( $wp_session['doctor_id'] ) )
-        update_user_meta( $user->id, 'doctor_id', $wp_session['doctor_id'] );
-?>
 <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true) ) : ?>
     <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', true ) ) : ?>
         <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) : ?>
-		<div>
+            <p>Alrighty! Let's book some <a href="/appointments/">appointments</a>!</p>
+			<div>
 			<form method="POST">
 				<h2 class="entry-title">Requested Dates</h2>
 		    	<fieldset class="bbp-form"> 
@@ -97,5 +99,7 @@ get_header();
 <?php else : ?>
     <p>Please select a <a href="http://tripmd.com/specialities/">speciality</a>, procedure, hospital and a doctor (optional).
 <?php endif; ?>
+
+
 
 <?php get_footer(); ?>
