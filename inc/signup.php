@@ -81,6 +81,11 @@ function show_extra_profile_fields ( $user )
             global $wp_session;
             $wp_session = WP_Session::get_instance();
 
+            echo "speciality_id " . get_user_meta( bbp_get_user_id(), 'speciality_id' );
+            echo "procedure_id " . get_user_meta( bbp_get_user_id(), 'procedure_id' )
+            echo "hospital_id " . get_user_meta( bbp_get_user_id(), 'hospital_id' )
+            echo "doctor_id " . get_user_meta( bbp_get_user_id(), 'doctor_id' )
+
             if ( !get_user_meta( bbp_get_user_id(), 'speciality_id' ) && 
                   array_key_exists('speciality_id', $wp_session))
                 update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
@@ -239,6 +244,12 @@ function register_extra_fields ( $user_id, $password = "", $meta = array() )
     // Do we need session -- only on single pages of reqd types
     if ( !is_single() || ( is_single() && !in_array( get_post_type(), array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) ) )
         return;
+
+    echo "speciality_id " .  $wp_session['speciality_id'];
+    echo "procedure_id " .  $wp_session['procedure_id']
+    echo "hospital_id " .  $wp_session['hospital_id']
+    echo "doctor_id " .  $wp_session['doctor_id']
+
 
     if (array_key_exists('speciality_id', $wp_session))
         update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
