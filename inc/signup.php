@@ -1,4 +1,4 @@
-    <?php
+<?php
 /**
  * Add additional custom field
  */
@@ -93,16 +93,16 @@ function show_extra_profile_fields ( $user )
             echo "hospital_id " .  $wp_session['hospital_id'];
             echo "doctor_id " .  $wp_session['doctor_id'];
 
-            if ( !get_user_meta( bbp_get_user_id(), 'speciality_id' ) && 
+            if ( !get_user_meta( bbp_get_user_id(), 'speciality_id', true ) && 
                   array_key_exists('speciality_id', $wp_session))
                 update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
-            if ( !get_user_meta( bbp_get_user_id(), 'procedure_id' ) &&
+            if ( !get_user_meta( bbp_get_user_id(), 'procedure_id', true ) &&
                   array_key_exists('procedure_id', $wp_session))
                 update_user_meta( $user_id, 'procedure_id', $wp_session['procedure_id'] );
-            if ( !get_user_meta( bbp_get_user_id(), 'hospital_id' ) &&
+            if ( !get_user_meta( bbp_get_user_id(), 'hospital_id', true) &&
                   array_key_exists('hospital_id', $wp_session) )
                 update_user_meta( $user_id, 'hospital_id', $wp_session['hospital_id'] );
-            if ( !get_user_meta( bbp_get_user_id(), 'doctor_id' ) &&
+            if ( !get_user_meta( bbp_get_user_id(), 'doctor_id', true) &&
                   array_key_exists('doctor_id', $wp_session) )
                 update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
         ?>
