@@ -94,21 +94,22 @@ function show_extra_profile_fields ( $user )
             echo "doctor_id " .  $wp_session['doctor_id'];
 
             if ( !get_user_meta( bbp_get_user_id(), 'speciality_id', true ) && 
-                  array_key_exists('speciality_id', $wp_session))
-                update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
+                 !empty( $wp_session['speciality_id'] ) ) {
+                update_user_meta( $user->id, 'speciality_id', $wp_session['speciality_id'] );
+            }
             if ( !get_user_meta( bbp_get_user_id(), 'procedure_id', true ) &&
-                  array_key_exists('procedure_id', $wp_session))
-                update_user_meta( $user_id, 'procedure_id', $wp_session['procedure_id'] );
+                 !empty( $wp_session['procedure_id'] ) )
+                update_user_meta( $user->id, 'procedure_id', $wp_session['procedure_id'] );
             if ( !get_user_meta( bbp_get_user_id(), 'hospital_id', true) &&
-                  array_key_exists('hospital_id', $wp_session) )
-                update_user_meta( $user_id, 'hospital_id', $wp_session['hospital_id'] );
+                 !empty( $wp_session['hospital_id'] ) )
+                update_user_meta( $user->id, 'hospital_id', $wp_session['hospital_id'] );
             if ( !get_user_meta( bbp_get_user_id(), 'doctor_id', true) &&
-                  array_key_exists('doctor_id', $wp_session) )
-                update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
+                 !empty( $wp_session['doctor_id'] ) )
+                update_user_meta( $user->id, 'doctor_id', $wp_session['doctor_id'] );
         ?>
-        <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id' ) ) : ?>
-            <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', $wp_session['procedure_id'] ) ) : ?>
-                <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id' ) ) : ?>
+        <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true) ) : ?>
+            <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', true ) ) : ?>
+                <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) : ?>
                     <p>Alrighty! Let's book some appointments!</p>
                 <?php else : ?>
                     <p>Please select a hospital and a doctor (optional).
@@ -252,12 +253,12 @@ function register_extra_fields ( $user_id, $password = "", $meta = array() )
     if ( !is_single() || ( is_single() && !in_array( get_post_type(), array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) ) )
         return;
 
-    if (array_key_exists('speciality_id', $wp_session))
+    if ( !empty( $wp_session['speciality_id'] ) )
         update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
-    if (array_key_exists('procedure_id', $wp_session))
+    if ( !empty( $wp_session['procedure_id'] ) )
         update_user_meta( $user_id, 'procedure_id', $wp_session['procedure_id'] );
-    if (array_key_exists('hospital_id', $wp_session))
+    if ( !empty( $wp_session['hospital_id'] ) )
         update_user_meta( $user_id, 'hospital_id', $wp_session['hospital_id'] );
-    if (array_key_exists('doctor_id', $wp_session))
+    if ( !empty( $wp_session['doctor_id'] ) )
         update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
 }
