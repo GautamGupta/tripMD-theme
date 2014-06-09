@@ -34,16 +34,18 @@ get_header();
 		   !empty($_POST['date3'] ) )    && 
 	     !empty($_POST['notes'])) {	
 		
+		$user = new WP_User( bbp_get_current_user_id() );
 		$new_post = array(
-			'post_title' => "Consultation requested by " . bbp_get_displayed_user_field('name'),
+			'post_title' => "Consultation requested by " . $user->name,
 			'post_status' => 'draft',
 			'content' => $_POST['notes'],
 			'post_type' => 'consultation',
-			'author' => bbp_get_user_id(),
+			'author' => bbp_get_current_user_id(),
 		);
 		$post_id = wp_insert_post($new_post);
 		$dates = [$_POST['date1'], $_POST['date2'], $_POST['date3']];
-		$dates_s = serialize($arr);
+		echo $dates;
+		$dates_s = serialize($dates);
 		add_post_meta($post_id, 'dates', $dates_s);
 	    if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ) ) {
 			add_post_meta($post_id, 'speciality_id', get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ));
