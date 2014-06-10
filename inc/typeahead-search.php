@@ -12,7 +12,7 @@
 class tMDTypeaheadSearch {
 	var $options = array(
 		'fieldName'          => '.tmd-search',
-		'minimum'            => 3,
+		'minimum'            => 1,
 		'numrows'            => 10,
 		'hotlinks'			 => array( 'posts', 'taxonomies' ),
 		'posttypes'          => array( 'speciality', 'procedure', 'hospital' ),
@@ -54,7 +54,7 @@ class tMDTypeaheadSearch {
 			$type      = sanitize_text_field( $_GET['type'] );
 			$tempPosts = get_posts( array(
 				's'           => $term,
-				'numberposts' => $this->options['numrows'],
+				'numberposts' => -1, $this->options['numrows'],
 				'post_type'   => ! empty( $type ) ? $type : $this->options['posttypes'],
 			) );
 			foreach ( $tempPosts as $post ) {
@@ -65,12 +65,12 @@ class tMDTypeaheadSearch {
 					'postType' => $post->post_type
 				);
 				$linkTitle = apply_filters( 'the_title', $post->post_title );
-				$linkTitle = htmlspecialchars_decode( html_entity_decode( apply_filters( 'search_modify_title', $linkTitle, $tempObject ) ) );
+				$linkTitle = html_entity_decode( $linkTitle, ENT_NOQUOTES, 'UTF-8' );
 				if ( ! in_array( 'posts', $this->options['hotlinks'] ) ) {
 					$linkURL = '#';
 				} else {
 					$linkURL = get_permalink( $post->ID );
-					$linkURL = apply_filters( 'search_modify_url', $linkURL, $tempObject );
+					// $linkURL = apply_filters( 'search_modify_url', $linkURL, $tempObject );
 				}
 				$result = array(
 					'title' => $linkTitle,
@@ -97,12 +97,12 @@ class tMDTypeaheadSearch {
 					'postType' => null
 				);
 				$linkTitle = apply_filters( 'the_title', $term->post_title );
-				$linkTitle = apply_filters( 'tmd_search_modify_title', $linkTitle, $tempObject );
+				$linkTitle = html_entity_decode( $linkTitle );
 				if ( ! in_array( 'taxonomies', $this->options['hotlinks'] ) ) {
 					$linkURL = '#';
 				} else {
 					$linkURL = get_term_link( $term->guid, $term->taxonomy );
-					$linkURL = apply_filters( 'search_modify_url', $linkURL, $tempObject );
+					// $linkURL = apply_filters( 'search_modify_url', $linkURL, $tempObject );
 				}
 				$resultsTerms[] = array(
 					'title' => $linkTitle,
@@ -114,8 +114,9 @@ class tMDTypeaheadSearch {
 			$results = array_merge( $resultsPosts, $resultsTerms );
 			$results = array_merge( $resultsTerms, $resultsPosts );
 		}
-		$results = apply_filters( 'tmd_search_modify_results', $results );
-		echo json_encode( array_slice( $results, 0, $this->options['numrows'] ) );
+		// $results = apply_filters( 'tmd_search_modify_results', $results );
+		// $results = array_slice( $results, 0, $this->options['numrows'] );
+		echo json_encode( $results );
 		die();
 	}
 }

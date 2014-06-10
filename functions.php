@@ -296,9 +296,20 @@ add_filter( 'wpseo_title', 'tmd_blog_page_title' );
  */
 require get_template_directory() . '/inc/template-tags.php';
 
+/**
+ * Registration + Consultation stuff
+ */
 require get_template_directory() . '/inc/signup.php';
 
+/**
+ * Post types for tripMD
+ */
 require get_template_directory() . '/inc/post-types.php';
+
+/**
+ * Typeahead Search for front page
+ */
+require get_template_directory() . '/inc/typeahead-search.php';
 
 /**
  * Custom functions that act independently of the theme templates.

@@ -75,13 +75,20 @@
 
 .tt-suggestion p {
   margin: 0;
+}
+
+.tt-suggestion a {
   color: #637d7d !important;
 }
 
+.tt-suggestion p:hover a {
+  color: #fff !important;
+}
 
 .tt-empty-message {
-  padding: 5px 10px;
-  text-align: center;
+  color: #ddd;
+  padding: 3px 20px;
+  text-align: left;
 }
 
 /** Slider */
