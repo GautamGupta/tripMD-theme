@@ -107,7 +107,7 @@ function tmd_register_post_types() {
 		'not_found_in_trash'  => __( 'Not found in Trash', 'tripmd' ),
 	);
 	$rewrite = array(
-		'slug'                => 'hospital',
+		'slug'                => '',
 		'with_front'          => false,
 		'pages'               => false,
 		'feeds'               => false,
@@ -312,4 +312,24 @@ function tmd_save_listing_parent_id( $post_id ) {
 }
 add_action( 'save_post', 'tmd_save_listing_parent_id' );
 
-?>
+/**
+ * Hospital links should be with route
+ */
+function tmd_hospital_rewrite_rule () {
+	add_rewrite_rule( '([^/]+)$', 'index.php?hospital=$matches[1]', 'bottom' );
+}
+add_action( 'init', 'tmd_hospital_rewrite_rule' );
+
+function tmd_custom_post_type_link ( $permalink, $post, $leavename ) {
+    if ( !gettype( $post ) == 'post' ) {
+        return $permalink;
+    }
+    switch ( $post->post_type ) {
+        case 'hospital' :
+            $permalink = get_home_url() . '/' . $post->post_name . '/';
+            break;
+    }
+ 
+    return $permalink;
+}
+add_filter( 'post_type_link', 'tmd_custom_post_type_link', 10, 3 );
