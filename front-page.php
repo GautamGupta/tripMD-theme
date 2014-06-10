@@ -206,7 +206,7 @@ get_header(); ?>
                             <img src="<?php echo get_template_directory_uri(); ?>/img/home-f4.png" alt="">
                         </div>
 
-                        <a class="big fat green button waitlist push-40" href="#su">Get early access</a>
+                        <a class="big fat green button waitlist push-40" href="<?php echo home_url( '/beta' ); ?>">Get early access</a>
 
                     </div>
 
@@ -265,7 +265,7 @@ get_header(); ?>
 
                 </div>
 
-                <a class="big fat green button waitlist push-40" href="#su">Get early access</a>
+                <a class="big fat green button waitlist push-40" href="<?php echo home_url( '/beta' ); ?>">Get early access</a>
 
             </div>
 
@@ -291,7 +291,7 @@ get_header(); ?>
         <hr/>
         <?php endif; ?>
 
-        <?php if ( ! is_user_logged_in() ) : ?>
+        <?php /* if ( ! is_user_logged_in() ) : ?>
 
             <section class="center last green" id="su">
 
@@ -331,5 +331,5 @@ get_header(); ?>
                 </div>
 
             </section>
-        <?php endif; ?>
+        <?php endif; */ ?>
 <?php get_footer(); ?>
