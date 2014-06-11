@@ -43,7 +43,9 @@
 
 		<?php wp_footer(); ?>
 
+		<script type="text/javascript" src="//use.typekit.net/jlx8kbu.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
 
 	</body>
 
