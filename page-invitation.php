@@ -41,6 +41,17 @@
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image" /></a>
 					</div>
 
+					<?php
+					if ( !empty( $_POST['tmd_beta_register'] ) ) :
+						if ( tmd_has_errors() ) :
+							foreach ( tmd_get_errors() as $tmd_error ) : ?>
+        						<p class="error"><?php _e( '<strong>Error</strong>:', 'tripmd' ); ?> <?php echo $tmd_error; ?></p>
+        					<?php endforeach;
+        				else : $dont_display_form = 1; ?>
+							<p class="success"><?php _e( 'You\'ve secured a spot in our exclusive early access! You\'ll shortly receive an email with further information.' ); ?></p>
+						<?php endif;
+					endif; ?>
+
 					<p>tripMD helps patients connect with trusted world-class healthcare overseas at affordable prices.<br />
 					<a href="http://tripmd.com" class="green-t">Learn more</a>.</p>
 
@@ -48,50 +59,50 @@
 
 				</div>
 
-				<div class="form">
+				<?php if ( empty( $dont_display_form ) ) : ?>
 
-					<form action="">
-						
-						<div class="name fld">
-							
-							<input type="text" placeholder="Name" class="name field" required data-icon="\f007">
-							<i class="fa fa-user"></i>
-						
-						</div>
-						
-						<div class="email fld">
-							
-							<input type="email" placeholder="Email" class="email field" required data-icon="\f007">
-							<i class="fa fa-envelope-o"></i>
-						
-						</div>
-						
-						<div class="phone fld">
-							
-							<input type="phone" placeholder="Phone" class="phone field" required data-icon="\f007">
-							<i class="fa fa-phone"></i>
-						
-						</div>
-						
-						<div class="treatment fld">
-							
-							<input type="text" class="treatment field" placeholder="Diagnosed Condition" required data-icon="\f007">
-							<i class="fa fa-stethoscope"></i>
-						
-						</div>
+					<div class="form">
 
-						<a href="#" class="big fat green button submit">Get Exclusive Access</a>
-						<p class="ohho">Just <b>86</b> spots remaining!</p>
+						<form method="post" id="beta-form">
+							
+							<div class="name fld">
+								<input type="text" name="tmd_bs_name" placeholder="Name" class="name field" required="required" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_name'] ) ? $_POST['tmd_bs_name'] : ''; ?>" />
+								<i class="fa fa-user"></i>
+							</div>
+							
+							<div class="email fld">
+								<input type="email" name="tmd_bs_email" placeholder="Email" class="email field" required="required" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_email'] ) ? $_POST['tmd_bs_email'] : ''; ?>" />
+								<i class="fa fa-envelope-o"></i>
+							</div>
+							
+							<div class="phone fld">
+								<input type="phone" name="tmd_bs_phone" placeholder="Phone" class="phone field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : ''; ?>" />
+								<i class="fa fa-phone"></i>
+							</div>
+							
+							<div class="treatment fld">
+								<input type="text" name="tmd_bs_condition" placeholder="Diagnosed Condition" class="treatment field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : ''; ?>" />
+								<i class="fa fa-stethoscope"></i>
+							</div>
 
-					</form>
+	                        <input type="hidden" name="tmd_beta_register" value="1" />
+	                        <?php wp_nonce_field( 'tmd_beta_register_nonce' ); ?>
 
-				</div>
+							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();">Get Exclusive Access</a>
+							<p class="ohho">Just <b><?php echo max( 14, 100 - tmd_user_count() ); ?></b> spots remaining!</p>
+
+						</form>
+
+					</div>
+
+				<?php endif; ?>
 
 			</div>
 
 		</div>
 
 		<?php wp_footer(); ?>
+
 		<script type="text/javascript" src="//use.typekit.net/jlx8kbu.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
