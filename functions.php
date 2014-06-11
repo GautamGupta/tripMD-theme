@@ -133,25 +133,25 @@ add_action( 'wp_enqueue_scripts', 'tripmd_scripts' );
 
 /* Not using fancybox for the time being */
 
-function tmd_fancybox_footjs() { ?>
+function tmd_fancybox_footjs() {
 
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-		jQuery(".fancybox").fancybox({
-			maxWidth	: 800,
-			maxHeight	: 600,
-			fitToView	: false,
-			width		: '70%',
-			height		: '70%',
-			autoSize	: false,
-			closeClick	: false,
-			openEffect	: 'none',
-			closeEffect	: 'none'
+	echo '<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery(".fancybox").fancybox({
+				maxWidth	: 800,
+				maxHeight	: 600,
+				fitToView	: false,
+				width		: \'70%\',
+				height		: \'70%\',
+				autoSize	: false,
+				closeClick	: false,
+				openEffect	: \'none\',
+				closeEffect	: \'none\'
+			});
 		});
-	});
-</script>
+	</script>';
 
-<? }
+}
 
 /**
  * Handle the session to store the spec, proc etc id's

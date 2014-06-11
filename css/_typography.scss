@@ -1,0 +1,48 @@
+$sans: "freight-sans-pro", sans-serif;
+$serif: "minion-pro", serif;;
+$calluna: "calluna-sans", sans-serif;
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+
+
+.heading {
+
+	h2 {
+
+		font-family: $serif;
+		font-size: 250%;
+		text-align: center;
+		margin: 60px 0 10px 0;
+		text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+
+
+
+	}
+
+}
+
+.howh, suh {
+
+	margin: 60px 0 10px 0;
+
+}
+
+.content {
+
+		h3 {
+
+			font-size: 150%;
+			margin-top: 0;
+			margin-bottom: -15px;
+
+		}
+
+		p {
+
+			color: lighten($dark-gray, 15%);
+
+		}
+
+}

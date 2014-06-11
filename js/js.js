@@ -60,7 +60,7 @@ window.onscroll = function() {
         if (scroll >= (window.innerHeight/2)) {
             nav.classList.add('topo');
             nav.style.position = "fixed";
-            logo_img.src = "/wp-content/themes/tripmd/img/logo-black.png";
+            logo_img.src = "http://tripmd.com/wp-content/themes/tripmd/img/logo-black.png";
         } else {
             nav.classList.remove('topo');
         }
@@ -70,7 +70,7 @@ window.onscroll = function() {
             nav.classList.add('sticky');
             nav.style.top = "-80px";
         } else {
-            logo_img.src = "/wp-content/themes/tripmd/img/logo-white.png";
+            logo_img.src = "http://tripmd.com/wp-content/themes/tripmd/img/logo-white.png";
             nav.style.position = "absolute";
             nav.classList.remove('sticky');
             nav.style.top = "0px";

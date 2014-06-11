@@ -8,20 +8,44 @@
 get_header(); ?>
 
 
-        <div style="display:none" class="fancybox-hidden">
-            <div id="hosp-signup" style="width:460px; height:380px;">
+        <div style="display:none" class="fancybox-hidden block">
+            <div id="hosp-signup" class="su" style="width:480px; height:420px;">
                 <h1>Hospital Signup</h1>
 
                 <form method="post" style="color: black;" action="<?php echo site_url( '/' ); ?>">
+                    
+                    <div class="name fld">
+                        
+                        <input type="text"  class="field" name="medical_centre" required="required" placeholder="Name of the Medical Centre" />
+                        <i class="fa fa-hospital-o"></i>
+                    
+                    </div>
 
-                    <input type="text"  class="grid-100" name="medical_centre" required="required" placeholder="Name of the Medical Centre" />
-                    <input type="text"  class="grid-100" name="country" required="required" placeholder="Country" />
-                    <input type="text"  class="grid-100" name="poc" required="required" placeholder="Point of Contact" />
-                    <input type="email"  class="grid-100" name="email" required="required" placeholder="Email Address" />
+                    <div class="country fld">
+                        
+                        <input type="text"  class="field" name="country" required="required" placeholder="Country" />
+                        <i class="fa fa-map-marker"></i>
+                    
+                    </div>
+
+                    <div class="poc fld">
+                        
+                        <input type="text"  class="field" name="poc" required="required" placeholder="Point of Contact" />
+                        <i class="fa fa-phone"></i>
+                    
+                    </div>
+
+                    <div class="email fld">
+                        
+                        <input type="email"  class="last field" name="email" required="required" placeholder="Email Address" />
+                        <i class="fa fa-envelope-o"></i>
+                    
+                    </div>
+
                     <input type="hidden" name="hsign" value="1" />
                     <?php wp_nonce_field( 'tmd_home_register' ); ?>
 
-                    <input type="submit" class="grid-100" value="Signup" />
+                    <input type="submit" class="big fat green button submit" value="Sign Up" />
 
                 </form>
 
@@ -36,8 +60,8 @@ get_header(); ?>
 
                     <div class="block rsABlock">
                         <div class="centered">
-                            <h2>Your trusted medical travel companion.</h2>
-                            <h3>We help you discover, consult, and book your treatment anywhere in the world.</h3>
+                            <h2>Connect with trusted world-class healthcare overseas</h2>
+                            <h3>Browse from our highly curated list of world class professionals and facilities based on the treatment you are seeking.</h3>
                             <a class="big fat green button" href="#how">See How it Works</a>
                         </div>
                     </div>
@@ -55,8 +79,8 @@ get_header(); ?>
 
                     <div class="block rsABlock">
                         <div class="centered">
-                            <h2>Access top medical centres in the world</h2>
-                            <h3>Find the right doctor and medical centre for your treatment.</h3>
+                            <h2>Tried and trusted by the international community</h2>
+                            <h3>Access healthcare options that expatriates and diplomats use in our featured cities.</h3>
                             <a class="big fat green button" href="#how">See How it Works</a>
                         </div>
                     </div>
@@ -68,24 +92,6 @@ get_header(); ?>
 
             </div>
 
-            <div class="rsContent slide3">
-
-                <div class="bContainer">
-
-                    <div class="block rsABlock">
-                        <div class="centered">
-                            <h2>Travel and stay in comfort.</h2>
-                            <h3>Book travel and accommodation using our easy-to-use web and mobile app, so you can focus on your recovery.</h3>
-                            <a class="big fat green button" href="#how">See How it Works</a>
-                        </div>
-                    </div>
-
-                    <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
-                </div>
-
-                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-3.jpg" />
-
-            </div>
 
             <div class="rsContent slide4">
 
@@ -106,7 +112,7 @@ get_header(); ?>
 
             </div>
 
-            <div class="rsContent slide5">
+            <div class="rsContent slide3">
 
                 <div class="bContainer">
 
@@ -125,9 +131,27 @@ get_header(); ?>
 
             </div>
 
+            <div class="rsContent slide5">
+
+                <div class="bContainer">
+
+                    <div class="block rsABlock">
+                        <div class="centered">
+                            <h2>Travel and stay in comfort</h2>
+                            <h3>Book travel and accommodation using our easy-to-use web and mobile app, so you can focus on your recovery.</h3>
+                            <a class="big fat green button" href="#how">See How it Works</a>
+                        </div>
+                    </div>
+
+                    <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
+                </div>
+
+                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-3.jpg" />
+
+            </div>
         </div>
 
-        <section class="how" id="how">
+        <section class="how">
 
             <div class="grid-container">
 
@@ -137,6 +161,8 @@ get_header(); ?>
                     </div>
                 <?php endif; ?>
 
+
+                <span id="how"></span>
                 <div class="heading howh grid-100"><h2>Here&rsquo;s how it works.</h2></div>
 
                 <div class="content">
@@ -197,7 +223,7 @@ get_header(); ?>
 
                         <div class="grid-80 push-20">
 
-                            <h3>Follow ups made easy.</h3>
+                            <h3>Follow-ups made easy.</h3>
                             <p>After you return home, we make sure that your doctors at home and overseas are keeping in touch to ensure that you are have a smooth recovery.</p>
 
                         </div>
@@ -218,14 +244,14 @@ get_header(); ?>
 
             <div class="grid-container">
 
-                <div class="heading grid-100"><h2>Hear from other patients and experts.</h2></div>
+                <div class="heading grid-100"><h2>Hear from patients who have healthcare experience overseas.</h2></div>
 
                 <div class="content">
 
                     <div id="content-slider-1" class="royalSlider contentSlider rsDefault">
 
                       <div>
-                        <span class="rsTmb">Patients</span>
+                        <!-- <span class="rsTmb">Patients</span> -->
                         <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
                       </div>
                       <?php /*
@@ -246,7 +272,7 @@ get_header(); ?>
 
             <div class="grid-container">
 
-                <div class="heading grid-100"><h2>We're always with you.</h2></div>
+                <div class="heading grid-100"><h2>We&rsquo;re always with you.</h2></div>
 
                 <div class="content">
 
