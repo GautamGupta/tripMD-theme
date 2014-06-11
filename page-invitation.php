@@ -45,7 +45,7 @@
 					if ( !empty( $_POST['tmd_beta_register'] ) ) :
 						if ( tmd_has_errors() ) :
 							foreach ( tmd_get_errors() as $tmd_error ) : ?>
-        						<p class="error"><?php _e( '<strong>Error</strong>:', 'tripmd' ); ?> <?php echo $tmd_error; ?></p>
+        						<p class="error"><?php _e( '<i class="fa warn fa-exclamation-triangle"></i>', 'tripmd' ); ?> <?php echo $tmd_error; ?></p>
         					<?php endforeach;
         				else : $dont_display_form = 1; ?>
 							<p class="success"><?php _e( 'You\'ve secured a spot in our exclusive early access! You\'ll shortly receive an email with further information.' ); ?></p>
@@ -55,7 +55,7 @@
 					<p>tripMD helps patients connect with trusted world-class healthcare overseas at affordable prices.<br />
 					<a href="http://tripmd.com" class="green-t">Learn more</a>.</p>
 
-					<p class="sub">In case you have any questions, please feel free to contact us at help@tripmd.com.</p>
+					<p class="sub">In case you have any questions, please feel free to contact us at <a href="mailto:help@tripmd.com" class="green-t">help@tripmd.com</a>.</p>
 
 				</div>
 
@@ -90,6 +90,8 @@
 
 							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();">Get Exclusive Access</a>
 							<p class="ohho">Just <b><?php echo max( 14, 100 - tmd_user_count() ); ?></b> spots remaining!</p>
+
+							<input type="submit" hidden>
 
 						</form>
 

@@ -839,8 +839,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #637d7d;
 }
 
-/** Blog */
-
 body.blog nav.sticky, body.single nav.sticky {
   box-shadow: none !important;
   background: transparent;
