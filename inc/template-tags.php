@@ -188,3 +188,13 @@ function tmd_amenities( $amenities = array() ) {
         </div> <!-- .et-custom-list -->
     </div>
 <?php }
+
+/**
+ * Registered users count. Used on beta signup.
+ */
+function tmd_user_count() {
+	global $wpdb;
+	$result1 = count_users();
+	$result2 = $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}tmd_beta_users" );
+	return $result1['total_users'] + $result2;
+}

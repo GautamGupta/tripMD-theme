@@ -12,6 +12,49 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
+/** Errors ********************************************************************/
+
+/**
+ * Adds an error message to later be output in the theme
+ *
+ * @see WP_Error()
+ * @uses WP_Error::add();
+ *
+ * @param string $code Unique code for the error message
+ * @param string $message Translated error message
+ * @param string $data Any additional data passed with the error message
+ */
+function tmd_add_error( $code = '', $message = '', $data = '' ) {
+	global $tmd_errors;
+	$tmd_errors->add( 'tmd-' . $code, $message, $data );
+}
+
+/**
+ * Check if error messages exist in queue
+ *
+ * @see WP_Error()
+ * @uses WP_Error::get_error_codes()
+ * 
+ * @return bool
+ */
+function tmd_has_errors() {
+	global $tmd_errors;
+	return $tmd_errors->get_error_codes() ? true : false;
+}
+
+/**
+ * Return error messages in queue
+ *
+ * @see WP_Error()
+ * @uses WP_Error::get_error_codes()
+ * 
+ * @return array Messages
+ */
+function tmd_get_errors() {
+	global $tmd_errors;
+	return $tmd_errors->get_error_messages();
+}
+
 if ( ! function_exists( 'tripmd_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -61,6 +104,14 @@ function tripmd_setup() {
 		'comment-form',
 		'gallery',
 	) );
+
+	/**
+	 * Error API
+	 * 
+	 * @uses WP_Error
+	 */
+	global $tmd_errors;
+	$tmd_errors = new WP_Error();
 }
 endif; // tripmd_setup
 add_action( 'after_setup_theme', 'tripmd_setup' );
@@ -268,6 +319,46 @@ function tmd_register_hospital_handler() {
 
 }
 add_action( 'init', 'tmd_register_hospital_handler' );
+
+/**
+ * Beta signup handler for /beta
+ */
+function tmd_register_beta_handler() {
+	if ( empty( $_POST['tmd_beta_register'] ) )
+		return;
+
+    global $wpdb;
+
+	if ( !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_beta_register_nonce' ) )
+		tmd_add_error( 'nonce', __( 'Are you sure that you\'re doing that?', 'tripmd' ) );
+
+    if ( empty( $_POST['tmd_bs_name'] ) )
+        tmd_add_error( 'required-name', __( 'Please provide your full name.', 'tripmd' ) );
+
+    if ( empty( $_POST['tmd_bs_email'] ) || !is_email( $_POST['tmd_bs_email'] ) )
+        tmd_add_error( 'required-email', __( 'Please provide a valid email id.', 'tripmd' ) );
+    elseif ( $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}tmd_beta_users WHERE email = %s LIMIT 1", $_POST['tmd_bs_email'] ) ) )
+        tmd_add_error( 'exists-email', __( 'You\'ve already registered with this email id.', 'tripmd' ) );
+
+    if ( tmd_has_errors() )
+    	return;
+
+	$registered = $wpdb->insert( 
+		"{$wpdb->prefix}tmd_beta_users", 
+		array( 
+			'name' => $_POST['tmd_bs_name'], 
+			'email' => $_POST['tmd_bs_email'], 
+			'phone' => !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : '', 
+			'condition' => !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '', 
+			'registered' => date('Y-m-d H:i:s')
+		), 
+		'%s'
+	);
+
+	if ( empty( $registered ) )
+		tmd_add_error( 'error-registration', __( 'There was a problem registering you. Please try again or contact us at help@tripmd.com.', 'tripmd' ) );
+}
+add_action( 'pre_get_posts', 'tmd_register_beta_handler' );
 
 // Increase WP_Session time
 add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours
