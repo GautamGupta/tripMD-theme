@@ -10,7 +10,7 @@ get_header(); ?>
 
         <div style="display:none" class="fancybox-hidden block">
             <div id="hosp-signup" class="su" style="width:480px; height:420px;">
-                <h1>Hospital Signup</h1>
+                <h1>Clinic Signup</h1>
 
                 <form method="post" style="color: black;" action="<?php echo site_url( '/' ); ?>">
                     
@@ -302,7 +302,7 @@ get_header(); ?>
             <section id="hs" class="center last green">
                 <div class="grid-container">
                     <p id="message">
-                        Oops! There was an error registering your hospital, please try again. You can also try emailing us at help@tripmd.co.
+                        Oops! There was an error registering your clinic, please try again. You can also try emailing us at help@tripmd.co.
                     </p>
                 </div>
             </section>
