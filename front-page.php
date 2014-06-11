@@ -232,7 +232,7 @@ get_header(); ?>
                             <img src="<?php echo get_template_directory_uri(); ?>/img/home-f4.png" alt="">
                         </div>
 
-                        <a class="big fat green button waitlist push-40" href="<?php echo home_url( '/beta' ); ?>">Get early access</a>
+                        <a class="big fat green button waitlist push-40" href="<?php echo home_url( '/invitation' ); ?>">Get early access</a>
 
                     </div>
 
@@ -291,7 +291,7 @@ get_header(); ?>
 
                 </div>
 
-                <a class="big fat green button waitlist push-40" href="<?php echo home_url( '/beta' ); ?>">Get early access</a>
+                <a class="big fat green button waitlist push-40" href="<?php echo home_url( '/invitation' ); ?>">Get early access</a>
 
             </div>
 

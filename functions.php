@@ -364,20 +364,6 @@ add_action( 'pre_get_posts', 'tmd_register_beta_handler' );
 add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours
 
 /**
- * Fix the blog page title (for WordPress SEO plugin)
- * 
- * @param string $title
- * @return string
- */
-function tmd_blog_page_title( $title = '' ) {
-	if ( is_home() && !empty( $wp->matched_query ) )
-		return sprintf( __( 'Blog %s', 'tripmd' ), $title );
-	else
-		return $title;
-}
-add_filter( 'wpseo_title', 'tmd_blog_page_title' );
-
-/**
  * Implement the Custom Header feature.
  */
 //require get_template_directory() . '/inc/custom-header.php';
