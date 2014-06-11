@@ -965,12 +965,12 @@ section.mock .mock-bullets {
   position: relative;
 }
 
-body {
+body.beta {
   overflow: hidden;
 }
 
 @media only screen and (max-height: 700px) {
-  body {
+  body.beta {
     overflow: auto;
   }
 }
