@@ -38,7 +38,7 @@ get_header();
 		
 		$user = new WP_User( bbp_get_current_user_id() );
 		$new_post = array(
-			'post_title' => "Consultation requested by " . $user->name,
+			'post_title' => "Consultation requested by " . $user->first_name,
 			'post_status' => 'draft',
 			'post_content' => $_POST['notes'],
 			'post_type' => 'consultation',
