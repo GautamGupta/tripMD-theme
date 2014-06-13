@@ -58,7 +58,7 @@ get_header(); ?>
 								<h2>Patient requests the appointment dates</h2>
 								<ul>
 									<?php
-										$dates = unserialize(get_post_meta(get_the_ID(), 'dates'));
+										$dates = unserialize(get_post_meta(get_the_ID(), 'dates', true));
 										foreach ($dates as $date) {
 											echo "<li>" . $date . "</li>";
 										}
