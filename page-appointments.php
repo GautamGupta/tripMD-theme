@@ -36,9 +36,12 @@ get_header();
 		   !empty($_POST['date3'] ) )    && 
 	     !empty($_POST['notes'])) {	
 		
+		$doc = get_post(get_user_meta( bbp_get_current_user_id(), 'doctor_id', true ));
+
+
 		$user = new WP_User( bbp_get_current_user_id() );
 		$new_post = array(
-			'post_title' => "Consultation requested by " . $user->first_name,
+			'post_title' => "Mr. " . $user->first_name . " ". $user->last_name " & Dr. ". $doc->post_title,
 			'post_status' => 'draft',
 			'post_content' => $_POST['notes'],
 			'post_type' => 'consultation',
