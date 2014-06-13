@@ -52,7 +52,7 @@ get_header(); ?>
 			<div class="main">
 				<ul class="cbp_tmtimeline">
 						<li>
-							<time class="cbp_tmtime" datetime="<?php get_the_date(); ?>"><span><?php get_the_date(); ?></span></time>
+							<time class="cbp_tmtime" datetime="<?php get_the_date(); ?>"><span><?php echo get_the_date(); ?></span></time>
 							<div class="cbp_tmicon"></div>
 							<div class="cbp_tmlabel">
 								<h2>Patient requests the appointment dates</h2>
