@@ -60,7 +60,7 @@ get_header(); ?>
 									<?php
 										$dates = unserialize(get_post_meta(get_the_ID(), 'dates'));
 										foreach ($dates as $date) {
-											echo "<li>" . $date . "</li>"
+											echo "<li>" . $date . "</li>";
 										}
 									?>
 								</ul>
