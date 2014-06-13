@@ -22,7 +22,9 @@ body {
     font-family: 'Lato', Calibri, Arial, sans-serif;
     color: #47a3da;
 }
-
+.cbp_tmlabel {
+	color: white !important;
+}
 a {
 	color: #f0f0f0;
 	text-decoration: none;
