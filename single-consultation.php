@@ -47,25 +47,47 @@ get_header(); ?>
 		}
 	}
 	ksort($date_wise_comments);
-
-	foreach ($date_wise_comments as $date => $comments) {
-		$d1 = DateTime::createFromFormat("Y-m-d", $date);
-		?>
-		<div>
-		<h1><?php echo $d1->format("M j"); ?></h1>
-		<div id="comments">
-			<?php
-				foreach ($comments as $comment) {
-					?>
-					<p class="commment"><?php echo $comment->comment_content ?></p>
-					<?php
-				}
-			?>
-		</div>
-		</div>
-		<?php
-	}
 	?>
+	<div class="container">
+			<div class="main">
+				<ul class="cbp_tmtimeline">
+						<li>
+							<time class="cbp_tmtime" datetime="<?php get_the_date(); ?>"><span><?php get_the_date(); ?></span></time>
+							<div class="cbp_tmicon"></div>
+							<div class="cbp_tmlabel">
+								<h2>Patient requests the appointment dates</h2>
+								<ul>
+									<?php
+										$dates = unserialize(get_post_meta(get_the_ID(), 'dates'));
+										foreach ($dates as $date) {
+											echo "<li>" . $date . "</li>"
+										}
+									?>
+								</ul>
+							</div>
+						</li>
+				<?php
+					foreach ($date_wise_comments as $date => $comments) {
+						$d1 = DateTime::createFromFormat("Y-m-d", $date);
+						?>
+						<li>
+						<time class="cbp_tmtime" datetime="<?php $d1->format("Y-m-j") ?>"><span><?php echo $d1->format("M j"); ?></span></time>
+						<div class="cbp_tmicon"></div>
+						<div class="cbp_tmlabel">
+							<?php
+								foreach ($comments as $comment) {
+									?>
+									<div class="commment"><?php echo $comment->comment_content ?></div>
+									<?php
+								}
+							?>
+						</div>
+						</li>
+				<?php
+					}
+				?>
+				</ul>
+		</div>
 	</div>
 
 <?php endwhile; // end of the loop. ?>
