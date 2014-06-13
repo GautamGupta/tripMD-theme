@@ -56,6 +56,7 @@ get_header(); ?>
 							<div class="cbp_tmicon"></div>
 							<div class="cbp_tmlabel">
 								<h2>Patient requests the appointment dates</h2>
+								<p><b>Notes from the patient:</b> <?php the_content(); ?></p>
 								<ul>
 									<?php
 										$dates = unserialize(get_post_meta(get_the_ID(), 'dates', true));
