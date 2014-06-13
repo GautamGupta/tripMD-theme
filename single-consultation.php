@@ -91,7 +91,7 @@ get_header(); ?>
 				</ul>
 		</div>
 	</div>
-
+	<?php comment_form(); ?>
 <?php endwhile; // end of the loop. ?>
 
 <?php get_footer(); ?>
