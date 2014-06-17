@@ -142,7 +142,7 @@ function tripmd_scripts() {
 	wp_enqueue_style( 'tripmd', get_template_directory_uri() . '/css/style.css' );
 	wp_enqueue_style( 'unsemantic', get_template_directory_uri() . '/css/unsemantic.css' );
 	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );
-	wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', array(), '4.0.3' );
+	wp_enqueue_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css', array(), '4.1.0' );
     if ( is_front_page() )  {
         wp_enqueue_style( 'royalslider', get_template_directory_uri() . '/css/royalslider/royalslider.css', array(), '9.5.4' );
         wp_enqueue_style( 'royalslider-skins-default', get_template_directory_uri() . '/css/royalslider/skins/default/rs-default.css', array( 'royalslider' ), '9.5.4' );
