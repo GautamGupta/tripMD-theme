@@ -83,14 +83,14 @@ get_header(); ?>
 									?>
 									<div class="commment">
 									<?php if ( $comment->user_id == "0" ) : // if we have a comment using the comment form (not-signed-in) we assume the user to be the doctor ?>
-										<span class="doctor"><?php echo $comment->comment_content; ?></span>
+										<span class="doctor">Doctor: <?php echo $comment->comment_content; ?></span>
 									<?php elseif ($comment->comment_author == "tripmd_doctor") : ?>
-										<span class="doctor"><?php echo $comment->comment_content; ?></span>
+										<span class="doctor">Doctor: <?php echo $comment->comment_content; ?></span>
 									</div>
 									<?php elseif ($comment->comment_author == "tripmd") : ?>
-										<span class="tripmd"><?php echo $comment->comment_content; ?></span>
+										<span class="tripmd">TripMD: <?php echo $comment->comment_content; ?></span>
 									<?php else : ?>
-										<span class="patient"><?php echo $comment->comment_content; ?></span>
+										<span class="patient">Patient: <?php echo $comment->comment_content; ?></span>
 									<?php endif; ?>
 									<?php
 								}
