@@ -11,7 +11,6 @@ get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 	<div class="content">
-
 	<?php if ( !post_password_required( get_the_ID() ) ) : ?>
 
 	<?php $args = array(
@@ -87,10 +86,10 @@ get_header(); ?>
 									<?php elseif ($comment->comment_author == "tripmd_doctor") : ?>
 										<span class="doctor">Doctor: <?php echo $comment->comment_content; ?></span>
 									</div>
-									<?php elseif ($comment->comment_author == "tripmd") : ?>
-										<span class="tripmd">TripMD: <?php echo $comment->comment_content; ?></span>
-									<?php else : ?>
+									<?php elseif ( get_the_author_meta('ID') == $comment->user_id ) : ?>
 										<span class="patient">Patient: <?php echo $comment->comment_content; ?></span>
+									<?php else : ?>
+										<span class="tripmd">TripMD: <?php echo $comment->comment_content; ?></span>
 									<?php endif; ?>
 									<?php
 								}
