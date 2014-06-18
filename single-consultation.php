@@ -79,7 +79,15 @@ get_header(); ?>
 							<?php
 								foreach ($comments as $comment) {
 									?>
-									<div class="commment"><?php echo $comment->comment_content ?></div>
+									<div class="commment">
+									<?php if ($comment->comment_author == "tripmd_doctor") : ?>
+										<span class="doctor"><?php echo $comment->comment_content; ?></span>
+									</div>
+									<?php elseif ($comment->comment_author == "tripmd") : ?>
+										<span class="tripmd"><?php echo $comment->comment_content; ?></span>
+									<?php else : ?>
+										<span class="patient"><?php echo $comment->comment_content; ?></span>
+									<?php endif; ?>
 									<?php
 								}
 							?>
