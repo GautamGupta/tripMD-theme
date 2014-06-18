@@ -66,10 +66,9 @@ function show_extra_profile_fields ( $user )
         </ul>
 
     <div class="uploader">        
-        <button name="medical_records_button" id="medical_records_button" value="Upload">Upload medical records</button>
+        <button name="medical_records_button" id="medical_records_button_old" value="Upload">Upload medical records</button>
     </div>
 
-    <input name="medical_records" id="medical_records_files" value="" type="hidden">
     </fieldset>
 
     </fieldset>
@@ -131,14 +130,12 @@ function save_extra_profile_fields( $user_id )
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
     $medicals = get_user_meta($user_id, 'medical_records', true);
-
     if ( !$medicals ||
          !json_decode(htmlspecialchars_decode($medicals), true)) { 
             update_user_meta( $user_id, 'medical_records', $_POST['medical_records'] );
     } else {
         $medicals = get_user_meta($user_id, 'medical_records', true);
         $medicals = json_decode(htmlspecialchars_decode($medicals), true);
-
 
         $new_medicals = $_POST['medical_records'];
         $new_medicals = str_replace('\"', '"', $new_medicals);
