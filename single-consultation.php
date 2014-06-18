@@ -82,7 +82,9 @@ get_header(); ?>
 								foreach ($comments as $comment) {
 									?>
 									<div class="commment">
-									<?php if ($comment->comment_author == "tripmd_doctor") : ?>
+									<?php if ( $comment->user_id == "0" ) : // if we have a comment using the comment form (not-signed-in) we assume the user to be the doctor ?>
+										<span class="doctor"><?php echo $comment->comment_content; ?></span>
+									<?php elseif ($comment->comment_author == "tripmd_doctor") : ?>
 										<span class="doctor"><?php echo $comment->comment_content; ?></span>
 									</div>
 									<?php elseif ($comment->comment_author == "tripmd") : ?>
