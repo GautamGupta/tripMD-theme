@@ -134,6 +134,21 @@ function tripmd_widgets_init() {
 }
 add_action( 'widgets_init', 'tripmd_widgets_init' );
 
+add_action( 'wp_ajax_documentUploadCB', 'my_action_cb' );
+add_action( 'wp_ajax_nopriv_documentUploadCB', 'my_action_cb' );
+
+function my_action_cb() {
+	if (!wp_verify_nonce ( $_GET['nonce'], 'document_upload' )) {
+		die('CSRF attack detected');	
+	}
+	$my_attachment = array(
+      'ID'           => $_GET['aid'],
+  	);
+  	$my_attachment['post_parent'] = $_GET['pid'];
+	wp_update_post( $my_attachment );
+	die();
+}
+
 /**
  * Enqueue scripts and styles.
  */
@@ -143,15 +158,21 @@ function tripmd_scripts() {
 	wp_enqueue_style( 'unsemantic', get_template_directory_uri() . '/css/unsemantic.css' );
 	wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );
 	wp_enqueue_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css', array(), '4.1.0' );
+    wp_enqueue_script( 'tmd_media_upload', get_template_directory_uri() . '/js/upload.js', array( 'jquery' ), '0.0.1', false );
     if ( is_front_page() )  {
         wp_enqueue_style( 'royalslider', get_template_directory_uri() . '/css/royalslider/royalslider.css', array(), '9.5.4' );
         wp_enqueue_style( 'royalslider-skins-default', get_template_directory_uri() . '/css/royalslider/skins/default/rs-default.css', array( 'royalslider' ), '9.5.4' );
         wp_enqueue_style( 'royalslider-skins-minimal-white', get_template_directory_uri() . '/css/royalslider/skins/minimal-white/rs-minimal-white.css', array( 'royalslider' ), '9.5.4' );
         wp_enqueue_style( 'tripmd-home', get_template_directory_uri() . '/css/home.css', array( 'tripmd' ) );
     } if (get_post_type() == "consultation") {
+    	$postVariables = array(
+    		'post_id' => get_the_ID(),
+    		'ajax_url' => admin_url( 'admin-ajax.php' ),
+    	);
     	wp_enqueue_style( 'timeline_default', get_template_directory_uri() . '/css/timeline_default.css', array(), '0.1' );
     	wp_enqueue_style( 'timeline_component', get_template_directory_uri() . '/css/timeline_component.css', array(), '0.1' );
     	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.custom.js', array( 'jquery' ), '0.1', true );
+	    wp_localize_script( 'tmd_media_upload', 'MediaUpload', $postVariables );
     }
     /*
     if ( is_front_page() )
@@ -162,14 +183,12 @@ function tripmd_scripts() {
     wp_enqueue_script( 'royalslider', get_template_directory_uri() . '/js/royalslider/jquery.royalslider.min.js', array( 'jquery', 'easing' ), '9.5.4', true );
 	wp_enqueue_script( 'tripmd-typekit', '//use.typekit.net/jlx8kbu.js', array(), '0.1', true );
 
-
 	// We currently use Easy Fancybox plugin as this is not working
 	/*
     if ( is_front_page() ) {
     	 wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/js/fancybox/jquery.fancybox.pack.js', array( 'jquery' ), '2.1.5', false );
     	 add_action( 'wp_footer', 'tmd_fancybox_footjs', 500 );
     } */
-   wp_enqueue_script( 'tmd_media_upload', get_template_directory_uri() . '/js/upload.js', array( 'jquery' ), '0.0.1', false );
 
     /*
     wp_enqueue_script( 'tripmd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );

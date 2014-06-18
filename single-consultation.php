@@ -47,6 +47,21 @@ get_header(); ?>
 			$date_wise_comments[$date] = [$comment];
 		}
 	}
+		$attachments = get_posts( array(
+			'post_type' => 'attachment',
+			'posts_per_page' => -1,
+			'post_parent' => get_the_ID(),
+		) );
+		if ( $attachments ) {
+			foreach ( $attachments as $attachment ) {
+				$date = split(" ", $attachment->post_date)[0];
+				if (array_key_exists($date, $date_wise_comments)) {
+					array_push($date_wise_comments[$date], $attachment);
+				} else {
+					$date_wise_comments[$date] = [$attachment];
+				}
+			}
+		}
 	ksort($date_wise_comments);
 	?>
 	<div class="container">
@@ -79,18 +94,30 @@ get_header(); ?>
 						<div class="cbp_tmlabel">
 							<?php
 								foreach ($comments as $comment) {
+									if (array_key_exists('post_date', $comment)) {
+										// comment is actually an attachment
+										?>
+										<div class="att">
+											<hr/>
+											<a href="<?php echo $comment->guid; ?>"><?php echo $comment->post_title; ?></a> uploaded.
+											<hr/>
+										</div>
+										<?php
+										continue;
+									}
 									?>
 									<div class="commment">
 									<?php if ( $comment->user_id == "0" ) : // if we have a comment using the comment form (not-signed-in) we assume the user to be the doctor ?>
 										<span class="doctor">Doctor: <?php echo $comment->comment_content; ?></span>
 									<?php elseif ($comment->comment_author == "tripmd_doctor") : ?>
 										<span class="doctor">Doctor: <?php echo $comment->comment_content; ?></span>
-									</div>
 									<?php elseif ( get_the_author_meta('ID') == $comment->user_id ) : ?>
 										<span class="patient">Patient: <?php echo $comment->comment_content; ?></span>
 									<?php else : ?>
 										<span class="tripmd">TripMD: <?php echo $comment->comment_content; ?></span>
 									<?php endif; ?>
+									</div>
+
 									<?php
 								}
 							?>
@@ -100,11 +127,15 @@ get_header(); ?>
 					}
 				?>
 				</ul>
+			    <div class="uploader">
+			    	<?php wp_nonce_field('document_upload', 'document_nonce'); ?>
+    				<button name="medical_records_button" id="medical_records_button" value="Upload">Upload medical records</button>
+				</div>
 		</div>
 	</div>
 	<?php comment_form(); ?>
 	<?php else : ?>
-		<?php echo get_the_password_form(); ?>	
+		<?php echo get_the_password_form(); ?>
 	<?php endif; ?>
 <?php endwhile; // end of the loop. ?>
 
