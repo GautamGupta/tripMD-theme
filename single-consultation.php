@@ -12,6 +12,8 @@ get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
 	<div class="content">
 
+	<?php if ( post_password_required() ) : ?>
+
 	<?php $args = array(
 		'author_email' => '',
 		'ID' => '',
@@ -100,6 +102,9 @@ get_header(); ?>
 		</div>
 	</div>
 	<?php comment_form(); ?>
+	<?php else : ?>
+		<?php echo get_the_password_form(); ?>	
+	<?php endif; ?>
 <?php endwhile; // end of the loop. ?>
 
 <?php get_footer(); ?>
