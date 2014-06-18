@@ -12,7 +12,7 @@ get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
 	<div class="content">
 
-	<?php if ( post_password_required( get_the_ID() ) : ?>
+	<?php if ( post_password_required( get_the_ID() ) ) : ?>
 
 	<?php $args = array(
 		'author_email' => '',
