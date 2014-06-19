@@ -141,11 +141,16 @@ function my_action_cb() {
 	if (!wp_verify_nonce ( $_GET['nonce'], 'document_upload' )) {
 		die('CSRF attack detected');	
 	}
-	$my_attachment = array(
-      'ID'           => $_GET['aid'],
-  	);
-  	$my_attachment['post_parent'] = $_GET['pid'];
-	wp_update_post( $my_attachment );
+
+	$data = array(
+		'comment_content' => $_GET['aid'],
+		'comment_type' => 'document_upload',
+		'comment_post_ID' => intval($_GET['pid']),
+		'user_id' => get_current_user_id(),
+		'comment_approved' => 1,
+	);
+
+	wp_new_comment($data);
 	die();
 }
 

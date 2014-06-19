@@ -47,21 +47,6 @@ get_header(); ?>
 			$date_wise_comments[$date] = [$comment];
 		}
 	}
-		$attachments = get_posts( array(
-			'post_type' => 'attachment',
-			'posts_per_page' => -1,
-			'post_parent' => get_the_ID(),
-		) );
-		if ( $attachments ) {
-			foreach ( $attachments as $attachment ) {
-				$date = split(" ", $attachment->post_date)[0];
-				if (array_key_exists($date, $date_wise_comments)) {
-					array_push($date_wise_comments[$date], $attachment);
-				} else {
-					$date_wise_comments[$date] = [$attachment];
-				}
-			}
-		}
 	ksort($date_wise_comments);
 	?>
 	<div class="container">
@@ -94,12 +79,13 @@ get_header(); ?>
 						<div class="cbp_tmlabel">
 							<?php
 								foreach ($comments as $comment) {
-									if (array_key_exists('post_date', $comment)) {
+									if ($comment->comment_type == "document_upload") {
 										// comment is actually an attachment
+										$post = get_post($comment->comment_content);
 										?>
 										<div class="att">
 											<hr/>
-											<a href="<?php echo $comment->guid; ?>"><?php echo $comment->post_title; ?></a> uploaded.
+											<a href="<?php echo $post->guid; ?>"><?php echo $post->post_title; ?></a> uploaded.
 											<hr/>
 										</div>
 										<?php
