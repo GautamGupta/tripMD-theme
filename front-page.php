@@ -60,8 +60,8 @@ get_header(); ?>
 
                     <div class="block rsABlock">
                         <div class="centered">
-                            <h2>Connect with trusted world-class healthcare overseas</h2>
-                            <h3>Browse from our highly curated list of world class professionals and facilities based on the treatment you are seeking.</h3>
+                            <h2><?php _e( 'Get treatment by trusted doctors worldwide', 'tripmd' ); ?></h2>
+                            <h3><?php _e( 'Receive medical care from a trusted doctor at a world class medical center', 'tripmd' ); ?></h3>
                             <a class="big fat green button" href="#how">See How it Works</a>
                         </div>
                     </div>
