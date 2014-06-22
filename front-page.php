@@ -61,7 +61,7 @@ get_header(); ?>
                     <div class="block rsABlock">
                         <div class="centered">
                             <h2><?php _e( 'Get treatment by trusted doctors worldwide', 'tripmd' ); ?></h2>
-                            <h3><?php _e( 'Receive medical care from a trusted doctor at a world class medical center', 'tripmd' ); ?></h3>
+                            <h3><?php _e( 'Receive quality medical care from a trusted doctor at a world class medical center', 'tripmd' ); ?></h3>
                             <a class="big fat green button" href="#how">See How it Works</a>
                         </div>
                     </div>
