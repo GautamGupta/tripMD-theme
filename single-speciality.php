@@ -32,7 +32,7 @@ $push = 0; ?>
 
 			<div style="margin: 15px 0 120px 0">
 				<div class="grid-30" style="padding-top: 30px">Sort by <b>Price</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
-				<div class="grid-40"><input type="search" placeholder="Search&hellip;" x-webkit-speech></input></div>
+				<div class="grid-40"><input class="tmd-search" id="proc-search" type="search" placeholder="Search&hellip;" x-webkit-speech></input></div>
 				<div class="grid-30" style="padding-top: 30px"><a href="#help">Need help?</a></div>
 			</div>
 

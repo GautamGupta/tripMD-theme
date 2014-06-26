@@ -11,7 +11,7 @@
 
 class tMDTypeaheadSearch {
 	var $options = array(
-		'fieldName'          => '.tmd-search',
+		'fieldName'          => '#s',
 		'minimum'            => 1,
 		'numrows'            => 10,
 		'hotlinks'			 => array( 'posts', 'taxonomies' ),
@@ -26,7 +26,7 @@ class tMDTypeaheadSearch {
 	}
 
 	public function initScripts() {
-		if ( !is_front_page() ) return;
+		if ( !is_front_page() && !is_single() && 'speciality' != get_post_type() ) return;
 
 		$localVars = array(
 			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
@@ -34,14 +34,14 @@ class tMDTypeaheadSearch {
 			'minLength' => $this->options['minimum']
 		);
 		
-		wp_enqueue_script( 'typeahead', get_template_directory_uri() . '/js/typeahead/typeahead.bundle.js', array( 'jquery' ), '0.10.2', true );
-		wp_enqueue_script( 'handlebars', get_template_directory_uri() . '/js/typeahead/handlebars-v1.3.0.js', array( 'jquery', 'typeahead' ), '1.3.0', true );
-		wp_enqueue_script( 'typeahead-wp', get_template_directory_uri() . '/js/typeahead/typeahead.wp.js', array( 'jquery', 'typeahead', 'handlebars' ), '0.1', true );
+		wp_enqueue_script ( 'typeahead',    get_template_directory_uri() . '/js/typeahead/typeahead.bundle.js',  array( 'jquery' ),                            '0.10.2', true );
+		wp_enqueue_script ( 'handlebars',   get_template_directory_uri() . '/js/typeahead/handlebars-v1.3.0.js', array( 'jquery', 'typeahead' ),               '1.3.0',  true );
+		wp_enqueue_script ( 'typeahead-wp', get_template_directory_uri() . '/js/typeahead/typeahead.wp.js',      array( 'jquery', 'typeahead', 'handlebars' ), '0.1',    true );
 		wp_localize_script( 'typeahead-wp', 'TypeaheadSearch', $localVars );
 	}
 
 	public function initAjax() {
-		add_action( 'wp_ajax_typeaheadCallback', array( $this, 'acCallback' ) );
+		add_action( 'wp_ajax_typeaheadCallback',        array( $this, 'acCallback' ) );
 		add_action( 'wp_ajax_nopriv_typeaheadCallback', array( $this, 'acCallback' ) );
 	}
 

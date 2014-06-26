@@ -72,4 +72,27 @@ jQuery(document).ready(function() {
 			  }
 			}
 		);
+	jQuery('#proc-search')
+		.typeahead(
+			jQuery.extend({
+				'hint': true,
+	  			'highlight': true,
+				'minLength': 1,
+				}, TypeaheadSearch
+			),
+			{
+			  name: 'tmd-procedures',
+			  displayKey: 'type',
+			  source: tmdProcedures.ttAdapter(),
+			  templates: {
+			    header: '',
+			    empty: [
+			      '<div class="tt-empty-message">',
+			      	'Unable to find any results',
+			      '</div>'
+			    ].join( '\n' ),
+			    suggestion: Handlebars.compile( '<p><a href="{{url}}"><strong>{{title}}</strong></a></p>' )
+			  }
+			}
+		);
 });
