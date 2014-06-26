@@ -15,31 +15,23 @@ get_header(); ?>
                 <form method="post" style="color: black;" action="<?php echo site_url( '/' ); ?>">
                     
                     <div class="name fld">
-                        
                         <input type="text"  class="field" name="medical_centre" required="required" placeholder="Name of the Medical Centre" />
                         <i class="fa fa-hospital-o"></i>
-                    
                     </div>
 
                     <div class="country fld">
-                        
                         <input type="text"  class="field" name="country" required="required" placeholder="Country" />
                         <i class="fa fa-map-marker"></i>
-                    
                     </div>
 
                     <div class="poc fld">
-                        
                         <input type="text"  class="field" name="poc" required="required" placeholder="Point of Contact" />
                         <i class="fa fa-phone"></i>
-                    
                     </div>
 
                     <div class="email fld">
-                        
-                        <input type="email"  class="last field" name="email" required="required" placeholder="Email Address" />
+                        <input type="email" class="last field" name="email" required="required" placeholder="Email Address" />
                         <i class="fa fa-envelope-o"></i>
-                    
                     </div>
 
                     <input type="hidden" name="hsign" value="1" />
@@ -155,7 +147,7 @@ get_header(); ?>
 
             <div class="grid-container">
 
-                <?php if ( defined( 'TMD_DEBUG' ) ) : ?>
+                <?php if ( defined( 'TMD_DEBUG' ) || isset( $_GET['ta'] ) ) : ?>
                     <div class="tmd-search-container aligncenter grid-100">
                         <input type="text" name="s" id="s" class="tmd-search" placeholder="<?php _e( 'Search for a treatment or hospital...', 'tripmd' ); ?>" autocomplete="off" data-provide="typeahead" />
                     </div>
