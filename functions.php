@@ -154,6 +154,28 @@ function my_action_cb() {
 	die();
 }
 
+function tripmd_rewrite() {
+	add_rewrite_rule ( '^consultation/([^/]+)', 'index.php?consultation=$matches[1]', 'top' );
+}
+
+add_action('init', 'tripmd_rewrite');
+
+function add_query_vars_filter( $vars ){
+  $vars[] = "consultation";
+  return $vars;
+}
+add_filter( 'query_vars', 'add_query_vars_filter' );
+
+function tripmd_rewrite_templates() {
+	if (get_query_var('consultation')) {
+		add_filter( 'template_include', function() {
+		            return get_template_directory() . '/single-econsultation.php';
+		        });
+	}
+}
+
+add_action( 'template_redirect', 'tripmd_rewrite_templates' );
+
 /**
  * Enqueue scripts and styles.
  */
