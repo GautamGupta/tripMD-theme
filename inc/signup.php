@@ -99,13 +99,13 @@ function show_extra_profile_fields ( $user )
                 <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) : ?>
                     <p>Alrighty! Let's book some <a href="/appointments/">appointments</a>!</p>
                 <?php else : ?>
-                    <p>Please select a hospital and a doctor (optional).
+                    <p>Please select a hospital and a doctor (optional).</p>
                 <?php endif; ?>
             <?php else : ?>
-                <p>Please select a procedure, hospital and a doctor (optional).
+                <p>Please select a procedure, hospital and a doctor (optional).</p>
             <?php endif; ?>
         <?php else : ?>
-            <p>Please select a <a href="http://tripmd.com/specialities/">speciality</a>, procedure, hospital and a doctor (optional).
+            <p>Please select a <a href="http://tripmd.com/specialities/">speciality</a>, procedure, hospital and a doctor (optional).</p>
         <?php endif; ?>
 
     <input name="medical_records" id="medical_records_files" value="" type="hidden">

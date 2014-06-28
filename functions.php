@@ -132,23 +132,24 @@ function tripmd_widgets_init() {
 }
 add_action( 'widgets_init', 'tripmd_widgets_init' );
 
-add_action( 'wp_ajax_documentUploadCB', 'my_action_cb' );
-add_action( 'wp_ajax_nopriv_documentUploadCB', 'my_action_cb' );
+add_action( 'wp_ajax_documentUploadCB', 'tmd_consultation_document_upload' );
+add_action( 'wp_ajax_nopriv_documentUploadCB', 'tmd_consultation_document_upload' );
 
-function my_action_cb() {
-	if (!wp_verify_nonce ( $_GET['nonce'], 'document_upload' )) {
-		die('CSRF attack detected');	
+function tmd_consultation_document_upload () {
+	if ( !wp_verify_nonce( $_GET['nonce'], 'document_upload' ) ) {
+		die( __( 'Are you sure you\'re doing that?', 'tripmd' ) );	
 	}
 
 	$data = array(
 		'comment_content' => $_GET['aid'],
 		'comment_type' => 'document_upload',
-		'comment_post_ID' => intval($_GET['pid']),
+		'comment_post_ID' => intval( $_GET['pid'] ),
 		'user_id' => get_current_user_id(),
 		'comment_approved' => 1,
 	);
 
-	wp_new_comment($data);
+	wp_new_comment( $data );
+
 	die();
 }
 
@@ -275,12 +276,12 @@ add_action( 'wp', 'tripmd_session_handler' );
  * @return int ID
  */
 function tripmd_session_get_id( $key = '' ) {
-	if ( !in_array( $key, array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) )
+	if ( !class_exists( 'WP_Session' ) || !in_array( $key, array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) )
 		return -1;
 
 	global $wp_session;
 	$wp_session = WP_Session::get_instance();
-	
+
 	return $wp_session[$key . '_id'];
 }
 
@@ -310,45 +311,49 @@ function tmd_register_home_handler() {
 }
 add_action( 'login_init', 'tmd_register_home_handler' );
 
-function tmd_register_home_handler_login( $username = '' ) {
-	return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
-}
-add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
+    function tmd_register_home_handler_login( $username = '' ) {
+    	return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
+    }
+    add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
 
-function tmd_register_home_handler_fn( $firstname = '' ) {
-	return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
-}
+    function tmd_register_home_handler_fn( $firstname = '' ) {
+    	return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
+    }
 
-function tmd_register_home_handler_ln( $lastname = '' ) {
-	return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
-}
+    function tmd_register_home_handler_ln( $lastname = '' ) {
+    	return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
+    }
 
+/**
+ * Hospital signup handler
+ */
 function tmd_register_hospital_handler() {
 	if ( empty( $_POST['hsign'] ) )
 		return false;
 
-    if ( empty( $_POST['medical_centre'] ) ||  empty($_POST['country']) ||  empty($_POST['poc']) || empty($_POST['email']) ||!wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) {
+    if ( empty( $_POST['medical_centre'] ) ||  empty( $_POST['country'] ) ||  empty( $_POST['poc'] ) || empty( $_POST['email'] ) ||!wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) {
     	wp_redirect( home_url( '?hsign=error#hs' ) );
     	exit;
     }
 
-	$new_post = array(
+	$new_clinic = array(
 		'post_title' => $_POST['medical_centre'],
 		'post_status' => 'draft',
 		'post_type' => 'hospital'
 	);
-	$post_id = wp_insert_post($new_post);
-	add_post_meta($post_id, 'country', trim($_POST['country']));
-	add_post_meta($post_id, 'poc', trim($_POST['poc']));
-	add_post_meta($post_id, 'email', trim($_POST['email']));
-	wp_redirect( home_url( '?hsign=success#hs' ) );
+	$post_id = wp_insert_post( $new_clinic );
+	
+    add_post_meta( $post_id, 'country', trim( $_POST['country'] ) );
+	add_post_meta( $post_id, 'poc', trim( $_POST['poc'] ) );
+	add_post_meta( $post_id, 'email', trim( $_POST['email'] ) );
+	
+    wp_redirect( home_url( '?hsign=success#hs' ) );
 	exit;
-
 }
 add_action( 'init', 'tmd_register_hospital_handler' );
 
 /**
- * Beta signup handler for /beta
+ * Beta signup handler for /invitation
  */
 function tmd_register_beta_handler() {
 	if ( empty( $_POST['tmd_beta_register'] ) )
@@ -393,7 +398,7 @@ add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Se
 /**
  * Implement the Custom Header feature.
  */
-//require get_template_directory() . '/inc/custom-header.php';
+// require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
