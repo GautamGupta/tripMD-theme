@@ -55,7 +55,6 @@ function tmd_get_errors() {
 	return $tmd_errors->get_error_messages();
 }
 
-if ( ! function_exists( 'tripmd_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -113,7 +112,6 @@ function tripmd_setup() {
 	global $tmd_errors;
 	$tmd_errors = new WP_Error();
 }
-endif; // tripmd_setup
 add_action( 'after_setup_theme', 'tripmd_setup' );
 
 /**
@@ -254,7 +252,8 @@ function tripmd_session_handler() {
 			break;
 
 		case 'procedure' :
-			$wp_session['procedure_id'] = get_the_ID();
+            $wp_session['speciality_id'] = array_shift( get_post_ancestors( get_the_ID() ) );
+            $wp_session['procedure_id'] = get_the_ID();
 			break;
 
 		case 'hospital' :
