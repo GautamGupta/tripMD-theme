@@ -55,6 +55,50 @@ function tmd_get_errors() {
 	return $tmd_errors->get_error_messages();
 }
 
+/** Tab index ******************************************/
+
+/**
+ * Output the current tab index of a given form
+ *
+ * Use this function to handle the tab indexing of user facing forms within a
+ * template file. Calling this function will automatically increment the global
+ * tab index by default.
+ *
+ * @param int $auto_increment Optional. Default true. Set to false to prevent
+ *                             increment
+ */
+function tmd_tab_index( $auto_increment = true ) {
+    echo tmd_get_tab_index( $auto_increment );
+}
+
+    /**
+     * Output the current tab index of a given form
+     *
+     * Use this function to handle the tab indexing of user facing forms
+     * within a template file. Calling this function will automatically
+     * increment the global tab index by default.
+     *
+     * @uses apply_filters Allows return value to be filtered
+     * @uses bbp_get_tab_index If bbPress is active
+     * @param int $auto_increment Optional. Default true. Set to false to
+     *                             prevent the increment
+     * @return int The global tab index
+     */
+    function tmd_get_tab_index( $auto_increment = true ) {
+        if ( function_exists( 'bbp_get_tab_index' ) )
+            $tab_index = bbp_get_tab_index( $auto_increment );
+        else {
+            global $tmd_tab_index;
+
+            if ( true === $auto_increment )
+                ++$tmd_tab_index;
+
+            $tab_index = $tmd_tab_index;
+        }
+
+        return apply_filters( 'tmd_get_tab_index', (int) $tab_index );
+    }
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -111,6 +155,12 @@ function tripmd_setup() {
 	 */
 	global $tmd_errors;
 	$tmd_errors = new WP_Error();
+
+    /**
+     * Tab index
+     */
+    global $tmd_tab_index;
+    $tmd_tab_index = 0;
 }
 add_action( 'after_setup_theme', 'tripmd_setup' );
 
@@ -298,10 +348,14 @@ function tmd_specialities_order( $query ) {
 add_action( 'pre_get_posts', 'tmd_specialities_order' );
 
 /**
- * Handle homepage signups
+ * Set the username as the email id on registration form submission
  */
-function tmd_register_home_handler() {
-    if ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) || empty( $_POST['user_email'] ) )
+function tmd_registration_handler() {
+    if ( empty( $_POST['user_email'] ) ||
+        ( ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) )
+        && ( empty( $_POST['tmd_register'] ) )
+        )
+     )
     	return false;
 
     add_filter( 'pre_user_first_name', 'tmd_register_home_handler_fn' );
@@ -309,7 +363,7 @@ function tmd_register_home_handler() {
 
     $_POST['user_login'] = $_POST['user_email'];
 }
-add_action( 'login_init', 'tmd_register_home_handler' );
+add_action( 'login_init', 'tmd_registration_handler' );
 
     function tmd_register_home_handler_login( $username = '' ) {
     	return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
@@ -362,7 +416,7 @@ function tmd_register_beta_handler() {
     global $wpdb;
 
 	if ( !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_beta_register_nonce' ) )
-		tmd_add_error( 'nonce', __( 'Are you sure that you\'re doing that?', 'tripmd' ) );
+		tmd_add_error( 'nonce', __( 'Are you sure you\'re doing that?', 'tripmd' ) );
 
     if ( empty( $_POST['tmd_bs_name'] ) )
         tmd_add_error( 'required-name', __( 'Please provide your full name.', 'tripmd' ) );
