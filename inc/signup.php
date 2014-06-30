@@ -158,32 +158,33 @@ function show_extra_fields()
 {
 ?>
     <a id="step1" href="javascript:void(0);">Step 1</a> | <a id="step2" href="javascript:void(0);">Step 2</a>
-    <div id="step2_container" style="display:none;">
-        <label for="weight">Weight (in KGs)</label>
-        <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" /><br />
-        
-        <label for="weight">Height (in CMs)</label>
-        <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" /><br />
-
-        <label for="gobs">General Observations</label>
-        <textarea name="gobs" id="gobs" value="<?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?>" class="regular-text" /></textarea><br/>
-        
-        <label for="allergies">Allergies</label><br/>
-        <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" ></textarea><br/>
-    </div>
 
     <div id="step1_container">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="<?php echo esc_attr( get_the_author_meta( 'name', $user->ID ) ); ?>" class="regular-text" /><br />
+        <input type="text" name="name" id="name" value="<?php echo esc_attr( get_the_author_meta( 'name', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
 
         <label for="dob">Date of birth</label>
-        <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" /><br />
+        <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
 
         <label for="gender">Gender</label>
-        <select name="gender">
-          <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected";  ?>>Male</option>
+        <select name="gender" tabindex="<?php tmd_tab_index(); ?>">
+          <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected"; ?>>Male</option>
           <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'female') echo "selected";  ?>>Female</option>
         </select>
+    </div>
+
+    <div id="step2_container" style="display:none;">
+        <label for="weight">Weight (in KGs)</label>
+        <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
+        
+        <label for="weight">Height (in CMs)</label>
+        <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
+
+        <label for="gobs">General Observations</label>
+        <textarea name="gobs" id="gobs" value="<?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /></textarea><br/>
+        
+        <label for="allergies">Allergies</label><br/>
+        <textarea name="allergies" id="allergies" value="<?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" ></textarea><br/>
     </div>
 
     <script type="text/javascript">
