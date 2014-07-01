@@ -9,7 +9,7 @@
 
 ?>
 
-<form method="post" action="<?php bbp_wp_login_action( array( 'context' => 'login_post' ) ); ?>" class="bbp-login-form">
+<form method="post" action="<?php bbp_wp_login_action( array( 'context' => 'login_post' ) ); ?>" class="bbp-login-form" id="tmd-register-form">
 	<fieldset class="bbp-form">
 		<legend><?php _e( 'Create an Account', 'tripmd' ); ?></legend>
 
@@ -31,9 +31,10 @@
 
 		<?php do_action( 'register_form' ); ?>
 
-		<div class="bbp-submit-wrapper">
+		<div class="bbp-wrapper">
 
-			<button type="submit" tabindex="<?php tmd_tab_index(); ?>" name="user-submit" class="button submit user-submit"><?php _e( 'Register', 'tripmd' ); ?></button>
+			<?php /* @todo style <button> to avoid inline js */ ?>
+			<a class="big fat green form submit button" href="#" onclick="document.getElementById('tmd-register-form').submit();"><?php _e( 'Register', 'tripmd' ); ?></a>
 
 			<?php bbp_user_register_fields(); ?>
 			<input type="hidden" name="tmd_register" value="1" />

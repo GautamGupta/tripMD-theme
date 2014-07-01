@@ -267,7 +267,7 @@ add_action( 'user_register', 'tmd_registration_save_extra_fields' );
 function tmd_registration_handler() {
     if ( empty( $_POST['user_email'] ) ||
         ( ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) // Homepage reg
-        && ( empty( $_POST['tmd_register'] ) )                                                                    // /register page
+        && ( empty( $_POST['action'] ) || 'register' != $_POST['action'] )                                        // /register page
         )
      )
         return false;
