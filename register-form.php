@@ -11,12 +11,12 @@ Theme My Login will always look in your theme's directory first, before using th
 
 		<p>
 			<label for="name<?php $template->the_instance(); ?>"><?php _e( 'Full Name', 'tripmd' ); ?></label>
-			<input type="text" name="name" id="name<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'name' ); ?>" size="20" />
+			<input type="text" name="name" id="name<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'name' ); ?>" size="20" tabindex="<?php tmd_tab_index(); ?>" />
 	    </p>
 
 		<p>
 			<label for="user_email<?php $template->the_instance(); ?>"><?php _e( 'Email', 'tripmd' ); ?></label>
-			<input type="text" name="user_email" id="user_email<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'user_email' ); ?>" size="20" />
+			<input type="text" name="user_email" id="user_email<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'user_email' ); ?>" size="20" tabindex="<?php tmd_tab_index(); ?>" />
 		</p>
 
 		<?php do_action( 'register_form' ); ?>
@@ -24,8 +24,8 @@ Theme My Login will always look in your theme's directory first, before using th
 		<p id="reg_passmail<?php $template->the_instance(); ?>"><?php echo apply_filters( 'tml_register_passmail_template_message', __( 'A password will be e-mailed to you.' ) ); ?></p>
 
 		<p class="submit">
-			<a class="big fat green form submit button" href="#" onclick="document.getElementById('registerform<?php $template->the_instance(); ?>').submit();" id="wp-submit<?php $template->the_instance(); ?>"><?php _e( 'Register', 'tripmd' ); ?></a>
-			<input type="hidden" name="redirect_to" value="<?php $template->the_redirect_url( 'login' ); ?>" />
+			<a class="big fat green form submit button" href="#" onclick="document.getElementById('registerform<?php $template->the_instance(); ?>').submit();" id="wp-submit<?php $template->the_instance(); ?>" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Register', 'tripmd' ); ?></a>
+			<input type="hidden" name="redirect_to" value="<?php site_url( '/login?checkemail=registered' ); ?>" />
 			<input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />
 			<input type="hidden" name="action" value="register" />
 		</p>
