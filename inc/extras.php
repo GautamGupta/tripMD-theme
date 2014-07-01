@@ -8,6 +8,18 @@
  */
 
 /**
+ * Fix specialities order on archive page
+ */
+function tmd_specialities_order( $query ) {
+    if ( is_post_type_archive( 'speciality' ) ) {
+        $query->set( 'posts_per_page', -1 );
+        $query->set( 'order', 'ASC' );
+        $query->set( 'orderby', 'menu_order title' );
+    }
+}
+add_action( 'pre_get_posts', 'tmd_specialities_order' );
+
+/**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
  *
  * @param array $args Configuration arguments.

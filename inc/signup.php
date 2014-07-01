@@ -208,34 +208,26 @@ add_action( 'register_form', 'tmd_registration_extra_fields' );
 
 function tmd_registration_validate_extra_fields( $login, $email, $errors ) {
     if ( $_POST['name'] == '' )
-    {
         $errors->add( 'empty_realname', "<strong>ERROR</strong>: Please Enter your name." );
-    }
+
+    /* 
     if ( $_POST['dob'] == '' )
-    {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your Date of Birth." );
-    }
+
     if ( $_POST['gender'] == '' )
-    {
         $errors->add( 'empty_gender', "<strong>ERROR</strong>: Please Enter your gender." );
-    }
-    /*
+    
     if ( $_POST['weight'] == '' )
-    {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your Weight." );
-    }
+
     if ( $_POST['height'] == '' )
-    {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your Height." );
-    }
+
     if ( $_POST['gobs'] == '' )
-    {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your General Observations about your condition." );
-    }
+
     if ( $_POST['allergies'] == '' )
-    {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your past allergies." );
-    }
     */
 }
 add_action( 'register_post', 'tmd_registration_validate_extra_fields', 10, 3 );
@@ -281,7 +273,7 @@ function tmd_registration_handler() {
         return false;
 
     add_filter( 'pre_user_first_name', 'tmd_register_home_handler_fn' );
-    add_filter( 'pre_user_last_name', 'tmd_register_home_handler_ln' );
+    add_filter( 'pre_user_last_name',  'tmd_register_home_handler_ln' );
 
     $_POST['user_login'] = $_POST['user_email'];
 }

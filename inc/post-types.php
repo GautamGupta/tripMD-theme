@@ -1,7 +1,10 @@
 <?php
 /**
  * @package tripMD
- * @version 0.1
+ */
+
+/**
+ * Register our own post types
  */
 function tmd_register_post_types() {
 
@@ -263,8 +266,6 @@ function tmd_register_post_types() {
 		'capability_type'     => 'page',
 	);
 	register_post_type( 'consultation', $args );
-
-
 }
 add_action( 'init', 'tmd_register_post_types', 2 );
 
@@ -272,7 +273,7 @@ function tmd_post_types() {
 	return array ( 'speciality', 'procedure', 'hospital', 'doctor', 'room', 'consultation' );
 }
 
-//Add the meta box callback function
+// Add the meta box callback function
 function tmd_admin_init(){
 	foreach ( tmd_post_types() as $post_type )
 		add_meta_box( 'tmd_listing_parent_id', __( 'Listing Parent ID', 'tripmd' ), 'tmd_set_listing_parent_id', $post_type, 'normal', 'low' );
@@ -315,12 +316,12 @@ add_action( 'save_post', 'tmd_save_listing_parent_id' );
 /**
  * Hospital links should be with route
  */
-function tmd_hospital_rewrite_rule () {
+function tmd_hospital_rewrite_rule() {
 	add_rewrite_rule( '([^/]+)$', 'index.php?hospital=$matches[1]', 'bottom' );
 }
 add_action( 'init', 'tmd_hospital_rewrite_rule' );
 
-function tmd_custom_post_type_link ( $permalink, $post, $leavename ) {
+function tmd_custom_post_type_link( $permalink, $post, $leavename ) {
     if ( !gettype( $post ) == 'post' ) {
         return $permalink;
     }

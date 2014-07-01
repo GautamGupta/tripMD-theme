@@ -49,12 +49,6 @@ function tripmd_setup() {
 	// Enable support for Post Formats.
 	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 
-	// Setup the WordPress core custom background feature.
-	/* add_theme_support( 'custom-background', apply_filters( 'tripmd_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) ); */
-
 	// Enable support for HTML5 markup.
 	add_theme_support( 'html5', array(
 		'comment-list',
@@ -235,18 +229,6 @@ function tripmd_session_get_id( $key = '' ) {
 
 // Increase WP_Session time
 add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours
-
-/**
- * Fix specialities order on archive page
- */
-function tmd_specialities_order( $query ) {
-    if ( is_post_type_archive( 'speciality' ) ) {
-        $query->set( 'posts_per_page', -1 );
-        $query->set( 'order', 'ASC' );
-        $query->set( 'orderby', 'menu_order title' );
-    }
-}
-add_action( 'pre_get_posts', 'tmd_specialities_order' );
 
 /** Errors ********************************************************************/
 
