@@ -7,6 +7,106 @@
  * @package tripmd
  */
 
+/**
+ * Output the current tab index of a given form
+ *
+ * Use this function to handle the tab indexing of user facing forms within a
+ * template file. Calling this function will automatically increment the global
+ * tab index by default.
+ *
+ * @param int $auto_increment Optional. Default true. Set to false to prevent
+ *                             increment
+ */
+function tmd_tab_index( $auto_increment = true ) {
+    echo tmd_get_tab_index( $auto_increment );
+}
+
+    /**
+     * Output the current tab index of a given form
+     *
+     * Use this function to handle the tab indexing of user facing forms
+     * within a template file. Calling this function will automatically
+     * increment the global tab index by default.
+     *
+     * @uses apply_filters Allows return value to be filtered
+     * @uses bbp_get_tab_index If bbPress is active
+     * @param int $auto_increment Optional. Default true. Set to false to
+     *                             prevent the increment
+     * @return int The global tab index
+     */
+    function tmd_get_tab_index( $auto_increment = true ) {
+        if ( function_exists( 'bbp_get_tab_index' ) )
+            $tab_index = bbp_get_tab_index( $auto_increment );
+        else {
+            global $tmd_tab_index;
+
+            if ( true === $auto_increment )
+                ++$tmd_tab_index;
+
+            $tab_index = $tmd_tab_index;
+        }
+
+        return apply_filters( 'tmd_get_tab_index', (int) $tab_index );
+    }
+
+/**
+ * Echo sanitized $_REQUEST value.
+ *
+ * Use the $input_type parameter to properly process the value. This
+ * ensures correct sanitization of the value for the receiving input.
+ *
+ * @param string $request Name of $_REQUEST to look for
+ * @param string $input_type Type of input. Default: text. Accepts:
+ *                            textarea|password|select|radio|checkbox
+ * @uses tmd_get_sanitize_val() To sanitize the value.
+ */
+function tmd_sanitize_val( $request = '', $input_type = 'text' ) {
+    echo tmd_get_sanitize_val( $request, $input_type );
+}
+    /**
+     * Return sanitized $_REQUEST value.
+     *
+     * Use the $input_type parameter to properly process the value. This
+     * ensures correct sanitization of the value for the receiving input.
+     * 
+     * Borrowed from bbPress bbp_get_sanitize_val()
+     *
+     * @param string $request Name of $_REQUEST to look for
+     * @param string $input_type Type of input. Default: text. Accepts:
+     *                            textarea|password|select|radio|checkbox
+     * @uses esc_attr() To escape the string
+     * @uses apply_filters() Calls 'tmd_get_sanitize_val' with the sanitized
+     *                        value, request and input type
+     * @return string Sanitized value ready for screen display
+     */
+    function tmd_get_sanitize_val( $request = '', $input_type = 'text' ) {
+
+        // Check that requested
+        if ( empty( $_REQUEST[$request] ) )
+            return false;
+
+        // Set request varaible
+        $pre_ret_val = $_REQUEST[$request];
+
+        // Treat different kinds of fields in different ways
+        switch ( $input_type ) {
+            case 'text'     :
+            case 'textarea' :
+                $retval = esc_attr( stripslashes( $pre_ret_val ) );
+                break;
+
+            case 'password' :
+            case 'select'   :
+            case 'radio'    :
+            case 'checkbox' :
+            default :
+                $retval = esc_attr( $pre_ret_val );
+                break;
+        }
+
+        return apply_filters( 'tmd_get_sanitize_val', $retval, $request, $input_type );
+    }
+
 if ( ! function_exists( 'tripmd_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.

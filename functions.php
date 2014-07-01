@@ -12,92 +12,7 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
-/** Errors ********************************************************************/
-
-/**
- * Adds an error message to later be output in the theme
- *
- * @see WP_Error()
- * @uses WP_Error::add();
- *
- * @param string $code Unique code for the error message
- * @param string $message Translated error message
- * @param string $data Any additional data passed with the error message
- */
-function tmd_add_error( $code = '', $message = '', $data = '' ) {
-	global $tmd_errors;
-	$tmd_errors->add( 'tmd-' . $code, $message, $data );
-}
-
-/**
- * Check if error messages exist in queue
- *
- * @see WP_Error()
- * @uses WP_Error::get_error_codes()
- * 
- * @return bool
- */
-function tmd_has_errors() {
-	global $tmd_errors;
-	return $tmd_errors->get_error_codes() ? true : false;
-}
-
-/**
- * Return error messages in queue
- *
- * @see WP_Error()
- * @uses WP_Error::get_error_codes()
- * 
- * @return array Messages
- */
-function tmd_get_errors() {
-	global $tmd_errors;
-	return $tmd_errors->get_error_messages();
-}
-
-/** Tab index ******************************************/
-
-/**
- * Output the current tab index of a given form
- *
- * Use this function to handle the tab indexing of user facing forms within a
- * template file. Calling this function will automatically increment the global
- * tab index by default.
- *
- * @param int $auto_increment Optional. Default true. Set to false to prevent
- *                             increment
- */
-function tmd_tab_index( $auto_increment = true ) {
-    echo tmd_get_tab_index( $auto_increment );
-}
-
-    /**
-     * Output the current tab index of a given form
-     *
-     * Use this function to handle the tab indexing of user facing forms
-     * within a template file. Calling this function will automatically
-     * increment the global tab index by default.
-     *
-     * @uses apply_filters Allows return value to be filtered
-     * @uses bbp_get_tab_index If bbPress is active
-     * @param int $auto_increment Optional. Default true. Set to false to
-     *                             prevent the increment
-     * @return int The global tab index
-     */
-    function tmd_get_tab_index( $auto_increment = true ) {
-        if ( function_exists( 'bbp_get_tab_index' ) )
-            $tab_index = bbp_get_tab_index( $auto_increment );
-        else {
-            global $tmd_tab_index;
-
-            if ( true === $auto_increment )
-                ++$tmd_tab_index;
-
-            $tab_index = $tmd_tab_index;
-        }
-
-        return apply_filters( 'tmd_get_tab_index', (int) $tab_index );
-    }
+/** Setup *********************************************************************/
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -182,26 +97,7 @@ function tripmd_widgets_init() {
 }
 add_action( 'widgets_init', 'tripmd_widgets_init' );
 
-add_action( 'wp_ajax_documentUploadCB', 'tmd_consultation_document_upload' );
-add_action( 'wp_ajax_nopriv_documentUploadCB', 'tmd_consultation_document_upload' );
-
-function tmd_consultation_document_upload () {
-	if ( !wp_verify_nonce( $_GET['nonce'], 'document_upload' ) ) {
-		die( __( 'Are you sure you\'re doing that?', 'tripmd' ) );	
-	}
-
-	$data = array(
-		'comment_content' => $_GET['aid'],
-		'comment_type' => 'document_upload',
-		'comment_post_ID' => intval( $_GET['pid'] ),
-		'user_id' => get_current_user_id(),
-		'comment_approved' => 1,
-	);
-
-	wp_new_comment( $data );
-
-	die();
-}
+/** Scripts *******************************************************************/
 
 /**
  * Enqueue scripts and styles.
@@ -281,6 +177,8 @@ function tmd_fancybox_footjs() {
 
 }
 
+/** Session *******************************************************************/
+
 /**
  * Handle the session to store the spec, proc etc id's
  * 
@@ -335,6 +233,9 @@ function tripmd_session_get_id( $key = '' ) {
 	return $wp_session[$key . '_id'];
 }
 
+// Increase WP_Session time
+add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours
+
 /**
  * Fix specialities order on archive page
  */
@@ -347,107 +248,50 @@ function tmd_specialities_order( $query ) {
 }
 add_action( 'pre_get_posts', 'tmd_specialities_order' );
 
-/**
- * Set the username as the email id on registration form submission
- */
-function tmd_registration_handler() {
-    if ( empty( $_POST['user_email'] ) ||
-        ( ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) )
-        && ( empty( $_POST['tmd_register'] ) )
-        )
-     )
-    	return false;
-
-    add_filter( 'pre_user_first_name', 'tmd_register_home_handler_fn' );
-    add_filter( 'pre_user_last_name', 'tmd_register_home_handler_ln' );
-
-    $_POST['user_login'] = $_POST['user_email'];
-}
-add_action( 'login_init', 'tmd_registration_handler' );
-
-    function tmd_register_home_handler_login( $username = '' ) {
-    	return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
-    }
-    add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
-
-    function tmd_register_home_handler_fn( $firstname = '' ) {
-    	return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
-    }
-
-    function tmd_register_home_handler_ln( $lastname = '' ) {
-    	return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
-    }
+/** Errors ********************************************************************/
 
 /**
- * Hospital signup handler
+ * Adds an error message to later be output in the theme
+ *
+ * @see WP_Error()
+ * @uses WP_Error::add();
+ *
+ * @param string $code Unique code for the error message
+ * @param string $message Translated error message
+ * @param string $data Any additional data passed with the error message
  */
-function tmd_register_hospital_handler() {
-	if ( empty( $_POST['hsign'] ) )
-		return false;
-
-    if ( empty( $_POST['medical_centre'] ) ||  empty( $_POST['country'] ) ||  empty( $_POST['poc'] ) || empty( $_POST['email'] ) ||!wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) {
-    	wp_redirect( home_url( '?hsign=error#hs' ) );
-    	exit;
-    }
-
-	$new_clinic = array(
-		'post_title' => $_POST['medical_centre'],
-		'post_status' => 'draft',
-		'post_type' => 'hospital'
-	);
-	$post_id = wp_insert_post( $new_clinic );
-	
-    add_post_meta( $post_id, 'country', trim( $_POST['country'] ) );
-	add_post_meta( $post_id, 'poc', trim( $_POST['poc'] ) );
-	add_post_meta( $post_id, 'email', trim( $_POST['email'] ) );
-	
-    wp_redirect( home_url( '?hsign=success#hs' ) );
-	exit;
+function tmd_add_error( $code = '', $message = '', $data = '' ) {
+    global $tmd_errors;
+    $tmd_errors->add( 'tmd-' . $code, $message, $data );
 }
-add_action( 'init', 'tmd_register_hospital_handler' );
 
 /**
- * Beta signup handler for /invitation
+ * Check if error messages exist in queue
+ *
+ * @see WP_Error()
+ * @uses WP_Error::get_error_codes()
+ * 
+ * @return bool
  */
-function tmd_register_beta_handler() {
-	if ( empty( $_POST['tmd_beta_register'] ) )
-		return;
-
-    global $wpdb;
-
-	if ( !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_beta_register_nonce' ) )
-		tmd_add_error( 'nonce', __( 'Are you sure you\'re doing that?', 'tripmd' ) );
-
-    if ( empty( $_POST['tmd_bs_name'] ) )
-        tmd_add_error( 'required-name', __( 'Please provide your full name.', 'tripmd' ) );
-
-    if ( empty( $_POST['tmd_bs_email'] ) || !is_email( $_POST['tmd_bs_email'] ) )
-        tmd_add_error( 'required-email', __( 'Please provide a valid email id.', 'tripmd' ) );
-    elseif ( $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}tmd_beta_users WHERE email = %s LIMIT 1", $_POST['tmd_bs_email'] ) ) )
-        tmd_add_error( 'exists-email', __( 'You\'ve already registered with this email id.', 'tripmd' ) );
-
-    if ( tmd_has_errors() )
-    	return;
-
-	$registered = $wpdb->insert( 
-		"{$wpdb->prefix}tmd_beta_users", 
-		array( 
-			'name' => $_POST['tmd_bs_name'], 
-			'email' => $_POST['tmd_bs_email'], 
-			'phone' => !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : '', 
-			'condition' => !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '', 
-			'registered' => date('Y-m-d H:i:s')
-		), 
-		'%s'
-	);
-
-	if ( empty( $registered ) )
-		tmd_add_error( 'error-registration', __( 'There was a problem registering you. Please try again or contact us at help@tripmd.com.', 'tripmd' ) );
+function tmd_has_errors() {
+    global $tmd_errors;
+    return $tmd_errors->get_error_codes() ? true : false;
 }
-add_action( 'pre_get_posts', 'tmd_register_beta_handler' );
 
-// Increase WP_Session time
-add_filter( 'wp_session_expiration', function() { return 60 * 60 * 5; } ); // Set expiration to 5 hours
+/**
+ * Return error messages in queue
+ *
+ * @see WP_Error()
+ * @uses WP_Error::get_error_codes()
+ * 
+ * @return array Messages
+ */
+function tmd_get_errors() {
+    global $tmd_errors;
+    return $tmd_errors->get_error_messages();
+}
+
+/** Includes ******************************************************************/
 
 /**
  * Implement the Custom Header feature.

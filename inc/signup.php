@@ -1,14 +1,18 @@
 <?php
+
+/**
+ * Enqueue media upload scripts
+ * 
+ * @todo Only do so on registration pages
+ */
+function tmd_registration_enqueue_media () {
+    wp_enqueue_media();
+}
+add_action( 'wp_enqueue_scripts', 'tmd_registration_enqueue_media' );
+
 /**
  * Add additional custom field
  */
-
-add_action ( 'show_user_profile', 'show_extra_profile_fields' );
-add_action ( 'edit_user_profile', 'show_extra_profile_fields' );
-function add_media_upload_scripts() {
-    wp_enqueue_media();
-}
-add_action('wp_enqueue_scripts', 'add_media_upload_scripts');
 function show_extra_profile_fields ( $user )
 {
 ?>
@@ -113,9 +117,8 @@ function show_extra_profile_fields ( $user )
 
 <?php
 }
-
-add_action ( 'personal_options_update', 'save_extra_profile_fields' );
-add_action ( 'edit_user_profile_update', 'save_extra_profile_fields' );
+add_action ( 'show_user_profile', 'show_extra_profile_fields' );
+add_action ( 'edit_user_profile', 'show_extra_profile_fields' );
 
 function save_extra_profile_fields( $user_id )
 {
@@ -145,23 +148,18 @@ function save_extra_profile_fields( $user_id )
         update_user_meta( $user_id, 'medical_records', htmlspecialchars(json_encode($medicals)) );
     }
 }
+add_action ( 'personal_options_update', 'save_extra_profile_fields' );
+add_action ( 'edit_user_profile_update', 'save_extra_profile_fields' );
 
 /**
  * Add cutom field to registration form
  */
-
-add_action('register_form','show_extra_fields');
-add_action('register_post','check_fields',10,3);
-add_action('user_register', 'register_extra_fields');
-
 function show_extra_fields()
 {
 ?>
     <a id="step1" href="javascript:void(0);">Step 1</a> | <a id="step2" href="javascript:void(0);">Step 2</a>
 
     <div id="step1_container">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="<?php echo esc_attr( get_the_author_meta( 'name', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
 
         <label for="dob">Date of birth</label>
         <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
@@ -174,10 +172,10 @@ function show_extra_fields()
     </div>
 
     <div id="step2_container" style="display:none;">
-        <label for="weight">Weight (in KGs)</label>
+        <label for="weight">Weight (in kgs)</label>
         <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
         
-        <label for="weight">Height (in CMs)</label>
+        <label for="weight">Height (in cms)</label>
         <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
 
         <label for="gobs">General Observations</label>
@@ -208,8 +206,8 @@ function show_extra_fields()
     </script>
 
 <?php
-
 }
+add_action('register_form','show_extra_fields');
 
 function check_fields ( $login, $email, $errors )
 {
@@ -244,6 +242,7 @@ function check_fields ( $login, $email, $errors )
     }
     */
 }
+add_action('register_post','check_fields',10,3);
 
 function register_extra_fields ( $user_id, $password = "", $meta = array() )
 {
@@ -273,3 +272,123 @@ function register_extra_fields ( $user_id, $password = "", $meta = array() )
     if ( !empty( $wp_session['doctor_id'] ) )
         update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
 }
+add_action('user_register', 'register_extra_fields');
+
+/**
+ * Set the username as the email id on registration form submission
+ */
+function tmd_registration_handler() {
+    if ( empty( $_POST['user_email'] ) ||
+        ( ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) )
+        && ( empty( $_POST['tmd_register'] ) )
+        )
+     )
+        return false;
+
+    add_filter( 'pre_user_first_name', 'tmd_register_home_handler_fn' );
+    add_filter( 'pre_user_last_name', 'tmd_register_home_handler_ln' );
+
+    $_POST['user_login'] = $_POST['user_email'];
+}
+add_action( 'login_init', 'tmd_registration_handler' );
+
+    function tmd_register_home_handler_login( $username = '' ) {
+        return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
+    }
+    add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
+
+    function tmd_register_home_handler_fn( $firstname = '' ) {
+        return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
+    }
+
+    function tmd_register_home_handler_ln( $lastname = '' ) {
+        return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
+    }
+
+/**
+ * Hospital signup handler
+ */
+function tmd_register_hospital_handler() {
+    if ( empty( $_POST['hsign'] ) )
+        return false;
+
+    if ( empty( $_POST['medical_centre'] ) ||  empty( $_POST['country'] ) ||  empty( $_POST['poc'] ) || empty( $_POST['email'] ) ||!wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) {
+        wp_redirect( home_url( '?hsign=error#hs' ) );
+        exit;
+    }
+
+    $new_clinic = array(
+        'post_title' => $_POST['medical_centre'],
+        'post_status' => 'draft',
+        'post_type' => 'hospital'
+    );
+    $post_id = wp_insert_post( $new_clinic );
+    
+    add_post_meta( $post_id, 'country', trim( $_POST['country'] ) );
+    add_post_meta( $post_id, 'poc', trim( $_POST['poc'] ) );
+    add_post_meta( $post_id, 'email', trim( $_POST['email'] ) );
+    
+    wp_redirect( home_url( '?hsign=success#hs' ) );
+    exit;
+}
+add_action( 'init', 'tmd_register_hospital_handler' );
+
+/**
+ * Beta signup handler for /invitation
+ */
+function tmd_register_beta_handler() {
+    if ( empty( $_POST['tmd_beta_register'] ) )
+        return;
+
+    global $wpdb;
+
+    if ( !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_beta_register_nonce' ) )
+        tmd_add_error( 'nonce', __( 'Are you sure you\'re doing that?', 'tripmd' ) );
+
+    if ( empty( $_POST['tmd_bs_name'] ) )
+        tmd_add_error( 'required-name', __( 'Please provide your full name.', 'tripmd' ) );
+
+    if ( empty( $_POST['tmd_bs_email'] ) || !is_email( $_POST['tmd_bs_email'] ) )
+        tmd_add_error( 'required-email', __( 'Please provide a valid email id.', 'tripmd' ) );
+    elseif ( $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}tmd_beta_users WHERE email = %s LIMIT 1", $_POST['tmd_bs_email'] ) ) )
+        tmd_add_error( 'exists-email', __( 'You\'ve already registered with this email id.', 'tripmd' ) );
+
+    if ( tmd_has_errors() )
+        return;
+
+    $registered = $wpdb->insert( 
+        "{$wpdb->prefix}tmd_beta_users", 
+        array( 
+            'name' => $_POST['tmd_bs_name'], 
+            'email' => $_POST['tmd_bs_email'], 
+            'phone' => !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : '', 
+            'condition' => !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '', 
+            'registered' => date('Y-m-d H:i:s')
+        ), 
+        '%s'
+    );
+
+    if ( empty( $registered ) )
+        tmd_add_error( 'error-registration', __( 'There was a problem registering you. Please try again or contact us at help@tripmd.com.', 'tripmd' ) );
+}
+add_action( 'pre_get_posts', 'tmd_register_beta_handler' );
+
+function tmd_consultation_document_upload () {
+    if ( !wp_verify_nonce( $_GET['nonce'], 'document_upload' ) ) {
+        die( __( 'Are you sure you\'re doing that?', 'tripmd' ) );  
+    }
+
+    $data = array(
+        'comment_content' => $_GET['aid'],
+        'comment_type' => 'document_upload',
+        'comment_post_ID' => intval( $_GET['pid'] ),
+        'user_id' => get_current_user_id(),
+        'comment_approved' => 1,
+    );
+
+    wp_new_comment( $data );
+
+    die();
+}
+add_action( 'wp_ajax_documentUploadCB', 'tmd_consultation_document_upload' );
+add_action( 'wp_ajax_nopriv_documentUploadCB', 'tmd_consultation_document_upload' );
