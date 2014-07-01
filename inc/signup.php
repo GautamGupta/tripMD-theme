@@ -76,23 +76,23 @@ function tmd_profile_extra_fields( $user ) { ?>
             global $wp_session;
             $wp_session = WP_Session::get_instance();
 
-            if ( !get_user_meta( bbp_get_user_id(), 'speciality_id', true ) && 
+            if ( !get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ) && 
                  !empty( $wp_session['speciality_id'] ) ) {
-                update_user_meta( $user->id, 'speciality_id', $wp_session['speciality_id'] );
+                update_user_meta( bbp_get_current_user_id(), 'speciality_id', $wp_session['speciality_id'] );
             }
-            if ( !get_user_meta( bbp_get_user_id(), 'procedure_id', true ) &&
+            if ( !get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) &&
                  !empty( $wp_session['procedure_id'] ) )
-                update_user_meta( $user->id, 'procedure_id', $wp_session['procedure_id'] );
-            if ( !get_user_meta( bbp_get_user_id(), 'hospital_id', true) &&
+                update_user_meta( bbp_get_current_user_id(), 'procedure_id', $wp_session['procedure_id'] );
+            if ( !get_user_meta( bbp_get_current_user_id(), 'hospital_id', true) &&
                  !empty( $wp_session['hospital_id'] ) )
-                update_user_meta( $user->id, 'hospital_id', $wp_session['hospital_id'] );
-            if ( !get_user_meta( bbp_get_user_id(), 'doctor_id', true) &&
+                update_user_meta( bbp_get_current_user_id(), 'hospital_id', $wp_session['hospital_id'] );
+            if ( !get_user_meta( bbp_get_current_user_id(), 'doctor_id', true) &&
                  !empty( $wp_session['doctor_id'] ) )
-                update_user_meta( $user->id, 'doctor_id', $wp_session['doctor_id'] );
+                update_user_meta( bbp_get_current_user_id(), 'doctor_id', $wp_session['doctor_id'] );
         ?>
-        <?php if ( get_user_meta( bbp_get_user_id(), 'speciality_id', true) ) : ?>
-            <?php if ( get_user_meta( bbp_get_user_id(), 'procedure_id', true ) ) : ?>
-                <?php if ( get_user_meta( bbp_get_user_id(), 'hospital_id', true ) ) : ?>
+        <?php if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true) ) : ?>
+            <?php if ( get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) ) : ?>
+                <?php if ( get_user_meta( bbp_get_current_user_id(), 'hospital_id', true ) ) : ?>
                     <p>Alrighty! Let's book some <a href="/appointments/">appointments</a>!</p>
                 <?php else : ?>
                     <p>Please select a hospital and a doctor (optional).</p>
