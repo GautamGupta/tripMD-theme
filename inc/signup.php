@@ -5,7 +5,7 @@
  * 
  * @todo Only do so on registration pages
  */
-function tmd_registration_enqueue_media () {
+function tmd_registration_enqueue_media() {
     wp_enqueue_media();
 }
 add_action( 'wp_enqueue_scripts', 'tmd_registration_enqueue_media' );
@@ -13,9 +13,7 @@ add_action( 'wp_enqueue_scripts', 'tmd_registration_enqueue_media' );
 /**
  * Add additional custom field
  */
-function show_extra_profile_fields ( $user )
-{
-?>
+function tmd_profile_extra_fields( $user ) { ?>
  
     <h2 class="entry-title">Personal Details</h2>
     <fieldset class="bbp-form">
@@ -57,28 +55,26 @@ function show_extra_profile_fields ( $user )
             <textarea name="allergies" id="allergies" class="regular-text" ><?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?></textarea><br/>
         </div>
     </fieldset>
-    <h2 class="entry-title">Medical Records uploaded</h2>
+
+    <h2 class="entry-title">Medical Records</h2>
     <fieldset class="bbp-form"> 
         <ul>
             <?php
-                $medicals = esc_attr(get_the_author_meta('medical_records', $user->ID));
-                $medicals = json_decode(htmlspecialchars_decode($medicals), true);
-                foreach ($medicals['mystuff'] as $medical_record) {
-                    echo "<li>".$medical_record."</li>";
+                $medicals = esc_attr( get_the_author_meta( 'medical_records', $user->ID ) );
+                $medicals = json_decode( htmlspecialchars_decode( $medicals ), true );
+                foreach ( (array) $medicals['mystuff'] as $medical_record ) {
+                    echo '<li>' . $medical_record . '</li>';
                 }
             ?>
         </ul>
 
-    <div class="uploader">        
-        <button name="medical_records_button" id="medical_records_button_old" value="Upload">Upload medical records</button>
-    </div>
+        <div class="uploader">        
+            <button name="medical_records_button" id="medical_records_button_old" value="Upload">Upload medical records</button>
+        </div>
 
     </fieldset>
 
-    </fieldset>
     <h2 class="entry-title">Appointments</h2>
-
-
     <fieldset class="bbp-form"> 
         <?php
             global $wp_session;
@@ -112,18 +108,19 @@ function show_extra_profile_fields ( $user )
             <p>Please select a <a href="http://tripmd.com/specialities/">speciality</a>, procedure, hospital and a doctor (optional).</p>
         <?php endif; ?>
 
-    <input name="medical_records" id="medical_records_files" value="" type="hidden">
+        <input name="medical_records" id="medical_records_files" value="" type="hidden">
     </fieldset>
 
 <?php
 }
-add_action ( 'show_user_profile', 'show_extra_profile_fields' );
-add_action ( 'edit_user_profile', 'show_extra_profile_fields' );
+add_action ( 'show_user_profile', 'tmd_profile_extra_fields' );
+add_action ( 'edit_user_profile', 'tmd_profile_extra_fields' );
 
-function save_extra_profile_fields( $user_id )
-{
+function tmd_profile_save_extra_fields( $user_id ) {
+
     if ( !current_user_can( 'edit_user', $user_id ) )
         return false;
+    
     /* Copy and paste this line for additional fields. Make sure to change 'twitter' to the field ID. */
     update_user_meta( $user_id, 'name', $_POST['name'] );
     update_user_meta( $user_id, 'dob', $_POST['dob'] );
@@ -133,6 +130,7 @@ function save_extra_profile_fields( $user_id )
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
     $medicals = get_user_meta($user_id, 'medical_records', true);
+    
     if ( !$medicals ||
          !json_decode(htmlspecialchars_decode($medicals), true)) { 
             update_user_meta( $user_id, 'medical_records', $_POST['medical_records'] );
@@ -148,14 +146,13 @@ function save_extra_profile_fields( $user_id )
         update_user_meta( $user_id, 'medical_records', htmlspecialchars(json_encode($medicals)) );
     }
 }
-add_action ( 'personal_options_update', 'save_extra_profile_fields' );
-add_action ( 'edit_user_profile_update', 'save_extra_profile_fields' );
+add_action ( 'personal_options_update', 'tmd_profile_save_extra_fields' );
+add_action ( 'edit_user_profile_update', 'tmd_profile_save_extra_fields' );
 
 /**
- * Add cutom field to registration form
+ * Add cutom fields to registration form
  */
-function show_extra_fields()
-{
+function tmd_registration_extra_fields() {
 ?>
     <a id="step1" href="javascript:void(0);">Step 1</a> | <a id="step2" href="javascript:void(0);">Step 2</a>
 
@@ -207,10 +204,9 @@ function show_extra_fields()
 
 <?php
 }
-add_action('register_form','show_extra_fields');
+add_action( 'register_form', 'tmd_registration_extra_fields' );
 
-function check_fields ( $login, $email, $errors )
-{
+function tmd_registration_validate_extra_fields( $login, $email, $errors ) {
     if ( $_POST['name'] == '' )
     {
         $errors->add( 'empty_realname', "<strong>ERROR</strong>: Please Enter your name." );
@@ -242,10 +238,9 @@ function check_fields ( $login, $email, $errors )
     }
     */
 }
-add_action('register_post','check_fields',10,3);
+add_action( 'register_post', 'tmd_registration_validate_extra_fields', 10, 3 );
 
-function register_extra_fields ( $user_id, $password = "", $meta = array() )
-{
+function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = array() ) {
     update_user_meta( $user_id, 'name', $_POST['name'] );
     update_user_meta( $user_id, 'dob', $_POST['dob'] );
     update_user_meta( $user_id, 'gender', $_POST['gender'] );
@@ -272,15 +267,15 @@ function register_extra_fields ( $user_id, $password = "", $meta = array() )
     if ( !empty( $wp_session['doctor_id'] ) )
         update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
 }
-add_action('user_register', 'register_extra_fields');
+add_action( 'user_register', 'tmd_registration_save_extra_fields' );
 
 /**
  * Set the username as the email id on registration form submission
  */
 function tmd_registration_handler() {
     if ( empty( $_POST['user_email'] ) ||
-        ( ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) )
-        && ( empty( $_POST['tmd_register'] ) )
+        ( ( empty( $_POST['tmd_home_register'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) // Homepage reg
+        && ( empty( $_POST['tmd_register'] ) )                                                                    // /register page
         )
      )
         return false;
@@ -312,7 +307,7 @@ function tmd_register_hospital_handler() {
     if ( empty( $_POST['hsign'] ) )
         return false;
 
-    if ( empty( $_POST['medical_centre'] ) ||  empty( $_POST['country'] ) ||  empty( $_POST['poc'] ) || empty( $_POST['email'] ) ||!wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) {
+    if ( empty( $_POST['medical_centre'] ) ||  empty( $_POST['country'] ) ||  empty( $_POST['poc'] ) || empty( $_POST['email'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) {
         wp_redirect( home_url( '?hsign=error#hs' ) );
         exit;
     }
@@ -373,7 +368,7 @@ function tmd_register_beta_handler() {
 }
 add_action( 'pre_get_posts', 'tmd_register_beta_handler' );
 
-function tmd_consultation_document_upload () {
+function tmd_consultation_document_upload() {
     if ( !wp_verify_nonce( $_GET['nonce'], 'document_upload' ) ) {
         die( __( 'Are you sure you\'re doing that?', 'tripmd' ) );  
     }
