@@ -49,7 +49,6 @@ get_header();
 		);
 		$post_id = wp_insert_post($new_post);
 		$dates = [$_POST['date1'], $_POST['date2'], $_POST['date3']];
-		echo $dates;
 		$dates_s = serialize($dates);
 		add_post_meta($post_id, 'dates', $dates_s);
 	    if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ) ) {
@@ -64,6 +63,9 @@ get_header();
 	    if ( get_user_meta( bbp_get_current_user_id(), 'doctor_id', true ) ) {
 			add_post_meta($post_id, 'doctor_id', get_user_meta( bbp_get_current_user_id(), 'doctor_id', true ));
 	    }
+	    echo "<h3>Appointment request submitted successfully. We'll get back to you shortly.</h3>";
+		get_footer();
+		die();
 	}
 ?>
 
@@ -107,6 +109,6 @@ get_header();
 <?php endif; ?>
 
 <?php else : ?>
-<h2>Please <a href="http://tripmd.com/login">login</a>.</h2>
+<h3>Please <a href="http://tripmd.com/login">login</a>.</h3>
 <?php endif; ?>
 <?php get_footer(); ?>
