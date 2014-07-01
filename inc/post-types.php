@@ -240,7 +240,7 @@ function tmd_register_post_types() {
 		'not_found_in_trash'  => __( 'Not found in Trash', 'tripmd' ),
 	);
 	$rewrite = array(
-		'slug'                => 'consultations',
+		'slug'                => 'consultation',
 		'with_front'          => false,
 		'pages'               => false,
 		'feeds'               => false,
