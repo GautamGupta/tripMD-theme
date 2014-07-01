@@ -44,7 +44,7 @@ get_header(); ?>
 
     <small class="animated fadeIn">You&rsquo;re nearly done.</small>
     &nbsp;
-    <a class="big fat dark-gray button" href="<?php echo site_url( 'register' ); ?>">Book Consultation</a>
+    <a class="big fat dark-gray button" href="<?php echo site_url( 'profile#appointments' ); ?>">Book Consultation</a>
     &nbsp;
     <small class="animated fadeIn">or</small>
     &nbsp;
