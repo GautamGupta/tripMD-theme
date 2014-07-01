@@ -18,10 +18,6 @@ function tmd_profile_extra_fields( $user ) { ?>
     <h2 class="entry-title">Personal Details</h2>
     <fieldset class="bbp-form">
         <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="<?php echo esc_attr( get_the_author_meta( 'name', $user->ID ) ); ?>" class="regular-text" /><br />
-        </div>
-        <div>
             <label for="dob">Date of birth</label>
             <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" /><br />
         </div>
@@ -122,7 +118,6 @@ function tmd_profile_save_extra_fields( $user_id ) {
         return false;
     
     /* Copy and paste this line for additional fields. Make sure to change 'twitter' to the field ID. */
-    update_user_meta( $user_id, 'name', $_POST['name'] );
     update_user_meta( $user_id, 'dob', $_POST['dob'] );
     update_user_meta( $user_id, 'gender', $_POST['gender'] );
     update_user_meta( $user_id, 'weight', $_POST['weight'] );
@@ -207,8 +202,8 @@ function tmd_registration_extra_fields() {
 add_action( 'register_form', 'tmd_registration_extra_fields' );
 
 function tmd_registration_validate_extra_fields( $login, $email, $errors ) {
-    if ( $_POST['name'] == '' )
-        $errors->add( 'empty_realname', "<strong>ERROR</strong>: Please Enter your name." );
+    /* if ( $_POST['name'] == '' )
+        $errors->add( 'empty_fullname', "<strong>ERROR</strong>: Please enter your full name." ); */
 
     /* 
     if ( $_POST['dob'] == '' )
@@ -230,10 +225,9 @@ function tmd_registration_validate_extra_fields( $login, $email, $errors ) {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your past allergies." );
     */
 }
-add_action( 'register_post', 'tmd_registration_validate_extra_fields', 10, 3 );
+// add_action( 'register_post', 'tmd_registration_validate_extra_fields', 10, 3 );
 
 function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = array() ) {
-    update_user_meta( $user_id, 'name', $_POST['name'] );
     update_user_meta( $user_id, 'dob', $_POST['dob'] );
     update_user_meta( $user_id, 'gender', $_POST['gender'] );
     update_user_meta( $user_id, 'weight', $_POST['weight'] );
@@ -259,7 +253,7 @@ function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = a
     if ( !empty( $wp_session['doctor_id'] ) )
         update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
 }
-add_action( 'user_register', 'tmd_registration_save_extra_fields' );
+// add_action( 'user_register', 'tmd_registration_save_extra_fields' );
 
 /**
  * Set the username as the email id on registration form submission
@@ -272,24 +266,48 @@ function tmd_registration_handler() {
      )
         return false;
 
-    add_filter( 'pre_user_first_name', 'tmd_register_home_handler_fn' );
-    add_filter( 'pre_user_last_name',  'tmd_register_home_handler_ln' );
-
     $_POST['user_login'] = $_POST['user_email'];
-}
-add_action( 'login_init', 'tmd_registration_handler' );
 
-    function tmd_register_home_handler_login( $username = '' ) {
+    if ( !empty( $_POST['name'] ) ) { // /register page has single 'name' field, this splits it into fn and ln
+        $name = tmd_split_name( $_POST['name'] );
+        $_POST['first_name'] = $name['first'];
+        $_POST['last_name']  = $name['last'];
+        $_POST['nickname']   = $name['first'];
+    }
+
+    add_filter( 'pre_user_first_name', 'tmd_registration_handler_fn' );
+    add_filter( 'pre_user_last_name',  'tmd_registration_handler_ln' );
+    add_filter( 'pre_user_nickname',   'tmd_registration_handler_nn' );
+}
+add_action( 'template_redirect', 'tmd_registration_handler', -10 );
+
+    /**
+     * Set the username to email id unless we're in the admin section
+     */
+    function tmd_registration_handler_login( $username = '' ) {
         return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
     }
-    add_filter( 'pre_user_login', 'tmd_register_home_handler_login' ); // Always force
+    add_filter( 'pre_user_login', 'tmd_registration_handler_login' ); // Always force
 
-    function tmd_register_home_handler_fn( $firstname = '' ) {
+    /**
+     * Return the first name in the post paramater
+     */
+    function tmd_registration_handler_fn( $firstname = '' ) {
         return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
     }
 
-    function tmd_register_home_handler_ln( $lastname = '' ) {
+    /**
+     * Return the last name in the post paramater
+     */
+    function tmd_registration_handler_ln( $lastname = '' ) {
         return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
+    }
+
+    /**
+     * Return the nickname in the post paramater
+     */
+    function tmd_registration_handler_nn( $nickname = '' ) {
+        return !empty( $_POST['nickname'] ) ? sanitize_user( trim( $_POST['nickname'] ) ) : $nickname;
     }
 
 /**
@@ -379,3 +397,45 @@ function tmd_consultation_document_upload() {
 }
 add_action( 'wp_ajax_documentUploadCB', 'tmd_consultation_document_upload' );
 add_action( 'wp_ajax_nopriv_documentUploadCB', 'tmd_consultation_document_upload' );
+
+/**
+ * Splits single name string into salutation, first, last, suffix
+ * 
+ * Taken from http://stackoverflow.com/questions/8808902/best-way-to-split-a-first-and-last-name-in-php/14420217#14420217
+ * 
+ * @param string $name
+ * @return array
+ */
+function tmd_split_name( $name ) {
+    $results = array();
+
+    $r    = explode( ' ', $name );
+    $size = count( $r );
+
+    // check first for period, assume salutation if so
+    if ( mb_strpos( $r[0], '.' ) === false ) {
+        $results['salutation'] = '';
+        $results['first']      = $r[0];
+    } else {
+        $results['salutation'] = $r[0];
+        $results['first']      = $r[1];
+    }
+
+    // check last for period, assume suffix if so
+    if ( mb_strpos( $r[$size - 1], '.' ) === false )
+        $results['suffix'] = '';
+    else
+        $results['suffix'] = $r[$size - 1];
+
+    //combine remains into last
+    $start = $results['salutation'] ? 2 : 1;
+    $end   = $results['suffix'] ? $size - 2 : $size - 1;
+
+    $last = '';
+    for ( $i = $start; $i <= $end; $i++ )
+        $last .= ' ' . $r[$i];
+    
+    $results['last'] = trim( $last );
+
+    return $results;
+}
