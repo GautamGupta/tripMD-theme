@@ -93,7 +93,7 @@ function tmd_profile_extra_fields( $user ) { ?>
         <?php if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true) ) : ?>
             <?php if ( get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) ) : ?>
                 <?php if ( get_user_meta( bbp_get_current_user_id(), 'hospital_id', true ) ) : ?>
-                    <p>Alrighty! Let's book some <a href="/appointments/">appointments</a>!</p>
+                    <p>Book an <a href="/appointments/">appointment</a>.</p>
                 <?php else : ?>
                     <p>Please select a hospital and a doctor (optional).</p>
                 <?php endif; ?>
@@ -103,7 +103,24 @@ function tmd_profile_extra_fields( $user ) { ?>
         <?php else : ?>
             <p>Please select a <a href="http://tripmd.com/specialities/">speciality</a>, procedure, hospital and a doctor (optional).</p>
         <?php endif; ?>
+        
+        <h3>Past consultations:</h3>
 
+        <?php $args = array(
+            'orderby'          => 'post_date',
+            'order'            => 'DESC',
+            'author'          => bbp_get_current_user_id(),
+            'post_type'        => 'consultation',
+            'post_parent'      => '',
+            'post_status'      => 'publish',
+            'suppress_filters' => true );
+            $posts = get_posts($args);
+            echo "<ul>";
+            foreach($posts as $post) {
+                echo "<li><a href=\"" . $post->guid . "\"/>" . $post->post_title . "</a></li>";
+            }
+            echo "</ul>";
+        ?>
         <input name="medical_records" id="medical_records_files" value="" type="hidden">
     </fieldset>
 
