@@ -19,11 +19,11 @@ function tmd_profile_extra_fields( $user ) { ?>
     <fieldset class="bbp-form">
         <div>
             <label for="dob">Date of birth</label>
-            <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" /><br />
+            <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
         </div>
         <div>
             <label for="gender">Gender</label>
-            <select name="gender">
+            <select name="gender" tabindex="<?php tmd_tab_index(); ?>">
               <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected";  ?>>Male</option>
               <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'female') echo "selected";  ?>>Female</option>
             </select>
@@ -34,21 +34,21 @@ function tmd_profile_extra_fields( $user ) { ?>
     <fieldset class="bbp-form"> 
         <div>
             <label for="weight">Weight (in KGs)</label>
-            <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" /><br />
+            <input type="number" name="weight" id="weight" value="<?php echo esc_attr( get_the_author_meta( 'weight', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
         </div>
         <div>
             <label for="weight">Height (in CMs)</label>
-            <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" /><br />
+            <input type="number" name="height" id="height" value="<?php echo esc_attr( get_the_author_meta( 'height', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
         </div>
 
         <div>
             <label for="gobs">General Observations</label>
-            <textarea name="gobs" id="gobs" class="regular-text" /><?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?></textarea><br/>
+            <textarea name="gobs" id="gobs" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><?php echo esc_attr( get_the_author_meta( 'gobs', $user->ID ) ); ?></textarea><br/>
         </div>
 
         <div>
             <label for="allergies">Allergies</label><br/>
-            <textarea name="allergies" id="allergies" class="regular-text" ><?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?></textarea><br/>
+            <textarea name="allergies" id="allergies" class="regular-text"  tabindex="<?php tmd_tab_index(); ?>"><?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?></textarea><br/>
         </div>
     </fieldset>
 
@@ -65,7 +65,7 @@ function tmd_profile_extra_fields( $user ) { ?>
         </ul>
 
         <div class="uploader">        
-            <button name="medical_records_button" id="medical_records_button_old" value="Upload">Upload medical records</button>
+            <button name="medical_records_button" id="medical_records_button_old" value="Upload" tabindex="<?php tmd_tab_index(); ?>">Upload medical records</button>
         </div>
 
     </fieldset>
@@ -247,13 +247,13 @@ function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = a
     if ( !empty( $wp_session['speciality_id'] ) )
         update_user_meta( $user_id, 'speciality_id', $wp_session['speciality_id'] );
     if ( !empty( $wp_session['procedure_id'] ) )
-        update_user_meta( $user_id, 'procedure_id', $wp_session['procedure_id'] );
+        update_user_meta( $user_id, 'procedure_id',  $wp_session['procedure_id']  );
     if ( !empty( $wp_session['hospital_id'] ) )
-        update_user_meta( $user_id, 'hospital_id', $wp_session['hospital_id'] );
+        update_user_meta( $user_id, 'hospital_id',   $wp_session['hospital_id']   );
     if ( !empty( $wp_session['doctor_id'] ) )
-        update_user_meta( $user_id, 'doctor_id', $wp_session['doctor_id'] );
+        update_user_meta( $user_id, 'doctor_id',     $wp_session['doctor_id']     );
 }
-// add_action( 'user_register', 'tmd_registration_save_extra_fields' );
+add_action( 'user_register', 'tmd_registration_save_extra_fields' );
 
 /**
  * Set the username as the email id on registration form submission
