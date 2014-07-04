@@ -58,7 +58,7 @@ get_header(); ?>
 
                     <div class="password fld">
                         <input type="password" class="last field" required="required" placeholder="<?php _e( 'Password', 'tripmd' ); ?>" name="pwd" id="user_pass" value="" />
-                        <i class="fa fa-asterisk"></i>
+                        <i class="fa fa-lock"></i>
                     </div>
 
                     <?php do_action( 'login_form' ); ?>
@@ -77,7 +77,7 @@ get_header(); ?>
                 </form>
 
             </div>
-        </div>
+        </div><!-- /User login -->
 
         <div id="slider-with-blocks-1" class="slider royalSlider rsMinW">
 
