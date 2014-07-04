@@ -997,6 +997,37 @@ body.blog .form-allowed-tags, body.single .form-allowed-tags {
   text-align: left;
 }
 
+/** Register form styling */
+
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: opacity 0.3s 0.3s ease;
+  opacity: 0;
+}
+
+label {
+  display: block;
+  text-align: left;
+  font: bold 0.8em calluna;
+  text-transform: uppercase;
+}
+
+.form input[type=text], .form textarea {
+  padding: 6px;
+  text-indent: 0;
+  -webkit-appearance: none;
+  border-radius: 6px;
+  border: thin solid #fefefe;
+  transition: 0.2s ease;
+}
+.form input[type=text]:hover, .form textarea:hover {
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+}
+.form input[type=text]:focus, .form textarea:focus {
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.12);
+  border: thin solid green;
+}
+
+
 /** Consultation Page Timeline */
 
 .timeline {
