@@ -7,7 +7,7 @@
 
 get_header(); ?>
 
-
+        <!-- Clinic signup form -->
         <div style="display:none" class="fancybox-hidden block">
             <div id="hosp-signup" class="su" style="width:480px; height:420px;">
                 <h1>Clinic Signup</h1>
@@ -38,6 +38,41 @@ get_header(); ?>
                     <?php wp_nonce_field( 'tmd_home_register' ); ?>
 
                     <input type="submit" class="big fat green button submit" value="Sign Up" />
+
+                </form>
+
+            </div>
+        </div><!-- /Clinic signup form -->
+
+        <!-- User login -->
+        <div style="display:none" class="fancybox-hidden block">
+            <div id="user-login" class="su" style="width:480px; height:330px;">
+                <h1><?php _e( 'Login', 'tripmd' ); ?></h1>
+
+                <form method="post" id="loginform" name="loginform" style="color: black;" action="<?php echo site_url( '/login' ); ?>">
+                    
+                    <div class="email fld">
+                        <input type="text" class="field" required="required" placeholder="<?php _e( 'Email Address', 'tripmd' ); ?>" name="log" id="user_login" value="" />
+                        <i class="fa fa-user"></i>
+                    </div>
+
+                    <div class="password fld">
+                        <input type="password" class="last field" required="required" placeholder="<?php _e( 'Password', 'tripmd' ); ?>" name="pwd" id="user_pass" value="" />
+                        <i class="fa fa-asterisk"></i>
+                    </div>
+
+                    <?php do_action( 'login_form' ); ?>
+
+                    <!-- <p class="forgetmenot">
+                        <input name="rememberme" type="checkbox" id="rememberme" value="forever" />
+                        <label for="rememberme"><?php esc_attr_e( 'Remember Me' ); ?></label>
+                    </p> -->
+
+                    <input type="hidden" name="redirect_to" value="<?php echo site_url( '/' ); ?>" />
+                    <input type="hidden" name="instance"    value="" />
+                    <input type="hidden" name="action"      value="login" />
+
+                    <input type="submit" class="big fat green button submit" name="wp-submit" id="wp-submit" value="<?php esc_attr_e( 'Login' ); ?>" />
 
                 </form>
 

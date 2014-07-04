@@ -203,13 +203,13 @@ p.ohho {
   color: #aaa;
 }
 
-#hosp-signup {
+.su {
   overflow: hidden;
   box-sizing: border-box !important;
   padding: 50px;
   width: 100%;
 }
-#hosp-signup h1 {
+.su h1 {
   font-family: 'freight-text-pro';
   text-align: center;
   margin-top: -20px;
