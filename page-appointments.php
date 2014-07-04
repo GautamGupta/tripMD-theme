@@ -48,7 +48,7 @@ get_header();
 			'author' => bbp_get_current_user_id(),
 		);
 		$post_id = wp_insert_post($new_post);
-		$dates = [$_POST['date1'], $_POST['date2'], $_POST['date3']];
+		$dates = array( $_POST['date1'], $_POST['date2'], $_POST['date3'] );
 		$dates_s = serialize($dates);
 		add_post_meta($post_id, 'dates', $dates_s);
 	    if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ) ) {
