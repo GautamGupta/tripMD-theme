@@ -1,53 +1,201 @@
 <?php
+
 /**
  * Custom template tags for this theme.
  *
- * Eventually, some of the functionality here could be replaced by core features.
- *
- * @package tripmd
+ * @package TripMD
+ * @subpackage Template
  */
 
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
+/** URLs **********************************************************************/
+
 /**
- * Output the current tab index of a given form
- *
- * Use this function to handle the tab indexing of user facing forms within a
- * template file. Calling this function will automatically increment the global
- * tab index by default.
- *
- * @param int $auto_increment Optional. Default true. Set to false to prevent
- *                             increment
+ * Correct any custom post type link outputs
+ * 
+ * Eg. hospital name is directly with root
  */
-function tmd_tab_index( $auto_increment = true ) {
-    echo tmd_get_tab_index( $auto_increment );
+function tmd_custom_post_type_link( $permalink, $post, $leavename ) {
+    if ( !gettype( $post ) == 'post' ) {
+        return $permalink;
+    }
+    switch ( $post->post_type ) {
+        case 'hospital' :
+            $permalink = get_home_url() . '/' . $post->post_name . '/';
+            break;
+    }
+ 
+    return $permalink;
+}
+add_filter( 'post_type_link', 'tmd_custom_post_type_link', 10, 3 );
+
+/** Add-on Actions ************************************************************/
+
+/**
+ * Add our custom head action to wp_head
+ *
+ * @uses do_action() Calls 'tmd_head'
+*/
+function tmd_head() {
+    do_action( 'tmd_head' );
+}
+
+/**
+ * Add our custom head action to wp_head
+ *
+ * @uses do_action() Calls 'tmd_footer'
+ */
+function tmd_footer() {
+    do_action( 'tmd_footer' );
+}
+
+/** is_ ***********************************************************************/
+
+/**
+ * Check if the current post type is one of TripMD's
+ *
+ * @param mixed $the_post Optional. Post object or post ID.
+ * @uses get_post_type()
+ * @uses tmd_get_post_types()
+ *
+ * @return bool
+ */
+function tmd_is_custom_post_type( $the_post = false ) {
+
+    // Assume false
+    $retval = false;
+
+    // Viewing one of the bbPress post types
+    if ( in_array( get_post_type( $the_post ), tmd_get_post_types() ) )
+        $retval = true;
+
+    return $retval;
 }
 
     /**
-     * Output the current tab index of a given form
-     *
-     * Use this function to handle the tab indexing of user facing forms
-     * within a template file. Calling this function will automatically
-     * increment the global tab index by default.
-     *
-     * @uses apply_filters Allows return value to be filtered
-     * @uses bbp_get_tab_index If bbPress is active
-     * @param int $auto_increment Optional. Default true. Set to false to
-     *                             prevent the increment
-     * @return int The global tab index
+     * Get TripMD post types
+     * 
+     * @return array
      */
-    function tmd_get_tab_index( $auto_increment = true ) {
-        if ( function_exists( 'bbp_get_tab_index' ) )
-            $tab_index = bbp_get_tab_index( $auto_increment );
-        else {
-            global $tmd_tab_index;
-
-            if ( true === $auto_increment )
-                ++$tmd_tab_index;
-
-            $tab_index = $tmd_tab_index;
-        }
-
-        return apply_filters( 'tmd_get_tab_index', (int) $tab_index );
+    function tmd_get_post_types() {
+        return array( 'speciality', 'procedure', 'hospital', 'doctor', 'room', 'consultation' );
     }
+
+/**
+ * Use the above is_() functions to output a body class for each scenario
+ *
+ * @todo Make it work
+ * 
+ * @return array Body Classes
+ */
+function tmd_body_class( $wp_classes, $custom_classes = false ) {
+
+    $tmd_classes = array();
+
+    /** Archives **************************************************************/
+    /*
+    if ( tmd_is_forum_archive() ) {
+        $tmd_classes[] = tmd_get_forum_post_type() . '-archive';
+
+    } elseif ( tmd_is_topic_archive() ) {
+        $tmd_classes[] = tmd_get_topic_post_type() . '-archive';
+        
+    }
+
+    /** Clean up **************************************************************/
+
+    // Add TripMD class if we are within a TripMD page
+    if ( !empty( $tmd_classes ) ) {
+        $tmd_classes[] = 'tripmd';
+    }
+
+    // Adds a class of group-blog to blogs with more than 1 published author.
+    if ( is_multi_author() ) {
+        $tmd_classes[] = 'group-blog';
+    }
+
+    // Merge WP classes with TripMD classes and remove any duplicates
+    $classes = array_unique( array_merge( (array) $tmd_classes, (array) $wp_classes ) );
+
+    return apply_filters( 'tmd_body_class', $classes, $tmd_classes, $wp_classes, $custom_classes );
+}
+
+/**
+ * Use the above is_() functions to return if in any TripMD page
+ * 
+ * @todo Make it work
+ *
+ * @return bool
+ */
+function is_tripmd() {
+
+    // Defalt to false
+    $retval = false;
+
+    /** Archives **************************************************************/
+    /*
+    if ( tmd_is_forum_archive() ) {
+        $retval = true;
+
+    } elseif ( tmd_is_topic_archive() ) {
+        $retval = true;
+
+    /** User ******************************************************************/
+    /*
+
+    } elseif ( tmd_is_single_user_edit() ) {
+        $retval = true;
+
+    } elseif ( tmd_is_single_user() ) {
+        $retval = true;
+
+    /** Search ****************************************************************/
+    /*
+
+    } elseif ( tmd_is_search() ) {
+        $retval = true;
+
+    } elseif ( tmd_is_search_results() ) {
+        $retval = true;
+    }
+
+    /** Done ******************************************************************/
+
+    return (bool) $retval;
+}
+
+/** Forms *********************************************************************/
+
+/**
+ * Output hidden request URI field for user forms.
+ *
+ * The referer link is the current Request URI from the server super global. To
+ * output the field manually, use tmd_get_redirect_to().
+ *
+ * @param string $redirect_to Pass a URL to redirect to
+ *
+ * @uses wp_get_referer() To get the referer
+ * @uses esc_attr() To escape the url
+ */
+function tmd_redirect_to_field( $redirect_to = '' ) {
+
+    // Make sure we are directing somewhere
+    if ( empty( $redirect_to ) ) {
+        if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+            $redirect_to = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        } else {
+            $redirect_to = wp_get_referer();
+        }
+    }
+
+    // Remove loggedout query arg if it's there
+    $redirect_to    = (string) esc_attr( remove_query_arg( 'loggedout', $redirect_to ) );
+    $redirect_field = '<input type="hidden" id="tmd_redirect_to" name="redirect_to" value="' . $redirect_to . '" />';
+
+    echo $redirect_field;
+}
 
 /**
  * Echo sanitized $_REQUEST value.
@@ -69,7 +217,7 @@ function tmd_sanitize_val( $request = '', $input_type = 'text' ) {
      * Use the $input_type parameter to properly process the value. This
      * ensures correct sanitization of the value for the receiving input.
      * 
-     * Borrowed from bbPress bbp_get_sanitize_val()
+     * Borrowed from bbPress tmd_get_sanitize_val()
      *
      * @param string $request Name of $_REQUEST to look for
      * @param string $input_type Type of input. Default: text. Accepts:
@@ -107,7 +255,167 @@ function tmd_sanitize_val( $request = '', $input_type = 'text' ) {
         return apply_filters( 'tmd_get_sanitize_val', $retval, $request, $input_type );
     }
 
-if ( ! function_exists( 'tripmd_paging_nav' ) ) :
+/**
+ * Output the current tab index of a given form
+ *
+ * Use this function to handle the tab indexing of user facing forms within a
+ * template file. Calling this function will automatically increment the global
+ * tab index by default.
+ *
+ * @param int $auto_increment Optional. Default true. Set to false to prevent
+ *                             increment
+ */
+function tmd_tab_index( $auto_increment = true ) {
+    echo tmd_get_tab_index( $auto_increment );
+}
+
+    /**
+     * Output the current tab index of a given form
+     *
+     * Use this function to handle the tab indexing of user facing forms
+     * within a template file. Calling this function will automatically
+     * increment the global tab index by default.
+     *
+     * @uses apply_filters Allows return value to be filtered
+     * @uses tmd_get_tab_index If bbPress is active
+     * @param int $auto_increment Optional. Default true. Set to false to
+     *                             prevent the increment
+     * @return int The global tab index
+     */
+    function tmd_get_tab_index( $auto_increment = true ) {
+        if ( function_exists( 'tmd_get_tab_index' ) ) {
+            $tab_index = tmd_get_tab_index( $auto_increment );
+        } else {
+            global $tmd_tab_index;
+
+            if ( true === $auto_increment )
+                ++$tmd_tab_index;
+
+            $tab_index = $tmd_tab_index;
+        }
+
+        return apply_filters( 'tmd_get_tab_index', (int) $tab_index );
+    }
+
+/** Errors & Messages *********************************************************/
+
+/**
+ * Display possible errors & messages inside a template file
+ *
+ * @uses WP_Error bbPress::errors::get_error_codes() To get the error codes
+ * @uses WP_Error bbPress::errors::get_error_data() To get the error data
+ * @uses WP_Error bbPress::errors::get_error_messages() To get the error
+ *                                                       messages
+ * @uses is_wp_error() To check if it's a {@link WP_Error}
+ */
+function tmd_template_notices() {
+
+    // Bail if no notices or errors
+    if ( !tmd_has_errors() )
+        return;
+
+    // Define local variable(s)
+    $errors = $messages = array();
+
+    // Get bbPress
+    $tmd = tripmd();
+
+    // Loop through notices
+    foreach ( $tmd->errors->get_error_codes() as $code ) {
+
+        // Get notice severity
+        $severity = $tmd->errors->get_error_data( $code );
+
+        // Loop through notices and separate errors from messages
+        foreach ( $tmd->errors->get_error_messages( $code ) as $error ) {
+            if ( 'message' === $severity ) {
+                $messages[] = $error;
+            } else {
+                $errors[]   = $error;
+            }
+        }
+    }
+
+    // Display errors first...
+    if ( !empty( $errors ) ) : ?>
+
+        <div class="tmd-template-notice error">
+            <p>
+                <?php echo implode( "</p>\n<p>", $errors ); ?>
+            </p>
+        </div>
+
+    <?php endif;
+
+    // ...and messages last
+    if ( !empty( $messages ) ) : ?>
+
+        <div class="tmd-template-notice">
+            <p>
+                <?php echo implode( "</p>\n<p>", $messages ); ?>
+            </p>
+        </div>
+
+    <?php endif;
+}
+
+/** Title *********************************************************************/
+
+/**
+ * Filters wp_title to print a neat <title> tag based on what is being viewed.
+ *
+ * @param string $title Default title text for current view.
+ * @param string $sep Optional separator.
+ * @return string The filtered title.
+ */
+function tmd_wp_title( $title, $sep ) {
+    if ( is_feed() ) {
+        return $title;
+    }
+    
+    global $page, $paged;
+
+    // Add the blog name
+    $title .= get_bloginfo( 'name', 'display' );
+
+    // Add the blog description for the home/front page.
+    $site_description = get_bloginfo( 'description', 'display' );
+    if ( $site_description && ( is_home() || is_front_page() ) ) {
+        $title .= " $sep $site_description";
+    }
+
+    // Add a page number if necessary:
+    if ( $paged >= 2 || $page >= 2 ) {
+        $title .= " $sep " . sprintf( __( 'Page %s', 'tripmd' ), max( $paged, $page ) );
+    }
+
+    return $title;
+}
+add_filter( 'wp_title', 'tmd_wp_title', 10, 2 );
+
+/** _s ************************************************************************/
+
+/**
+ * Sets the authordata global when viewing an author archive.
+ *
+ * This provides backwards compatibility with
+ * http://core.trac.wordpress.org/changeset/25574
+ *
+ * It removes the need to call the_post() and rewind_posts() in an author
+ * template to print information about the author.
+ *
+ * @global WP_Query $wp_query WordPress Query object.
+ * @return void
+ */
+function tmd_setup_author() {
+    global $wp_query;
+
+    if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
+        $GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
+    }
+}
+add_action( 'wp', 'tmd_setup_author' );
+
 /**
  * Display navigation to next/previous set of posts when applicable.
  */
@@ -133,9 +441,7 @@ function tripmd_paging_nav() {
 	</nav><!-- .navigation -->
 	<?php
 }
-endif;
 
-if ( ! function_exists( 'tripmd_post_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  */
@@ -159,9 +465,7 @@ function tripmd_post_nav() {
 	</nav><!-- .navigation -->
 	<?php
 }
-endif;
 
-if ( ! function_exists( 'tripmd_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
@@ -189,7 +493,6 @@ function tripmd_posted_on() {
 		)
 	);
 }
-endif;
 
 /**
  * Returns true if a blog has more than 1 category.
@@ -231,6 +534,8 @@ function tripmd_category_transient_flusher() {
 }
 add_action( 'edit_category', 'tripmd_category_transient_flusher' );
 add_action( 'save_post',     'tripmd_category_transient_flusher' );
+
+/** TripMD ********************************************************************/
 
 function tmd_price( $price = 0 ) {
 	echo '$' . join( ' - ', array_map( 'number_format_i18n', explode( '-', $price ) ) );
@@ -298,3 +603,15 @@ function tmd_user_count() {
 	$result2 = $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}tmd_beta_users" );
 	return $result1['total_users'] + $result2;
 }
+
+/**
+ * Fix specialities order on archive page
+ */
+function tmd_specialities_order( $query ) {
+    if ( is_post_type_archive( 'speciality' ) ) {
+        $query->set( 'posts_per_page', -1 );
+        $query->set( 'order', 'ASC' );
+        $query->set( 'orderby', 'menu_order title' );
+    }
+}
+add_action( 'pre_get_posts', 'tmd_specialities_order' );
