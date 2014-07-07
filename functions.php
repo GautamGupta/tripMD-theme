@@ -155,12 +155,12 @@ final class TripMD {
         $this->basename     = 'tripmd'; // @todo Remove if not required
 
         // Path and URL
-        $this->base_dir     = trailingslashit( get_template_directory()     );
-        $this->base_url     = trailingslashit( get_template_directory_uri() );
+        $this->base_dir     = trailingslashit( get_template_directory()      );
+        $this->base_url     = trailingslashit( get_template_directory_uri()  );
 
         // Includes
-        $this->includes_dir = trailingslashit( $this->base_dir . 'inc'  );
-        $this->includes_url = trailingslashit( $this->base_url . 'inc'  );
+        $this->includes_dir = trailingslashit( $this->base_dir . 'includes'  );
+        $this->includes_url = trailingslashit( $this->base_url . 'includes'  );
 
         // Languages
         $this->lang_dir     = trailingslashit( $this->base_dir . 'languages' );
