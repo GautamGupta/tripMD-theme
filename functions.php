@@ -220,11 +220,6 @@ final class TripMD {
      */
     private function includes() {
         /**
-         * Implement the Custom Header feature.
-         */
-        // require $this->includes_dir . 'custom-header.php';
-
-        /**
          * Custom template tags for this theme.
          */
         require $this->includes_dir . 'template.php';
