@@ -35,17 +35,16 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  *           v--WordPress Actions        v--TripMD Sub-actions
  */
-add_action( 'after_setup_theme',        'tmd_loaded',                 10    );
+add_action( 'tmd_after_setup_actions',  'tmd_loaded',                 10    );
 add_action( 'init',                     'tmd_init',                   0     ); // Early for tmd_register
-add_action( 'parse_query',              'tmd_parse_query',            2     ); // Early for overrides
+// add_action( 'parse_query',           'tmd_parse_query',            2     ); // Early for overrides
 add_action( 'widgets_init',             'tmd_widgets_init',           10    );
 add_action( 'generate_rewrite_rules',   'tmd_generate_rewrite_rules', 10    );
 add_action( 'wp_enqueue_scripts',       'tmd_enqueue_scripts',        10    );
+add_action( 'wp',                       'tmd_setup_session',          10  );
 add_action( 'wp_head',                  'tmd_head',                   10    );
 add_action( 'wp_footer',                'tmd_footer',                 10    );
 add_action( 'set_current_user',         'tmd_setup_current_user',     10    );
-add_action( 'setup_theme',              'tmd_setup_theme',            10    );
-add_action( 'after_setup_theme',        'tmd_after_setup_theme',      10    );
 add_action( 'template_redirect',        'tmd_template_redirect',      8     ); // Before BuddyPress's 10 [BB2225]
 add_action( 'login_form_login',         'tmd_login_form_login',       10    );
 add_action( 'profile_update',           'tmd_profile_update',         10, 2 ); // user_id and old_user_data
@@ -63,12 +62,6 @@ add_action( 'tmd_loaded', 'tmd_constants',                 2  );
 add_action( 'tmd_loaded', 'tmd_boot_strap_globals',        4  );
 add_action( 'tmd_loaded', 'tmd_includes',                  6  );
 add_action( 'tmd_loaded', 'tmd_setup_globals',             8  );
-/*
-add_action( 'tmd_loaded', 'tmd_setup_option_filters',      10 );
-add_action( 'tmd_loaded', 'tmd_setup_user_option_filters', 12 );
-add_action( 'tmd_loaded', 'tmd_register_theme_packages',   14 );
-add_action( 'tmd_loaded', 'tmd_filter_user_roles_option',  16 );
-*/
 
 /**
  * tmd_init - Attached to 'init' above
@@ -82,27 +75,6 @@ add_action( 'tmd_init', 'tmd_add_rewrite_tags',  20  );
 add_action( 'tmd_init', 'tmd_add_rewrite_rules', 30  );
 add_action( 'tmd_init', 'tmd_add_permastructs',  40  );
 add_action( 'tmd_init', 'tmd_ready',             999 );
-
-/**
- * There is no action API for roles to use, so hook in immediately after
- * everything is included (including the theme's functions.php. This is after
- * the $wp_roles global is set but before $wp->init().
- *
- * If it's hooked in any sooner, role names may not be translated correctly.
- *
- * @link http://bbpress.trac.wordpress.org/ticket/2219
- *
- * This is kind of lame, but is all we have for now.
- */
-add_action( 'tmd_after_setup_theme', 'tmd_add_forums_roles', 1 );
-
-/**
- * When setting up the current user, make sure they have a role for the forums.
- *
- * This is multisite aware, thanks to tmd_filter_user_roles_option(), hooked to
- * the 'tmd_loaded' action above.
- */
-add_action( 'tmd_setup_current_user', 'tmd_set_current_user_default_role' );
 
 /**
  * tmd_register - Attached to 'init' above on 0 priority
@@ -157,6 +129,7 @@ add_action( 'deleted_post',   'tmd_deleted_forum'   );
  * 3. Editing forums, topics, replies, users, and tags
  * 4. TripMD specific AJAX requests
  */
+/*
 add_action( 'tmd_template_redirect', 'tmd_forum_enforce_blocked', 1  );
 add_action( 'tmd_template_redirect', 'tmd_forum_enforce_hidden',  1  );
 add_action( 'tmd_template_redirect', 'tmd_forum_enforce_private', 1  );
@@ -175,12 +148,7 @@ add_action( 'tmd_get_request', 'tmd_favorites_handler',           1  );
 add_action( 'tmd_get_request', 'tmd_subscriptions_handler',       1  );
 add_action( 'tmd_get_request', 'tmd_forum_subscriptions_handler', 1  );
 add_action( 'tmd_get_request', 'tmd_search_results_redirect',     10 );
-
-// Maybe convert the users password
-add_action( 'tmd_login_form_login', 'tmd_user_maybe_convert_pass' );
-
-add_action( 'tmd_activation', 'tmd_add_activation_redirect' );
-
+*/
 /**
  * Plugin Dependency
  *
@@ -202,10 +170,6 @@ add_action( 'tmd_activation', 'tmd_add_activation_redirect' );
 
 /**
  * Runs on TripMD activation
- *
- * @since TripMD (r2509)
- * @uses register_uninstall_hook() To register our own uninstall hook
- * @uses do_action() Calls 'tmd_activation' hook
  */
 function tmd_activation() {
     do_action( 'tmd_activation' );
@@ -213,9 +177,6 @@ function tmd_activation() {
 
 /**
  * Runs on TripMD deactivation
- *
- * @since TripMD (r2509)
- * @uses do_action() Calls 'tmd_deactivation' hook
  */
 function tmd_deactivation() {
     do_action( 'tmd_deactivation' );
@@ -223,9 +184,6 @@ function tmd_deactivation() {
 
 /**
  * Runs when uninstalling TripMD
- *
- * @since TripMD (r2509)
- * @uses do_action() Calls 'tmd_uninstall' hook
  */
 function tmd_uninstall() {
     do_action( 'tmd_uninstall' );
@@ -235,9 +193,6 @@ function tmd_uninstall() {
 
 /**
  * Main action responsible for constants, globals, and includes
- *
- * @since TripMD (r2599)
- * @uses do_action() Calls 'tmd_loaded'
  */
 function tmd_loaded() {
     do_action( 'tmd_loaded' );
@@ -245,9 +200,6 @@ function tmd_loaded() {
 
 /**
  * Setup constants
- *
- * @since TripMD (r2599)
- * @uses do_action() Calls 'tmd_constants'
  */
 function tmd_constants() {
     do_action( 'tmd_constants' );
@@ -255,9 +207,6 @@ function tmd_constants() {
 
 /**
  * Setup globals BEFORE includes
- *
- * @since TripMD (r2599)
- * @uses do_action() Calls 'tmd_boot_strap_globals'
  */
 function tmd_boot_strap_globals() {
     do_action( 'tmd_boot_strap_globals' );
@@ -266,7 +215,6 @@ function tmd_boot_strap_globals() {
 /**
  * Include files
  *
- * @since TripMD (r2599)
  * @uses do_action() Calls 'tmd_includes'
  */
 function tmd_includes() {
@@ -275,9 +223,6 @@ function tmd_includes() {
 
 /**
  * Setup globals AFTER includes
- *
- * @since TripMD (r2599)
- * @uses do_action() Calls 'tmd_setup_globals'
  */
 function tmd_setup_globals() {
     do_action( 'tmd_setup_globals' );
@@ -285,9 +230,6 @@ function tmd_setup_globals() {
 
 /**
  * Register any objects before anything is initialized
- *
- * @since TripMD (r4180)
- * @uses do_action() Calls 'tmd_register'
  */
 function tmd_register() {
     do_action( 'tmd_register' );
@@ -295,8 +237,6 @@ function tmd_register() {
 
 /**
  * Initialize any code after everything has been loaded
- *
- * @uses do_action() Calls 'tmd_init'
  */
 function tmd_init() {
     do_action( 'tmd_init' );
@@ -304,8 +244,6 @@ function tmd_init() {
 
 /**
  * Initialize widgets
- *
- * @uses do_action() Calls 'tmd_widgets_init'
  */
 function tmd_widgets_init() {
     do_action( 'tmd_widgets_init' );
@@ -332,8 +270,6 @@ function tmd_setup_current_user() {
 
 /**
  * Load translations for current language
- *
- * @uses do_action() Calls 'tmd_load_textdomain'
  */
 function tmd_load_textdomain() {
     do_action( 'tmd_load_textdomain' );
@@ -341,8 +277,6 @@ function tmd_load_textdomain() {
 
 /**
  * Setup the post types
- *
- * @uses do_action() Calls 'tmd_register_post_type'
  */
 function tmd_register_post_types() {
     do_action( 'tmd_register_post_types' );
@@ -350,8 +284,6 @@ function tmd_register_post_types() {
 
 /**
  * Setup the post statuses
- *
- * @uses do_action() Calls 'tmd_register_post_statuses'
  */
 function tmd_register_post_statuses() {
     do_action( 'tmd_register_post_statuses' );
@@ -359,46 +291,27 @@ function tmd_register_post_statuses() {
 
 /**
  * Register the built in TripMD taxonomies
- *
- * @uses do_action() Calls 'tmd_register_taxonomies'
  */
 function tmd_register_taxonomies() {
     do_action( 'tmd_register_taxonomies' );
 }
 
 /**
- * Register the default TripMD views
- *
- * @uses do_action() Calls 'tmd_register_views'
- */
-/*
-function tmd_register_views() {
-    do_action( 'tmd_register_views' );
-}
-
-/**
- * Register the default TripMD shortcodes
- *
- * @uses do_action() Calls 'tmd_register_shortcodes'
- */
-/*
-function tmd_register_shortcodes() {
-    do_action( 'tmd_register_shortcodes' );
-}
-
-/**
  * Enqueue TripMD specific CSS and JS
- *
- * @uses do_action() Calls 'tmd_enqueue_scripts'
  */
 function tmd_enqueue_scripts() {
     do_action( 'tmd_enqueue_scripts' );
 }
 
 /**
+ * Setup session
+ */
+function tmd_setup_session() {
+    do_action( 'tmd_setup_session' );
+}
+
+/**
  * Add the TripMD-specific rewrite tags
- *
- * @uses do_action() Calls 'tmd_add_rewrite_tags'
  */
 function tmd_add_rewrite_tags() {
     do_action( 'tmd_add_rewrite_tags' );
@@ -406,8 +319,6 @@ function tmd_add_rewrite_tags() {
 
 /**
  * Add the TripMD-specific rewrite rules
- *
- * @uses do_action() Calls 'tmd_add_rewrite_rules'
  */
 function tmd_add_rewrite_rules() {
     do_action( 'tmd_add_rewrite_rules' );
@@ -415,8 +326,6 @@ function tmd_add_rewrite_rules() {
 
 /**
  * Add the TripMD-specific permalink structures
- *
- * @uses do_action() Calls 'tmd_add_permastructs'
  */
 function tmd_add_permastructs() {
     do_action( 'tmd_add_permastructs' );
@@ -424,8 +333,6 @@ function tmd_add_permastructs() {
 
 /**
  * Add the TripMD-specific login forum action
- *
- * @uses do_action() Calls 'tmd_login_form_login'
  */
 function tmd_login_form_login() {
     do_action( 'tmd_login_form_login' );
@@ -478,33 +385,6 @@ function tmd_template_redirect() {
 }
 
 /** Theme Helpers *************************************************************/
-
-/**
- * The main action used for executing code before the theme has been setup
- *
- * @uses do_action()
- */
-function tmd_register_theme_packages() {
-    do_action( 'tmd_register_theme_packages' );
-}
-
-/**
- * The main action used for executing code before the theme has been setup
- *
- * @uses do_action()
- */
-function tmd_setup_theme() {
-    do_action( 'tmd_setup_theme' );
-}
-
-/**
- * The main action used for executing code after the theme has been setup
- *
- * @uses do_action()
- */
-function tmd_after_setup_theme() {
-    do_action( 'tmd_after_setup_theme' );
-}
 
 /**
  * The main action used for handling theme-side POST requests
@@ -592,28 +472,7 @@ function tmd_template_include( $template = '' ) {
  * @deprecated
  * @param WP_Rewrite $wp_rewrite
  * @uses do_action() Calls 'tmd_generate_rewrite_rules' with {@link WP_Rewrite}
- *
+ */
 function tmd_generate_rewrite_rules( $wp_rewrite ) {
     do_action_ref_array( 'tmd_generate_rewrite_rules', array( &$wp_rewrite ) );
-}
-
-/**
- * Filter the allowed themes list for TripMD specific themes
- *
- * @uses apply_filters() Calls 'tmd_allowed_themes' with the allowed themes list
- */
-function tmd_allowed_themes( $themes ) {
-    return apply_filters( 'tmd_allowed_themes', $themes );
-}
-
-/**
- * Maps forum/topic/reply caps to built in WordPress caps
- *
- * @param array $caps Capabilities for meta capability
- * @param string $cap Capability name
- * @param int $user_id User id
- * @param mixed $args Arguments
- */
-function tmd_map_meta_caps( $caps = array(), $cap = '', $user_id = 0, $args = array() ) {
-    return apply_filters( 'tmd_map_meta_caps', $caps, $cap, $user_id, $args );
 }

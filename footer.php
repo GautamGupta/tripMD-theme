@@ -28,7 +28,7 @@
 						if ( current_user_can( 'edit_users' ) && defined( 'WP_DEBUG' ) && WP_DEBUG == true ) {
 							echo '<br />';
 							foreach ( array( 'speciality', 'procedure', 'hospital', 'doctor' ) as $key ) {
-								echo $key . ' => ' . tripmd_session_get_id( $key ) . '; ';
+								echo $key . ' => ' . tripmd()->get_session( $key ) . '; ';
 							}
 						}
 						?></p>

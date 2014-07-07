@@ -71,7 +71,6 @@ final class TripMD {
      * @return The one true TripMD
      */
     public static function instance() {
-
         // Store the instance locally to avoid private static replication
         static $instance = null;
 
@@ -220,6 +219,11 @@ final class TripMD {
      */
     private function includes() {
         /**
+         * Hooks
+         */
+        require $this->includes_dir . 'hooks.php';
+
+        /**
          * Custom template tags for this theme.
          */
         require $this->includes_dir . 'template.php';
@@ -314,22 +318,18 @@ final class TripMD {
         }
         */
 
-        add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
-        add_action( 'wp', array( $this, 'session' ) );
-
         // Array of core actions
         $actions = array(
+            'load_textdomain',          // Load textdomain (tripmd)
             'setup_current_user',       // Setup currently logged in user
             'register_post_types',      // Register post types (forum|topic|reply)
             'register_post_statuses',   // Register post statuses (closed|spam|orphan|hidden)
             'register_taxonomies',      // Register taxonomies (topic-tag)
-            'register_shortcodes',      // Register shortcodes (bbp-login)
-            'register_views',           // Register the views (no-replies)
-            'register_theme_packages',  // Register bundled theme packages (bbp-theme-compat/bbp-themes)
-            'load_textdomain',          // Load textdomain (tripmd)
             'add_rewrite_tags',         // Add rewrite tags (view|user|edit|search)
             'add_rewrite_rules',        // Generate rewrite rules (view|edit|paged|search)
-            'add_permastructs'          // Add permalink structures (view|user|search)
+            'add_permastructs',         // Add permalink structures (view|user|search)
+            'enqueue_scripts',          // Enqueue necessary styles and scripts
+            'setup_session',            // Setup session
         );
 
         // Add the actions
@@ -415,7 +415,7 @@ final class TripMD {
             'rewrite'             => $rewrite,
             'capability_type'     => 'page',
         );
-        register_post_type( $this->speciality_post_type, $args );
+        register_post_type( tripmd()->speciality_post_type, $args );
 
         $labels = array(
             'name'                => _x( 'Procedures', 'Post Type General Name', 'tripmd' ),
@@ -458,7 +458,7 @@ final class TripMD {
             'rewrite'             => $rewrite,
             'capability_type'     => 'page',
         );
-        register_post_type( $this->procedure_post_type, $args );
+        register_post_type( tripmd()->procedure_post_type, $args );
 
         $labels = array(
             'name'                => _x( 'Hospitals', 'Post Type General Name', 'tripmd' ),
@@ -501,7 +501,7 @@ final class TripMD {
             'rewrite'             => $rewrite,
             'capability_type'     => 'page',
         );
-        register_post_type( $this->hospital_post_type, $args );
+        register_post_type( tripmd()->hospital_post_type, $args );
 
         $labels = array(
             'name'                => _x( 'Doctors', 'Post Type General Name', 'tripmd' ),
@@ -544,7 +544,7 @@ final class TripMD {
             'rewrite'             => $rewrite,
             'capability_type'     => 'page',
         );
-        register_post_type( $this->doctor_post_type, $args );
+        register_post_type( tripmd()->doctor_post_type, $args );
 
         $labels = array(
             'name'                => _x( 'Rooms', 'Post Type General Name', 'tripmd' ),
@@ -587,7 +587,7 @@ final class TripMD {
             'rewrite'             => $rewrite,
             'capability_type'     => 'page',
         );
-        register_post_type( $this->room_post_type, $args );
+        register_post_type( tripmd()->room_post_type, $args );
 
 
         $labels = array(
@@ -631,7 +631,7 @@ final class TripMD {
             'rewrite'             => $rewrite,
             'capability_type'     => 'page',
         );
-        register_post_type( $this->consultation_post_type, $args );
+        register_post_type( tripmd()->consultation_post_type, $args );
     }
 
     /**
@@ -766,7 +766,7 @@ final class TripMD {
         */
 
         // Hospital links should be with root
-        add_rewrite_rule( '([^/]+)$', 'index.php?' . $this->hospital_post_type . '=$matches[1]', $priority );
+        add_rewrite_rule( '([^/]+)$', 'index.php?' . tripmd()->hospital_post_type . '=$matches[1]', $priority );
     }
 
     /**
@@ -826,7 +826,7 @@ final class TripMD {
     /**
      * Enqueue scripts and styles.
      */
-    public function scripts() {
+    public static function enqueue_scripts() {
         wp_enqueue_style( 'tripmd', get_template_directory_uri() . '/css/style.css' );
         wp_enqueue_style( 'unsemantic', get_template_directory_uri() . '/css/unsemantic.css' );
         wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css' );
@@ -880,7 +880,7 @@ final class TripMD {
     /**
      * Embed script in the footer
      */
-    function footer() {
+    public static function footer() {
 
         // Fancybox jQuery script for clinic signup/login
         echo '<script type="text/javascript">
@@ -905,8 +905,8 @@ final class TripMD {
      * 
      * @uses WP_Session WP Session plugin
      */
-    function session() {
-        if ( !is_a( $this->session, 'WP_Session' ) )
+    public static function setup_session() {
+        if ( !is_a( tripmd()->session, 'WP_Session' ) )
             return;
 
         // Increase WP_Session time
@@ -918,20 +918,20 @@ final class TripMD {
 
         switch ( get_post_type() ) {
             case 'speciality' :
-                $this->session['speciality_id'] = get_the_ID();
+                tripmd()->session['speciality_id'] = get_the_ID();
                 break;
 
             case 'procedure' :
-                $this->session['speciality_id'] = array_shift( get_post_ancestors( get_the_ID() ) );
-                $this->session['procedure_id']  = get_the_ID();
+                tripmd()->session['speciality_id'] = array_shift( get_post_ancestors( get_the_ID() ) );
+                tripmd()->session['procedure_id']  = get_the_ID();
                 break;
 
             case 'hospital' :
-                $this->session['hospital_id'] = get_the_ID();
+                tripmd()->session['hospital_id'] = get_the_ID();
                 break;
 
             case 'doctor' :
-                $this->session['doctor_id'] = get_the_ID();
+                tripmd()->session['doctor_id'] = get_the_ID();
                 break;
         }
     }
@@ -943,11 +943,11 @@ final class TripMD {
      * @param string $key
      * @return int ID
      */
-    function get_session( $key = '' ) {
-        if ( !is_a( $this->session, 'WP_Session' ) || !in_array( $key, array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) )
+    public function get_session( $key = '' ) {
+        if ( !is_a( tripmd()->session, 'WP_Session' ) || !in_array( $key, array( 'speciality', 'procedure', 'hospital', 'doctor' ) ) )
             return -1;
 
-        return $this->session[$key . '_id'];
+        return tripmd()->session[$key . '_id'];
     }
 }
 
