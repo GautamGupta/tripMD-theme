@@ -182,6 +182,9 @@ final class TripMD {
         $this->private_status_id = 'private';
         $this->trash_status_id   = 'trash';
 
+        // Other identifiers
+        $this->consultation_video_id = 'tmd_video';
+
         /** Queries ***********************************************************/
 
         $this->current_speciality_id   = 0; // Current speciality id
@@ -589,7 +592,6 @@ final class TripMD {
         );
         register_post_type( tripmd()->room_post_type, $args );
 
-
         $labels = array(
             'name'                => _x( 'Consultation', 'Post Type General Name', 'tripmd' ),
             'singular_name'       => _x( 'Consultation', 'Post Type Singular Name', 'tripmd' ),
@@ -660,6 +662,7 @@ final class TripMD {
      * @uses add_rewrite_tag() To add the rewrite tags
      */
     public static function add_rewrite_tags() {
+        add_rewrite_tag( '%' . tripmd()->consultation_video_id . '%', '([^/]+)' ); // View Page tag
         /*
         add_rewrite_tag( '%' . tmd_get_search_rewrite_id()             . '%', '([^/]+)'   ); // Search Results tag
         add_rewrite_tag( '%' . tmd_get_user_rewrite_id()               . '%', '([^/]+)'   ); // User Profile tag
@@ -681,6 +684,9 @@ final class TripMD {
         
         // Add rules to top or bottom?
         $priority           = 'bottom';
+
+        // Rewrite rule matches used repeatedly below
+        $root_rule    = '/([^/]+)/?$';
 
         /*
         // Single Slugs
@@ -716,7 +722,6 @@ final class TripMD {
         $user_reps_id       = tmd_get_user_replies_rewrite_id();
 
         // Rewrite rule matches used repeatedly below
-        $root_rule    = '/([^/]+)/?$';
         $feed_rule    = '/([^/]+)/' . $feed_slug  . '/?$';
         $edit_rule    = '/([^/]+)/' . $edit_slug  . '/?$';
         $paged_rule   = '/([^/]+)/' . $paged_slug . '/?([0-9]{1,})/?$';
@@ -764,6 +769,9 @@ final class TripMD {
         add_rewrite_rule( $search_slug . $search_paged_rule, 'index.php?' . $paged_id .'=$matches[1]', $priority );
         add_rewrite_rule( $search_slug . $search_root_rule,  'index.php?' . $search_id,                $priority );
         */
+        
+        // Video consultation
+        add_rewrite_rule( 'video' . $root_rule,  'index.php?' . tripmd()->consultation_video_id . '=$matches[1]', $priority );
 
         // Hospital links should be with root
         add_rewrite_rule( '([^/]+)$', 'index.php?' . tripmd()->hospital_post_type . '=$matches[1]', $priority );
@@ -777,6 +785,20 @@ final class TripMD {
      * - Search
      */
     public static function add_permastructs() {
+
+        $video_id = tripmd()->consultation_video_id;
+
+        // Video Consultation Permastruct
+        add_permastruct( $video_id, 'video/%' . $video_id . '%', array(
+            'with_front'  => false,
+            'ep_mask'     => EP_NONE,
+            'paged'       => false,
+            'feed'        => false,
+            'forcomments' => false,
+            'walk_dirs'   => true,
+            'endpoints'   => false,
+        ) );
+
         /*
         // Get unique ID's
         $user_id     = tmd_get_user_rewrite_id();
@@ -790,17 +812,6 @@ final class TripMD {
 
         // User Permastruct
         add_permastruct( $user_id, $user_slug . '/%' . $user_id . '%', array(
-            'with_front'  => false,
-            'ep_mask'     => EP_NONE,
-            'paged'       => false,
-            'feed'        => false,
-            'forcomments' => false,
-            'walk_dirs'   => true,
-            'endpoints'   => false,
-        ) );
-
-        // Topic View Permastruct
-        add_permastruct( $view_id, $view_slug . '/%' . $view_id . '%', array(
             'with_front'  => false,
             'ep_mask'     => EP_NONE,
             'paged'       => false,

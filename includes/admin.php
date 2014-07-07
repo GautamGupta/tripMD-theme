@@ -6,7 +6,7 @@
 
 // Add the meta box callback function
 function tmd_admin_init(){
-    foreach ( tmd_post_types() as $post_type )
+    foreach ( tmd_get_post_types() as $post_type )
         add_meta_box( 'tmd_listing_parent_id', __( 'Listing Parent ID', 'tripmd' ), 'tmd_set_listing_parent_id', $post_type, 'normal', 'low' );
 }
 add_action( 'admin_init', 'tmd_admin_init' );
@@ -35,7 +35,7 @@ function tmd_save_listing_parent_id( $post_id ) {
     global $post;
 
     // make sure data came from our meta box
-    if ( !isset( $_POST['parent_id'] ) || !in_array( $_POST['post_type'], tmd_post_types() )
+    if ( !isset( $_POST['parent_id'] ) || !in_array( $_POST['post_type'], tmd_get_post_types() )
         || empty( $_POST['parent_id_noncename'] ) || !wp_verify_nonce( $_POST['parent_id_noncename'], __FILE__ ) ) return $post_id;
     
     update_post_meta( $post_id, 'parent_id', $_POST['parent_id'] );
