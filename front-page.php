@@ -187,11 +187,11 @@ get_header(); ?>
 
             <div class="grid-container">
 
-                <?php // if ( defined( 'TMD_DEBUG' ) || isset( $_GET['ta'] ) ) : ?>
+                <?php if ( defined( 'TMD_DEBUG' ) || isset( $_GET['ta'] ) ) : ?>
                     <div class="tmd-search-container aligncenter grid-100">
                         <input type="text" name="s" id="s" class="tmd-search" placeholder="<?php _e( 'Search for a treatment or hospital...', 'tripmd' ); ?>" autocomplete="off" data-provide="typeahead" />
                     </div>
-                <?php // endif; ?>
+                <?php endif; ?>
 
 
                 <span id="how"></span>
@@ -264,7 +264,8 @@ get_header(); ?>
                             <img src="<?php echo get_template_directory_uri(); ?>/img/home-f4.png" alt="">
                         </div>
 
-                        <a class="big fat green button waitlist push-40" href="<?php echo home_url( '/invitation' ); ?>">Get early access</a>
+                        <a class="big fat green button waitlist" href="<?php echo home_url( '/invitation' ); ?>"><?php _e( 'Get early access', 'tripmd' ); ?></a>
+                        <p class="ohho"><?php _e( 'to our trusted network of doctors', 'tripmd' ); ?></p>
 
                     </div>
 
@@ -323,7 +324,8 @@ get_header(); ?>
 
                 </div>
 
-                <a class="big fat green button waitlist push-40" href="<?php echo home_url( '/invitation' ); ?>">Get early access</a>
+                <a class="big fat green button waitlist" href="<?php echo home_url( '/invitation' ); ?>"><?php _e( 'Get early access', 'tripmd' ); ?></a>
+                <p class="ohho"><?php _e( 'to our trusted network of doctors', 'tripmd' ); ?></p>
 
             </div>
 

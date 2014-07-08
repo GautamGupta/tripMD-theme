@@ -495,16 +495,6 @@ body.beta input::before {
   content: "\f007";
   font-family: FontAwesome;
 }
-body.beta p.ohho {
-  text-align: center;
-  color: #9e9e9e;
-  font-size: 85%;
-  margin: 0;
-  margin-bottom: -12px;
-  margin-top: -10px;
-  font-family: 'freight-text-pro';
-  font-style: italic;
-}
 body.beta .sub {
   font-family: 'freight-text-pro';
   font-style: italic;
@@ -794,7 +784,7 @@ body.beta .green-t {
 }
 
 .how {
-  margin-top: calc(100vh - 50px);
+  margin-top: calc(100vh - 100px);
 }
 
 .iu {
@@ -854,9 +844,13 @@ section.mock .mock-bullets {
   font-size: 125%;
 }
 
-.waitlist.button {
-  margin: 20px 0 -10px 0;
+.button.waitlist {
+  margin: 20px auto 20px auto;
   font-size: 90%;
+  width: 206px;
+  display: block;
+  height: 58px;
+  clear: both;
 }
 
 #wpadminbar {
