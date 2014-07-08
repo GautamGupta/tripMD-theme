@@ -361,7 +361,7 @@ add_action( 'init', 'tmd_register_hospital_handler' );
 function tmd_invitation_register_handler() {
     global $wpdb;
 
-    if ( !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_beta_register_nonce' ) )
+    if ( !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_invitation_register_nonce' ) )
         tmd_add_error( 'nonce', __( 'Are you sure you\'re doing that?', 'tripmd' ) );
 
     if ( empty( $_POST['tmd_bs_name'] ) )

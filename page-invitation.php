@@ -50,7 +50,7 @@
         				else : $dont_display_form = 1; ?>
 							<p class="success">
 								<?php _e( 'Thank you for submitting your medical enquiry. Our medical expert will get in touch with you within the next 24 hours to discuss your options in more detail.', 'tripmd' ); ?><br /><br />
-								<?php _e( 'If you prefer, you can call us 24x7 at +1-415-528-8650 or email us at <a href="mailto:help@tripmd.com" class="green-t">help@tripmd.com</a>.', 'tripmd' ); ?>
+								<?php _e( 'If you prefer, you can call us 24x7 at +1-415-528-8650 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?>
 							</p>
 						<?php endif;
 					endif; ?>
@@ -61,7 +61,7 @@
 
 					<p>Find out if our services are right for you by sending an inquiry.<?php /* <a href="http://tripmd.com" class="green-t">Learn more</a>. */ ?></p>
 
-					<?php /* <p class="sub">In case you have any questions, please feel free to contact us at <a href="mailto:help@tripmd.com" class="green-t">help@tripmd.com</a>.</p> */ ?>
+					<?php /* <p class="sub">In case you have any questions, please feel free to contact us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.</p> */ ?>
 
 					<div class="form">
 
@@ -88,11 +88,12 @@
 							</div>
 
 	                        <input type="hidden" name="action" value="invitation_register" />
-	                        <?php wp_nonce_field( 'tmd_beta_register_nonce' ); ?>
+	                        <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
 
-							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();">&#10003; <?php _e( 'Ask TripMD', 'tripmd' ); ?></a>
+							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();"><?php _e( 'Get more info', 'tripmd' ); ?></a>
 							<?php /* <p class="ohho">Just <b><?php echo max( 14, 100 - tmd_user_count() ); ?></b> spots remaining!</p> */ ?>
-							<p class="ohho"><?php _e( 'Our medical experts are available 24x7 to answer your questions. Call us at +1-415-528-8650.', 'tripmd' ); ?></p>
+							<p class="ohho"><?php _e( 'Our medical experts are available 24x7 to answer your questions.', 'tripmd' ); ?>
+							<?php _e( 'Reach us at +1-415-528-8650 or <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?></p>
 
 							<input type="submit" hidden>
 
