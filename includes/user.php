@@ -358,10 +358,7 @@ add_action( 'init', 'tmd_register_hospital_handler' );
 /**
  * Beta signup handler for /invitation
  */
-function tmd_register_beta_handler() {
-    if ( empty( $_POST['tmd_beta_register'] ) )
-        return;
-
+function tmd_invitation_register_handler() {
     global $wpdb;
 
     if ( !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_beta_register_nonce' ) )
@@ -393,7 +390,6 @@ function tmd_register_beta_handler() {
     if ( empty( $registered ) )
         tmd_add_error( 'error-registration', __( 'There was a problem registering you. Please try again or contact us at help@tripmd.com.', 'tripmd' ) );
 }
-add_action( 'pre_get_posts', 'tmd_register_beta_handler' );
 
 function tmd_consultation_document_upload() {
     if ( !wp_verify_nonce( $_GET['nonce'], 'document_upload' ) ) {

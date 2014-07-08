@@ -125,22 +125,24 @@ add_action( 'deleted_post',   'tmd_deleted_forum'   );
  * TripMD needs to redirect the user around in a few different circumstances:
  *
  * 1. POST and GET requests
- * 2. Accessing private or hidden content (forums/topics/replies)
- * 3. Editing forums, topics, replies, users, and tags
+ * 2. Accessing private or hidden content (consultations)
+ * 3. Editing profiles, invitation page submission, etc.
  * 4. TripMD specific AJAX requests
  */
+add_action( 'tmd_template_redirect', 'tmd_post_request',          10 );
+add_action( 'tmd_template_redirect', 'tmd_get_request',           10 );
 /*
 add_action( 'tmd_template_redirect', 'tmd_forum_enforce_blocked', 1  );
 add_action( 'tmd_template_redirect', 'tmd_forum_enforce_hidden',  1  );
 add_action( 'tmd_template_redirect', 'tmd_forum_enforce_private', 1  );
-add_action( 'tmd_template_redirect', 'tmd_post_request',          10 );
-add_action( 'tmd_template_redirect', 'tmd_get_request',           10 );
 add_action( 'tmd_template_redirect', 'tmd_check_user_edit',       10 );
+*/
 
 // Theme-side POST requests
-add_action( 'tmd_post_request', 'tmd_do_ajax',                1  );
-add_action( 'tmd_post_request', 'tmd_edit_topic_tag_handler', 1  );
+// add_action( 'tmd_post_request', 'tmd_do_ajax',                1  );
+add_action( 'tmd_post_request_invitation_register', 'tmd_invitation_register_handler', 1 );
 
+/*
 // Theme-side GET requests
 add_action( 'tmd_get_request', 'tmd_toggle_topic_handler',        1  );
 add_action( 'tmd_get_request', 'tmd_toggle_reply_handler',        1  );
@@ -149,6 +151,7 @@ add_action( 'tmd_get_request', 'tmd_subscriptions_handler',       1  );
 add_action( 'tmd_get_request', 'tmd_forum_subscriptions_handler', 1  );
 add_action( 'tmd_get_request', 'tmd_search_results_redirect',     10 );
 */
+
 /**
  * Plugin Dependency
  *
