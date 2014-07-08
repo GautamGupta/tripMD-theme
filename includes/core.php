@@ -88,9 +88,7 @@ function tmd_add_error( $code = '', $message = '', $data = '' ) {
  * @usese WP_Error::get_error_codes()
  */
 function tmd_has_errors() {
-	$has_errors = tripmd()->errors->get_error_codes() ? true : false;
-
-	return apply_filters( 'tmd_has_errors', $has_errors, tripmd()->errors );
+	return tripmd()->errors->get_error_codes() ? true : false;
 }
 
 /**
@@ -102,7 +100,7 @@ function tmd_has_errors() {
  * @return array Messages
  */
 function tmd_get_errors() {
-    tripmd()->get_error_messages();
+    return tripmd()->errors->get_error_messages();
 }
 
 /** Post Statuses *************************************************************/
