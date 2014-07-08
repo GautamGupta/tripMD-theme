@@ -847,10 +847,11 @@ section.mock .mock-bullets {
 .button.waitlist {
   margin: 20px auto 20px auto;
   font-size: 90%;
-  width: 206px;
   display: block;
   height: 58px;
   clear: both;
+  width: 210px;
+  text-align: center;
 }
 
 #wpadminbar {
