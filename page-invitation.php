@@ -59,7 +59,7 @@
 
 				<?php if ( empty( $dont_display_form ) ) : ?>
 
-					<p>Find out if our services are right for you by sending an inquiry.<?php /* <a href="http://tripmd.com" class="green-t">Learn more</a>. */ ?></p>
+					<p><?php _e( 'Find out if our services are right for you by sending an inquiry.' ,'tripmd' ); ?><?php /* <a href="http://tripmd.com" class="green-t">Learn more</a>. */ ?></p>
 
 					<?php /* <p class="sub">In case you have any questions, please feel free to contact us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.</p> */ ?>
 
