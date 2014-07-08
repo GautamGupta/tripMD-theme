@@ -681,6 +681,15 @@ body.beta .green-t {
   margin: 0 auto 30px auto;
 }
 
+.slider a.link-how {
+  opacity: 0.9;
+  margin-right: 10px;
+}
+
+.slider a.link-invitation {
+  margin-left: 10px;
+}
+
 .contentSlider {
   width: 100%;
   margin-top: 40px;

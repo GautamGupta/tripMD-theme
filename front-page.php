@@ -89,7 +89,8 @@ get_header(); ?>
                         <div class="centered">
                             <h2><?php _e( 'Get treatment by trusted doctors worldwide', 'tripmd' ); ?></h2>
                             <h3><?php _e( 'Receive quality medical care from a trusted doctor at a world class medical center', 'tripmd' ); ?></h3>
-                            <a class="big fat green button" href="#how">See How it Works</a>
+                            <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a>
+                            <a class="big fat green button link-invitation" href="/invitation"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
                         </div>
                     </div>
 
@@ -108,7 +109,8 @@ get_header(); ?>
                         <div class="centered">
                             <h2>Tried and trusted by the international community</h2>
                             <h3>Access healthcare options that expatriates and diplomats use in our featured cities.</h3>
-                            <a class="big fat green button" href="#how">See How it Works</a>
+                            <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a>
+                            <a class="big fat green button link-invitation" href="/invitation"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
                         </div>
                     </div>
 
@@ -128,7 +130,8 @@ get_header(); ?>
                         <div class="centered">
                             <h2>Consultations and follow-ups made easy.</h2>
                             <h3>Stay connected with your doctor no matter where you are in the world.</h3>
-                            <a class="big fat green button" href="#how">See How it Works</a>
+                            <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a>
+                            <a class="big fat green button link-invitation" href="/invitation"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
                         </div>
                     </div>
 
@@ -147,7 +150,8 @@ get_header(); ?>
                         <div class="centered">
                             <h2>Connect with other patients.</h2>
                             <h3>Get in touch with our community of patients who have undergone surgeries abroad and hear about their experiences.</h3>
-                            <a class="big fat green button" href="#how">See How it Works</a>
+                            <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a>
+                            <a class="big fat green button link-invitation" href="/invitation"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
                         </div>
                     </div>
 
@@ -166,7 +170,8 @@ get_header(); ?>
                         <div class="centered">
                             <h2>Travel and stay in comfort</h2>
                             <h3>Book travel and accommodation using our easy-to-use web and mobile app, so you can focus on your recovery.</h3>
-                            <a class="big fat green button" href="#how">See How it Works</a>
+                            <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a>
+                            <a class="big fat green button link-invitation" href="/invitation"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
                         </div>
                     </div>
 
