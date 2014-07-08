@@ -938,7 +938,7 @@ final class TripMD {
                 break;
 
             case 'procedure' :
-                tripmd()->session['speciality_id'] = array_shift( get_post_ancestors( get_the_ID() ) );
+                tripmd()->session['speciality_id'] = get_post_ancestors( get_the_ID() )[0];
                 tripmd()->session['procedure_id']  = get_the_ID();
                 break;
 
