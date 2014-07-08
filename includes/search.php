@@ -1,15 +1,15 @@
 <?php
 /**
- * tripMD Homepage autocomplete search functionality
+ * TripMD autocomplete search functionality
  * 
  * Fork of Search Autocomplete plugin
  * http://wordpress.org/extend/plugins/search-autocomplete/
  *
- * @package tripMD
- * @subpackage Typeahead
+ * @package TripMD
+ * @subpackage Search
  */
 
-class tMDTypeaheadSearch {
+class TMD_Search {
 	var $options = array(
 		'fieldName'          => '#s',
 		'minimum'            => 1,
@@ -121,4 +121,4 @@ class tMDTypeaheadSearch {
 	}
 }
 
-$tmd_typeahead_search = new tMDTypeaheadSearch();
+tripmd()->search = new TMD_Search();
