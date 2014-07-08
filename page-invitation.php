@@ -42,24 +42,26 @@
 					</div>
 
 					<?php
-					if ( !empty( $_POST['tmd_beta_register'] ) ) :
+					if ( did_action( 'tmd_post_request_invitation_register' ) ) :
 						if ( tmd_has_errors() ) :
 							foreach ( tmd_get_errors() as $tmd_error ) : ?>
         						<p class="error"><?php _e( '<i class="fa warn fa-exclamation-triangle"></i>', 'tripmd' ); ?> <?php echo $tmd_error; ?></p>
         					<?php endforeach;
         				else : $dont_display_form = 1; ?>
-							<p class="success"><?php _e( 'You\'ve secured a spot in our exclusive early access! You\'ll shortly receive an email with further information.' ); ?></p>
+							<p class="success">
+								<?php _e( 'Thank you for submitting your medical enquiry. Our medical expert will get in touch with you within the next 24 hours to discuss your options in more detail.', 'tripmd' ); ?><br /><br />
+								<?php _e( 'If you prefer, you can call us 24x7 at +1-415-528-8650 or email us at <a href="mailto:help@tripmd.com" class="green-t">help@tripmd.com</a>.', 'tripmd' ); ?>
+							</p>
 						<?php endif;
 					endif; ?>
-
-					<p>tripMD helps patients connect with trusted world-class healthcare overseas at affordable prices.<br />
-					<a href="http://tripmd.com" class="green-t">Learn more</a>.</p>
-
-					<p class="sub">In case you have any questions, please feel free to contact us at <a href="mailto:help@tripmd.com" class="green-t">help@tripmd.com</a>.</p>
 
 				</div>
 
 				<?php if ( empty( $dont_display_form ) ) : ?>
+
+					<p>Find out if our services are right for you by sending an inquiry.<?php /* <a href="http://tripmd.com" class="green-t">Learn more</a>. */ ?></p>
+
+					<?php /* <p class="sub">In case you have any questions, please feel free to contact us at <a href="mailto:help@tripmd.com" class="green-t">help@tripmd.com</a>.</p> */ ?>
 
 					<div class="form">
 
@@ -81,15 +83,16 @@
 							</div>
 							
 							<div class="treatment fld">
-								<input type="text" name="tmd_bs_condition" placeholder="Diagnosed Condition" class="treatment field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : ''; ?>" />
+								<input type="text" name="tmd_bs_condition" placeholder="<?php _e( 'Describe your medical condition', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : ''; ?>" />
 								<i class="fa fa-stethoscope"></i>
 							</div>
 
-	                        <input type="hidden" name="tmd_beta_register" value="1" />
+	                        <input type="hidden" name="action" value="invitation_register" />
 	                        <?php wp_nonce_field( 'tmd_beta_register_nonce' ); ?>
 
-							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();">Get Exclusive Access</a>
-							<p class="ohho">Just <b><?php echo max( 14, 100 - tmd_user_count() ); ?></b> spots remaining!</p>
+							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();">&#10003; <?php _e( 'Ask TripMD', 'tripmd' ); ?></a>
+							<?php /* <p class="ohho">Just <b><?php echo max( 14, 100 - tmd_user_count() ); ?></b> spots remaining!</p> */ ?>
+							<p class="ohho"><?php _e( 'Our medical experts are available 24x7 to answer your questions. Call us at +1-415-528-8650.', 'tripmd' ); ?></p>
 
 							<input type="submit" hidden>
 

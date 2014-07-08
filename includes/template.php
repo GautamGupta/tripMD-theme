@@ -317,7 +317,7 @@ function tmd_template_notices() {
     // Define local variable(s)
     $errors = $messages = array();
 
-    // Get bbPress
+    // Get TripMD
     $tmd = tripmd();
 
     // Loop through notices
