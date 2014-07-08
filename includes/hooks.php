@@ -37,11 +37,11 @@ if ( !defined( 'ABSPATH' ) ) exit;
  */
 add_action( 'tmd_after_setup_actions',  'tmd_loaded',                 10    );
 add_action( 'init',                     'tmd_init',                   0     ); // Early for tmd_register
-// add_action( 'parse_query',           'tmd_parse_query',            2     ); // Early for overrides
+add_action( 'parse_query',              'tmd_parse_query',            2     ); // Early for overrides
 add_action( 'widgets_init',             'tmd_widgets_init',           10    );
 add_action( 'generate_rewrite_rules',   'tmd_generate_rewrite_rules', 10    );
 add_action( 'wp_enqueue_scripts',       'tmd_enqueue_scripts',        10    );
-add_action( 'wp',                       'tmd_setup_session',          10  );
+add_action( 'wp',                       'tmd_setup_session',          10    );
 add_action( 'wp_head',                  'tmd_head',                   10    );
 add_action( 'wp_footer',                'tmd_footer',                 10    );
 add_action( 'set_current_user',         'tmd_setup_current_user',     10    );

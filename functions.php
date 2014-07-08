@@ -184,6 +184,7 @@ final class TripMD {
 
         // Other identifiers
         $this->consultation_video_id = 'tmd_video';
+        $this->reviews_id            = 'reviews';
 
         /** Queries ***********************************************************/
 
@@ -667,12 +668,8 @@ final class TripMD {
      * @uses add_rewrite_tag() To add the rewrite tags
      */
     public static function add_rewrite_tags() {
-        add_rewrite_tag( '%' . tripmd()->consultation_video_id . '%', '([^/]+)' ); // View Page tag
-        /*
-        add_rewrite_tag( '%' . tmd_get_search_rewrite_id()             . '%', '([^/]+)'   ); // Search Results tag
-        add_rewrite_tag( '%' . tmd_get_user_rewrite_id()               . '%', '([^/]+)'   ); // User Profile tag
-        add_rewrite_tag( '%' . tmd_get_user_favorites_rewrite_id()     . '%', '([1]{1,})' ); // User Favorites tag
-        */
+        add_rewrite_tag( '%' . tripmd()->consultation_video_id . '%', '([^/]+)'   ); // View Page tag
+        add_rewrite_tag( '%' . tripmd()->reviews_id            . '%', '([1]{1,})' ); // Reviews Page tag
     }
 
     /**
@@ -688,98 +685,26 @@ final class TripMD {
         /** Setup *************************************************************/
         
         // Add rules to top or bottom?
-        $priority           = 'bottom';
+        $priority           = 'top';
 
         // Rewrite rule matches used repeatedly below
         $root_rule    = '/([^/]+)/?$';
-
-        /*
-        // Single Slugs
-        $forum_slug         = tmd_get_forum_slug();
-        $topic_slug         = tmd_get_topic_slug();
-        $reply_slug         = tmd_get_reply_slug();
-        $ttag_slug          = tmd_get_topic_tag_tax_slug();
-
-        // Archive Slugs
-        $user_slug          = tmd_get_user_slug();
-        $view_slug          = tmd_get_view_slug();
-        $search_slug        = tmd_get_search_slug();
-        $topic_archive_slug = tmd_get_topic_archive_slug();
-        $reply_archive_slug = tmd_get_reply_archive_slug();
-
-        // Tertiary Slugs
-        $feed_slug          = 'feed';
-        $edit_slug          = 'edit';
-        $paged_slug         = tmd_get_paged_slug();
-        $user_favs_slug     = tmd_get_user_favorites_slug();
-        $user_subs_slug     = tmd_get_user_subscriptions_slug();
-
-        // Unique rewrite ID's
-        $feed_id            = 'feed';
-        $edit_id            = tmd_get_edit_rewrite_id();
-        $view_id            = tmd_get_view_rewrite_id();
-        $paged_id           = tmd_get_paged_rewrite_id();
-        $search_id          = tmd_get_search_rewrite_id();
-        $user_id            = tmd_get_user_rewrite_id();
-        $user_favs_id       = tmd_get_user_favorites_rewrite_id();
-        $user_subs_id       = tmd_get_user_subscriptions_rewrite_id();
-        $user_tops_id       = tmd_get_user_topics_rewrite_id();
-        $user_reps_id       = tmd_get_user_replies_rewrite_id();
-
-        // Rewrite rule matches used repeatedly below
-        $feed_rule    = '/([^/]+)/' . $feed_slug  . '/?$';
-        $edit_rule    = '/([^/]+)/' . $edit_slug  . '/?$';
-        $paged_rule   = '/([^/]+)/' . $paged_slug . '/?([0-9]{1,})/?$';
-
-        // Search rules (without slug check)
-        $search_root_rule  = '/?$';
-        $search_paged_rule = '/' . $paged_slug . '/?([0-9]{1,})/?$';
-        */
-        /** Add ***************************************************************/
-        /*
-        // User profile rules
-        $tops_rule       = '/([^/]+)/' . $topic_archive_slug . '/?$';
-        $reps_rule       = '/([^/]+)/' . $reply_archive_slug . '/?$';
-        $favs_rule       = '/([^/]+)/' . $user_favs_slug     . '/?$';
-        $subs_rule       = '/([^/]+)/' . $user_subs_slug     . '/?$';
-        $tops_paged_rule = '/([^/]+)/' . $topic_archive_slug . '/' . $paged_slug . '/?([0-9]{1,})/?$';
-        $reps_paged_rule = '/([^/]+)/' . $reply_archive_slug . '/' . $paged_slug . '/?([0-9]{1,})/?$';
-        $favs_paged_rule = '/([^/]+)/' . $user_favs_slug     . '/' . $paged_slug . '/?([0-9]{1,})/?$';
-        $subs_paged_rule = '/([^/]+)/' . $user_subs_slug     . '/' . $paged_slug . '/?([0-9]{1,})/?$';
-
-        // Edit Forum|Topic|Reply|Topic-tag
-        add_rewrite_rule( $forum_slug . $edit_rule, 'index.php?' . tmd_get_forum_post_type()  . '=$matches[1]&' . $edit_id . '=1', $priority );
-        add_rewrite_rule( $topic_slug . $edit_rule, 'index.php?' . tmd_get_topic_post_type()  . '=$matches[1]&' . $edit_id . '=1', $priority );
-        add_rewrite_rule( $reply_slug . $edit_rule, 'index.php?' . tmd_get_reply_post_type()  . '=$matches[1]&' . $edit_id . '=1', $priority );
-        add_rewrite_rule( $ttag_slug  . $edit_rule, 'index.php?' . tmd_get_topic_tag_tax_id() . '=$matches[1]&' . $edit_id . '=1', $priority );
-
-        // User Pagination|Edit|View
-        add_rewrite_rule( $user_slug . $tops_paged_rule, 'index.php?' . $user_id  . '=$matches[1]&' . $user_tops_id . '=1&' . $paged_id . '=$matches[2]', $priority );
-        add_rewrite_rule( $user_slug . $reps_paged_rule, 'index.php?' . $user_id  . '=$matches[1]&' . $user_reps_id . '=1&' . $paged_id . '=$matches[2]', $priority );
-        add_rewrite_rule( $user_slug . $favs_paged_rule, 'index.php?' . $user_id  . '=$matches[1]&' . $user_favs_id . '=1&' . $paged_id . '=$matches[2]', $priority );
-        add_rewrite_rule( $user_slug . $subs_paged_rule, 'index.php?' . $user_id  . '=$matches[1]&' . $user_subs_id . '=1&' . $paged_id . '=$matches[2]', $priority );
-        add_rewrite_rule( $user_slug . $tops_rule,       'index.php?' . $user_id  . '=$matches[1]&' . $user_tops_id . '=1',                               $priority );
-        add_rewrite_rule( $user_slug . $reps_rule,       'index.php?' . $user_id  . '=$matches[1]&' . $user_reps_id . '=1',                               $priority );
-        add_rewrite_rule( $user_slug . $favs_rule,       'index.php?' . $user_id  . '=$matches[1]&' . $user_favs_id . '=1',                               $priority );
-        add_rewrite_rule( $user_slug . $subs_rule,       'index.php?' . $user_id  . '=$matches[1]&' . $user_subs_id . '=1',                               $priority );
-        add_rewrite_rule( $user_slug . $edit_rule,       'index.php?' . $user_id  . '=$matches[1]&' . $edit_id      . '=1',                               $priority );
-        add_rewrite_rule( $user_slug . $root_rule,       'index.php?' . $user_id  . '=$matches[1]',                                                       $priority );
-
-        // Topic-View Pagination|Feed|View
-        add_rewrite_rule( $view_slug . $paged_rule, 'index.php?' . $view_id . '=$matches[1]&' . $paged_id . '=$matches[2]', $priority );
-        add_rewrite_rule( $view_slug . $feed_rule,  'index.php?' . $view_id . '=$matches[1]&' . $feed_id  . '=$matches[2]', $priority );
-        add_rewrite_rule( $view_slug . $root_rule,  'index.php?' . $view_id . '=$matches[1]',                               $priority );
-
-        // Search All
-        add_rewrite_rule( $search_slug . $search_paged_rule, 'index.php?' . $paged_id .'=$matches[1]', $priority );
-        add_rewrite_rule( $search_slug . $search_root_rule,  'index.php?' . $search_id,                $priority );
-        */
         
         // Video consultation
         add_rewrite_rule( 'video' . $root_rule,  'index.php?' . tripmd()->consultation_video_id . '=$matches[1]', $priority );
 
+        // Doctor reviews page
+        add_rewrite_rule( 'doctor/([^/]+)/' . tripmd()->reviews_id . '/?$', 'index.php?' . tripmd()->doctor_post_type . '=$matches[1]&' . tripmd()->reviews_id . '=1', $priority );
+
+        // Add rules to top or bottom?
+        $priority           = 'bottom';
+
         // Hospital links should be with root
         add_rewrite_rule( '([^/]+)$', 'index.php?' . tripmd()->hospital_post_type . '=$matches[1]', $priority );
+
+
+        global $wp_rewrite;
+        // echo "<pre>"; print_r( $wp_rewrite );die();
     }
 
     /**

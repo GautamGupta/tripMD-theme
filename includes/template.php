@@ -10,6 +10,31 @@
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
+/** Template Loader ***********************************************************/
+
+function tmd_parse_query( $posts_query ) {
+
+    // Bail if $posts_query is not the main loop
+    if ( ! $posts_query->is_main_query() )
+        return;
+
+    // Bail if filters are suppressed on this query
+    if ( true === $posts_query->get( 'suppress_filters' ) )
+        return;
+
+    // Bail if in admin
+    if ( is_admin() )
+        return;
+
+    // Get query variables
+    $doctor        = $posts_query->get( tripmd()->doctor_post_type );
+    $tmd_review_id = $posts_query->get( tripmd()->reviews_id       );
+
+    // It is a doctor reviews page - We'll also check if it is doctor reviews
+    if ( !empty( $doctor ) && !empty( $tmd_review_id ) )
+            $posts_query->tmd_is_reviews = true;
+}
+
 /** URLs **********************************************************************/
 
 /**
