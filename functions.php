@@ -222,6 +222,11 @@ final class TripMD {
      */
     private function includes() {
         /**
+         * Core
+         */
+        require $this->includes_dir . 'core.php';
+
+        /**
          * Hooks
          */
         require $this->includes_dir . 'hooks.php';
