@@ -214,6 +214,7 @@ final class TripMD {
         $this->errors     = new WP_Error(); // Errors
         $this->tab_index  = 100;            // Tabindex for better UX
         $this->session    = class_exists( 'WP_Session' ) ? WP_Session::get_instance() : new stdClass(); // Sessions, requires WP Session plugin
+        $this->template   = '';             // Loaded template if custom
     }
 
     /**
@@ -701,10 +702,6 @@ final class TripMD {
 
         // Hospital links should be with root
         add_rewrite_rule( '([^/]+)$', 'index.php?' . tripmd()->hospital_post_type . '=$matches[1]', $priority );
-
-
-        global $wp_rewrite;
-        // echo "<pre>"; print_r( $wp_rewrite );die();
     }
 
     /**

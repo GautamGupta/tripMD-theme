@@ -35,6 +35,95 @@ function tmd_parse_query( $posts_query ) {
             $posts_query->tmd_is_reviews = true;
 }
 
+/**
+ * Possibly intercept the template being loaded
+ *
+ * Listens to the 'template_include' filter and waits for any bbPress specific
+ * template condition to be met. If one is met and the template file exists,
+ * it will be used; otherwise 
+ *
+ * Note that the _edit() checks are ahead of their counterparts, to prevent them
+ * from being stomped on accident.
+ *
+ * @param string $template
+ *
+ * @uses bbp_is_reviews() To check if page is a reviews user
+ * @uses tmd_get_doctor_reviews_template() To get reviews template
+ *
+ * @return string The path to the template file that is being used
+ */
+function tmd_template_include( $template = '' ) {
+
+    // Doctor reviews page
+    if     ( tripmd()->doctor_post_type == get_post_type() && tmd_is_reviews() && ( $new_template = tmd_get_doctor_reviews_template() ) ) :
+
+    endif;
+
+    // A TripMD template file was located, so override the WordPress template
+    if ( !empty( $new_template ) ) {
+        $template = $new_template;
+    }
+
+    return apply_filters( 'tmd_template_include', $template );
+}
+
+/**
+ * Retrieve the name of the highest priority template file that exists.
+ *
+ * @param string|array $template_names Template file(s) to search for, in order.
+ * @param bool $load If true the template file will be loaded if it is found.
+ * @param bool $require_once Whether to require_once or require. Default true.
+ *                            Has no effect if $load is false.
+ * @return string The template filename if one is located.
+ */
+function tmd_locate_template( $template_names, $load = false, $require_once = true ) {
+
+    // No file found yet
+    $located = false;
+
+    // Try to find a template file
+    foreach ( array_filter( (array) $template_names ) as $template_name ) {
+
+        // Trim off any slashes from the template name
+        $template_name  = ltrim( $template_name, '/' );
+
+        // Check child theme first
+        if ( file_exists( trailingslashit( tripmd()->base_dir ) . $template_name ) ) {
+            $located = trailingslashit( tripmd()->base_dir ) . $template_name;
+            break;
+        }
+    }
+
+    // Maybe load the template if one was located
+    if ( ( defined( 'WP_USE_THEMES' ) && WP_USE_THEMES ) && ( true === $load ) && !empty( $located ) ) {
+        load_template( $located, $require_once );
+    }
+
+    tripmd()->template = $located;
+
+    return $located;
+}
+
+/** Individual Templates ******************************************************/
+
+/**
+ * Get the doctor reviews template
+ *
+ * @uses bbp_get_displayed_user_id()
+ * @uses bbp_get_query_template()
+ * @return string Path to template file
+ */
+function tmd_get_doctor_reviews_template() {
+    $templates = array(
+        'single-' . tripmd()->doctor_post_type . '-' . tripmd()->reviews_id . '.php', // Single doctor reviews
+        'single-' . tripmd()->doctor_post_type . '.php',                              // Single doctor
+        'single.php',                                                                 // Single
+    );
+    $template = tmd_locate_template( $templates );
+
+    return $template;
+}
+
 /** URLs **********************************************************************/
 
 /**
@@ -109,6 +198,25 @@ function tmd_is_custom_post_type( $the_post = false ) {
     }
 
 /**
+ * Check if current page is a reviews page
+ *
+ * @uses WP_Query Checks if WP_Query::bbp_is_reviews is set to true
+ * @return bool
+ */
+function tmd_is_reviews() {
+    global $wp_query;
+
+    // Assume false
+    $retval = false;
+
+    // Check query
+    if ( !empty( $wp_query->tmd_is_reviews ) && ( true === $wp_query->tmd_is_reviews ) )
+        $retval = true;
+
+    return (bool) apply_filters( 'tmd_is_reviews', $retval );
+}
+
+/**
  * Use the above is_() functions to output a body class for each scenario
  *
  * @todo Make it work
@@ -118,6 +226,9 @@ function tmd_is_custom_post_type( $the_post = false ) {
 function tmd_body_class( $wp_classes, $custom_classes = false ) {
 
     $tmd_classes = array();
+
+    if ( tmd_is_reviews() )
+        $tmd_classes[] = 'reviews';
 
     /** Archives **************************************************************/
     /*
@@ -158,6 +269,9 @@ function is_tripmd() {
 
     // Defalt to false
     $retval = false;
+
+    if ( tmd_is_reviews() )
+        $retval = true;
 
     /** Archives **************************************************************/
     /*

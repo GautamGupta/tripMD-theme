@@ -38,6 +38,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 add_action( 'tmd_after_setup_actions',  'tmd_loaded',                 10    );
 add_action( 'init',                     'tmd_init',                   0     ); // Early for tmd_register
 add_action( 'parse_query',              'tmd_parse_query',            2     ); // Early for overrides
+add_action( 'template_include',         'tmd_template_include',       2     ); // Early for overrides
 add_action( 'widgets_init',             'tmd_widgets_init',           10    );
 add_action( 'generate_rewrite_rules',   'tmd_generate_rewrite_rules', 10    );
 add_action( 'wp_enqueue_scripts',       'tmd_enqueue_scripts',        10    );
@@ -455,18 +456,6 @@ function tmd_plugin_locale( $locale = '', $domain = '' ) {
  */
 function tmd_request( $query_vars = array() ) {
     return apply_filters( 'tmd_request', $query_vars );
-}
-
-/**
- * The main filter used for theme compatibility and displaying custom TripMD
- * theme files.
- *
- * @uses apply_filters()
- * @param string $template
- * @return string Template file to use
- */
-function tmd_template_include( $template = '' ) {
-    return apply_filters( 'tmd_template_include', $template );
 }
 
 /**
