@@ -1,10 +1,9 @@
 <?php 
 /**
- * The Header for our theme.
+ * "Send Inquiry" Page
  *
- * Displays all of the <head> section and everything up till <div id="content">
- *
- * @package tripmd
+ * @package TripMD
+ * @subpackage Template
  */
 ?><!DOCTYPE html>
 <html class="beta" <?php language_attributes(); ?>>
@@ -51,6 +50,8 @@
 							<p class="success">
 								<?php _e( 'Thank you for submitting your medical enquiry. Our medical expert will get in touch with you within the next 24 hours to discuss your options in more detail.', 'tripmd' ); ?><br /><br />
 								<?php _e( 'If you prefer, you can call us 24x7 at +1-415-528-8650 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?>
+
+								<a href="<?php echo site_url(); ?>" class="big fat green button submit"><?php _e( 'Return to Homepage', 'tripmd' ); ?></a>
 							</p>
 						<?php endif;
 					endif; ?>
@@ -68,29 +69,39 @@
 						<form method="post" id="beta-form">
 							
 							<div class="name fld">
-								<input type="text" name="tmd_bs_name" placeholder="Name" class="name field" required="required" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_name'] ) ? $_POST['tmd_bs_name'] : ''; ?>" />
+								<input type="text" name="tmd_bs_name" placeholder="<?php _e( 'Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_name'] ) ? $_POST['tmd_bs_name'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-user"></i>
 							</div>
 							
 							<div class="email fld">
-								<input type="email" name="tmd_bs_email" placeholder="Email" class="email field" required="required" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_email'] ) ? $_POST['tmd_bs_email'] : ''; ?>" />
+								<input type="email" name="tmd_bs_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_email'] ) ? $_POST['tmd_bs_email'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-envelope-o"></i>
 							</div>
 							
 							<div class="phone fld">
-								<input type="phone" name="tmd_bs_phone" placeholder="Phone" class="phone field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : ''; ?>" />
+								<input type="phone" name="tmd_bs_phone" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" class="phone field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-phone"></i>
 							</div>
 							
+							<div class="inqquiry-for fld">
+								<select name="tmd_bs_inquiry_for" class="inqquiry-for field" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_inquiry_for'] ) ? $_POST['tmd_bs_inquiry_for'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>">
+									<?php $tmd_bs_inquiry_for_val = !empty( $_POST['tmd_bs_inquiry_for'] ) ? $_POST['tmd_bs_inquiry_for'] : ''; ?>
+									<option disabled="disabled" selected="selected"><?php _e( 'Inquiring for:', 'tripmd' ); ?></option>
+									<option value="orthopaedic" <?php selected( $tmd_bs_inquiry_for_val, 'orthopaedic' ); ?>><?php _e( 'Orthopaedic', 'tripmd' ); ?></option>
+									<option value="dental" <?php selected( $tmd_bs_inquiry_for_val, 'dental' ); ?>><?php _e( 'Dental', 'tripmd' ); ?></option>
+								</select>
+								<i class="fa fa-stethoscope"></i>
+							</div>
+							
 							<div class="treatment fld">
-								<input type="text" name="tmd_bs_condition" placeholder="<?php _e( 'Describe your medical condition', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : ''; ?>" />
+								<input type="text" name="tmd_bs_condition" placeholder="<?php _e( 'Describe your medical condition', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-stethoscope"></i>
 							</div>
 
 	                        <input type="hidden" name="action" value="invitation_register" />
 	                        <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
 
-							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();"><?php _e( 'Get more info', 'tripmd' ); ?></a>
+							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();" title="<?php _e( 'Get more info', 'tripmd' ); ?>" tabindex="<?php tmd_tab_index(); ?>">&#10003;</a>
 							<?php /* <p class="ohho">Just <b><?php echo max( 14, 100 - tmd_user_count() ); ?></b> spots remaining!</p> */ ?>
 							<p class="ohho"><?php _e( 'Our medical experts are available 24x7 to answer your questions.', 'tripmd' ); ?>
 							<?php _e( 'Reach us at +1-415-528-8650 or <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?></p>
