@@ -87,10 +87,10 @@ get_header(); ?>
 
                     <div class="block rsABlock">
                         <div class="centered">
-                            <h2><?php _e( 'Get treatment by trusted doctors worldwide', 'tripmd' ); ?></h2>
-                            <h3><?php _e( 'Receive quality medical care from a trusted doctor at a world class medical center', 'tripmd' ); ?></h3>
-                            <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a>
-                            <a class="big fat green button link-invitation" href="/invitation"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
+                            <h2><?php _e( 'Get quality healthcare without expensive bills and wait times.', 'tripmd' ); ?></h2>
+                            <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi', 'tripmd' ); ?></h3>
+                            <?php /* <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a> */ ?>
+                            <a class="big fat green button<?php /* link-invitation */ ?>" href="#how"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
                         </div>
                     </div>
 
@@ -100,6 +100,8 @@ get_header(); ?>
                 <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1.jpg" />
 
             </div>
+
+            <?php /*
 
             <div class="rsContent slide2">
 
@@ -180,7 +182,7 @@ get_header(); ?>
 
                 <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-3.jpg" />
 
-            </div>
+            </div> */ ?>
         </div>
 
         <section class="how">
@@ -188,7 +190,7 @@ get_header(); ?>
             <div class="grid-container">
 
                 <?php if ( defined( 'TMD_DEBUG' ) || isset( $_GET['ta'] ) ) : ?>
-                    <div class="tmd-search-container aligncenter grid-100">
+                    <div class="tmd-search-container aligncenter grid-100" style="margin-top: 50px;">
                         <input type="text" name="s" id="s" class="tmd-search" placeholder="<?php _e( 'Search for a treatment or hospital...', 'tripmd' ); ?>" autocomplete="off" data-provide="typeahead" />
                     </div>
                 <?php endif; ?>
@@ -277,9 +279,45 @@ get_header(); ?>
 
             <div class="grid-container">
 
-                <div class="heading grid-100"><h2>Hear from patients who have healthcare experience overseas.</h2></div>
+                <div class="heading grid-100"><h2><?php _e( 'See what our patients have to say.', 'tripmd' ); ?></h2></div>
 
                 <div class="content">
+
+                    <?php /*
+
+                    <div id="content-slider-1" class="slider royalSlider rsMinW">
+
+                        <div class="rsContent slide1">
+
+                            <div class="bContainer">
+
+                                <div class="block rsABlock">
+                                    <div class="centered">
+                                        <h2><?php _e( 'Get quality healthcare without<br />expensive bills and wait times.', 'tripmd' ); ?></h2>
+                                        <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi', 'tripmd' ); ?></h3>
+                                    </div>
+                                </div>
+
+                                <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
+                            </div>
+
+                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1.jpg" />
+
+                        </div>
+
+                        <div class="rsContent slide2">
+
+                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484" />
+
+                        </div>
+
+                        <div class="rsContent slide3">
+
+                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425" />
+
+                        </div>
+
+                    </div> */ ?>
 
                     <div id="content-slider-1" class="royalSlider contentSlider rsDefault">
 
@@ -305,6 +343,22 @@ get_header(); ?>
 
             <div class="grid-container">
 
+                <div class="heading grid-100"><h2><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" /></h2></div>
+
+                <div class="content">
+
+                    <div class="aligncenter">
+
+                        <h3><?php _e( 'We\'re on a mission to make quality healthcare accessible to everyone without expensive medical bills and surical wait times.', 'tripmd' ); ?></h3>
+
+                        <a class="big fat green button waitlist" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Get started', 'tripmd' ); ?></a>
+
+                    </div>
+
+                </div>
+
+                <?php /*
+
                 <div class="heading grid-100"><h2>We&rsquo;re always with you.</h2></div>
 
                 <div class="content">
@@ -326,6 +380,8 @@ get_header(); ?>
 
                 <a class="big fat green button waitlist" href="<?php echo home_url( '/invitation' ); ?>"><?php _e( 'Get early access', 'tripmd' ); ?></a>
                 <p class="ohho"><?php _e( 'to our trusted network of doctors', 'tripmd' ); ?></p>
+
+                */ ?>
 
             </div>
 
