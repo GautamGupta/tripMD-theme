@@ -381,7 +381,7 @@ function tmd_invitation_register_handler() {
             'name' => $_POST['tmd_bs_name'], 
             'email' => $_POST['tmd_bs_email'], 
             'phone' => !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : '', 
-            'condition' => !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '', 
+            'condition' => ( !empty( $_POST['tmd_bs_inquiry_for'] ) ? ( $_POST['tmd_bs_inquiry_for'] . ": " ) : '' ) . ( !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '' ), 
             'registered' => date('Y-m-d H:i:s')
         ), 
         '%s'
