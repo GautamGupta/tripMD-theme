@@ -789,6 +789,7 @@ body.beta .green-t {
 
 .how {
   margin-top: calc(100vh - 100px);
+  padding-bottom: 0;
 }
 
 .iu {
@@ -860,6 +861,11 @@ section.mock .mock-bullets {
   clear: both;
   width: 210px;
   text-align: center;
+}
+
+.button.firststep {
+  font-size: 60%;
+  margin-left: 90px;
 }
 
 #wpadminbar {

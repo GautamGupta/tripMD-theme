@@ -266,8 +266,24 @@ get_header(); ?>
                             <img src="<?php echo get_template_directory_uri(); ?>/img/home-f4.png" alt="">
                         </div>
 
+                        <?php /*
+
                         <a class="big fat green button waitlist" href="<?php echo home_url( '/invitation' ); ?>"><?php _e( 'Get early access', 'tripmd' ); ?></a>
                         <p class="ohho"><?php _e( 'to our trusted network of doctors', 'tripmd' ); ?></p>
+
+                        */ ?>
+
+                    </div>
+
+                    <div class="iu grid-100 grid-parent">
+
+                        <div class="grid-100 aligncenter">
+                            <h3>
+                                <?php printf( __( '%s is always with you, at every step.', 'tripmd' ), get_bloginfo( 'name' ) /* '<img src="' . get_template_directory_uri() . '/img/logo-black.png" alt="' . get_bloginfo( 'name' ) . '" />' */ ); ?>
+                                <a class="big fat green button firststep" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Take the first step', 'tripmd' ); ?></a>
+                            </h3>
+                            
+                        </div>
 
                     </div>
 
