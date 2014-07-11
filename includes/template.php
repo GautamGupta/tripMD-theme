@@ -422,15 +422,13 @@ function tmd_tab_index( $auto_increment = true ) {
      * @return int The global tab index
      */
     function tmd_get_tab_index( $auto_increment = true ) {
-        if ( function_exists( 'tmd_get_tab_index' ) ) {
-            $tab_index = tmd_get_tab_index( $auto_increment );
+        if ( function_exists( 'bbp_get_tab_index' ) ) {
+            $tab_index = bbp_get_tab_index( $auto_increment );
         } else {
-            global $tmd_tab_index;
-
             if ( true === $auto_increment )
-                ++$tmd_tab_index;
+                tripmd()->tab_index++;
 
-            $tab_index = $tmd_tab_index;
+            $tab_index = tripmd()->tab_index;
         }
 
         return apply_filters( 'tmd_get_tab_index', (int) $tab_index );
