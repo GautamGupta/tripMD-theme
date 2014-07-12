@@ -206,7 +206,7 @@ get_header(); ?>
                         <section id="cd-timeline" class="cd-container">
                             <div class="cd-timeline-block">
                                 <div class="cd-timeline-img cd-picture">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-list"></i>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
@@ -218,7 +218,7 @@ get_header(); ?>
 
                             <div class="cd-timeline-block">
                                 <div class="cd-timeline-img cd-movie">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-user-md"></i>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
@@ -229,7 +229,7 @@ get_header(); ?>
 
                             <div class="cd-timeline-block">
                                 <div class="cd-timeline-img cd-picture">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-plane"></i>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
@@ -240,7 +240,7 @@ get_header(); ?>
 
                             <div class="cd-timeline-block">
                                 <div class="cd-timeline-img cd-location">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-stethoscope"></i>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
