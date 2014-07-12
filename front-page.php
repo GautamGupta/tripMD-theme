@@ -201,6 +201,59 @@ get_header(); ?>
 
                 <div class="content">
 
+                    <div class="timeline">
+
+                        <section id="cd-timeline" class="cd-container">
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-picture">
+                                    <i class="fa fa-user"></i>
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Learn about your options by talking to TripMD medical experts for free</h2>
+                                    <p>Our medical experts are happy to do a video chat with you and discuss your options based on your query and any other questions. We would like you to be satiesfied before moving forward to make an informed choice about your doctor and clinic.</p>
+                                    <?php /* <a href="#0" class="cd-read-more">Read more</a> */ ?>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-movie">
+                                    <i class="fa fa-user"></i>
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Talk to your doctor and reserve your surgical appointment</h2>
+                                    <p>Video chat with your chosen doctor and discuss your case in more detail to confirm your surgical appointment.</p>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-picture">
+                                    <i class="fa fa-user"></i>
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Travel and stay in comfort with our partners</h2>
+                                    <p>Fly with your preferred airlines at special rates via Expedia, stay at a hotel or Airbnb approved guest house near the hospital, and travel locally via Uber. An ettendant speaking your preferred language will be with you throughout your time in the destination city.</p>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-location">
+                                    <i class="fa fa-user"></i>
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content">
+                                    <h2>Recover with homecare nursing and follow-up seamlessly on return home</h2>
+                                    <p>Depending on the procedure, the doctor will clear you for travel back within 3-14 days. Your TripMD account will have all of your medical records in US standard format and will allow you to seamlessly perform post-operative followup with your doctor.</p>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+                        </section> <!-- cd-timeline -->
+
+                    </div>
+
+                    <?php /*
+
                     <div class="iu grid-100 grid-parent">
 
                         <div class="grid-80">
@@ -266,14 +319,12 @@ get_header(); ?>
                             <img src="<?php echo get_template_directory_uri(); ?>/img/home-f4.png" alt="">
                         </div>
 
-                        <?php /*
-
                         <a class="big fat green button waitlist" href="<?php echo home_url( '/invitation' ); ?>"><?php _e( 'Get early access', 'tripmd' ); ?></a>
                         <p class="ohho"><?php _e( 'to our trusted network of doctors', 'tripmd' ); ?></p>
 
-                        */ ?>
-
                     </div>
+
+                    */ ?>
 
                     <div class="iu grid-100 grid-parent">
 
@@ -365,7 +416,7 @@ get_header(); ?>
 
                     <div class="aligncenter">
 
-                        <h3><?php _e( 'We\'re on a mission to make quality healthcare accessible to everyone without expensive medical bills and surical wait times.', 'tripmd' ); ?></h3>
+                        <h3><?php _e( 'We\'re on a mission to make quality healthcare accessible to everyone without expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
 
                         <a class="big fat green button waitlist" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Get started', 'tripmd' ); ?></a>
 

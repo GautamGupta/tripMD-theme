@@ -901,3 +901,29 @@ body.beta {
     overflow: auto;
   }
 }
+
+/** How it works timeline */
+.timeline #cd-timeline {
+  margin: 0;
+}
+
+.timeline .cd-timeline-content {
+  width: 85%;
+  float: right;
+}
+
+.timeline .cd-timeline-img {
+  left: 10%;
+}
+
+@media only screen and (min-width: 1170px) {
+  .timeline #cd-timeline::before {
+    left: 10%;
+  }
+  .timeline .cd-timeline-block .cd-timeline-content::before {
+    border-left: none;
+    border-right-color: white;
+    left: auto;
+    right: 100%;
+  }
+}
