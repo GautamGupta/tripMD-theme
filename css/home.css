@@ -63,6 +63,15 @@ p {
   color: #6b6b6b;
 }
 
+.avatar {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.form {
+  clear: both;
+}
+
 .field {
   -webkit-appearance: none;
   outline: none;
@@ -100,6 +109,11 @@ p {
   line-height: 52px;
   text-align: center;
   color: #5e5e5e;
+}
+
+.fld textarea {
+  resize: vertical;
+  margin-bottom: -10px;
 }
 
 .last {

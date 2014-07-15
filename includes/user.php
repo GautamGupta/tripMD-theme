@@ -388,7 +388,7 @@ function tmd_invitation_register_handler() {
     );
 
     if ( empty( $registered ) )
-        tmd_add_error( 'error-registration', __( 'There was a problem registering you. Please try again or contact us at help@tripmd.com.', 'tripmd' ) );
+        tmd_add_error( 'error-registration', __( 'There was a problem registering you. Please try again or contact us at support@tripmd.com.', 'tripmd' ) );
 }
 
 function tmd_consultation_document_upload() {

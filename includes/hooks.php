@@ -142,6 +142,7 @@ add_action( 'tmd_template_redirect', 'tmd_check_user_edit',       10 );
 // Theme-side POST requests
 // add_action( 'tmd_post_request', 'tmd_do_ajax',                1  );
 add_action( 'tmd_post_request_invitation_register', 'tmd_invitation_register_handler', 1 );
+add_action( 'tmd_post_request_review_doctor',       'tmd_review_doctor_handler',       1 );
 
 /*
 // Theme-side GET requests

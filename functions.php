@@ -244,6 +244,11 @@ final class TripMD {
         require $this->includes_dir . 'user.php';
 
         /**
+         * Review system
+         */
+        require $this->includes_dir . 'review.php';
+
+        /**
          * Search Functionality
          */
         require $this->includes_dir . 'search.php';
