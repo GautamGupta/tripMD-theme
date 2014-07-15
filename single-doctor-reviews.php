@@ -70,22 +70,22 @@
                         <form method="post" id="review-form">
                             
                             <div class="name fld">
-                                <input type="text" name="tmd_review_name" placeholder="<?php _e( 'Full Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_name' ); ?>" />
+                                <input type="text" name="tmd_review_name" placeholder="<?php _e( 'Full Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_name' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
                                 <i class="fa fa-user"></i>
                             </div>
                             
                             <div class="email fld">
-                                <input type="email" name="tmd_review_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_email' ); ?>" />
+                                <input type="email" name="tmd_review_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_email' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
                                 <i class="fa fa-envelope-o"></i>
                             </div>
                             
                             <div class="nationality fld">
-                                <input type="text" name="tmd_review_nationality" placeholder="<?php _e( 'Nationality', 'tripmd' ); ?>" class="nationality field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_nationality' ); ?>" />
+                                <input type="text" name="tmd_review_nationality" placeholder="<?php _e( 'Nationality', 'tripmd' ); ?>" class="nationality field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_nationality' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
                                 <i class="fa fa-location-arrow"></i>
                             </div>
                             
                             <div class="comment fld">
-                                <textarea name="tmd_review_comment" placeholder="<?php _e( 'Write a review...', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" onkeyup="expandtext(this);" rows="2"><?php tmd_sanitize_val( 'tmd_review_comment' ); ?></textarea>
+                                <textarea name="tmd_review_comment" placeholder="<?php _e( 'Write a review...', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" onkeyup="expandtext(this);" rows="2" tabindex="<?php tmd_tab_index(); ?>"><?php tmd_sanitize_val( 'tmd_review_comment', 'textarea' ); ?></textarea>
                                 <i class="fa fa-comment-o"></i>
                             </div>
                             
@@ -96,19 +96,19 @@
                                     <?php echo $display_text; ?>
                                     1
                                     <?php for ( $rad_val = 1; $rad_val <= 5; $rad_val++ ) : ?>
-                                        <input type="radio" name="tmd_review_rating[<?php echo $key; ?>]" required="required" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
+                                        <input type="radio" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
                                     <?php endfor; ?>
                                     5<br />
                                 <?php endforeach; ?>
                             </div>
                             
-                            <input type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'Also subscribe me to <a href="%1$s" class="green-t">TripMD</a> updates, a startup with a mission to simplify medical travel. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label>
+                            <input type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'Also subscribe me to <a href="%1$s" class="green-t">TripMD</a> updates, a startup with a mission to simplify medical travel. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label>
 
                             <input type="hidden" name="action" value="review_doctor" />
                             <input type="hidden" name="tmd_review_parent_id" value="<?php the_ID(); ?>" />
                             <?php wp_nonce_field( 'tmd_review_doctor_nonce' ); ?>
 
-                            <a href="#" class="big fat green button submit" onclick="document.getElementById('review-form').submit();"><?php _e( 'Submit Review', 'tripmd' ); ?></a>
+                            <a href="#" class="big fat green button submit" onclick="document.getElementById('review-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Submit Review', 'tripmd' ); ?></a>
 
                             <input type="submit" hidden>
 

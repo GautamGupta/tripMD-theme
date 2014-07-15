@@ -41,7 +41,7 @@
 					</div>
 
 					<?php
-					if ( did_action( 'tmd_post_request_invitation_register' ) ) :
+					/* if ( did_action( 'tmd_post_request_invitation_register' ) ) :
 						if ( tmd_has_errors() ) :
 							foreach ( tmd_get_errors() as $tmd_error ) : ?>
         						<p class="error"><?php _e( '<i class="fa warn fa-exclamation-triangle"></i>', 'tripmd' ); ?> <?php echo $tmd_error; ?></p>
@@ -54,7 +54,7 @@
 								<a href="<?php echo site_url(); ?>" class="big fat green button submit"><?php _e( 'Return to Homepage', 'tripmd' ); ?></a>
 							</p>
 						<?php endif;
-					endif; ?>
+					endif; */ ?>
 
 				</div>
 
@@ -69,36 +69,36 @@
 						<form method="post" id="beta-form">
 							
 							<div class="name fld">
-								<input type="text" name="tmd_bs_name" placeholder="<?php _e( 'Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_name'] ) ? $_POST['tmd_bs_name'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<input type="text" name="tmd_bs_name" placeholder="<?php _e( 'Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_name' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-user"></i>
 							</div>
 							
 							<div class="email fld">
-								<input type="email" name="tmd_bs_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_email'] ) ? $_POST['tmd_bs_email'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<input type="email" name="tmd_bs_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_email' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-envelope-o"></i>
 							</div>
 							
 							<div class="phone fld">
-								<input type="phone" name="tmd_bs_phone" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" class="phone field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<input type="phone" name="tmd_bs_phone" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" class="phone field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_phone' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-phone"></i>
 							</div>
 							
 							<div class="inqquiry-for fld">
-								<select name="tmd_bs_inquiry_for" class="inqquiry-for field" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_inquiry_for'] ) ? $_POST['tmd_bs_inquiry_for'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>">
-									<?php $tmd_bs_inquiry_for_val = !empty( $_POST['tmd_bs_inquiry_for'] ) ? $_POST['tmd_bs_inquiry_for'] : ''; ?>
+								<select name="tmd_bs_inquiry_for" class="inqquiry-for field" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_inquiry_for' ); ?>" tabindex="<?php tmd_tab_index(); ?>">
 									<option disabled="disabled" selected="selected"><?php _e( 'Inquiring for:', 'tripmd' ); ?></option>
-									<option value="orthopaedic" <?php selected( $tmd_bs_inquiry_for_val, 'orthopaedic' ); ?>><?php _e( 'Orthopaedic', 'tripmd' ); ?></option>
-									<option value="dental" <?php selected( $tmd_bs_inquiry_for_val, 'dental' ); ?>><?php _e( 'Dental', 'tripmd' ); ?></option>
+									<option value="orthopaedic" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'orthopaedic' ); ?>><?php _e( 'Orthopaedic', 'tripmd' ); ?></option>
+									<option value="dental" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'dental' ); ?>><?php _e( 'Dental', 'tripmd' ); ?></option>
 								</select>
 								<i class="fa fa-stethoscope"></i>
 							</div>
 							
-							<div class="treatment fld">
-								<input type="text" name="tmd_bs_condition" placeholder="<?php _e( 'Describe your medical condition', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" value="<?php echo !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : ''; ?>" tabindex="<?php tmd_tab_index(); ?>" />
+							<div class="fld">
+                                <textarea name="tmd_bs_condition" placeholder="<?php _e( 'Describe your medical condition', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" onkeyup="expandtext(this);" rows="2" tabindex="<?php tmd_tab_index(); ?>"><?php tmd_sanitize_val( 'tmd_bs_condition', 'textarea' ); ?></textarea>
+								<input type="text" name="tmd_bs_condition" placeholder="<?php _e( 'Describe your medical condition', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_condition' ); ?>" />
 								<i class="fa fa-stethoscope"></i>
 							</div>
 
-	                        <input type="hidden" name="action" value="invitation_register" />
+	                        <input type="hidden" name="action" value="" />
 	                        <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
 
 							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Get more info', 'tripmd' ); ?></a>
