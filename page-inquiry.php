@@ -19,6 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/home.css">
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/js.js"></script>
 
 		<!-- Favicons -->
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/img/favicons/favicon.ico">
@@ -41,7 +42,7 @@
 					</div>
 
 					<?php
-					/* if ( did_action( 'tmd_post_request_invitation_register' ) ) :
+					if ( did_action( 'tmd_post_request_invitation_register' ) ) :
 						if ( tmd_has_errors() ) :
 							foreach ( tmd_get_errors() as $tmd_error ) : ?>
         						<p class="error"><?php _e( '<i class="fa warn fa-exclamation-triangle"></i>', 'tripmd' ); ?> <?php echo $tmd_error; ?></p>
@@ -54,7 +55,7 @@
 								<a href="<?php echo site_url(); ?>" class="big fat green button submit"><?php _e( 'Return to Homepage', 'tripmd' ); ?></a>
 							</p>
 						<?php endif;
-					endif; */ ?>
+					endif; ?>
 
 				</div>
 
@@ -94,11 +95,10 @@
 							
 							<div class="fld">
                                 <textarea name="tmd_bs_condition" placeholder="<?php _e( 'Describe your medical condition', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" onkeyup="expandtext(this);" rows="2" tabindex="<?php tmd_tab_index(); ?>"><?php tmd_sanitize_val( 'tmd_bs_condition', 'textarea' ); ?></textarea>
-								<input type="text" name="tmd_bs_condition" placeholder="<?php _e( 'Describe your medical condition', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_condition' ); ?>" />
-								<i class="fa fa-stethoscope"></i>
+								<i class="fa fa-comment-o"></i>
 							</div>
 
-	                        <input type="hidden" name="action" value="" />
+	                        <input type="hidden" name="action" value="invitation_register" />
 	                        <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
 
 							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Get more info', 'tripmd' ); ?></a>
