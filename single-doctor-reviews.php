@@ -61,7 +61,7 @@
 
                 <?php if ( empty( $dont_display_form ) ) : ?>
 
-                    <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'full', array( 'class' => 'avatar' ) ); ?>
+                    <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', array( 'class' => 'avatar' ) ); ?>
 
                     <h2><?php printf( __( 'Write a review for Dr. %s', 'tripmd' ), get_the_title() ); ?></h2>
 

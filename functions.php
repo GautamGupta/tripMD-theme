@@ -239,6 +239,11 @@ final class TripMD {
         require $this->includes_dir . 'template.php';
 
         /**
+         * API for Mobile/Web
+         */
+        require $this->includes_dir . 'api.php';
+
+        /**
          * Registration + Consultation stuff
          */
         require $this->includes_dir . 'user.php';
@@ -776,11 +781,21 @@ final class TripMD {
         wp_enqueue_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css', array(), '4.1.0' );
         wp_enqueue_script( 'tmd_media_upload', get_template_directory_uri() . '/js/upload.js', array( 'jquery' ), '0.0.1', false );
         if ( is_front_page() )  {
+            // Royal slider
             wp_enqueue_style( 'royalslider', get_template_directory_uri() . '/css/royalslider/royalslider.css', array(), '9.5.4' );
             wp_enqueue_style( 'royalslider-skins-default', get_template_directory_uri() . '/css/royalslider/skins/default/rs-default.css', array( 'royalslider' ), '9.5.4' );
             wp_enqueue_style( 'royalslider-skins-minimal-white', get_template_directory_uri() . '/css/royalslider/skins/minimal-white/rs-minimal-white.css', array( 'royalslider' ), '9.5.4' );
+
+            // Select box
+            wp_enqueue_style( 'select', get_template_directory_uri() . '/css/select/select-theme-default.css', array(), '0.5.2' );
+            wp_enqueue_script( 'select', get_template_directory_uri() . '/js/select.min.js', array( 'jquery' ), '0.5.2', true );
+
+            // Homepage styling
             wp_enqueue_style( 'tripmd-home', get_template_directory_uri() . '/css/home.css', array( 'tripmd' ) );
-        } if (get_post_type() == "consultation") {
+        }
+
+        // Consultation page
+        if ( get_post_type() == 'consultation' ) {
             $postVariables = array(
                 'post_id' => get_the_ID(),
                 'ajax_url' => admin_url( 'admin-ajax.php' ),
