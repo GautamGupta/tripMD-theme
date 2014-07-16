@@ -14,7 +14,7 @@ get_header(); ?>
 	<div class="heading grid-100"><h2 class="animated fadeIn">Dr. <?php the_title(); ?></h2></div>
 	<div class="content">
 
-		<?php if ( has_post_thumbnail() ) the_post_thumbnail( 'full', array( 'class' => 'alignright' ) ); ?>
+		<?php if ( has_post_thumbnail() ) the_post_thumbnail( 'medium', array( 'class' => 'alignright' ) ); ?>
 		
 		<?php if ( get_post_meta( get_the_ID(), 'location', true ) ) : ?>
 			<p><strong>Location</strong>: <?php echo get_post_meta( get_the_ID(), 'location', true ); ?></p>
