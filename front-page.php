@@ -185,6 +185,139 @@ get_header(); ?>
             </div> */ ?>
         </div>
 
+        <section class="aff">
+            
+            <div class="grid-container">
+
+                <div class="heading howh grid-100"><h2 >We&rsquo;re affordable.</h2></div>
+                
+                <div class="grid-30">
+                    
+                    <div class="subtitle"><p>Treatment Required</p></div>
+
+                    <select name="speciality" id="speciality" class="my-select">
+                        
+                        <option value="" selected disabled>Pick a speciality&hellip;</option>
+                        <option value="dental">Dental</option>
+                        <option value="orthopaedic">Orthopaedic</option>
+                        <option value="cardiac">Cardiac</option>
+
+                    </select>
+
+                    <br><br>
+
+                    <select name="dental" id="dental" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="dental-crown">Dental Crowns</option>
+                        <option value="single-implant">Single Implant</option>
+                        <option value="dentures">Dentures</option>
+
+                    </select>
+
+ <!--                    <select name="orthopaedic" id="orthopaedic" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="hip-replacement">Hip Replacement</option>
+                        <option value="knee-replacement">Knee Replacement</option>
+
+                    </select>
+
+                    <select name="opthalmology" id="ophthalmology" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="lasik">Lasik</option>
+                        <option value="cataract">Cataract</option>
+
+                    </select>
+
+                    <select name="cardiac" id="cardiac" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="cab">Coronary Artery Bypass</option>
+                        <option value="angioplasty">Angiplasty</option>
+
+                    </select> -->
+
+                </div>
+
+                <div class="grid-60 pred">
+                    
+                    <div class="subtitle"><p>Savings</p></div>
+                    <p>Originally, $30,000 in California.<br>We can reduce your bill by 50%.</p>
+
+                </div>
+
+                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="#how">I&rsquo;m interested!</a></div>
+
+            </div>
+
+        </section>
+
+        <section class="hear">
+
+            <div class="grid-container">
+
+                <div class="heading grid-100"><h2><?php _e( 'See what our patients have to say.', 'tripmd' ); ?></h2></div>
+
+                <div class="content">
+        
+                    <?php /*
+
+                    <div id="content-slider-1" class="slider royalSlider rsMinW">
+
+                        <div class="rsContent slide1">
+
+                            <div class="bContainer">
+
+                                <div class="block rsABlock">
+                                    <div class="centered">
+                                        <h2><?php _e( 'Get quality healthcare without<br />expensive bills and wait times.', 'tripmd' ); ?></h2>
+                                        <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi', 'tripmd' ); ?></h3>
+                                    </div>
+                                </div>
+
+                                <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
+                            </div>
+
+                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1.jpg" />
+
+                        </div>
+
+                        <div class="rsContent slide2">
+
+                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484" />
+
+                        </div>
+
+                        <div class="rsContent slide3">
+
+                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425" />
+
+                        </div>
+
+                    </div> */ ?>
+
+                    <div id="content-slider-1" class="royalSlider contentSlider rsDefault">
+
+                      <div>
+                        <span class="rsTmb">Patients</span>
+                        <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
+                      </div>
+                      <?php /*
+                      <div>
+                        <span class="rsTmb">Doctors</span>
+                        <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425">
+                      </div>
+                      */ ?>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
         <section class="how">
 
             <div class="grid-container">
@@ -337,70 +470,6 @@ get_header(); ?>
                         </div>
 
                     </div>
-
-            </div>
-
-        </section>
-
-        <section class="hear">
-
-            <div class="grid-container">
-
-                <div class="heading grid-100"><h2><?php _e( 'See what our patients have to say.', 'tripmd' ); ?></h2></div>
-
-                <div class="content">
-
-                    <?php /*
-
-                    <div id="content-slider-1" class="slider royalSlider rsMinW">
-
-                        <div class="rsContent slide1">
-
-                            <div class="bContainer">
-
-                                <div class="block rsABlock">
-                                    <div class="centered">
-                                        <h2><?php _e( 'Get quality healthcare without<br />expensive bills and wait times.', 'tripmd' ); ?></h2>
-                                        <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi', 'tripmd' ); ?></h3>
-                                    </div>
-                                </div>
-
-                                <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
-                            </div>
-
-                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1.jpg" />
-
-                        </div>
-
-                        <div class="rsContent slide2">
-
-                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484" />
-
-                        </div>
-
-                        <div class="rsContent slide3">
-
-                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425" />
-
-                        </div>
-
-                    </div> */ ?>
-
-                    <div id="content-slider-1" class="royalSlider contentSlider rsDefault">
-
-                      <div>
-                        <!-- <span class="rsTmb">Patients</span> -->
-                        <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
-                      </div>
-                      <?php /*
-                      <div>
-                        <span class="rsTmb">Doctors</span>
-                        <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425">
-                      </div>
-                      */ ?>
-                    </div>
-
-                </div>
 
             </div>
 
