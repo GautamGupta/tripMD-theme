@@ -84,7 +84,7 @@
 								<i class="fa fa-phone"></i>
 							</div>
 							
-							<div class="inqquiry-for fld">
+							<div class="inquiry-for fld">
 								<select name="tmd_bs_inquiry_for" class="inqquiry-for field" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_inquiry_for' ); ?>" tabindex="<?php tmd_tab_index(); ?>">
 									<option disabled="disabled" selected="selected"><?php _e( 'Inquiring for:', 'tripmd' ); ?></option>
 									<option value="orthopaedic" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'orthopaedic' ); ?>><?php _e( 'Orthopaedic', 'tripmd' ); ?></option>
