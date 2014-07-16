@@ -239,6 +239,11 @@ final class TripMD {
         require $this->includes_dir . 'template.php';
 
         /**
+         * API for Mobile/Web
+         */
+        require $this->includes_dir . 'api.php';
+
+        /**
          * Registration + Consultation stuff
          */
         require $this->includes_dir . 'user.php';
