@@ -260,29 +260,43 @@ get_header(); ?>
 
                 <div class="heading grid-100"><h2><?php _e( 'See what our patients have to say.', 'tripmd' ); ?></h2></div>
 
-                <div class="content">
-        
-                    <?php /*
 
-                    <div id="content-slider-1" class="slider royalSlider rsMinW">
+                <span class="arrow left"><i class="fa fa-chevron-left"></i></span>
+                <span class="arrow right"><i class="fa fa-chevron-right"></i></span>
+
+                <div class="content">
+
+                    <div id="content-slider-1" class="slider contentSlider royalSlider rsMinW">
+
 
                         <div class="rsContent slide1">
 
                             <div class="bContainer">
 
-                                <div class="block rsABlock">
-                                    <div class="centered">
-                                        <h2><?php _e( 'Get quality healthcare without<br />expensive bills and wait times.', 'tripmd' ); ?></h2>
-                                        <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi', 'tripmd' ); ?></h3>
-                                    </div>
-                                </div>
+                                <div class="testimonial grid-container">
+                                    
+                                    <div class="photo">
+                                        
+                                        <img src="http://api.randomuser.me/portraits/med/women/40.jpg" alt="">
 
+                                    </div>                  
+
+                                    <div class="dets grid-100">
+                                        
+                                        <blockquote>I was extremely happy with my dental surgery experience with TripMD. Dr. Batra’s had an amazing clinic and she made me feel comfortable throughout the entire duration of my surgery. The folks at TripMD also helped me throughout the duration of my surgery and took care of everything from my local transportation around Delhi, my accommodations at a beautiful guesthouse and my flights. I’m still in touch with Dr. Batra and will be referring more friends to her and TripMD!</blockquote>
+
+                                        <p class="name">Brenda</p>
+                                        <p class="origin">Dental Patient &ndash; California, USA</p>
+
+                                    </div>
+
+
+                            </div>  
                                 <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
                             </div>
 
-                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1.jpg" />
-
                         </div>
+                                 
 
                         <div class="rsContent slide2">
 
@@ -291,20 +305,71 @@ get_header(); ?>
                         </div>
 
                         <div class="rsContent slide3">
+                       
+                            <div class="bContainer">
 
-                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425" />
+                                <div class="testimonial grid-container">
+                                    
+                                    <div class="photo">
+                                        
+                                        <img src="http://api.randomuser.me/portraits/med/men/79.jpg" alt="">
+
+                                    </div>                  
+
+                                    <div class="dets grid-100">
+                                        
+                                        <blockquote>I’ve seen doctors in different corners of the world, but I can say hands down that I have had my best experiences with Dr. Batra. She is an amazing communicator and the quality of her care is second to none. I’m really happy to see her on the TripMD platform so that people all around the world can easily access this amazing dentist in Delhi.</blockquote>
+
+                                        <p class="name">Stewart</p>
+                                        <p class="origin">Dental Patient &ndash; New York, USA</p>
+
+                                    </div>
+
+
+                                 </div>  
+                                <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
+                            </div>
 
                         </div>
 
-                    </div> */ ?>
+                                    <div class="rsContent slide4">
+                       
+                            <div class="bContainer">
 
-                    <div id="content-slider-1" class="royalSlider contentSlider rsDefault">
+                                <div class="testimonial grid-container">
+                                    
+                                    <div class="photo">
+                                        
+                                        <img src="http://api.randomuser.me/portraits/med/men/17.jpg" alt="">
+
+                                    </div>                  
+
+                                    <div class="dets grid-100">
+                                        
+                                        <blockquote>Being a freelancer without dental coverage, I decided that it would be best if I looked for options overseas for my dental procedure (too expensive at home). When I found TripMD and Dr. Batra, it was reassuring to know that locally based Americans and Canadians have been seeing her for years. Travelling with TripMD was great because it let me focus on my recovery and enjoying Delhi instead of worrying about my travel and accommodation logistics.</blockquote>
+
+                                        <p class="name">Alexander</p>
+                                        <p class="origin">Dental Patient &ndash; Connecticut, USA</p>
+
+                                    </div>
+
+
+                                 </div>  
+                                <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+       <!--              <div id="content-slider-1" class="royalSlider contentSlider rsDefault">
 
                       <div>
                         <span class="rsTmb">Patients</span>
                         <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
                       </div>
-                      <?php /*
+     -->                  <?php /*
                       <div>
                         <span class="rsTmb">Doctors</span>
                         <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425">

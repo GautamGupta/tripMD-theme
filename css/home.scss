@@ -73,21 +73,6 @@ p {
 }
 
 .field {
-  -webkit-appearance: none;
-  outline: none;
-  -webkit-user-select: none;
-  border: none;
-  border-top: thin solid #dedede;
-  width: calc(100% + 100px);
-  margin-left: -50px;
-  box-sizing: border-box;
-  padding-left: 50px;
-  font-family: "freight-sans-pro", sans-serif;
-  font-size: 100%;
-  padding: 12px 50px 12px 50px;
-  margin-bottom: -2px;
-  z-index: 0;
-  position: relative !important;
 }
 
 .field:focus {
@@ -204,7 +189,7 @@ p.ohho {
 }
 
 ::-webkit-input-placeholder {
-  color: #aaa;
+  color: #666;
 }
 
 :-moz-placeholder {
@@ -992,11 +977,34 @@ margin-top: 20px;}
 
 }
 
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.button {
+  font-weight: 600;
+}
+
 .testimonial {
+
+  text-shadow: none;
+
+  * {
+
+    text-shadow: none;
+
+  }
 
   .photo {
 
-    text-align: center;
+    text-align: center !important;
 
     img {
 
@@ -1004,6 +1012,7 @@ margin-top: 20px;}
       margin-top: 20px;
       width: 150px;
       border: 10px solid darken(#eee, 0%);
+      display: inline;
 
     }
 
@@ -1011,7 +1020,7 @@ margin-top: 20px;}
 
   blockquote {
 
-    font-size: 105%;
+    font-size: 95%;
     line-height: 2;
     text-align: center;
     font-weight: 100;
@@ -1036,10 +1045,17 @@ margin-top: 20px;}
 
   .name {
     
-    font-size: 110%;
+    font-size: 100%;
     font-weight: bold;
     color: #69e;
-    margin-top: 25px;
+    margin-top: 35px;
+
+  }
+
+  .origin {
+
+    font-size: 80%;
+    color: #aaa;
 
   }
 
@@ -1061,5 +1077,24 @@ margin-top: 20px;}
     margin-top: 50px;
 
   }
+
+}
+
+.beta .select-target {
+
+    height: 100% !important;
+    border: 2px solid lightgray !important;
+    /*border-radius: 0 !important;  */
+    margin: 0 !important;
+    box-sizing: border-box;
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+    padding-left: 3px;
+
+}
+
+.inqquiry-for .fa {
+
+  left: 0 !important;
 
 }

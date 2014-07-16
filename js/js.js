@@ -93,7 +93,21 @@ jQuery(document).ready(function($) {
     
     });
 
+    var slider = $(".contentSlider").data('royalSlider'),
+        leftAr = $(".arrow.left"),
+        rightAr = $(".arrow.right");
+
+        
+    $(leftAr).click(function() {
+        slider.prev();
+    });
+
+    $(rightAr).click(function() {
+        slider.next();
+    });
+
 });
+
 
 // Expandable textbox
 function expandtext( textArea, min, max ) {

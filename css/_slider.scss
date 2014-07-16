@@ -209,4 +209,53 @@
   background: $green;
 }
 
+.rsNav .rsTabs {
 
+	background: transparent !important;
+
+}
+
+.contentSlider {
+
+	.rsArrow {
+
+		background: transparent;
+
+	}
+
+	.rsTabs {
+
+		display: none !important;
+
+	}
+
+	/*position: relative;*/
+
+}
+
+.grid-container {
+	
+	position: relative;
+
+	.arrow {
+
+		position: absolute;
+		top: 0;
+		top: 420px;
+		color: #aaa;
+		cursor: pointer;
+		font-size: 200%;
+		opacity: 0.7;
+
+		&:hover {
+			
+			color: #666;
+
+		}
+
+	}
+
+	.left { left: -60px; }
+	.right { right: -60px; }
+	
+}

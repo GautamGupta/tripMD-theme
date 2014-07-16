@@ -25,6 +25,10 @@
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/img/favicons/favicon.ico">
 
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
+
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/select/select-theme-default.css" />
+		<script src="<?php echo get_template_directory_uri(); ?>/js/select.min.js"></script>
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimal-ui">
 
 	</head>
@@ -84,9 +88,9 @@
 								<i class="fa fa-phone"></i>
 							</div>
 							
-							<div class="inqquiry-for fld">
-								<select name="tmd_bs_inquiry_for" class="inqquiry-for field" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_inquiry_for' ); ?>" tabindex="<?php tmd_tab_index(); ?>">
-									<option disabled="disabled" selected="selected"><?php _e( 'Inquiring for:', 'tripmd' ); ?></option>
+							<div class="inqquiry-for fld field">
+								<span>Enquiring for: </span><select name="tmd_bs_inquiry_for" class="inqquiry-for field in-select" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_inquiry_for' ); ?>" tabindex="<?php tmd_tab_index(); ?>">
+									<option disabled="disabled" selected="selected"><?php _e( 'Pick a specialization&hellip;', 'tripmd' ); ?></option>
 									<option value="orthopaedic" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'orthopaedic' ); ?>><?php _e( 'Orthopaedic', 'tripmd' ); ?></option>
 									<option value="dental" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'dental' ); ?>><?php _e( 'Dental', 'tripmd' ); ?></option>
 								</select>

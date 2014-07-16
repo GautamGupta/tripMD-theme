@@ -240,6 +240,7 @@ section:nth-child(odd) {
 
 section {
   padding-bottom: 60px;
+  position: relative;
 }
 
 section.site-main {
@@ -1467,16 +1468,6 @@ label {
 
 /* July 15 Quick Fixes */
 
-html * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-*, *:after, *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
 .cd-timeline-img {
 
@@ -1501,3 +1492,13 @@ html * {
   padding-top: 40px;
 
 }
+
+$green: #7ecd94;
+$red: #ea3636;
+$dark-gray: #415252;
+$gray: #f7f7f7;
+$white: darken(#fcfcfc, 0%);
+$blue: #36adea;
+
+@import 'typography';
+@import 'slider';
