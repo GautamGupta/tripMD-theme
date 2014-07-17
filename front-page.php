@@ -339,8 +339,8 @@ get_header(); ?>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
-                                    <h2>Learn about your options by talking to TripMD medical experts for free</h2>
-                                    <p>Our medical experts are happy to do a video chat with you and discuss your options based on your query and any other questions. We would like you to be satiesfied before moving forward to make an informed choice about your doctor and clinic.</p>
+                                    <h2><?php _e( 'Talk to our medical experts for free', 'tripmd' ); ?></h2>
+                                    <p><?php _e( 'Video chat with our medical advisors and discuss any questions you have and outline your options. Be satisfied about your informed choice before moving to the next step of choosing a doctor and a clinic.', 'tripmd' ); ?></p>
                                     <?php /* <a href="#0" class="cd-read-more">Read more</a> */ ?>
                                 </div> <!-- cd-timeline-content -->
                             </div> <!-- cd-timeline-block -->
@@ -351,8 +351,8 @@ get_header(); ?>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
-                                    <h2>Talk to your doctor and reserve your surgical appointment</h2>
-                                    <p>Video chat with your chosen doctor and discuss your case in more detail to confirm your surgical appointment.</p>
+                                    <h2><?php _e( 'Reserve an appointment with your doctor', 'tripmd' ); ?></h2>
+                                    <p><?php _e( 'Discuss your case in detail with your doctor and confirm the date of your surgical appointment.', 'tripmd' ); ?></p>
                                 </div> <!-- cd-timeline-content -->
                             </div> <!-- cd-timeline-block -->
 
@@ -362,8 +362,8 @@ get_header(); ?>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
-                                    <h2>Travel and stay in comfort with our partners</h2>
-                                    <p>Fly with your preferred airlines at special rates via Expedia, stay at a hotel or Airbnb approved guest house near the hospital, and travel locally via Uber. An ettendant speaking your preferred language will be with you throughout your time in the destination city.</p>
+                                    <h2><?php _e( 'Travel and lodge in comfort with our business partners', 'tripmd' ); ?></h2>
+                                    <p><?php _e( 'Get exclusive flight fares via Expedia, stay at the best hotels and guest houses approved by Airbnb and travel unfretted locally via Uber. We will have a local attendant who speaks your preferred language with you throughout your stay in your destination city.', 'tripmd' ); ?></p>
                                 </div> <!-- cd-timeline-content -->
                             </div> <!-- cd-timeline-block -->
 
@@ -373,8 +373,8 @@ get_header(); ?>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
-                                    <h2>Recover with homecare nursing and follow-up seamlessly on return home</h2>
-                                    <p>Depending on the procedure, the doctor will clear you for travel back within 3-14 days. Your TripMD account will have all of your medical records in US standard format and will allow you to seamlessly perform post-operative followup with your doctor.</p>
+                                    <h2><?php _e( 'It\'s not over for us till you recover', 'tripmd' ); ?></h2>
+                                    <p><?php _e( 'Even after your doctor has cleared you for travel, we\'ll make sure your doctor back at home has all the medical records in US standard format to seamlessly continue post-operative follow-ups.', 'tripmd' ); ?></p>
                                 </div> <!-- cd-timeline-content -->
                             </div> <!-- cd-timeline-block -->
                         </section> <!-- cd-timeline -->
@@ -552,7 +552,7 @@ get_header(); ?>
 
                     <div class="aligncenter">
 
-                        <h3><?php _e( 'We\'re on a mission to make quality healthcare accessible to everyone without expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
+                        <h3><?php _e( 'We\'re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
 
                         <a class="big fat green button waitlist" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Get started', 'tripmd' ); ?></a>
 
