@@ -534,7 +534,7 @@ get_header(); ?>
 
                 </div>
 
-                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="#how">I&rsquo;m interested!</a></div>
+                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="/doctor/poonam-batra/">I&rsquo;m interested!</a></div>
 
             </div>
 
