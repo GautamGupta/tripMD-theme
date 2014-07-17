@@ -90,7 +90,7 @@ get_header(); ?>
                             <h2><?php _e( 'Get quality healthcare without expensive bills and wait times.', 'tripmd' ); ?></h2>
                             <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi', 'tripmd' ); ?></h3>
                             <?php /* <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a> */ ?>
-                            <a class="big fat green button<?php /* link-invitation */ ?>" href="#how"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
+                            <a class="big fat green button<?php /* link-invitation */ ?>" href="#aff"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
                         </div>
                     </div>
 
@@ -185,75 +185,6 @@ get_header(); ?>
             </div> */ ?>
         </div>
 
-        <section class="aff">
-            
-            <div class="grid-container">
-
-                <div class="heading howh grid-100"><h2 >We&rsquo;re affordable.</h2></div>
-                
-                <div class="grid-30">
-                    
-                    <div class="subtitle"><p>Treatment Required</p></div>
-
-                    <select name="speciality" id="speciality" class="my-select">
-                        
-                        <option value="" selected disabled>Pick a speciality&hellip;</option>
-                        <option value="dental">Dental</option>
-                        <option value="orthopaedic">Orthopaedic</option>
-                        <option value="cardiac">Cardiac</option>
-
-                    </select>
-
-                    <br><br>
-
-                    <select name="dental" id="dental" class="sub my-select">
-                        
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        <option value="dental-crown">Dental Crowns</option>
-                        <option value="single-implant">Single Implant</option>
-                        <option value="dentures">Dentures</option>
-
-                    </select>
-
- <!--                    <select name="orthopaedic" id="orthopaedic" class="sub my-select">
-                        
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        <option value="hip-replacement">Hip Replacement</option>
-                        <option value="knee-replacement">Knee Replacement</option>
-
-                    </select>
-
-                    <select name="opthalmology" id="ophthalmology" class="sub my-select">
-                        
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        <option value="lasik">Lasik</option>
-                        <option value="cataract">Cataract</option>
-
-                    </select>
-
-                    <select name="cardiac" id="cardiac" class="sub my-select">
-                        
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        <option value="cab">Coronary Artery Bypass</option>
-                        <option value="angioplasty">Angiplasty</option>
-
-                    </select> -->
-
-                </div>
-
-                <div class="grid-60 pred">
-                    
-                    <div class="subtitle"><p>Savings</p></div>
-                    <p>Originally, $30,000 in California.<br>We can reduce your bill by 50%.</p>
-
-                </div>
-
-                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="#how">I&rsquo;m interested!</a></div>
-
-            </div>
-
-        </section>
-
         <section class="hear">
 
             <div class="grid-container">
@@ -275,17 +206,17 @@ get_header(); ?>
 
                                 <div class="testimonial grid-container">
                                     
-                                    <div class="photo">
+                   <!--                  <div class="photo">
                                         
                                         <img src="http://api.randomuser.me/portraits/med/women/40.jpg" alt="">
 
-                                    </div>                  
+                                    </div>          -->         
 
                                     <div class="dets grid-100">
                                         
                                         <blockquote>I was extremely happy with my dental surgery experience with TripMD. Dr. Batra’s had an amazing clinic and she made me feel comfortable throughout the entire duration of my surgery. The folks at TripMD also helped me throughout the duration of my surgery and took care of everything from my local transportation around Delhi, my accommodations at a beautiful guesthouse and my flights. I’m still in touch with Dr. Batra and will be referring more friends to her and TripMD!</blockquote>
 
-                                        <p class="name">Brenda</p>
+                                        <p class="name">Brenda B.</p>
                                         <p class="origin">Dental Patient &ndash; California, USA</p>
 
                                     </div>
@@ -309,18 +240,18 @@ get_header(); ?>
                             <div class="bContainer">
 
                                 <div class="testimonial grid-container">
-                                    
+                          <!--           
                                     <div class="photo">
                                         
                                         <img src="http://api.randomuser.me/portraits/med/men/79.jpg" alt="">
 
-                                    </div>                  
+                                    </div>  -->                 
 
                                     <div class="dets grid-100">
                                         
                                         <blockquote>I’ve seen doctors in different corners of the world, but I can say hands down that I have had my best experiences with Dr. Batra. She is an amazing communicator and the quality of her care is second to none. I’m really happy to see her on the TripMD platform so that people all around the world can easily access this amazing dentist in Delhi.</blockquote>
 
-                                        <p class="name">Stewart</p>
+                                        <p class="name">Stewart J.</p>
                                         <p class="origin">Dental Patient &ndash; New York, USA</p>
 
                                     </div>
@@ -338,17 +269,17 @@ get_header(); ?>
 
                                 <div class="testimonial grid-container">
                                     
-                                    <div class="photo">
+                  <!--                   <div class="photo">
                                         
                                         <img src="http://api.randomuser.me/portraits/med/men/17.jpg" alt="">
 
-                                    </div>                  
+                                    </div>                  --> 
 
                                     <div class="dets grid-100">
                                         
                                         <blockquote>Being a freelancer without dental coverage, I decided that it would be best if I looked for options overseas for my dental procedure (too expensive at home). When I found TripMD and Dr. Batra, it was reassuring to know that locally based Americans and Canadians have been seeing her for years. Travelling with TripMD was great because it let me focus on my recovery and enjoying Delhi instead of worrying about my travel and accommodation logistics.</blockquote>
 
-                                        <p class="name">Alexander</p>
+                                        <p class="name">Alexander B.</p>
                                         <p class="origin">Dental Patient &ndash; Connecticut, USA</p>
 
                                     </div>
@@ -540,10 +471,81 @@ get_header(); ?>
 
         </section>
 
+         <section class="aff" id="aff">
+            
+            <div class="grid-container">
+
+                <div class="heading howh grid-100"><h2>We&rsquo;re affordable.</h2></div>
+                
+                <div class="grid-30">
+                    
+                    <div class="subtitle"><p>Treatment Required</p></div>
+
+                    <select name="speciality" id="speciality" class="spec-select my-select">
+                        
+                        <option value="" selected disabled>Pick a speciality&hellip;</option>
+                        <option value="dental">Dental</option>
+                        <option value="orthopaedic">Orthopaedic</option>
+                        <option value="cardiac">Cardiac</option>
+
+                    </select>
+
+                    <br><br>
+
+                    <select name="dental" id="dental" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="dental-crown">Dental Crowns</option>
+                        <option value="single-implant">Single Implant</option>
+                        <option value="dentures">Dentures</option>
+
+                    </select>
+
+                    <select name="orthopaedic" id="orthopaedic" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="hip-replacement">Hip Replacement</option>
+                        <option value="knee-replacement">Knee Replacement</option>
+
+                    </select>
+
+                    <select name="opthalmology" id="ophthalmology" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="lasik">Lasik</option>
+                        <option value="cataract">Cataract</option>
+
+                    </select>
+
+                    <select name="cardiac" id="cardiac" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="cab">Coronary Artery Bypass</option>
+                        <option value="angioplasty">Angiplasty</option>
+
+                    </select>
+
+                </div>
+
+                <div class="grid-60 pred">
+                    
+                    <div class="subtitle"><p>Savings</p></div>
+                    <p>Originally, <span class="actual">$30,000</span> in California.<br>We can reduce your bill by <span class="perc-saved">50%</span>.</p>
+
+                </div>
+
+                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="#how">I&rsquo;m interested!</a></div>
+
+            </div>
+
+        </section>
+
+
         <section class="mock">
 
             <div class="grid-container">
-
+                
+                <br><br>
                 <div class="heading grid-100"><h2><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" /></h2></div>
 
                 <div class="content">

@@ -77,6 +77,15 @@ h1, h2, h3, h4, h5, h6 {
 .home .heading h2 {
   margin-top: 60px; }
 
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
 .big.fat {
   font-size: 80%;
   display: inline-block;
@@ -193,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 20px;
   margin-left: -10px; }
 
-section:nth-child(odd) {
+section:nth-child(even) {
   background: #f8f8f8; }
 
 section {
@@ -1483,7 +1492,7 @@ h1, h2, h3, h4, h5, h6 {
   .grid-container .arrow {
     position: absolute;
     top: 0;
-    top: 420px;
+    top: 300px;
     color: #aaa;
     cursor: pointer;
     font-size: 200%;
@@ -1494,3 +1503,161 @@ h1, h2, h3, h4, h5, h6 {
     left: -60px; }
   .grid-container .right {
     right: -60px; }
+
+header h1 {
+  font-family: freight-text-pro;
+  font-size: 250%;
+  text-align: center;
+  font-weight: 100; }
+
+.doc {
+  box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.07);
+  padding-top: 20px; }
+  .doc .image {
+    margin-right: 30px;
+    float: left; }
+    .doc .image img {
+      height: 120px;
+      border-radius: 100px;
+      border: 4px solid #eaeaea;
+      margin-top: 2px;
+      box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.09); }
+  .doc .info h3 {
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 0; }
+  .doc .info h2 {
+    font-family: freight-text-pro;
+    margin: 0;
+    font-size: 160%; }
+  .doc .test {
+    text-align: center; }
+    .doc .test img {
+      height: 90px;
+      border-radius: 90px;
+      border: 4px solid #eaeaea;
+      margin-top: 2px;
+      box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.09); }
+  .doc .link {
+    margin-top: 40px;
+    margin-bottom: 0;
+    margin-bottom: -45px;
+    text-align: center; }
+  .doc .subtitle {
+    font-size: 90%; }
+
+.subtitle {
+  text-transform: uppercase; }
+  .subtitle p {
+    font-family: "calluna-sans", sans-serif !important;
+    margin-bottom: 0;
+    color: #aaa;
+    font-size: 100% !important;
+    margin-top: 20px; }
+
+.score {
+  padding-right: 30px;
+  padding-top: 20px;
+  color: #777; }
+  .score img {
+    height: 30px;
+    opacity: 0.7;
+    display: inline-block !important;
+    vertical-align: middle;
+    margin-right: 4px; }
+  .score h1 {
+    font-family: freight-text-pro;
+    font-size: 180%;
+    color: #59bf76;
+    text-align: center;
+    margin: 0; }
+
+.fright {
+  float: right; }
+
+.fleft {
+  float: left; }
+
+.clear {
+  clear: both; }
+
+.feats {
+  border-bottom: thin solid #eee;
+  padding-bottom: 30px;
+  margin-bottom: 10px; }
+  .feats h1 {
+    margin: 0;
+    font-family: freight-text-pro; }
+  .feats .grid-40, .feats .grid-50 {
+    margin-bottom: 10px; }
+
+.dinfo {
+  border-bottom: thin solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 10px; }
+
+.testimonial {
+  text-shadow: none; }
+  .testimonial * {
+    text-shadow: none; }
+  .testimonial .photo {
+    text-align: center !important; }
+    .testimonial .photo img {
+      border-radius: 100%;
+      margin-top: 20px;
+      width: 150px;
+      border: 10px solid #eeeeee;
+      display: inline; }
+  .testimonial blockquote {
+    font-size: 95%;
+    line-height: 2;
+    text-align: center;
+    font-weight: 100;
+    color: #555; }
+  .testimonial .name, .testimonial .origin {
+    text-align: center;
+    font-family: calluna-sans;
+    text-transform: uppercase; }
+  .testimonial .origin {
+    margin-top: -35px; }
+  .testimonial .name {
+    font-size: 100%;
+    font-weight: bold;
+    color: #69e;
+    margin-top: 35px; }
+  .testimonial .origin {
+    font-size: 80%;
+    color: #aaa; }
+  .testimonial .arrow {
+    color: #eee;
+    font-size: 250%; }
+  .testimonial .left {
+    text-align: right; }
+  .testimonial .left, .testimonial .right {
+    margin-top: 50px; }
+
+.doct {
+  margin-top: 30px;
+  background: transparent !important; }
+  .doct .origin {
+    margin: 0; }
+  .doct img {
+    -webkit-transform: scale(0.9); }
+
+.facility h1 {
+  margin: 0; }
+.facility div img {
+  width: 100%;
+  outline: thick solid #eee; }
+
+.costs h2 {
+  font-family: freight-text-pro;
+  font-size: 150%;
+  font-weight: 100; }
+
+.rating {
+  width: 70%;
+  margin-left: -5px; }
+
+.card {
+  box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.5); }

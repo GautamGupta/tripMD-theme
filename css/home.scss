@@ -786,10 +786,15 @@ body.beta .green-t {
   margin: 10px 0 10px 0;
 }
 
-.aff {
+.hear {
   margin-top: calc(100vh - 100px);
   /*padding-bottom: 0;*/
+  padding-top: 60px;
+  padding-bottom: 100px;
   
+}
+
+.aff { 
   h2 {
 
     text-align: left !important;
@@ -798,7 +803,6 @@ body.beta .green-t {
   }
 
   padding-bottom: 40px;
-
 }
 
 .iu {
@@ -969,14 +973,6 @@ body.beta {
 
 }
 
-.subtitle {
-
-  p { font-family: "calluna-sans", sans-serif !important; margin-bottom: 0; color: #aaa; font-size: 100% !important;
-margin-top: 20px;}
-  text-transform: uppercase;
-
-}
-
 html * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1096,5 +1092,33 @@ html * {
 .inqquiry-for .fa {
 
   left: 0 !important;
+
+}
+
+
+
+.subtitle {
+
+  p { font-family: "calluna-sans", sans-serif !important; margin-bottom: 0; color: #aaa; font-size: 100% !important;
+margin-top: 20px;}
+  text-transform: uppercase;
+
+}
+
+.sub + a {
+
+  /*display: none;*/
+  visibility: hidden;
+  opacity: 0.7;
+
+}
+
+.int {
+  opacity: 0;
+}
+
+.pred {
+
+  opacity: 0.1;
 
 }
