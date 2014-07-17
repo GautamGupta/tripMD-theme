@@ -63,7 +63,7 @@
 
                     <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', array( 'class' => 'avatar' ) ); ?>
 
-                    <h2><?php printf( __( 'Write a review for Dr. %s', 'tripmd' ), get_the_title() ); ?></h2>
+                    <h2><?php printf( __( 'Write a review for %s', 'tripmd' ), get_the_title() ); ?></h2>
 
                     <div class="form">
 

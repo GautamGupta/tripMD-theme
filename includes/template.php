@@ -752,3 +752,19 @@ function tmd_specialities_order( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'tmd_specialities_order' );
+
+/**
+ * Prepend Dr. to the post title if post type is 'doctor' and
+ * we're not in the admin section
+ * 
+ * @param string $title Title
+ * @param int $id Post id
+ * @return string (If necessary, modified) title
+ */
+function tmd_doctor_title( $title = '', $post_id = 0 ) {
+    if ( !empty( $title ) && !is_admin() && get_post_type( $post_id ) == tripmd()->doctor_post_type )
+        return sprintf( __( 'Dr. %s', 'tripmd' ), $title );
+    else
+        return $title;
+}
+add_filter( 'the_title', 'tmd_doctor_title', 1, 2 );
