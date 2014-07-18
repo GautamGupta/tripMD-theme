@@ -489,10 +489,15 @@ get_header(); ?>
 
                     <br><br>
 
+                    <select name="orthopaedic" id="orthopaedic" class="sub my-select">
+                        
+                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+
+                    </select>
+
                     <select name="dental" id="dental" class="sub my-select">
                         
                         <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        
 
                     </select>
 

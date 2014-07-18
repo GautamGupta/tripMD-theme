@@ -38,54 +38,38 @@ jQuery(document).ready(function($) {
     var cacosts = [];
 
     $.getJSON("/wp-content/themes/tripmd/js/treatments.json", function(json) {
-
-
         $.each(json.specialities, function(key, val) {
-           
             i++;
-            // items.push("<option value='" + key + "''>" + this.title + "</option>");
             $(".spec-select").append("<option value='" + key + "''>" + this.title + "</option>");
             console.log(i);
             var spec = key;
 
             $.each(this.procedures, function(key, val) {
                 
-                // alert(spec + ":" + this.title);
-               
                 procs.push(key);
                 incosts.push(this.costs.IN);
                 cacosts.push(this.costs.US);
                 $("select.sub#" + spec).append("<option value='" + key + "''>" + this.title + "</option>");
-                // console.log(i);
             
             });
-
-
         });
-        
     });
 
     $(".spec-select").change(function(){
-        // alert(this.value);
         $(".sub + a").css({"visibility":"hidden", "opacity":"0.0", "display": "none"});
         $(".sub#" + this.value + " + a").css({"visibility":"visible", "opacity":"1.0", "display": "block"});
-
     });
 
     $("select.sub").change(function(){
-        // alert(this.value);
         $(".int").css({"opacity":"1.0"});
         $(".pred").css({"opacity":"1.0"});
         
         var pos = procs.indexOf(this.value);
         var inc = incosts[pos];
         var cac = cacosts[pos];
-        var perc = ((cac - inc)/cac)*100;
+        var perc = Math.round(((cac - inc)/cac)*100);
         $(".actual").text(cac);
         $(".perc-saved").text(perc);
-
-        // var perc = ;
-
     });
 
 
