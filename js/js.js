@@ -37,7 +37,7 @@ jQuery(document).ready(function($) {
     var incosts = [];
     var cacosts = [];
 
-    $.getJSON("/wp-content/themes/tripmd/js/treatments.json", function(json) {
+    $.getJSON("/wp-admin/admin-ajax.php?action=tmd_api&method=procedures_costs&ver=0.1", function(json) {
         $.each(json.specialities, function(key, val) {
             i++;
             $(".spec-select").append("<option value='" + key + "''>" + this.title + "</option>");
