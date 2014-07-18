@@ -484,9 +484,6 @@ get_header(); ?>
                     <select name="speciality" id="speciality" class="spec-select my-select">
                         
                         <option value="" selected disabled>Pick a speciality&hellip;</option>
-                        <option value="dental">Dental</option>
-                        <option value="orthopaedic">Orthopaedic</option>
-                        <option value="cardiac">Cardiac</option>
 
                     </select>
 
@@ -495,33 +492,19 @@ get_header(); ?>
                     <select name="dental" id="dental" class="sub my-select">
                         
                         <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        <option value="dental-crown">Dental Crowns</option>
-                        <option value="single-implant">Single Implant</option>
-                        <option value="dentures">Dentures</option>
-
-                    </select>
-
-                    <select name="orthopaedic" id="orthopaedic" class="sub my-select">
                         
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        <option value="hip-replacement">Hip Replacement</option>
-                        <option value="knee-replacement">Knee Replacement</option>
 
                     </select>
 
                     <select name="opthalmology" id="ophthalmology" class="sub my-select">
                         
                         <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        <option value="lasik">Lasik</option>
-                        <option value="cataract">Cataract</option>
 
                     </select>
 
                     <select name="cardiac" id="cardiac" class="sub my-select">
                         
                         <option value="" selected disabled>Pick a treatment&hellip;</option>
-                        <option value="cab">Coronary Artery Bypass</option>
-                        <option value="angioplasty">Angiplasty</option>
 
                     </select>
 
@@ -530,11 +513,11 @@ get_header(); ?>
                 <div class="grid-60 pred">
                     
                     <div class="subtitle"><p>Savings</p></div>
-                    <p>Originally, <span class="actual">$30,000</span> in California.<br>We can reduce your bill by <span class="perc-saved">50%</span>.</p>
+                    <p>Originally, $<span class="actual">30,000</span> in California.<br>We can reduce your bill by <span class="perc-saved">50</span>%.</p>
 
                 </div>
 
-                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="/doctor/poonam-batra/">I&rsquo;m interested!</a></div>
+                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="<?php //doctor/poonam-batra/ ?>/inquiry" id="interested">I&rsquo;m interested!</a></div>
 
             </div>
 
