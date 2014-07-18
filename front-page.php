@@ -88,7 +88,7 @@ get_header(); ?>
                     <div class="block rsABlock">
                         <div class="centered">
                             <h2><?php _e( 'Get quality healthcare without expensive bills and wait times.', 'tripmd' ); ?></h2>
-                            <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi', 'tripmd' ); ?></h3>
+                            <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi.', 'tripmd' ); ?></h3>
                             <?php /* <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a> */ ?>
                             <a class="big fat green button<?php /* link-invitation */ ?>" href="#aff"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
                         </div>
@@ -487,7 +487,7 @@ get_header(); ?>
 
                     </select>
 
-                    <br><br>
+                    <br /><br />
 
                     <select name="orthopaedic" id="orthopaedic" class="sub my-select">
                         
