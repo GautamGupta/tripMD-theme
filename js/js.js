@@ -68,7 +68,7 @@ jQuery(document).ready(function($) {
         var inc = incosts[pos];
         var cac = cacosts[pos];
         var perc = Math.round(((cac - inc)/cac)*100);
-        $(".actual").text(cac);
+        $(".actual").text(number_format(cac));
         $(".perc-saved").text(perc);
     });
 
@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
     // On scolling, show/animate timeline blocks when enter the viewport
     $(window).on('scroll', function(){
 
-        $timeline_block.each(function(){
+        $('.cd-timeline-block').each(function(){
             if( $(this).offset().top <= $(window).scrollTop()+$(window).height()*0.75 && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) {
                 $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
             }
@@ -151,6 +151,36 @@ jQuery(document).ready(function($) {
     });
 
 });
+
+// number_format() (commas etc) for front-page procedure costs
+// source http://phpjs.org/functions/number_format/
+function number_format(number, decimals, dec_point, thousands_sep) {
+  number = (number + '')
+    .replace(/[^0-9+\-Ee.]/g, '');
+  var n = !isFinite(+number) ? 0 : +number,
+    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+    s = '',
+    toFixedFix = function (n, prec) {
+      var k = Math.pow(10, prec);
+      return '' + (Math.round(n * k) / k)
+        .toFixed(prec);
+    };
+  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))
+    .split('.');
+  if (s[0].length > 3) {
+    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+  }
+  if ((s[1] || '')
+    .length < prec) {
+    s[1] = s[1] || '';
+    s[1] += new Array(prec - s[1].length + 1)
+      .join('0');
+  }
+  return s.join(dec);
+}
 
 // Expandable textbox
 function expandtext( textArea, min, max ) {
