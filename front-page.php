@@ -522,7 +522,7 @@ get_header(); ?>
 
                 </div>
 
-                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="<?php //doctor/poonam-batra/ ?>/inquiry" id="interested">I&rsquo;m interested!</a></div>
+                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="<?php echo site_url( 'inquiry' ); ?>" id="interested">I&rsquo;m interested!</a></div>
 
             </div>
 
@@ -583,7 +583,7 @@ get_header(); ?>
             <section id="hs" class="center last green">
                 <div class="grid-container">
                     <p id="message">
-                        Oops! There was an error registering your clinic, please try again. You can also try emailing us at help@tripmd.co.
+                        Oops! There was an error registering your clinic, please try again. You can also try emailing us at support@tripmd.co.
                     </p>
                 </div>
             </section>

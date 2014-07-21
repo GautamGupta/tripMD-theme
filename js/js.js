@@ -33,24 +33,24 @@ jQuery(document).ready(function($) {
     var i = 0;
     // Speciality selection
     // http://tripmd.com/wp-admin/admin-ajax.php?action=tmd_api&method=procedures_costs&ver=0.1
+    var specs = [];
     var procs = [];
     var incosts = [];
     var cacosts = [];
+    var links = [];
 
     $.getJSON("/wp-admin/admin-ajax.php?action=tmd_api&method=procedures_costs&ver=0.1", function(json) {
-        $.each(json.specialities, function(key, val) {
+        $.each(json.specialities, function(spec, val) {
             i++;
-            $(".spec-select").append("<option value='" + key + "''>" + this.title + "</option>");
-            console.log(i);
-            var spec = key;
+            specs.push(spec);
+            links.push(this.link);
+            $(".spec-select").append("<option value='" + spec + "''>" + this.title + "</option>");
 
-            $.each(this.procedures, function(key, val) {
-                
-                procs.push(key);
+            $.each(this.procedures, function(proc, val) {
+                procs.push(proc);
                 incosts.push(this.costs.IN);
                 cacosts.push(this.costs.US);
-                $("select.sub#" + spec).append("<option value='" + key + "''>" + this.title + "</option>");
-            
+                $("select.sub#" + spec).append("<option value='" + proc + "''>" + this.title + "</option>");
             });
         });
     });
@@ -58,6 +58,7 @@ jQuery(document).ready(function($) {
     $(".spec-select").change(function(){
         $(".sub + a").css({"visibility":"hidden", "opacity":"0.0", "display": "none"});
         $(".sub#" + this.value + " + a").css({"visibility":"visible", "opacity":"1.0", "display": "block"});
+        $("#aff .button#interested").attr("href", links[specs.indexOf(this.value)]);
     });
 
     $("select.sub").change(function(){

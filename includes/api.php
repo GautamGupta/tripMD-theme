@@ -115,7 +115,7 @@ final class TMD_API {
 				$output['specialities'] = array(
 					'dental' => array(
 						'title' => __( 'Dental', 'tripmd' ),
-						'link' => site_url( '/specialities/dental' ),
+						'link' => site_url( '/doctor/poonam-batra' ), //site_url( '/specialities/dental' ),
 						'procedures' => array(
 							'crown' => array(
 								'title' => __( 'Crowning', 'tripmd' ),
@@ -151,7 +151,7 @@ final class TMD_API {
 						),
 					'orthopaedic' => array(
 						'title' => __( 'Orthopaedic', 'tripmd' ),
-						'link' => site_url( '/inquiry' ),
+						'link' => site_url( '/inquiry?tmd_bs_inquiry_for=orthopaedic' ),
 						'procedures' => array(
 							'hip-replacement' => array(
 								'title' => __( 'Hip Replacement', 'tripmd' ),
@@ -177,7 +177,7 @@ final class TMD_API {
 						),
 					'ophthalmology' => array(
 						'title' => __( 'Ophthalmology (eye)', 'tripmd' ),
-						'link' => site_url( '/inquiry' ),
+						'link' => site_url( '/inquiry?tmd_bs_inquiry_for=ophthalmology' ),
 						'procedures' => array(
 							'lasik' => array(
 								'title' => __( 'Lasik (single eye)', 'tripmd' ),
@@ -203,7 +203,7 @@ final class TMD_API {
 						),
 					'cardiac' => array(
 						'title' => __( 'Cardiac (heart)', 'tripmd' ),
-						'link' => site_url( '/inquiry' ),
+						'link' => site_url( '/inquiry?tmd_bs_inquiry_for=cardiac' ),
 						'procedures' => array(
 							'cornorary-artery-bypass' => array(
 								'title' => __( 'Cornorary Artery Bypass', 'tripmd' ),
