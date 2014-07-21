@@ -91,9 +91,9 @@
 							<div class="inqquiry-for fld field">
 								<span><?php _e( 'Inquiring for:', 'tripmd' ); ?> </span><select name="tmd_bs_inquiry_for" class="inqquiry-for field in-select" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_inquiry_for' ); ?>" tabindex="<?php tmd_tab_index(); ?>">
 									<option disabled="disabled" selected="selected"><?php _e( 'Pick a specialization&hellip;', 'tripmd' ); ?></option>
-									<option value="dental" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'cardiac' ); ?>><?php _e( 'Cardiac (heart)', 'tripmd' ); ?></option>
+									<option value="cardiac" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'cardiac' ); ?>><?php _e( 'Cardiac (heart)', 'tripmd' ); ?></option>
 									<option value="dental" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'dental' ); ?>><?php _e( 'Dental', 'tripmd' ); ?></option>
-									<option value="dental" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'ophthalmology' ); ?>><?php _e( 'Ophthalmology (eye)', 'tripmd' ); ?></option>
+									<option value="ophthalmology" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'ophthalmology' ); ?>><?php _e( 'Ophthalmology (eye)', 'tripmd' ); ?></option>
 									<option value="orthopaedic" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'orthopaedic' ); ?>><?php _e( 'Orthopaedic', 'tripmd' ); ?></option>
 								</select>
 								<i class="fa fa-stethoscope"></i>
