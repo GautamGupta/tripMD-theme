@@ -71,7 +71,7 @@
 
 					<div class="form">
 
-						<form method="post" id="beta-form">
+						<form method="post" id="beta-form" action="<?php echo site_url( 'inquiry' ); ?>">
 							
 							<div class="name fld">
 								<input type="text" name="tmd_bs_name" placeholder="<?php _e( 'Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_name' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
