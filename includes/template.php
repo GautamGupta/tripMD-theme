@@ -768,3 +768,45 @@ function tmd_doctor_title( $title = '', $post_id = 0 ) {
         return $title;
 }
 add_filter( 'the_title', 'tmd_doctor_title', 1, 2 );
+
+/**
+ * Get doctor data
+ */
+function tmd_doctor_data( $args = '' ) {
+    $defaults = array (
+        'id'       => get_the_ID(),
+        'before'   => '',
+        'after'    => '',
+        'echo'     => true,
+        'taxonomy' => 'doctor_degree',
+        'sep'      => ', ',
+    );
+    $args = wp_parse_args( $args, $defaults );
+    extract( $args, EXTR_SKIP );
+
+    $output = '';
+
+    switch ( $taxonomy ) {
+        case 'doctor_degree' :
+            $terms = get_the_terms( $id, $taxonomy );
+
+            if ( is_wp_error( $terms ) || empty( $terms ) )
+                break;
+
+            foreach ( $terms as $term ) {
+                $term_links[] = '<abbr title="' . esc_attr( $term->description ) . '">' . $term->name . '</abbr>';
+            }
+
+            $output = join( $sep, $term_links );
+
+            break;
+    }
+
+    if ( !empty( $output ) )
+        $output = $before . $output . $after;
+
+    if ( $echo == true )
+        echo $output;
+    else
+        return $output;
+}

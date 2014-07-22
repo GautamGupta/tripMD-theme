@@ -660,6 +660,35 @@ final class TripMD {
      */
     public static function register_taxonomies() {
 
+        $labels = array(
+            'name'                       => _x( 'Degrees', 'Taxonomy General Name', 'tripmd' ),
+            'singular_name'              => _x( 'Degree', 'Taxonomy Singular Name', 'tripmd' ),
+            'menu_name'                  => __( 'Degrees', 'tripmd' ),
+            'all_items'                  => __( 'All Degrees', 'tripmd' ),
+            'parent_item'                => __( 'Parent Degree', 'tripmd' ),
+            'parent_item_colon'          => __( 'Parent Degree:', 'tripmd' ),
+            'new_item_name'              => __( 'New Degree Name', 'tripmd' ),
+            'add_new_item'               => __( 'Add New Degree', 'tripmd' ),
+            'edit_item'                  => __( 'Edit Degree', 'tripmd' ),
+            'update_item'                => __( 'Update Degree', 'tripmd' ),
+            'separate_items_with_commas' => __( 'Separate degrees with commas', 'tripmd' ),
+            'search_items'               => __( 'Search Degrees', 'tripmd' ),
+            'add_or_remove_items'        => __( 'Add or remove degrees', 'tripmd' ),
+            'choose_from_most_used'      => __( 'Choose from the most used degrees', 'tripmd' ),
+            'not_found'                  => __( 'Not Found', 'tripmd' ),
+        );
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => false,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => false,
+            'show_tagcloud'              => false,
+            'rewrite'                    => false,
+        );
+        register_taxonomy( 'doctor_degree', array( 'doctor' ), $args );
+
     }
 
     /**

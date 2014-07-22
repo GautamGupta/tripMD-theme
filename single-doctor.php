@@ -15,7 +15,7 @@ get_header(); ?>
         
         <div class="grid-container">
             
-            <h1>Dental Treatments</h1>
+            <h1><?php _e( 'Dental Treatments', 'tripmd' ); ?></h1>
 
         </div>
 
@@ -36,7 +36,7 @@ get_header(); ?>
                 <div class="info fleft">
 
                     <h2><?php the_title(); ?></h2>
-                    <h3>MD, PHD</h3>
+                    <?php tmd_doctor_data( array( 'before' => '<h3>', 'after' => '</h3>', 'taxonomy' => 'doctor_degree' ) ); ?>
                     <?php if ( get_post_meta( get_the_ID(), 'location', true ) ) : ?>
                         <h3><?php echo get_post_meta( get_the_ID(), 'location', true ); ?></h3>
                     <?php endif; ?>
@@ -64,7 +64,7 @@ get_header(); ?>
 
                 <div class="grid-40 push-10">
                     
-                    <div class="subtitle"><p>Specialities</p></div>
+                    <div class="subtitle"><p><?php _e( 'Specialities', 'tripmd' ); ?></p></div>
                     <h1><a href="#">Dentist &middot; Cosmetic Dentist</a></h1>
 
                 </div>
