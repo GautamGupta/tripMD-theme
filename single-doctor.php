@@ -65,21 +65,21 @@ get_header(); ?>
                 <div class="grid-40 push-10">
                     
                     <div class="subtitle"><p><?php _e( 'Specialities', 'tripmd' ); ?></p></div>
-                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'specialities' ) ); ?>
+                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'specialities', 'sep' => ' &middot; ' ) ); ?>
 
                 </div>
 
                 <div class="grid-50 push-10">
                     
-                    <div class="subtitle"><p>International Patients Rating</p></div>
+                    <div class="subtitle"><p><?php _e( 'International Patients Rating', 'tripmd' ); ?></p></div>
                     <h1><img src="<?php echo get_template_directory_uri(); ?>/img/4-5.png" alt="" style="width: 30%" class="rating"></h1>
 
                 </div>
 
                 <div class="grid-40 push-10">
                     
-                    <div class="subtitle"><p>Professional Memberships</p></div>
-                    <h1><a href="#">American Dental Association</a></h1>
+                    <div class="subtitle"><p><?php _e( 'Professional Memberships', 'tripmd' ); ?></p></div>
+                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'membership' ) ); ?>
 
                 </div>
 
@@ -94,15 +94,15 @@ get_header(); ?>
 
                 <div class="grid-40 push-10">
                     
-                    <div class="subtitle"><p>Languages Supported</p></div>
-                    <h1>English, Hindi, Mandarin</h1>
+                    <div class="subtitle"><p><?php _e( 'Languages Supported' ); ?></p></div>
+                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'language', 'sep' => ' &middot; ' ) ); ?>
 
                 </div>
 
                 <div class="grid-50 push-10">
                     
-                    <div class="subtitle"><p>Education</p></div>
-                    <h1>Dental School, University of California</h1>
+                    <div class="subtitle"><p><?php _e( 'Education', 'tripmd' ); ?></p></div>
+                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'education' ) ); ?>
 
                 </div>
 
@@ -112,7 +112,7 @@ get_header(); ?>
 
             <div class="link">
                 
-                <a class="big fat green button" href="/inquiry">Talk to the doctor</a>
+                <a class="big fat green button" href="/inquiry?tmd_bs_inquiry_for=dental"><?php _e( 'Talk to the doctor', 'tripmd' ); ?></a>
 
             </div>
 

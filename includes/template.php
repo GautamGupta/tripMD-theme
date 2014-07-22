@@ -778,7 +778,7 @@ function tmd_doctor_data( $args = '' ) {
         'before'   => '',
         'after'    => '',
         'echo'     => true,
-        'taxonomy' => 'doctor_degree',
+        'taxonomy' => '',
         'sep'      => ', ',
     );
     $args = wp_parse_args( $args, $defaults );
@@ -801,6 +801,22 @@ function tmd_doctor_data( $args = '' ) {
 
             break;
 
+        case 'language' :
+        case 'membership' :
+        case 'education' :
+            $terms = get_the_terms( $id, $taxonomy );
+
+            if ( is_wp_error( $terms ) || empty( $terms ) )
+                break;
+
+            foreach ( $terms as $term ) {
+                $term_links[] = $term->name;
+            }
+
+            $output = join( $sep, $term_links );
+
+            break;
+
         case 'specialities' : // Not actually a taxonomy
             $specialities = get_post_meta( $id, $taxonomy, true );
             $specialities = (array) explode( ', ', $specialities );
@@ -809,10 +825,12 @@ function tmd_doctor_data( $args = '' ) {
                 break;
 
             foreach( $specialities as $speciality_id ) {
-                $term_links[] = '<a href="' . esc_url( get_permalink( $speciality_id ) ) . '" title="' . esc_attr( get_the_title( $speciality_id ) ) . '">' . get_the_title( $speciality_id ) . '</abbr>';
+                $term_links[] = '<a href="' . esc_url( get_permalink( $speciality_id ) ) . '" title="' . esc_attr( get_the_title( $speciality_id ) ) . '">' . get_the_title( $speciality_id ) . '</a>';
             }
 
             $output = join( $sep, $term_links );
+
+            break;
     }
 
     if ( !empty( $output ) )

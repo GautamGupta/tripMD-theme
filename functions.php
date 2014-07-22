@@ -707,6 +707,93 @@ final class TripMD {
         );
         register_taxonomy( 'doctor_degree', array( 'doctor' ), $args );
 
+        $labels = array(
+            'name'                       => _x( 'Languages', 'Taxonomy General Name', 'tripmd' ),
+            'singular_name'              => _x( 'Language', 'Taxonomy Singular Name', 'tripmd' ),
+            'menu_name'                  => __( 'Languages', 'tripmd' ),
+            'all_items'                  => __( 'All Languages', 'tripmd' ),
+            'parent_item'                => __( 'Parent Language', 'tripmd' ),
+            'parent_item_colon'          => __( 'Parent Language:', 'tripmd' ),
+            'new_item_name'              => __( 'New Language Name', 'tripmd' ),
+            'add_new_item'               => __( 'Add New Language', 'tripmd' ),
+            'edit_item'                  => __( 'Edit Language', 'tripmd' ),
+            'update_item'                => __( 'Update Language', 'tripmd' ),
+            'separate_items_with_commas' => __( 'Separate languages with commas', 'tripmd' ),
+            'search_items'               => __( 'Search Languages', 'tripmd' ),
+            'add_or_remove_items'        => __( 'Add or remove languages', 'tripmd' ),
+            'choose_from_most_used'      => __( 'Choose from the most used languages', 'tripmd' ),
+            'not_found'                  => __( 'Not Found', 'tripmd' ),
+        );
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => false,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => false,
+            'show_tagcloud'              => false,
+            'rewrite'                    => false,
+        );
+        register_taxonomy( 'language', array( 'doctor' ), $args );
+
+        $labels = array(
+            'name'                       => _x( 'Memberships', 'Taxonomy General Name', 'tripmd' ),
+            'singular_name'              => _x( 'Membership', 'Taxonomy Singular Name', 'tripmd' ),
+            'menu_name'                  => __( 'Memberships', 'tripmd' ),
+            'all_items'                  => __( 'All Memberships', 'tripmd' ),
+            'parent_item'                => __( 'Parent Membership', 'tripmd' ),
+            'parent_item_colon'          => __( 'Parent Membership:', 'tripmd' ),
+            'new_item_name'              => __( 'New Membership Name', 'tripmd' ),
+            'add_new_item'               => __( 'Add New Membership', 'tripmd' ),
+            'edit_item'                  => __( 'Edit Membership', 'tripmd' ),
+            'update_item'                => __( 'Update Membership', 'tripmd' ),
+            'separate_items_with_commas' => __( 'Separate memberships with commas', 'tripmd' ),
+            'search_items'               => __( 'Search Memberships', 'tripmd' ),
+            'add_or_remove_items'        => __( 'Add or remove memberships', 'tripmd' ),
+            'choose_from_most_used'      => __( 'Choose from the most used memberships', 'tripmd' ),
+            'not_found'                  => __( 'Not Found', 'tripmd' ),
+        );
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => false,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => false,
+            'show_tagcloud'              => false,
+            'rewrite'                    => false,
+        );
+        register_taxonomy( 'membership', array( 'doctor' ), $args );
+
+        $labels = array(
+            'name'                       => _x( 'Education', 'Taxonomy General Name', 'tripmd' ),
+            'singular_name'              => _x( 'Education', 'Taxonomy Singular Name', 'tripmd' ),
+            'menu_name'                  => __( 'Education', 'tripmd' ),
+            'all_items'                  => __( 'All Items', 'tripmd' ),
+            'parent_item'                => __( 'Parent Item', 'tripmd' ),
+            'parent_item_colon'          => __( 'Parent Item:', 'tripmd' ),
+            'new_item_name'              => __( 'New Item Name', 'tripmd' ),
+            'add_new_item'               => __( 'Add New Item', 'tripmd' ),
+            'edit_item'                  => __( 'Edit Item', 'tripmd' ),
+            'update_item'                => __( 'Update Item', 'tripmd' ),
+            'separate_items_with_commas' => __( 'Separate items with commas', 'tripmd' ),
+            'search_items'               => __( 'Search Items', 'tripmd' ),
+            'add_or_remove_items'        => __( 'Add or remove items', 'tripmd' ),
+            'choose_from_most_used'      => __( 'Choose from the most used items', 'tripmd' ),
+            'not_found'                  => __( 'Not Found', 'tripmd' ),
+        );
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => false,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => false,
+            'show_tagcloud'              => false,
+            'rewrite'                    => false,
+        );
+        register_taxonomy( 'education', array( 'doctor' ), $args );
+
     }
 
     /**
