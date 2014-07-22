@@ -43,18 +43,10 @@ get_header(); ?>
 
                 </div>
 
-                <div class="fright score">
-                    
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="">&nbsp;score: 
-                    <h1>97%</h1>
-
-                </div>
-
-                <div class="fright score">
-                    
-                    <!-- <h1>3.5</h1> -->
-
-                </div>
+                <?php if ( get_post_meta( get_the_ID(), 'rating', true ) ) : ?>
+                    <div class="fright score"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="">&nbsp;<?php _e( 'rating', 'tripmd' ); ?>: 
+                    <?php tmd_rating( get_post_meta( get_the_ID(), 'rating', true ) ); ?></div>
+                <?php endif; ?>
                 
                 <div class="clear"></div>
 
@@ -69,12 +61,11 @@ get_header(); ?>
 
                 </div>
 
-                <div class="grid-50 push-10">
-                    
+                <?php if ( get_post_meta( get_the_ID(), 'patients_rating', true ) ) : ?><div class="grid-50 push-10">
                     <div class="subtitle"><p><?php _e( 'International Patients Rating', 'tripmd' ); ?></p></div>
-                    <h1><img src="<?php echo get_template_directory_uri(); ?>/img/4-5.png" alt="" style="width: 30%" class="rating"></h1>
-
-                </div>
+                        <h1><?php tmd_rating( get_post_meta( get_the_ID(), 'patients_rating', true ) ); ?></h1>
+                    </div>
+                <?php endif; ?>
 
                 <div class="grid-40 push-10">
                     
