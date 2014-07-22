@@ -74,7 +74,7 @@ get_header(); ?>
                     <div class="subtitle"><p>International Patients Rating</p></div>
                     <h1><img src="<?php echo get_template_directory_uri(); ?>/img/4-5.png" alt="" style="width: 30%" class="rating"></h1>
 
-                </div>      
+                </div>
 
                 <div class="grid-40 push-10">
                     
@@ -83,12 +83,14 @@ get_header(); ?>
 
                 </div>
 
-                <div class="grid-50 push-10">
-                    
-                    <div class="subtitle"><p>International Patients Treated Annually</p></div>
-                    <h1>488 <a href="#">(see regionwise split)</a></h1>
+                <?php if ( get_post_meta( get_the_ID(), 'intl_treated', true ) ) : // Annually ?>
 
-                </div>
+                    <div class="grid-50 push-10">
+                        <div class="subtitle"><p><?php _e( 'International Patients Treated Annually', 'tripmd' ); ?></p></div>
+                        <h1><?php printf( __( '%d+ <a href="%s">(see regionwise split)</a>', 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#' ); ?></h1>
+                    </div>
+                
+                <?php endif; ?>
 
                 <div class="grid-40 push-10">
                     
