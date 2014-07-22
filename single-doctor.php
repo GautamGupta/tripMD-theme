@@ -65,7 +65,7 @@ get_header(); ?>
                 <div class="grid-40 push-10">
                     
                     <div class="subtitle"><p><?php _e( 'Specialities', 'tripmd' ); ?></p></div>
-                    <h1><a href="#">Dentist &middot; Cosmetic Dentist</a></h1>
+                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'specialities' ) ); ?>
 
                 </div>
 

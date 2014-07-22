@@ -800,6 +800,19 @@ function tmd_doctor_data( $args = '' ) {
             $output = join( $sep, $term_links );
 
             break;
+
+        case 'specialities' : // Not actually a taxonomy
+            $specialities = get_post_meta( $id, $taxonomy, true );
+            $specialities = (array) explode( ', ', $specialities );
+
+            if ( empty( $specialities ) )
+                break;
+
+            foreach( $specialities as $speciality_id ) {
+                $term_links[] = '<a href="' . esc_url( get_permalink( $speciality_id ) ) . '" title="' . esc_attr( get_the_title( $speciality_id ) ) . '">' . get_the_title( $speciality_id ) . '</abbr>';
+            }
+
+            $output = join( $sep, $term_links );
     }
 
     if ( !empty( $output ) )
