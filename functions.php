@@ -342,12 +342,13 @@ final class TripMD {
         $actions = array(
             'load_textdomain',          // Load textdomain (tripmd)
             'setup_current_user',       // Setup currently logged in user
-            'register_post_types',      // Register post types (forum|topic|reply)
-            'register_post_statuses',   // Register post statuses (closed|spam|orphan|hidden)
-            'register_taxonomies',      // Register taxonomies (topic-tag)
-            'add_rewrite_tags',         // Add rewrite tags (view|user|edit|search)
-            'add_rewrite_rules',        // Generate rewrite rules (view|edit|paged|search)
-            'add_permastructs',         // Add permalink structures (view|user|search)
+            'register_post_types',      // Register post types
+            'register_post_fields',     // Register post fields
+            'register_post_statuses',   // Register post statuses
+            'register_taxonomies',      // Register taxonomies
+            'add_rewrite_tags',         // Add rewrite tags
+            'add_rewrite_rules',        // Generate rewrite rules
+            'add_permastructs',         // Add permalink structures
             'enqueue_scripts',          // Enqueue necessary styles and scripts
             'setup_session',            // Setup session
         );
@@ -651,6 +652,23 @@ final class TripMD {
             'capability_type'     => 'page',
         );
         register_post_type( tripmd()->consultation_post_type, $args );
+    }
+
+    /**
+     * Register custom meta fields for various post types that we have
+     *
+     * @see https://github.com/wordpress-metadata/metadata-ui-api
+     * 
+     * @uses register_post_field() To register the post fields
+     */
+    public static function register_post_fields() {
+        if ( !function_exists( 'register_post_field' ) )
+            return;
+
+        /* register_post_field( 'intl_treated', tripmd()->doctor_post_type,  array(
+            'label'     =>  __( 'International Patients Treated Annually',  'tripmd' ),
+            'html_size' =>  5
+        ) ); */
     }
 
     /**

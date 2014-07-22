@@ -85,6 +85,7 @@ add_action( 'tmd_init', 'tmd_ready',             999 );
  *                                                         v---Load order
  */
 add_action( 'tmd_register', 'tmd_register_post_types',     2  );
+add_action( 'tmd_register', 'tmd_register_post_fields',    3  );
 add_action( 'tmd_register', 'tmd_register_post_statuses',  4  );
 add_action( 'tmd_register', 'tmd_register_taxonomies',     6  );
 
@@ -285,6 +286,13 @@ function tmd_load_textdomain() {
  */
 function tmd_register_post_types() {
     do_action( 'tmd_register_post_types' );
+}
+
+/**
+ * Setup the post fields
+ */
+function tmd_register_post_fields() {
+    do_action( 'tmd_register_post_fields' );
 }
 
 /**
