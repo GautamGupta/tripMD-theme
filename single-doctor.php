@@ -81,10 +81,8 @@ get_header(); ?>
                 <?php endif; ?>
 
                 <div class="grid-40 push-10">
-                    
                     <div class="subtitle"><p><?php _e( 'Professional Memberships', 'tripmd' ); ?></p></div>
                     <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'membership' ) ); ?>
-                    <a href="#breakup" class="fancybox">bu</a>
 
                 </div>
 
@@ -92,7 +90,7 @@ get_header(); ?>
 
                     <div class="grid-50 push-10">
                         <div class="subtitle"><p><?php _e( 'International Patients Treated Annually', 'tripmd' ); ?></p></div>
-                        <h1><?php printf( __( '%d+ <a href="#breakup">(see regionwise split)</a>', 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#' ); ?></h1>
+                        <h1><?php printf( __( '%1$d+ <a href="%2$s" class="fancybox">(see regionwise split)</a>', 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#breakup' ); ?></h1>
                     </div>
                 
                 <?php endif; ?>
@@ -193,7 +191,7 @@ get_header(); ?>
             <h2>Airbnb accomodation close to the facility would be: $25/night and up</h2>
             <h2>Or, a 5-star hotel close to facility would be: $80/night and up</h2>
             <h2>Duration of the trip: 3 days</h2>
-            <h2><b>Total: <span style="color: #7ecd94">$2425 and up</span></b></h2>
+            <h2><b>Total: <span style="color: #7ecd94">$2,425 and up</span></b></h2>
 
         </div>
 
@@ -208,10 +206,6 @@ get_header(); ?>
     endif; ?>
 
 	<?php /* <div class="content">
-
-		<?php if ( get_post_meta( get_the_ID(), 'specialization', true ) ) : ?>
-			<p><strong>Specialization</strong>: <?php echo get_post_meta( get_the_ID(), 'specialization', true ); ?></p>
-		<?php endif; ?>
 
 		<?php if ( get_post_meta( get_the_ID(), 'experience', true ) ) : ?>
 			<p><strong>Experience</strong>: <?php echo get_post_meta( get_the_ID(), 'experience', true ); ?></p>
