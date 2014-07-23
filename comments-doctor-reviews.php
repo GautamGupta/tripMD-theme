@@ -22,8 +22,9 @@ if ( post_password_required() ) {
     <?php if ( have_comments() ) : ?>
 
         <h1 style="margin-bottom: 0">
-        	<?php printf( _nx( 'One testimonial for &ldquo;%2$s&rdquo;', '%1$s testimonials for &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'tripmd' ),
-				number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' ); ?>
+        	<?php /* printf( _nx( 'One testimonial for &ldquo;%2$s&rdquo;', '%1$s testimonials for &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'tripmd' ),
+				number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' ); */ ?>
+                Reviews
 		</h1>
 
 		<?php /*
@@ -38,21 +39,21 @@ if ( post_password_required() ) {
             <div class="grid-20">
                 
                 <div class="subtitle"><p>Overall</p></div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/5.png" alt="" class="rating">
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
 
             </div>
 
             <div class="grid-20">
                 
                 <div class="subtitle"><p>Communication</p></div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/3-5.png" alt="" class="rating">
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i>
 
             </div>
 
             <div class="grid-20 push-5">
                 
                 <div class="subtitle"><p>Friendliness</p></div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/4.png" alt="" class="rating">
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
 
             </div>
 
@@ -67,21 +68,21 @@ if ( post_password_required() ) {
             <div class="grid-20">
                 
                 <div class="subtitle"><p>Overall</p></div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/4.png" alt="" class="rating">
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i>
 
             </div>
 
             <div class="grid-20">
                 
                 <div class="subtitle"><p>Communication</p></div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/5.png" alt="" class="rating">
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
 
             </div>
 
             <div class="grid-20 push-5">
                 
                 <div class="subtitle"><p>Friendliness</p></div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/3-5.png" alt="" class="rating">
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
 
             </div>
 

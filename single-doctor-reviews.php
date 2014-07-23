@@ -31,7 +31,7 @@
 
     <body <?php body_class( 'beta' ); ?>>
 
-        <div class="block">
+        <div class="block full-width-form">
 
             <div class="card">
 
@@ -63,7 +63,7 @@
 
                     <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', array( 'class' => 'avatar' ) ); ?>
 
-                    <h2><?php printf( __( 'Write a review for %s', 'tripmd' ), get_the_title() ); ?></h2>
+                    <h2><?php printf( __( 'Write a review for<br><a href="/doc-profile"><span class="doc-name">%s</span></a>', 'tripmd' ), get_the_title() ); ?></h2>
 
                     <div class="form">
 
@@ -93,16 +93,24 @@
                                 <i class="fa fa-star-o"></i>
                                 <strong><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
                                 <?php foreach ( array( 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ), 'overall' => __( 'Overall', 'tripmd' ) ) as $key => $display_text ) : ?>
-                                    <?php echo $display_text; ?>
-                                    1
+                                    <span class="rat-title"><?php echo $display_text; ?></span>
+                                    <fieldset class="rat-star <?php echo $display_text; ?>">
+                                        <legend>Please rate:</legend>
+                                        <input type="radio" id="star1" name="<?php echo $display_text; ?>rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                                        <input type="radio" id="star2" name="<?php echo $display_text; ?>orating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                                        <input type="radio" id="star3" name="<?php echo $display_text; ?>orating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                                        <input type="radio" id="star4" name="<?php echo $display_text; ?>orating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                                        <input type="radio" id="star5" name="<?php echo $display_text; ?>orating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+                                    </fieldset>
+  
                                     <?php for ( $rad_val = 1; $rad_val <= 5; $rad_val++ ) : ?>
-                                        <input type="radio" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
+                                        <!-- <input type="radio" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> /> -->
                                     <?php endfor; ?>
-                                    5<br />
+                                    <br />
                                 <?php endforeach; ?>
                             </div>
-                            
-                            <input type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'Also subscribe me to <a href="%1$s" class="green-t">TripMD</a> updates, a startup with a mission to simplify medical travel. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label>
+                            <!-- <br> -->
+                            <input type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'Also subscribe me to <a href="%1$s" class="green-t">tripMD</a> updates, a startup with a mission to simplify medical travel. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label>
 
                             <input type="hidden" name="action" value="review_doctor" />
                             <input type="hidden" name="tmd_review_parent_id" value="<?php the_ID(); ?>" />

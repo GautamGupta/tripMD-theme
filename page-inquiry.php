@@ -35,7 +35,7 @@
 
 	<body <?php body_class( 'beta' ); ?>>
 
-		<div class="block">
+		<div class="block full-width-form">
 
 			<div class="card">
 

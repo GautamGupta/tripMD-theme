@@ -11,6 +11,19 @@ get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 
+        <!-- Pie Chart -->
+        <div style="display:none" class="fancybox-hidden block">
+            <div id="breakup" class="su full-width-form" style="width:600px; height:420px;">
+                <h1><center>Regionwise Breakup</center></h1>
+
+               <div id="chart1" style="height:300px; width:500px;"></div>
+                    <div class="code prettyprint">
+                    <pre class="code prettyprint brush: js"></pre>
+                </div>
+
+            </div>
+        </div>
+
     <header>
         
         <div class="grid-container">
@@ -71,6 +84,7 @@ get_header(); ?>
                     
                     <div class="subtitle"><p><?php _e( 'Professional Memberships', 'tripmd' ); ?></p></div>
                     <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'membership' ) ); ?>
+                    <a href="#breakup" class="fancybox">bu</a>
 
                 </div>
 
@@ -78,7 +92,7 @@ get_header(); ?>
 
                     <div class="grid-50 push-10">
                         <div class="subtitle"><p><?php _e( 'International Patients Treated Annually', 'tripmd' ); ?></p></div>
-                        <h1><?php printf( __( '%d+ <a href="%s">(see regionwise split)</a>', 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#' ); ?></h1>
+                        <h1><?php printf( __( '%d+ <a href="#breakup">(see regionwise split)</a>', 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#' ); ?></h1>
                     </div>
                 
                 <?php endif; ?>
@@ -140,17 +154,17 @@ get_header(); ?>
         
         <div class="grid-container">
             
-            <h1>Facility</h1>
+            <h1>Facility and Awards</h1>
 
             <br /><br />
 
-            <div class="grid-30"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></div>
-            <div class="grid-30 push-5"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></div>
-            <div class="grid-30 push-10"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></div>
+            <div class="grid-30"><a href="<?php echo get_template_directory_uri(); ?>/img/1.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></a></div>
+            <div class="grid-30 push-5"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
+            <div class="grid-30 push-10"><a href="<?php echo get_template_directory_uri(); ?>/img/2.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></a></div>
             <div class="grid-100" style="margin-top: 100px; !important"><br><br></div>
-            <div class="grid-30 push-"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></div>
-            <div class="grid-30 push-5"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></div>
-            <div class="grid-30 push-10"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></div>
+            <div class="grid-30 push-"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
+            <div class="grid-30 push-5"><a href="<?php echo get_template_directory_uri(); ?>/img/5.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></a></div>
+            <div class="grid-30 push-10"><a href="<?php echo get_template_directory_uri(); ?>/img/4.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></a></div>
 
         </div>
 
@@ -221,5 +235,41 @@ get_header(); ?>
     <small class="animated fadeIn">to select another doctor.</small> */ ?>
 
 <?php endwhile; // end of the loop. ?>
+    
+    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jqplot.pieRenderer.min.js"></script>
+    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jqplot.donutRenderer.min.js"></script>
+    <script>
+    
+    var data = [
+        ['North America', 126],['Australia', 140], ['Hong Kong', 95], ['Rest of the World', 50], ['Singapore', 77]
+    ];
+
+    var plot1 = jQuery.jqplot ('chart1', [data], 
+    { 
+      seriesDefaults: {
+        // Make this a pie chart.
+        renderer: jQuery.jqplot.PieRenderer, 
+        rendererOptions: {
+          // Put data labels on the pie slices.
+          // By default, labels show the percentage of the slice.
+          showDataLabels: true,
+                  show: true,     // wether to render the series.
+        lineWidth: 0, // Width of the line in pixels.
+        shadow: false,
+
+        }
+      }, 
+      legend: { show:true, location: 'e' },
+
+      grid: {
+        background: 'transparent',      // CSS color spec for background color of grid.
+        borderColor: 'transparent',     // CSS color spec for border around grid.
+        borderWidth: 0.0,           // pixel width of border around grid.
+        shadow: false,               // draw a shadow for grid.
+        },
+
+    }
+  );</script>
 
 <?php get_footer(); ?>

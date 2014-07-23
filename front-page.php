@@ -9,7 +9,7 @@ get_header(); ?>
 
         <!-- Clinic signup form -->
         <div style="display:none" class="fancybox-hidden block">
-            <div id="hosp-signup" class="su" style="width:480px; height:420px;">
+            <div id="hosp-signup" class="su full-width-form" style="width:480px; height:420px;">
                 <h1>Clinic Signup</h1>
 
                 <form method="post" style="color: black;" action="<?php echo site_url( '/' ); ?>">
@@ -518,7 +518,7 @@ get_header(); ?>
                 <div class="grid-60 pred">
                     
                     <div class="subtitle"><p>Savings</p></div>
-                    <p>Originally, $<span class="actual">30,000</span> in California.<br>We can reduce your bill by <span class="perc-saved">50</span>%.</p>
+                    <p>Originally, $<span class="actual">30,000</span> in Canada.<br>We can reduce your bill by <span class="perc-saved">50</span>%.</p>
 
                 </div>
 

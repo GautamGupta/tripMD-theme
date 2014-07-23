@@ -67,7 +67,29 @@ get_header();
 			<div class="grid-50 push-10">
 				
 				<div class="subtitle"><p>International Patients Rating</p></div>
-				<h1><img src="<?php echo get_template_directory_uri(); ?>/img/4-5.png" alt="" style="width: 30%" class="rating"></h1>
+				<h1>
+
+				<span class="rating">
+				    <input type="radio" class="rating-input"
+				        id="rating-input-1-5" name="rating-input-1">
+				    <label for="rating-input-1-5" class="rating-star"></label>
+				    <input type="radio" class="rating-input"
+				        id="rating-input-1-4" name="rating-input-1">
+				    <label for="rating-input-1-4" class="rating-star"></label>
+				    <input type="radio" class="rating-input"
+				        id="rating-input-1-3" name="rating-input-1">
+				    <label for="rating-input-1-3" class="rating-star"></label>
+				    <input type="radio" class="rating-input"
+				        id="rating-input-1-2" name="rating-input-1">
+				    <label for="rating-input-1-2" class="rating-star"></label>
+				    <input type="radio" class="rating-input"
+				        id="rating-input-1-1" name="rating-input-1">
+				    <label for="rating-input-1-1" class="rating-star"></label>
+				</span>
+				
+					<!--<input type="range" name="rating" step="1" min="1" value="1" max="5" />-->
+					<!--<output for="rating">0</output>--> <!-- append to input via JS -->
+ 				</h1>
 
 			</div>		
 
@@ -147,7 +169,7 @@ get_header();
 
 		<br><br>
 
-		<div class="grid-30"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></div>
+		<div class="grid-30"><a id="single_image" href="<?php echo get_template_directory_uri(); ?>/img/1.jpg" class="fancybox"><img class="fancybox" src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></a></div>
 		<div class="grid-30 push-5"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></div>
 		<div class="grid-30 push-10"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></div>
 		<div class="grid-100" style="margin-top: 100px; !important"><br><br></div>
@@ -180,11 +202,11 @@ get_header();
         <img src="<?php echo get_template_directory_uri(); ?>/img/table4.png" style="width: 100%; outline: thin solid lightgray; box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.1);" alt="">
 		
 		<br><br>
-        <h2>Round trip from California to India would be: $1500</h2>
-        <h2>Airbnb accomodation close to the facility would be: $25/night and up</h2>
-        <h2>Or, a 5-star hotel close to facility would be: $80/night and up</h2>
-        <h2>Duration of the trip: 3 days</h2>
-        <h2><b>Total: <span style="color: #7ecd94">$2425 and up</span></b></h2>
+        <h2><i class="fa fa-plane"></i>Round trip from California to India would be: $1500</h2>
+        <h2><i class="fa fa-home"></i>Airbnb accomodation close to the facility would be: $25/night and up</h2>
+        <h2><i class="fa fa-">&nbsp;</i>Or, a 5-star hotel close to facility would be: $80/night and up</h2>
+        <h2><i class="fa fa-calendar"></i>Duration of the trip: 3 days</h2>
+        <h2><i class="fa fa-circle-o"></i><b>Total: <span style="color: #7ecd94">$2425 and up</span></b></h2>
 
 	</div>
 
