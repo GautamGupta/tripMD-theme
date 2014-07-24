@@ -63,7 +63,7 @@
 
                     <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', array( 'class' => 'avatar' ) ); ?>
 
-                    <h2><?php printf( __( 'Write a review for<br><a href="/doc-profile"><span class="doc-name">%s</span></a>', 'tripmd' ), get_the_title() ); ?></h2>
+                    <h2><?php printf( __( 'Write a review for %s', 'tripmd' ), '<br /><a href="' . get_permalink() . '"><span class="doc-name">' . get_the_title() .'</span></a>' ); ?></h2>
 
                     <div class="form">
 
@@ -94,11 +94,11 @@
                                 <strong><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
                                 <?php foreach ( array( 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ), 'overall' => __( 'Overall', 'tripmd' ) ) as $key => $display_text ) : ?>
                                     <span class="rat-title"><?php echo $display_text; ?></span>
-                                    <fieldset class="rat-star <?php echo $display_text; ?>">
+                                    <fieldset class="rat-star <?php echo $key; ?>">
                                         <legend><?php _e( 'Please rate:', 'tripmd' ); ?></legend>
                                         <?php foreach ( array( 1 => __( 'Bad experience', 'tripmd' ), 2 => __( 'Not upto the mark', 'tripmd' ), 3 => __( 'Fair', 'tripmd' ), 4 => __( 'Good!', 'tripmd' ), 5 => __( 'Would definitely recommend!', 'tripmd' ) ) as $rad_val => $label_text ) : ?>
                                             <input type="radio" id="tmd_review_rating_<?php echo $key; ?>_1" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
-                                            <label for="tmd_review_rating_<?php echo $key; ?>_1" title="<?php echo $label_text; ?>"><?php echo $rad_val . __( ' star', 'tripmd' ); ?></label>
+                                            <label for="tmd_review_rating_<?php echo $key; ?>_1" title="<?php echo $label_text; ?>"><?php printf( __( '%d star', 'tripmd' ), $rad_val ); ?></label>
                                         <?php endforeach; ?>
                                     </fieldset>
                                     <br />
