@@ -24,7 +24,7 @@
 
 .rat-star:not(:checked) > label {
     float:right;
-    width:1em;
+    width:2em;
     position: relative;
     top: -3px;
     padding:0 .1em;
@@ -43,7 +43,7 @@
 
 .rat-star > input:checked ~ label {
     color: #f70;
-    color: gold;
+    color: red;
     /*text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);*/
 }
 

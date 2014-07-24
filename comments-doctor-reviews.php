@@ -34,7 +34,7 @@ if ( post_password_required() ) {
 
         <div class="grid-100" style="margin-left: 145px; padding-top: 30px;">
             
-            <div class="grid-100"><h2><b>Sean T.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 190px; opacity: 0.25">July 7, 2014</span></h2></div>
+            <div class="grid-100"><h2 id="sean"><b>Sean T.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 190px; opacity: 0.25">July 7, 2014</span></h2></div>
 
             <div class="grid-20">
                 
@@ -63,7 +63,7 @@ if ( post_password_required() ) {
 
         <div class="grid-100" style="margin-left: 145px; padding-top: 30px;">
             
-            <div class="grid-100"><h2><b>Graham B.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 150px; opacity: 0.25">July 3, 2014</span></h2></div>
+            <div class="grid-100"><h2 id="graham"><b>Graham B.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 150px; opacity: 0.25">July 3, 2014</span></h2></div>
 
             <div class="grid-20">
                 

@@ -1856,10 +1856,10 @@ input[type="checkbox"]:checked + label:before {
   border-bottom: 2px solid #aaa;
   font-weight: bold; }
 
-.reviews h2:nth-child(1) {
+.reviews h2 {
   margin-bottom: 0;
   position: relative; }
-  .reviews h2:nth-child(1)::before {
+  .reviews h2::before {
     display: block;
     position: absolute;
     left: -60px;
@@ -1868,6 +1868,10 @@ input[type="checkbox"]:checked + label:before {
     content: "";
     border: 3px solid #fff;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-    background: url("../img/maxwell.jpg");
+    background: url("http://api.randomuser.me/portraits/med/men/1.jpg");
     background-size: cover;
     border-radius: 100px; }
+.reviews #sean::before {
+  background-image: url("http://api.randomuser.me/portraits/med/men/1.jpg"); }
+.reviews #graham::before {
+  background-image: url("http://api.randomuser.me/portraits/med/men/9.jpg"); }

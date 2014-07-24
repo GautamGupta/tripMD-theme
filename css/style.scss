@@ -2010,7 +2010,7 @@ input[type="checkbox"]:checked + label:before {
 
 .reviews {
 
-  h2:nth-child(1) {
+  h2 {
 
     margin-bottom: 0;
     position: relative;
@@ -2025,12 +2025,15 @@ input[type="checkbox"]:checked + label:before {
       content: "";
       border: 3px solid #fff;
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-      background: url('../img/maxwell.jpg');
+      background: url('http://api.randomuser.me/portraits/med/men/1.jpg');
       background-size: cover;
       border-radius: 100px;
 
     }
 
   }
+
+  #sean::before { background-image: url('http://api.randomuser.me/portraits/med/men/1.jpg'); }
+  #graham::before { background-image: url('http://api.randomuser.me/portraits/med/men/9.jpg'); }
 
 }
