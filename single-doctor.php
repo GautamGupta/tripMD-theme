@@ -14,10 +14,11 @@ get_header(); ?>
         <!-- Pie Chart -->
         <div style="display:none" class="fancybox-hidden block">
             <div id="breakup" class="su full-width-form" style="width:600px; height:420px;">
-                <h1><center>Regionwise Breakup</center></h1>
+                <h1><center><?php _e( 'Regionwise Breakup', 'tripmd' ); ?></center></h1>
 
-               <div id="chart1" style="height:300px; width:500px;"></div>
-                    <div class="code prettyprint">
+                <div id="chart1" style="height:300px; width:500px;"></div>
+
+                <div class="code prettyprint">
                     <pre class="code prettyprint brush: js"></pre>
                 </div>
 
@@ -27,9 +28,7 @@ get_header(); ?>
     <header>
         
         <div class="grid-container">
-            
             <h1><?php _e( 'Dental Treatments', 'tripmd' ); ?></h1>
-
         </div>
 
     </header>
@@ -245,13 +244,13 @@ get_header(); ?>
         // Make this a pie chart.
         renderer: jQuery.jqplot.PieRenderer, 
         rendererOptions: {
-          // Put data labels on the pie slices.
-          // By default, labels show the percentage of the slice.
-          showDataLabels: true,
-                  show: true,     // wether to render the series.
-        lineWidth: 0, // Width of the line in pixels.
-        shadow: false,
-
+            // Put data labels on the pie slices.
+            // By default, labels show the percentage of the slice.
+            showDataLabels: true,
+            show: true,     // wether to render the series.
+            lineWidth: 0, // Width of the line in pixels.
+            shadow: false,
+            sliceMargin: 5,
         }
       }, 
       legend: { show:true, location: 'e' },
