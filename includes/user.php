@@ -328,32 +328,28 @@ add_action( 'template_redirect', 'tmd_registration_handler', -10 );
     }
 
 /**
- * Hospital signup handler
+ * Clinic registration handler
  */
-function tmd_register_hospital_handler() {
-    if ( empty( $_POST['hsign'] ) )
-        return false;
-
-    if ( empty( $_POST['medical_centre'] ) ||  empty( $_POST['country'] ) ||  empty( $_POST['poc'] ) || empty( $_POST['email'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_home_register' ) ) {
-        wp_redirect( home_url( '?hsign=error#hs' ) );
+function tmd_clinic_register_handler() {
+    if ( empty( $_POST['tmd_cr_name'] ) ||  empty( $_POST['tmd_cr_location'] ) ||  empty( $_POST['tmd_cr_phone'] ) || empty( $_POST['tmd_cr_email'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_clinic_register_nonce' ) ) {
+        wp_redirect( home_url( '?clin_reg=error#clinic-signup' ) );
         exit;
     }
 
     $new_clinic = array(
-        'post_title' => $_POST['medical_centre'],
-        'post_status' => 'draft',
-        'post_type' => 'hospital'
+        'post_title' => $_POST['tmd_cr_name'],
+        'post_status' => 'pending',
+        'post_type' => tripmd()->hospital_post_type
     );
     $post_id = wp_insert_post( $new_clinic );
     
-    add_post_meta( $post_id, 'country', trim( $_POST['country'] ) );
-    add_post_meta( $post_id, 'poc', trim( $_POST['poc'] ) );
-    add_post_meta( $post_id, 'email', trim( $_POST['email'] ) );
+    add_post_meta( $post_id, 'location', trim( $_POST['tmd_cr_location'] ) );
+    add_post_meta( $post_id, 'phone',    trim( $_POST['tmd_cr_phone']    ) );
+    add_post_meta( $post_id, 'email',    trim( $_POST['tmd_cr_email']    ) );
     
-    wp_redirect( home_url( '?hsign=success#hs' ) );
+    wp_redirect( home_url( '?clin_reg=success#clin-reg-msg' ) );
     exit;
 }
-add_action( 'init', 'tmd_register_hospital_handler' );
 
 /**
  * Beta signup handler for /invitation

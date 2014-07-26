@@ -11,19 +11,19 @@ get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-        <!-- Pie Chart -->
-        <div style="display:none" class="fancybox-hidden block">
-            <div id="breakup" class="su full-width-form" style="width:600px; height:420px;">
-                <h1><center><?php _e( 'Regionwise Breakup', 'tripmd' ); ?></center></h1>
+    <!-- Pie Chart -->
+    <div style="display:none" class="fancybox-hidden block">
+        <div id="breakup" class="su full-width-form" style="width:600px; height:420px;">
+            <h1><center><?php _e( 'Regionwise Breakup', 'tripmd' ); ?></center></h1>
 
-                <div id="chart1" style="height:300px; width:500px;"></div>
+            <div id="chart1" style="height:300px; width:500px;"></div>
 
-                <div class="code prettyprint">
-                    <pre class="code prettyprint brush: js"></pre>
-                </div>
-
+            <div class="code prettyprint">
+                <pre class="code prettyprint brush: js"></pre>
             </div>
+
         </div>
+    </div>
 
     <header>
         
@@ -151,14 +151,14 @@ get_header(); ?>
         
         <div class="grid-container">
             
-            <h1>Facility and Awards</h1>
+            <h1><?php _e( 'Facility and Awards', 'tripmd' ); ?></h1>
 
             <br /><br />
 
             <div class="grid-30"><a href="<?php echo get_template_directory_uri(); ?>/img/1.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></a></div>
             <div class="grid-30 push-5"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
             <div class="grid-30 push-10"><a href="<?php echo get_template_directory_uri(); ?>/img/2.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></a></div>
-            <div class="grid-100" style="margin-top: 100px; !important"><br><br></div>
+            <div class="grid-100" style="margin-top: 100px; !important"><br /><br /></div>
             <div class="grid-30 push-"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
             <div class="grid-30 push-5"><a href="<?php echo get_template_directory_uri(); ?>/img/5.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></a></div>
             <div class="grid-30 push-10"><a href="<?php echo get_template_directory_uri(); ?>/img/4.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></a></div>
@@ -172,7 +172,7 @@ get_header(); ?>
     
         <div class="grid-container">
 
-            <h1>Costs</h1>
+            <h1><?php _e( 'Costs', 'tripmd' ); ?></h1>
             
             <select name="speciality" id="speciality" class="my-select">
                 <option value="dental-crown">Dental Crowns</option>

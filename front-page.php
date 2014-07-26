@@ -7,37 +7,37 @@
 
 get_header(); ?>
 
-        <!-- Clinic signup form -->
+        <!-- Clinic register form -->
         <div style="display:none" class="fancybox-hidden block">
-            <div id="hosp-signup" class="su full-width-form" style="width:480px; height:420px;">
-                <h1>Clinic Signup</h1>
+            <div id="clinic-register" class="su full-width-form" style="width:480px; height:480px;">
+                <h1><?php printf( __( 'Register your clinic with %s.', 'tripmd' ), get_bloginfo( 'name' ) ); ?></h1>
 
                 <form method="post" style="color: black;" action="<?php echo site_url( '/' ); ?>">
                     
                     <div class="name fld">
-                        <input type="text"  class="field" name="medical_centre" required="required" placeholder="Name of the Medical Centre" />
+                        <input type="text"  class="field" name="tmd_cr_name" required="required" placeholder="<?php _e( 'Name of the Medical Centre', 'tripmd' ); ?>" />
                         <i class="fa fa-hospital-o"></i>
                     </div>
 
                     <div class="country fld">
-                        <input type="text"  class="field" name="country" required="required" placeholder="Country" />
+                        <input type="text"  class="field" name="tmd_cr_location" required="required" placeholder="<?php _e( 'City & Country', 'tripmd' ); ?>" />
                         <i class="fa fa-map-marker"></i>
                     </div>
 
                     <div class="poc fld">
-                        <input type="text"  class="field" name="poc" required="required" placeholder="Point of Contact" />
+                        <input type="phone" class="field" name="tmd_cr_phone" required="required" placeholder="<?php _e( 'Phone Number of Representative', 'tripmd' ); ?>" />
                         <i class="fa fa-phone"></i>
                     </div>
 
                     <div class="email fld">
-                        <input type="email" class="last field" name="email" required="required" placeholder="Email Address" />
+                        <input type="email" class="last field" name="tmd_cr_email" required="required" placeholder="<?php _e( 'Email Address', 'tripmd' ); ?>" />
                         <i class="fa fa-envelope-o"></i>
                     </div>
 
-                    <input type="hidden" name="hsign" value="1" />
-                    <?php wp_nonce_field( 'tmd_home_register' ); ?>
+                    <input type="hidden" name="action" value="clinic_register" />
+                    <?php wp_nonce_field( 'tmd_clinic_register_nonce' ); ?>
 
-                    <input type="submit" class="big fat green button submit" value="Sign Up" />
+                    <input type="submit" class="big fat green button submit" value="<?php _e( 'Register', 'tripmd' ); ?>" />
 
                 </form>
 
@@ -475,15 +475,15 @@ get_header(); ?>
             
             <div class="grid-container">
 
-                <div class="heading howh grid-100"><h2>We&rsquo;re affordable.</h2></div>
+                <div class="heading howh grid-100"><h2><?php esc_attr_e( 'We&rsquo;re affordable.', 'tripmd' ); ?></h2></div>
                 
                 <div class="grid-30">
                     
-                    <div class="subtitle"><p>Treatment Required</p></div>
+                    <div class="subtitle"><p><?php _e( 'Treatment Required', 'tripmd' ); ?></p></div>
 
                     <select name="speciality" id="speciality" class="spec-select my-select">
                         
-                        <option value="" selected disabled>Pick a speciality&hellip;</option>
+                        <option value="" selected disabled><?php _e( 'Pick a speciality', 'tripmd' ); ?>&hellip;</option>
 
                     </select>
 
@@ -491,25 +491,25 @@ get_header(); ?>
 
                     <select name="orthopaedic" id="orthopaedic" class="sub my-select">
                         
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="" selected disabled><?php _e( 'Pick a treatment', 'tripmd' ); ?>&hellip;</option>
 
                     </select>
 
                     <select name="dental" id="dental" class="sub my-select">
                         
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="" selected disabled><?php _e( 'Pick a treatment', 'tripmd' ); ?>&hellip;</option>
 
                     </select>
 
                     <select name="opthalmology" id="ophthalmology" class="sub my-select">
                         
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="" selected disabled><?php _e( 'Pick a treatment', 'tripmd' ); ?>&hellip;</option>
 
                     </select>
 
                     <select name="cardiac" id="cardiac" class="sub my-select">
                         
-                        <option value="" selected disabled>Pick a treatment&hellip;</option>
+                        <option value="" selected disabled><?php _e( 'Pick a treatment', 'tripmd' ); ?>&hellip;</option>
 
                     </select>
 
@@ -517,12 +517,15 @@ get_header(); ?>
 
                 <div class="grid-60 pred">
                     
-                    <div class="subtitle"><p>Savings</p></div>
-                    <p>Originally, $<span class="actual">30,000</span> in Canada.<br>We can reduce your bill by <span class="perc-saved">50</span>%.</p>
+                    <div class="subtitle"><p><?php _e( 'Savings', 'tripmd' ); ?></p></div>
+                    <p>
+                        <?php _e( 'Originally, $<span class="actual">30,000</span> in Canada.', 'tripmd' ); ?><br />
+                        <?php _e( 'We can reduce your bill by <span class="perc-saved">50</span>%.', 'tripmd' ); ?>
+                    </p>
 
                 </div>
 
-                <div class="int"><a class="big fat green button<?php /* link-invitation */ ?>" href="<?php echo site_url( 'inquiry' ); ?>" id="interested">I&rsquo;m interested!</a></div>
+                <div class="int"><a class="big fat green button" href="<?php echo site_url( 'inquiry' ); ?>" id="interested"><?php esc_attr_e( 'I&rsquo;m interested!', 'tripmd' ); ?></a></div>
 
             </div>
 
@@ -578,65 +581,24 @@ get_header(); ?>
 
         </section>
 
-        <?php if ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'error' ) : ?>
+        <?php if ( ! empty( $_GET['clin_reg'] ) && $_GET['clin_reg'] == 'error' ) : ?>
         <hr/>
-            <section id="hs" class="center last green">
+            <section id="clin-reg-msg" class="center last green">
                 <div class="grid-container">
                     <p id="message">
-                        Oops! There was an error registering your clinic, please try again. You can also try emailing us at support@tripmd.co.
+                        <?php _e( 'Oops! There was an error registering your clinic, please try again. You can also try emailing us at support@tripmd.com.', 'tripmd' ); ?>
                     </p>
                 </div>
             </section>
-        <?php elseif ( ! empty( $_GET['hsign'] ) && $_GET['hsign'] == 'success' ) : ?>
-            <section id="hs" class="center last green">
+        <?php elseif ( ! empty( $_GET['clin_reg'] ) && $_GET['clin_reg'] == 'success' ) : ?>
+            <section id="clin-reg-msg" class="center last green">
                 <div class="grid-container">
                     <p id="message">
-                        Thank you for registering. We'll get back to you shortly.
+                        <?php _e( 'Thank you for registering. We\'ll get back to you shortly.', 'tripmd' ); ?>
                     </p>
                 </div>
             </section>
         <hr/>
         <?php endif; ?>
 
-        <?php /* if ( ! is_user_logged_in() ) : ?>
-
-            <section class="center last green" id="su">
-
-                <div class="grid-container">
-
-                    <?php if ( !empty( $_GET['su'] ) ) : ?>
-
-                        <div class="heading grid-100 suh"><h2>Thanks for registering. We'll keep you updated!</h2></div>
-
-                    <?php else : ?>
-
-                        <div class="heading grid-100 suh"><h2>Join the waiting list for exclusive early access.</h2></div>
-
-                        <div class="content grid-60 push-20">
-
-                            <form method="post" action="wp-login.php">
-
-                                <input type="text"  class="first-name grid-45" name="first_name" placeholder="First" />
-                                <input type="text"  class="last-name grid-45 push-10" name="last_name" placeholder="Last" />
-                                <input type="email" class="email grid-100" name="user_email" placeholder="name@gmail.com" required="required" />
-
-                                <input type="hidden" name="action"      value="register" />
-                                <input type="hidden" name="user-cookie" value="1" />
-                                <input type="hidden" name="tmd_home_register" value="1" />
-                                <input type="hidden" name="redirect_to" value="<?php echo home_url( '?su=1#su' ); ?>" />
-
-                                <?php wp_nonce_field( 'tmd_home_register' ); ?>
-
-                                <input type="submit" class="email grid-100" value="Signup" />
-
-                            </form>
-
-                        </div>
-
-                    <?php endif; ?>
-
-                </div>
-
-            </section>
-        <?php endif; */ ?>
 <?php get_footer(); ?>
