@@ -82,7 +82,6 @@ get_header(); ?>
                 <div class="grid-40 push-10">
                     <div class="subtitle"><p><?php _e( 'Professional Memberships', 'tripmd' ); ?></p></div>
                     <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'membership' ) ); ?>
-
                 </div>
 
                 <?php if ( get_post_meta( get_the_ID(), 'intl_treated', true ) ) : // Annually ?>
@@ -175,10 +174,10 @@ get_header(); ?>
             <h1><?php _e( 'Costs', 'tripmd' ); ?></h1>
             
             <select name="speciality" id="dental" class="specs sub my-select">
-                <option value="Pick a treatment…" disabled>Pick a treatment…</option>
+                <option disabled>Pick a treatment…</option>
             </select>
             
-            <br><br>
+            <br /><br />
             
             <div class="subtitle"><p>Treatment Cost</p></div>
 
@@ -193,13 +192,12 @@ get_header(); ?>
                     <td>UK</td>
                 </tr>
                 <tr class="prices">
-                    <td class="IN">850</td>
-                    <td class="CA">4000</td>
-                    <td class="AU">3800</td>
-                    <td class="GB">2500</td>
-                    <td class="SG">2300</td>
-                    <td class="">4100</td>
-                    <!-- <td>li</td> -->
+                    <td class="IN">8,50</td>
+                    <td class="US">4,000</td>
+                    <td class="AU">3,800</td>
+                    <td class="GB">2,500</td>
+                    <td class="SG">2,300</td>
+                    <td class="UK">4,100</td>
                 </tr>
             </table>
 

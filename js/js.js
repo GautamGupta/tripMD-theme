@@ -74,14 +74,8 @@ jQuery(document).ready(function($) {
         $(".pred").css({"opacity":"1.0"});
         $(".costs-table").css({"webkitFilter":"blur(0)"});
 
-        console.log(this.value.indexOf("treatment"));
-        console.log(this.value);
-
         if (this.value.indexOf("treatment") > -1) {
-
-            console.log("hi");
             $(".costs-table").css({"webkitFilter":"blur(2px)"});
-
         }
         
         var pos = procs.indexOf(this.value);
@@ -92,9 +86,7 @@ jQuery(document).ready(function($) {
         var auc = aucosts[pos];
 
         for (i = 0; i < countries.length; i++) {
-
-            $("." + countries[i]).text(eval(countries[i].toLowerCase() + "c"));
-
+            $("." + countries[i]).text(number_format(eval(countries[i].toLowerCase() + "c")));
         }
 
         var perc = Math.round(((usc - inc)/usc)*100);
@@ -102,55 +94,51 @@ jQuery(document).ready(function($) {
         $(".perc-saved").text(perc);
     });
 
-    if (window.loustion.pathname.indexOf("doctor") > -1) {
-        
-    }
+    // Royal Slider
+    jQuery.rsCSS3Easing.easeOutBack = 'cubic-bezier(0.175, 0.885, 0.320, 1.275)';
+    $('#slider-with-blocks-1').royalSlider({
+        arrowsNav: true,
+        arrowsNavAutoHide: true,
+        fadeinLoadedSlide: false,
+        controlNavigationSpacing: 10,
+        controlNavigation: 'bullets',
+        imageSusleMode: 'fill',
+        imageAlignCenter:false,
+        blockLoop: true,
+        loop: true,
+        numImagesToPreload: 6,
+        transitionType: 'fade',
+        keyboardNavEnabled: true,
+        block: {
+        	delay: 400
+        },
+        autoSusleSlider:false,
+        autoHeight: false,   	
+        autoPlay: {
+        		// autoplay options go gere
+        		enabled: true,
+        		pauseOnHover: false,
+        		delay: 7000
+        }
+    });
 
-  // Royal Slider
-  jQuery.rsCSS3Easing.easeOutBack = 'cubic-bezier(0.175, 0.885, 0.320, 1.275)';
-  $('#slider-with-blocks-1').royalSlider({
-	arrowsNav: true,
-	arrowsNavAutoHide: true,
-	fadeinLoadedSlide: false,
-	controlNavigationSpacing: 10,
-	controlNavigation: 'bullets',
-	imageSusleMode: 'fill',
-	imageAlignCenter:false,
-	blockLoop: true,
-	loop: true,
-	numImagesToPreload: 6,
-	transitionType: 'fade',
-	keyboardNavEnabled: true,
-	block: {
-		delay: 400
-	},
-	autoSusleSlider:false,
-	autoHeight: false,   	
-	autoPlay: {
-    		// autoplay options go gere
-    		enabled: true,
-    		pauseOnHover: false,
-    		delay: 7000
-   }
-  });
- 
-  $('#content-slider-1').royalSlider({
-    autoHeight: true,
-    arrowsNav: false,
-    fadeinLoadedSlide: false,
-    controlNavigationSpacing: 0,
-	transitionType: 'fade',
-    controlNavigation: 'tabs',
-    imageSusleMode: 'fill',
-    imageAlignCenter:false,
-    loop: true,
-    loopRewind: true,
-    numImagesToPreload: 6,
-    keyboardNavEnabled: false,
-    usePreloader: false
-  });
+    $('#content-slider-1').royalSlider({
+        autoHeight: true,
+        arrowsNav: false,
+        fadeinLoadedSlide: false,
+        controlNavigationSpacing: 0,
+        transitionType: 'fade',
+        controlNavigation: 'tabs',
+        imageSusleMode: 'fill',
+        imageAlignCenter:false,
+        loop: true,
+        loopRewind: true,
+        numImagesToPreload: 6,
+        keyboardNavEnabled: false,
+        usePreloader: false
+    });
 
-  $('#content-slider-1').prepend($('#content-slider-1').find('.rsNav'));
+    $('#content-slider-1').prepend($('#content-slider-1').find('.rsNav'));
 
     // Hide timeline blocks which are outside the viewport
     $('.cd-timeline-block').each(function(){
