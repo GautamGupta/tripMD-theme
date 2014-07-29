@@ -91,7 +91,7 @@
                             
                             <div class="rating fld">
                                 <i class="fa fa-star-o"></i>
-                                <strong><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
+                                <strong id="rat-text"><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
                               <fieldset class="rat-star">
                                 <?php foreach ( array( 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ), 'overall' => __( 'Overall', 'tripmd' ) ) as $key => $display_text ) : ?>
                                     <span class="rat-title"><?php echo $display_text; ?></span>

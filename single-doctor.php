@@ -174,17 +174,35 @@ get_header(); ?>
 
             <h1><?php _e( 'Costs', 'tripmd' ); ?></h1>
             
-            <select name="speciality" id="speciality" class="my-select">
-                <option value="dental-crown">Dental Crowns</option>
-                <option value="single-implant">Single Implant</option>
-                <option value="dentures">Dentures</option>
+            <select name="speciality" id="dental" class="specs sub my-select">
+                <option value="Pick a treatment…" disabled>Pick a treatment…</option>
             </select>
             
             <br><br>
             
             <div class="subtitle"><p>Treatment Cost</p></div>
-            <img src="<?php echo get_template_directory_uri(); ?>/img/table4.png" style="width: 100%; outline: thin solid lightgray; box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.1);" alt="">
-            
+
+            <table class="costs-table">
+                
+                <tr class="loc">
+                    <td>Dr. Batra</td>
+                    <td>USA</td>
+                    <td>Australia</td>
+                    <td>Hong Kong</td>
+                    <td>Singapore</td>
+                    <td>UK</td>
+                </tr>
+                <tr class="prices">
+                    <td class="IN">850</td>
+                    <td class="CA">4000</td>
+                    <td class="AU">3800</td>
+                    <td class="GB">2500</td>
+                    <td class="SG">2300</td>
+                    <td class="">4100</td>
+                    <!-- <td>li</td> -->
+                </tr>
+            </table>
+
             <br><br>
             <h2>Round trip from California to India would be: $1500</h2>
             <h2>Airbnb accomodation close to the facility would be: $25/night and up</h2>

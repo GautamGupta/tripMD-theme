@@ -2037,3 +2037,35 @@ input[type="checkbox"]:checked + label:before {
   #graham::before { background-image: url('http://api.randomuser.me/portraits/med/men/9.jpg'); }
 
 }
+
+.costs-table {
+
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+
+      padding: 0;
+      
+
+      td {
+
+        text-align: center;
+        border: thin solid lightgray;
+        width: 16.666667%;
+        padding: 10px 0;
+
+
+      }
+
+
+  }
+
+  .prices td::before { content: "$"; }
+   margin-top: 10px; 
+  .td { background-color: white; }
+  .prices { background: white; }
+
+  -webkit-filter: blur(2px);
+
+}

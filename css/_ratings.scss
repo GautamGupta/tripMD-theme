@@ -4,6 +4,7 @@
     border: 0;
     outline: 0;
     vertical-align: middle;
+    padding-left: 0;
 
     legend {
 
@@ -12,6 +13,8 @@
     }
 
 }
+
+#rat-text { margin-top: 10px !important; display: inline-block; }
 
 /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
    follow these rules. Every browser that supports :checked also supports :not(), so
