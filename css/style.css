@@ -1894,3 +1894,19 @@ input[type="checkbox"]:checked + label:before {
     background-color: white; }
   .costs-table .prices {
     background: white; }
+
+.mission h1 {
+  font-size: 300%;
+  margin-bottom: -30px; }
+.mission .su {
+  font-size: 200%;
+  margin-bottom: 60px;
+  color: #888; }
+
+.about {
+  background: white !important; }
+  .about h2 {
+    text-align: center;
+    font-size: 200%; }
+  .about p {
+    padding: 0 100px; }
