@@ -1910,3 +1910,21 @@ input[type="checkbox"]:checked + label:before {
     font-size: 200%; }
   .about p {
     padding: 0 100px; }
+
+h1 i, h2 i {
+  margin-right: 20px; }
+
+.team {
+  margin-top: 20px; }
+  .team h1 {
+    font-size: 200%;
+    text-align: center; }
+
+.clin-reg-message {
+  background: transparent; }
+  .clin-reg-message p {
+    color: gray;
+    padding: 20px;
+    font-size: 120%;
+    border-radius: 10px;
+    border: thick solid #7ecd94; }
