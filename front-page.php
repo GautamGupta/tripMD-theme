@@ -583,7 +583,7 @@ get_header(); ?>
 
         <?php if ( ! empty( $_GET['clin_reg'] ) && $_GET['clin_reg'] == 'error' ) : ?>
         <hr/>
-            <section id="clin-reg-msg" class="center last green">
+            <section id="clin-reg-msg" class="center last">
                 <div class="grid-container">
                     <p id="message">
                         <?php _e( 'Oops! There was an error registering your clinic, please try again. You can also try emailing us at support@tripmd.com.', 'tripmd' ); ?>
@@ -591,14 +591,14 @@ get_header(); ?>
                 </div>
             </section>
         <?php elseif ( ! empty( $_GET['clin_reg'] ) && $_GET['clin_reg'] == 'success' ) : ?>
-            <section id="clin-reg-msg" class="center last green">
+            <section id="clin-reg-msg" class="center last">
                 <div class="grid-container">
                     <p id="message">
                         <?php _e( 'Thank you for registering. We\'ll get back to you shortly.', 'tripmd' ); ?>
                     </p>
                 </div>
             </section>
-        <hr/>
+        <!-- <hr/> -->
         <?php endif; ?>
 
 <?php get_footer(); ?>
