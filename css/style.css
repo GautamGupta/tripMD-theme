@@ -1875,3 +1875,22 @@ input[type="checkbox"]:checked + label:before {
   background-image: url("http://api.randomuser.me/portraits/med/men/1.jpg"); }
 .reviews #graham::before {
   background-image: url("http://api.randomuser.me/portraits/med/men/9.jpg"); }
+
+.costs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  -webkit-filter: blur(2px); }
+  .costs-table tr {
+    padding: 0; }
+    .costs-table tr td {
+      text-align: center;
+      border: thin solid lightgray;
+      width: 16.666667%;
+      padding: 10px 0; }
+  .costs-table .prices td::before {
+    content: "$"; }
+  .costs-table .td {
+    background-color: white; }
+  .costs-table .prices {
+    background: white; }
