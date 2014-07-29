@@ -92,20 +92,20 @@
                             <div class="rating fld">
                                 <i class="fa fa-star-o"></i>
                                 <strong id="rat-text"><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
-                              <fieldset class="rat-star">
-                                <?php foreach ( array( 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ), 'overall' => __( 'Overall', 'tripmd' ) ) as $key => $display_text ) : ?>
-                                    <span class="rat-title"><?php echo $display_text; ?></span>
-                                    <fieldset class="rat-star <?php echo $key; ?>">
-                                        <legend><?php _e( 'Please rate:', 'tripmd' ); ?></legend>
-                                        <?php 
-                                        $i = 0;
-                                        foreach ( array( 1 => __( 'Bad experience', 'tripmd' ), 2 => __( 'Not upto the mark', 'tripmd' ), 3 => __( 'Fair', 'tripmd' ), 4 => __( 'Good!', 'tripmd' ), 5 => __( 'Would definitely recommend!', 'tripmd' ) ) as $rad_val => $label_text ) : ?>
-                                            <input type="radio" id="<?php echo $key . "_" . ++$i; ?>" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
-                                            <label for="<?php echo $key . "_" . $i; ?>" title="<?php echo $label_text; ?>"><?php printf( __( '%d star', 'tripmd' ), $rad_val ); ?></label>
-                                        <?php endforeach; ?>
-                                    </fieldset>
-                                    <br />
-                                <?php endforeach; ?>
+                                <fieldset class="rat-star">
+                                    <?php foreach ( array( 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ), 'overall' => __( 'Overall', 'tripmd' ) ) as $key => $display_text ) : ?>
+                                        <span class="rat-title"><?php echo $display_text; ?></span>
+                                        <fieldset class="rat-star <?php echo $key; ?>">
+                                            <legend><?php _e( 'Please rate:', 'tripmd' ); ?></legend>
+                                            <?php 
+                                            foreach ( array( 1 => __( 'Bad experience', 'tripmd' ), 2 => __( 'Not upto the mark', 'tripmd' ), 3 => __( 'Fair', 'tripmd' ), 4 => __( 'Good!', 'tripmd' ), 5 => __( 'Would definitely recommend!', 'tripmd' ) ) as $rad_val => $label_text ) : ?>
+                                                <input type="radio" id="<?php echo $key . "_" . $rad_val; ?>" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
+                                                <label for="<?php echo $key . "_" . $rad_val; ?>" title="<?php echo $label_text; ?>"><?php echo $label_text; ?></label>
+                                            <?php endforeach; ?>
+                                        </fieldset>
+                                        <br />
+                                    <?php endforeach; ?>
+                                </fieldset>
                             </div>
                             <!-- <br> -->
                             <input type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'Also subscribe me to <a href="%1$s" class="green-t">tripMD</a> updates, a startup with a mission to simplify medical travel. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label>
