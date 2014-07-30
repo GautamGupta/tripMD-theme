@@ -672,6 +672,24 @@ function tripmd_category_transient_flusher() {
 add_action( 'edit_category', 'tripmd_category_transient_flusher' );
 add_action( 'save_post',     'tripmd_category_transient_flusher' );
 
+/** Email *********************************************************************/
+
+/**
+ * Put message inside TripMD's template and return it
+ */
+/*
+function tmd_email_template( $params = array() ) {
+    $message = $params['message'];
+
+    
+
+    $params['message'] = $message;
+
+    return $params;
+}
+add_filter( 'wp_mail', 'tmd_email_template', 100 );
+*/
+
 /** TripMD ********************************************************************/
 
 function tmd_price( $price = 0 ) {

@@ -331,11 +331,13 @@ add_action( 'template_redirect', 'tmd_registration_handler', -10 );
  * Clinic registration handler
  */
 function tmd_clinic_register_handler() {
+    // Redirect on fault
     if ( empty( $_POST['tmd_cr_name'] ) ||  empty( $_POST['tmd_cr_location'] ) ||  empty( $_POST['tmd_cr_phone'] ) || empty( $_POST['tmd_cr_email'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_clinic_register_nonce' ) ) {
         wp_redirect( home_url( '?clin_reg=error#clinic-signup' ) );
         exit;
     }
 
+    // Register new
     $new_clinic = array(
         'post_title' => $_POST['tmd_cr_name'],
         'post_status' => 'pending',
@@ -343,11 +345,24 @@ function tmd_clinic_register_handler() {
     );
     $post_id = wp_insert_post( $new_clinic );
     
+    // Add data
     add_post_meta( $post_id, 'location', trim( $_POST['tmd_cr_location'] ) );
     add_post_meta( $post_id, 'phone',    trim( $_POST['tmd_cr_phone']    ) );
     add_post_meta( $post_id, 'email',    trim( $_POST['tmd_cr_email']    ) );
+
+    // Notify admin
+    wp_mail(
+        get_option( 'admin_email' ), // To
+        __( 'New Clinic Registeration', 'tripmd' ), // Subject
+        sprintf(
+            __( "Clinic name: %1$s\r\nLocation: %2$s\r\nEmail: %3$s\r\nPhone: %4$s", 'tripmd' ), // Message
+            strip_tags( $_POST['tmd_cr_name'] ), strip_tags( $_POST['tmd_cr_location'] ), strip_tags( $_POST['tmd_cr_email'] ), strip_tags( $_POST['tmd_cr_phone'] )
+        ),
+        'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
+    );
     
-    wp_redirect( home_url( '?clin_reg=success#clin-reg-msg' ) );
+    // Redirect to show success message
+    wp_redirect( site_url( '?clin_reg=success#clin-reg-msg' ) );
     exit;
 }
 

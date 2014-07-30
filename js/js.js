@@ -201,8 +201,6 @@ function number_format(number, decimals, dec_point, thousands_sep) {
       .join('0');
   }
   return s.join(dec);
-
-
 }
 
 // Expandable textbox
