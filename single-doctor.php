@@ -179,7 +179,7 @@ get_header(); ?>
             
             <br /><br />
             
-            <div class="subtitle"><p>Treatment Cost</p></div>
+            <div class="subtitle"><p><?php _e( 'Treatment Cost', 'tripmd' ); ?></p></div>
 
             <table class="costs-table">
                 
@@ -201,12 +201,12 @@ get_header(); ?>
                 </tr>
             </table>
 
-            <br><br>
+            <?php /* <br><br>
             <h2>Round trip from California to India would be: $1500</h2>
             <h2>Airbnb accomodation close to the facility would be: $25/night and up</h2>
             <h2>Or, a 5-star hotel close to facility would be: $80/night and up</h2>
             <h2>Duration of the trip: 3 days</h2>
-            <h2><b>Total: <span style="color: #7ecd94">$2,425 and up</span></b></h2>
+            <h2><b>Total: <span style="color: #7ecd94">$2,425 and up</span></b></h2> */ ?>
 
         </div>
 

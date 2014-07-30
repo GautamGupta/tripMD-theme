@@ -107,7 +107,7 @@
                                     <?php endforeach; ?>
                                 </fieldset>
                             </div>
-                            <!-- <br> -->
+                            
                             <input type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'Also subscribe me to <a href="%1$s" class="green-t">tripMD</a> updates, a startup with a mission to simplify medical travel. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label>
 
                             <input type="hidden" name="action" value="review_doctor" />
