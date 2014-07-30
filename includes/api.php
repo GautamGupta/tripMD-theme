@@ -209,7 +209,7 @@ final class TMD_API {
 								'title' => __( 'Cornorary Artery Bypass', 'tripmd' ),
 								'costs' => array(
 									'IN' => 10400,
-									// 'AU' => 0, @todo add
+									'AU' => 0, // @todo get correct info
 									'US' => 20600,
 									'GB' => 37700,
 									'SG' => 16700,
@@ -219,7 +219,7 @@ final class TMD_API {
 								'title' => __( 'Angioplasty', 'tripmd' ),
 								'costs' => array(
 									'IN' => 6900,
-									// 'AU' => 0, @todo add
+									'AU' => 0, // @todo get correct info
 									'US' => 26000,
 									'GB' => 20500,
 									'SG' => 19100,
@@ -236,6 +236,11 @@ final class TMD_API {
 					'GB' => __( 'United Kingdom', 'tripmd' ),
 					'SG' => __( 'Singapore',      'tripmd' ),
 				);
+
+				// Get current country
+				require_once( 'external/geoiploc.php' );
+				$ip = $_SERVER['REMOTE_ADDR']; // eg. 122.161.53.53 for India
+				$output['current_country'] = getCountryFromIP( $ip );
 
 				break;
 
