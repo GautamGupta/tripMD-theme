@@ -519,7 +519,7 @@ get_header(); ?>
                     
                     <div class="subtitle"><p><?php _e( 'Savings', 'tripmd' ); ?></p></div>
                     <p>
-                        <?php _e( 'Originally, $<span class="actual">30,000</span> in Canada.', 'tripmd' ); ?><br />
+                        <?php _e( 'Originally, $<span class="actual">30,000</span> in <span class="country">United States</span>.', 'tripmd' ); ?><br />
                         <?php _e( 'We can reduce your bill by <span class="perc-saved">50</span>%.', 'tripmd' ); ?>
                     </p>
 

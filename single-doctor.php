@@ -182,9 +182,8 @@ get_header(); ?>
             <div class="subtitle"><p><?php _e( 'Treatment Cost', 'tripmd' ); ?></p></div>
 
             <table class="costs-table">
-                
                 <tr class="loc">
-                    <td>Dr. Batra</td>
+                    <td>India</td>
                     <td>USA</td>
                     <td>Australia</td>
                     <td>Hong Kong</td>
@@ -192,7 +191,7 @@ get_header(); ?>
                     <td>UK</td>
                 </tr>
                 <tr class="prices">
-                    <td class="IN">8,50</td>
+                    <td class="IN">850</td>
                     <td class="US">4,000</td>
                     <td class="AU">3,800</td>
                     <td class="GB">2,500</td>

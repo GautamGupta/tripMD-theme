@@ -30,69 +30,78 @@ window.onscroll = function() {
 
 jQuery(document).ready(function($) {
 
-    var i = 0;
     // Speciality selection
     // http://tripmd.com/wp-admin/admin-ajax.php?action=tmd_api&method=procedures_costs&ver=0.1
-    var specs = [];
-    var procs = [];
-    var incosts = [];
-    var uscosts = [],
-        gbcosts = [],
-        sgcosts = [],
-        aucosts = [],
-        countries = ["AU", "IN", "US", "SG", "GB"];
-    var links = [];
 
-    $.getJSON("/wp-admin/admin-ajax.php?action=tmd_api&method=procedures_costs&ver=0.1", function(json) {
-        $.each(json.specialities, function(spec, val) {
-            i++;
-            specs.push(spec);
-            links.push(this.link);
-            $(".spec-select").append("<option value='" + spec + "''>" + this.title + "</option>");
+    if ( $("#aff").length > 0 || $(".costs-table").length > 0 ) {
 
-            $.each(this.procedures, function(proc, val) {
-                procs.push(proc);
-                incosts.push(this.costs.IN);
-                uscosts.push(this.costs.US);
-                gbcosts.push(this.costs.GB);
-                sgcosts.push(this.costs.SG);
-                aucosts.push(this.costs.AU);
-                $("select.sub#" + spec).append("<option value='" + proc + "''>" + this.title + "</option>");
+        var ajax_api = "/wp-admin/admin-ajax.php?action=tmd_api&method=procedures_costs&ver=0.1",
+            i = 0,
+            specs = [],
+            procs = [],
+            links = [],
+            current_country = '';
 
+        $.getJSON( ajax_api )
+            .done(function( data ) {
+                current_country = data.current_country;
+                if ( !data.countries.hasOwnProperty( current_country ) || current_country == 'IN' )
+                    current_country = 'US';
+
+                $("#aff .country").text( data.countries[current_country] );
+                
+                $.each( data.specialities, function( spec, val ) {
+                    i++;
+                    specs.push(spec);
+                    links.push(this.link);
+                    $("#aff .spec-select").append("<option value='" + spec + "''>" + this.title + "</option>");
+
+                    $.each(this.procedures, function( proc, val ) {
+                        procs[proc] = val;
+                        $("select.sub#" + spec).append("<option value='" + proc + "''>" + this.title + "</option>");
+                    });
+                });
+
+                $("#aff .spec-select").change(function() {
+                    $("#aff .sub + a").css({"visibility":"hidden", "opacity":"0.0", "display": "none"});
+                    $("#aff .sub#" + this.value + " + a").css({"visibility":"visible", "opacity":"1.0", "display": "block"});
+                    $("#aff .button#interested").attr("href", links[specs.indexOf(this.value)]);
+                });
+
+                $("select.sub").change(function() {
+                    // Front page
+                    if ( $("#aff").length > 0 ) {
+                        $(".int").css({"opacity":"1.0"});
+                        $(".pred").css({"opacity":"1.0"});
+
+                        var min = Math.min.apply(null, array_values(procs[this.value]['costs']));
+                        var cc_cost = procs[this.value]['costs'][current_country];
+                        var perc = Math.round(((cc_cost - min)/cc_cost)*100);
+                        if (perc < 1) perc = 0; // @todo Say that's the cheapest you can get
+                        $("#aff .actual").text(number_format(cc_cost));
+                        $("#aff .perc-saved").text(perc);
+                    }
+
+                    // Doctor page
+                    if ( $(".costs-table").length > 0 ) {
+                        $(".costs-table").css({"webkitFilter":"blur(0)"});
+
+                        if (this.value.indexOf("treatment") > -1) {
+                            $(".costs-table").css({"webkitFilter":"blur(2px)"});
+                        }
+                        
+                        $(".costs-table tr.loc td").remove();
+                        $(".costs-table tr.prices td").remove();
+
+                        $.each(procs[this.value]['costs'], function( country_code, cost ) {
+                            $(".costs-table tr.loc").append("<td>" + data.countries[country_code] + "</td>");
+                            $(".costs-table tr.prices").append("<td>" + number_format(cost) + "</td>");
+                        });
+                    }
+                });
             });
-        });
-    });
 
-    $(".spec-select").change(function(){
-        $(".sub + a").css({"visibility":"hidden", "opacity":"0.0", "display": "none"});
-        $(".sub#" + this.value + " + a").css({"visibility":"visible", "opacity":"1.0", "display": "block"});
-        $("#aff .button#interested").attr("href", links[specs.indexOf(this.value)]);
-    });
-
-    $("select.sub").change(function(){
-        $(".int").css({"opacity":"1.0"});
-        $(".pred").css({"opacity":"1.0"});
-        $(".costs-table").css({"webkitFilter":"blur(0)"});
-
-        if (this.value.indexOf("treatment") > -1) {
-            $(".costs-table").css({"webkitFilter":"blur(2px)"});
-        }
-        
-        var pos = procs.indexOf(this.value);
-        var inc = incosts[pos];
-        var usc = uscosts[pos];
-        var gbc = gbcosts[pos];
-        var sgc = sgcosts[pos];
-        var auc = aucosts[pos];
-
-        for (i = 0; i < countries.length; i++) {
-            $("." + countries[i]).text(number_format(eval(countries[i].toLowerCase() + "c")));
-        }
-
-        var perc = Math.round(((usc - inc)/usc)*100);
-        $(".actual").text(number_format(usc));
-        $(".perc-saved").text(perc);
-    });
+    }
 
     // Royal Slider
     jQuery.rsCSS3Easing.easeOutBack = 'cubic-bezier(0.175, 0.885, 0.320, 1.275)';
@@ -201,6 +210,22 @@ function number_format(number, decimals, dec_point, thousands_sep) {
       .join('0');
   }
   return s.join(dec);
+}
+
+// source http://phpjs.org/functions/array_values/
+function array_values(input) {
+  var tmp_arr = [],
+    key = '';
+
+  if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+    return input.values();
+  }
+
+  for (key in input) {
+    tmp_arr[tmp_arr.length] = input[key];
+  }
+
+  return tmp_arr;
 }
 
 // Expandable textbox
