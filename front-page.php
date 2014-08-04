@@ -515,7 +515,7 @@ get_header(); ?>
 
                 </div>
 
-                <div class="grid-60 pred">
+                <div class="grid-70 pred">
                     
                     <div class="subtitle"><p><?php _e( 'Savings', 'tripmd' ); ?></p></div>
                     <p>
