@@ -34,7 +34,7 @@ if ( post_password_required() ) {
 
         <div class="grid-100" style="margin-left: 145px; padding-top: 30px;">
             
-            <div class="grid-100"><h2><span class="user-img" style="background-image:url('http://api.randomuser.me/portraits/med/women/40.jpg');"></span><b>Brenda A.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 150px; opacity: 0.25">July 4, 2014</span></h2></div>
+            <div class="grid-100"><h2><span class="user-img" style="background-image:url('http://api.randomuser.me/portraits/med/women/40.jpg');"></span><b>Brenda A.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 157px; opacity: 0.25">July 4, 2014</span></h2></div>
 
             <div class="grid-20">
                 

@@ -318,7 +318,7 @@ get_header(); ?>
 
             <div class="grid-container">
 
-                <?php if ( defined( 'TMD_DEBUG' ) || isset( $_GET['ta'] ) ) : ?>
+                <?php if ( defined( 'TMD_DEBUG' ) || isset( $_GET['dbg'] ) ) : ?>
                     <div class="tmd-search-container aligncenter grid-100" style="margin-top: 50px;">
                         <input type="text" name="s" id="s" class="tmd-search" placeholder="<?php _e( 'Search for a treatment or hospital...', 'tripmd' ); ?>" autocomplete="off" data-provide="typeahead" />
                     </div>

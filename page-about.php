@@ -31,6 +31,8 @@ get_header();
    </div>
 </section>
 
+<?php if ( defined( 'TMD_DEBUG' ) || isset( $_GET['dbg'] ) ) : ?>
+
 <section class="team">
 	
 	<div class="grid-container">
@@ -42,8 +44,8 @@ get_header();
 		
 	</div>
 
-
 </section>
 
+<?php endif; ?>
 
 <?php get_footer(); ?>
