@@ -11,16 +11,29 @@ get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-    <!-- Pie Chart -->
+    <!-- Regionwise Breakup -->
     <div style="display:none" class="fancybox-hidden block">
         <div id="breakup" class="su full-width-form" style="width:600px; height:420px;">
             <h1><center><?php _e( 'Regionwise Breakup', 'tripmd' ); ?></center></h1>
 
-            <div id="chart1" style="height:300px; width:500px;"></div>
-
-            <div class="code prettyprint">
-                <pre class="code prettyprint brush: js"></pre>
-            </div>
+            <table class="grid-90 push-5">
+                <tr>
+                    <th><?php _e( 'Location', 'tripmd' ); ?></th>
+                    <th><?php _e( 'Intl. Patients Treated', 'tripmd' ); ?></th>
+                </tr>
+                <?php foreach ( array(
+                    __( 'North America',     'tripmd' ) => 126,
+                    __( 'Australia',         'tripmd' ) => 140,
+                    __( 'Hong Kong',         'tripmd' ) => 95,
+                    __( 'Singapore',         'tripmd' ) => 50,
+                    __( 'Rest of the World', 'tripmd' ) => 77,
+                ) as $location => $num_treated ) : ?>
+                    <tr>
+                        <td><?php echo $location; ?></td>
+                        <td><?php echo number_format_i18n( $num_treated ); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
 
         </div>
     </div>
@@ -158,7 +171,7 @@ get_header(); ?>
             <div class="grid-30 push-5"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
             <div class="grid-30 push-10"><a href="<?php echo get_template_directory_uri(); ?>/img/2.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></a></div>
             <div class="grid-100" style="margin-top: 100px; !important"><br /><br /></div>
-            <div class="grid-30 push-"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
+            <div class="grid-30"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
             <div class="grid-30 push-5"><a href="<?php echo get_template_directory_uri(); ?>/img/5.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></a></div>
             <div class="grid-30 push-10"><a href="<?php echo get_template_directory_uri(); ?>/img/4.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></a></div>
 
@@ -186,7 +199,6 @@ get_header(); ?>
                     <td>India</td>
                     <td>USA</td>
                     <td>Australia</td>
-                    <td>Hong Kong</td>
                     <td>Singapore</td>
                     <td>UK</td>
                 </tr>
@@ -194,7 +206,6 @@ get_header(); ?>
                     <td class="IN">850</td>
                     <td class="US">4,000</td>
                     <td class="AU">3,800</td>
-                    <td class="GB">2,500</td>
                     <td class="SG">2,300</td>
                     <td class="UK">4,100</td>
                 </tr>
@@ -211,7 +222,7 @@ get_header(); ?>
 
     </header>
 
-    <br><br>
+    <br /><br />
 
     <?php
     // If comments are open or we have at least one comment, load up the comment template
@@ -219,19 +230,7 @@ get_header(); ?>
         comments_template( '/comments-doctor-reviews.php' );
     endif; ?>
 
-	<?php /* <div class="content">
-
-		<?php if ( get_post_meta( get_the_ID(), 'experience', true ) ) : ?>
-			<p><strong>Experience</strong>: <?php echo get_post_meta( get_the_ID(), 'experience', true ); ?></p>
-		<?php endif; ?>
-		<?php if ( get_post_meta( get_the_ID(), 'qualifications', true ) ) : ?>
-			<p><strong>Qualifications</strong>: <?php echo get_post_meta( get_the_ID(), 'qualifications', true ); ?></p>
-		<?php endif; ?>
-
-		<?php the_content(); ?>
-
-	</div>
-
+	<?php /* 
     <small class="animated fadeIn">You&rsquo;re nearly done.</small>
     &nbsp;
     <a class="big fat dark-gray button" href="<?php echo site_url( 'profile#appointments' ); ?>">Book Consultation</a>
@@ -244,40 +243,39 @@ get_header(); ?>
 
 <?php endwhile; // end of the loop. ?>
     
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.jqplot.min.js"></script>
+    <?php /* <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery.jqplot.min.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jqplot.pieRenderer.min.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jqplot.donutRenderer.min.js"></script>
     <script>
-    
-    var data = [
-        ['North America', 126],['Australia', 140], ['Hong Kong', 95], ['Rest of the World', 50], ['Singapore', 77]
-    ];
+        var data = [
+            ['North America', 126],['Australia', 140], ['Hong Kong', 95], ['Rest of the World', 50], ['Singapore', 77]
+        ];
 
-    var plot1 = jQuery.jqplot ('chart1', [data], 
-    { 
-      seriesDefaults: {
-        // Make this a pie chart.
-        renderer: jQuery.jqplot.PieRenderer, 
-        rendererOptions: {
-            // Put data labels on the pie slices.
-            // By default, labels show the percentage of the slice.
-            showDataLabels: true,
-            show: true,     // wether to render the series.
-            lineWidth: 0, // Width of the line in pixels.
-            shadow: false,
-            sliceMargin: 5,
-        }
-      }, 
-      legend: { show:true, location: 'e' },
+        var plot1 = jQuery.jqplot ('chart1', [data], 
+        { 
+          seriesDefaults: {
+            // Make this a pie chart.
+            renderer: jQuery.jqplot.PieRenderer, 
+            rendererOptions: {
+                // Put data labels on the pie slices.
+                // By default, labels show the percentage of the slice.
+                showDataLabels: true,
+                show: true,     // wether to render the series.
+                lineWidth: 0, // Width of the line in pixels.
+                shadow: false,
+                sliceMargin: 5,
+            }
+          }, 
+          legend: { show:true, location: 'e' },
 
-      grid: {
-        background: 'transparent',      // CSS color spec for background color of grid.
-        borderColor: 'transparent',     // CSS color spec for border around grid.
-        borderWidth: 0.0,           // pixel width of border around grid.
-        shadow: false,               // draw a shadow for grid.
-        },
+          grid: {
+            background: 'transparent',      // CSS color spec for background color of grid.
+            borderColor: 'transparent',     // CSS color spec for border around grid.
+            borderWidth: 0.0,           // pixel width of border around grid.
+            shadow: false,               // draw a shadow for grid.
+            },
 
-    }
-  );</script>
+        });
+    </script> */ ?>
 
 <?php get_footer(); ?>

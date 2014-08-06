@@ -1876,18 +1876,23 @@ input[type="checkbox"]:checked + label:before {
 .reviews #graham::before {
   background-image: url("http://api.randomuser.me/portraits/med/men/9.jpg"); }
 
-.costs-table {
+table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  -webkit-filter: blur(2px); }
-  .costs-table tr {
+  border-collapse: collapse; }
+  table tr {
     padding: 0; }
-    .costs-table tr td {
+    table tr td, table tr th {
       text-align: center;
       border: thin solid lightgray;
       width: 16.666667%;
       padding: 10px 0; }
+    table tr th {
+      font-weight: normal;
+      background-color: #f8f8f8; }
+
+.costs-table {
+  margin-top: 10px;
+  -webkit-filter: blur(2px); }
   .costs-table .prices td::before {
     content: "$"; }
   .costs-table .td {
