@@ -178,7 +178,6 @@ get_header(); ?>
         </div>
 
     </header>
-    <br /><br /><br />
 
     <header class="costs">
     
@@ -221,8 +220,6 @@ get_header(); ?>
         </div>
 
     </header>
-
-    <br /><br />
 
     <?php
     // If comments are open or we have at least one comment, load up the comment template
