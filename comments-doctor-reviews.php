@@ -34,7 +34,36 @@ if ( post_password_required() ) {
 
         <div class="grid-100" style="margin-left: 145px; padding-top: 30px;">
             
-            <div class="grid-100"><h2 id="sean"><b>Sean T.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 190px; opacity: 0.25">July 7, 2014</span></h2></div>
+            <div class="grid-100"><h2><span class="user-img" style="background-image:url('http://api.randomuser.me/portraits/med/women/40.jpg');"></span><b>Brenda A.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 150px; opacity: 0.25">July 4, 2014</span></h2></div>
+
+            <div class="grid-20">
+                
+                <div class="subtitle"><p>Overall</p></div>
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+
+            </div>
+
+            <div class="grid-20">
+                
+                <div class="subtitle"><p>Communication</p></div>
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i>
+
+            </div>
+
+            <div class="grid-20 push-5">
+                
+                <div class="subtitle"><p>Friendliness</p></div>
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+
+            </div>
+
+            <p class="grid-70">I was extremely happy with my dental surgery experience with TripMD. Dr. Batra’s had an amazing clinic and she made me feel comfortable throughout the entire duration of my surgery. The folks at TripMD also helped me throughout the duration of my surgery and took care of everything from my local transportation around Delhi, my accommodations at a beautiful guesthouse and my flights. I’m still in touch with Dr. Batra and will be referring more friends to her and TripMD!</p>
+
+        </div>
+
+        <div class="grid-100" style="margin-left: 145px; padding-top: 30px;">
+            
+            <div class="grid-100"><h2><span class="user-img" style="background-image:url('http://api.randomuser.me/portraits/med/men/1.jpg');"></span><b>Sean T.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 190px; opacity: 0.25">July 7, 2014</span></h2></div>
 
             <div class="grid-20">
                 
@@ -63,7 +92,7 @@ if ( post_password_required() ) {
 
         <div class="grid-100" style="margin-left: 145px; padding-top: 30px;">
             
-            <div class="grid-100"><h2 id="graham"><b>Graham B.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 150px; opacity: 0.25">July 3, 2014</span></h2></div>
+            <div class="grid-100"><h2 id="graham"><span class="user-img" style="background-image:url('http://api.randomuser.me/portraits/med/men/9.jpg');"></span><b>Graham B.</b><span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span><span style="margin-left: 150px; opacity: 0.25">July 3, 2014</span></h2></div>
 
             <div class="grid-20">
                 

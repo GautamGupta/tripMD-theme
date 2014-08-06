@@ -134,30 +134,7 @@ get_header(); ?>
 
     </section>
 
-    <section class="testimonial doct">
-        
-       <div class="testimonial grid-container">
-            
-            <div class="photo">
-                
-                <img src="http://api.randomuser.me/portraits/med/women/40.jpg" alt="">
-
-            </div>
-
-            <div class="dets grid-100">
-                
-                <blockquote>I was extremely happy with my dental surgery experience with TripMD. Dr. Batra’s had an amazing clinic and she made me feel comfortable throughout the entire duration of my surgery. The folks at TripMD also helped me throughout the duration of my surgery and took care of everything from my local transportation around Delhi, my accommodations at a beautiful guesthouse and my flights. I’m still in touch with Dr. Batra and will be referring more friends to her and TripMD!</blockquote>
-
-                <p class="name">Brenda</p>
-                <p class="origin">Dental Patient &ndash; California, USA</p>
-
-                <div style="text-align: center !important; margin-top: 40px"><a href="#reviews"><span class="hglt blue button" style="text-transform: uppercase; color: #f8f8f8; font-size: 90%">Read More Reviews</span></a></div>
-
-            </div>
-
-    </div>  
-
-    </section>
+    <br /><br />
 
     <header class="facility">
         
