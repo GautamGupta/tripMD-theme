@@ -25,7 +25,7 @@ get_header(); ?>
                     </div>
 
                     <div class="poc fld">
-                        <input type="phone" class="field" name="tmd_cr_phone" required="required" placeholder="<?php _e( 'Phone Number of Representative', 'tripmd' ); ?>" />
+                        <input type="tel" class="field" name="tmd_cr_phone" required="required" placeholder="<?php _e( 'Phone Number of Representative', 'tripmd' ); ?>" />
                         <i class="fa fa-phone"></i>
                     </div>
 
@@ -97,7 +97,7 @@ get_header(); ?>
                     <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
                 </div>
 
-                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1.jpg" />
+                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1.jpg" alt="" />
 
             </div>
 
@@ -231,7 +231,7 @@ get_header(); ?>
 
                         <div class="rsContent slide2">
 
-                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484" />
+                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484" alt="<?php _e( 'Patient Testimonial', 'tripmd' ); ?>" />
 
                         </div>
 
@@ -263,13 +263,13 @@ get_header(); ?>
 
                         </div>
 
-                                    <div class="rsContent slide4">
+                        <div class="rsContent slide4">
                        
                             <div class="bContainer">
 
                                 <div class="testimonial grid-container">
                                     
-                  <!--                   <div class="photo">
+                                    <!--  <div class="photo">
                                         
                                         <img src="http://api.randomuser.me/portraits/med/men/17.jpg" alt="">
 
@@ -284,28 +284,11 @@ get_header(); ?>
 
                                     </div>
 
-
                                  </div>  
-                                <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
                             </div>
 
                         </div>
 
-                    </div>
-
-
-       <!--              <div id="content-slider-1" class="royalSlider contentSlider rsDefault">
-
-                      <div>
-                        <span class="rsTmb">Patients</span>
-                        <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484">
-                      </div>
-     -->                  <?php /*
-                      <div>
-                        <span class="rsTmb">Doctors</span>
-                        <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-doctor.jpg" data-rsvideo="https://www.youtube.com/watch?v=kduGimbgEyM" data-rsw="640" data-rsh="425">
-                      </div>
-                      */ ?>
                     </div>
 
                 </div>

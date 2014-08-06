@@ -84,12 +84,12 @@
 							</div>
 							
 							<div class="phone fld">
-								<input type="phone" name="tmd_bs_phone" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" class="phone field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_phone' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<input type="tel" name="tmd_bs_phone" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" class="phone field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_phone' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-phone"></i>
 							</div>
 							
 							<div class="inqquiry-for fld field">
-								<span><?php _e( 'Inquiring for:', 'tripmd' ); ?> </span><select name="tmd_bs_inquiry_for" class="inqquiry-for field in-select" placeholder="<?php _e( 'Phone (optional)', 'tripmd' ); ?>" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_inquiry_for' ); ?>" tabindex="<?php tmd_tab_index(); ?>">
+								<span><?php _e( 'Inquiring for:', 'tripmd' ); ?> </span><select name="tmd_bs_inquiry_for" class="inqquiry-for field in-select" data-icon="\f007" tabindex="<?php tmd_tab_index(); ?>">
 									<option disabled="disabled" selected="selected"><?php _e( 'Pick a specialization&hellip;', 'tripmd' ); ?></option>
 									<option value="cardiac" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'cardiac' ); ?>><?php _e( 'Cardiac (heart)', 'tripmd' ); ?></option>
 									<option value="dental" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'dental' ); ?>><?php _e( 'Dental', 'tripmd' ); ?></option>
