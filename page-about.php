@@ -33,14 +33,92 @@ get_header();
 
 <section class="team">
 	
-	<div class="grid-container">
+	<!-- <div class="grid-container"> -->
 		
-		<h1><i class="fa fa-users"></i>Team tripMD</h1>
+		<h1 class="team"><i class="fa fa-users"></i>Team tripMD</h1>
+		</div>
 
-		div.
+		<div class="grid-80 push-10 people">
+		<div class="person grid-50">
 
+			<div class="pic grid-25 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/dev.jpg" alt=""></div>
+
+			<div class="dets grid-75 mobile-grid-75">	
+
+				<h2>Devashish Sharma</h2>
+				<p class="post">Co-Founder</p>
+
+				<p class="story">Dev grew up in Delhi and went to the University of Waterloo to study Computer Engineering. He speaks 5 different languages fluently.</p>
+
+				<p class="story"><span class="sub">Countries treated in:</span> USA, Canada, India</p>
+			
+			</div>
+
+		</div>
+
+		<div class="person grid-50">
+
+			<div class="pic grid-25 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/matt.jpg" alt=""></div>
+
+			<div class="dets grid-75 mobile-grid-75">	
+
+				<h2>Matt Beck</h2>
+				<p class="post">Co-Founder</p>
+
+				<p class="story">Matt grew and has visited over 20 different countries. He tries his best to fit in abroad by picking up the local language, food and sport.
+
+				<p class="story"><span class="sub">Countries treated in:</span> USA, Canada, India, China</p>
+			
+			</div>
+
+		</div>
+
+		</div>
+
+		<div class="clearfix"></div>
+
+
+
+		<div class="mentors grid-container">
+			
+			<h3>Mentors</h3>
+
+			<div class="card-person grid-30">
+				
+				<div class="pic" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/mentors/rajesh.jpg);"' alt=""></div>
+
+				<div class="dets">
+					<h4>Rajesh Sawhney</h4>
+					<h5>Founder, GSF India</h5>
+				</div>
+
+			</div>
+
+			<div class="card-person grid-30 push-5">
+				
+				<div class="pic" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/mentors/rishab.jpg);"' alt=""></div>
+
+				<div class="dets">
+					<h4>Rishab Malik</h4>
+					<h5>EiR, GSF India</h5>
+				</div>
+
+			</div>
+
+			<div class="card-person grid-30 push-10">
+				
+				<div class="pic" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/mentors/brij.png);"' alt=""></div>
+
+				<div class="dets">
+					<h4>Brij Bhasin</h4>
+					<h5>EiR, GSF India</h5>
+				</div>
+
+			</div>
 		
-	</div>
+
+		</div>
+	<!-- </div> -->
 
 
 </section>

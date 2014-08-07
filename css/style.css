@@ -1504,6 +1504,12 @@ h1, h2, h3, h4, h5, h6 {
   .grid-container .right {
     right: -60px; }
 
+@media (max-width: 600px) {
+  nav ul.menu li:not(#menu-item-4294) {
+    display: none; }
+
+  .about p {
+    padding: 0 10px; } }
 header h1 {
   font-family: freight-text-pro;
   font-size: 250%;
@@ -1928,3 +1934,93 @@ h1 i, h2 i {
     font-size: 120%;
     border-radius: 10px;
     border: thick solid #7ecd94; }
+
+.person .pic {
+  text-align: center; }
+  .person .pic img {
+    border-radius: 1000px;
+    width: calc(100% - 10px);
+    border: 5px solid #ddd; }
+.person .dets h2 {
+  margin-top: 0px;
+  text-align: left !important;
+  display: inline-block; }
+.person .dets .post {
+  font-family: "calluna-sans", sans-serif;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-top: -30px; }
+.person .dets .story {
+  box-sizing: border-box;
+  display: inline-block;
+  padding-right: 0px;
+  margin-top: -10px;
+  width: 100%; }
+.person p {
+  margin-top: 10px; }
+.person:first-child {
+  border-right: 2px solid #eee; }
+
+h1.team {
+  margin-top: 60px; }
+
+.people {
+  margin-top: -70px; }
+
+span.sub {
+  font-family: calluna-sans, sans-serif;
+  display: block;
+  text-transform: uppercase;
+  font-size: 80%;
+  margin-top: 10px;
+  color: #999; }
+
+.mentors h3 {
+  text-align: center;
+  margin: 0;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  font-family: calluna-sans, sans-serif;
+  text-transform: uppercase; }
+.mentors .card-person {
+  height: 100px;
+  padding: 0;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background: white;
+  margin: 20px 0; }
+  .mentors .card-person .dets {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 105px;
+    right: 0; }
+    .mentors .card-person .dets h4 {
+      margin: 20px 0; }
+    .mentors .card-person .dets h5 {
+      margin: -20px 0;
+      color: #888; }
+  .mentors .card-person .pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    bottom: 0;
+    height: 60% !important;
+    width: 60px;
+    margin-left: 25px;
+    margin-top: 20px;
+    border-radius: 1000px;
+    border: 3px solid #ddd;
+    background-size: 140%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    vertical-align: middle; }
+
+@media (max-width: 600px) {
+  nav ul.menu li:not(#menu-item-4294) {
+    display: none; }
+
+  .about p {
+    padding: 0 10px; } }
