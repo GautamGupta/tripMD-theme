@@ -1865,7 +1865,7 @@ input[type="checkbox"]:checked + label:before {
 .reviews h2 {
   margin-bottom: 0;
   position: relative; }
-  .reviews h2::before {
+  .reviews h2 span.user-img {
     display: block;
     position: absolute;
     left: -60px;
@@ -1874,26 +1874,26 @@ input[type="checkbox"]:checked + label:before {
     content: "";
     border: 3px solid #fff;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-    background: url("http://api.randomuser.me/portraits/med/men/1.jpg");
     background-size: cover;
     border-radius: 100px; }
-.reviews #sean::before {
-  background-image: url("http://api.randomuser.me/portraits/med/men/1.jpg"); }
-.reviews #graham::before {
-  background-image: url("http://api.randomuser.me/portraits/med/men/9.jpg"); }
 
-.costs-table {
+table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  -webkit-filter: blur(2px); }
-  .costs-table tr {
+  border-collapse: collapse; }
+  table tr {
     padding: 0; }
-    .costs-table tr td {
+    table tr td, table tr th {
       text-align: center;
       border: thin solid lightgray;
       width: 16.666667%;
       padding: 10px 0; }
+    table tr th {
+      font-weight: normal;
+      background-color: #f8f8f8; }
+
+.costs-table {
+  margin-top: 10px;
+  -webkit-filter: blur(2px); }
   .costs-table .prices td::before {
     content: "$"; }
   .costs-table .td {

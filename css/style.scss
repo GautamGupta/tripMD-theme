@@ -2016,7 +2016,7 @@ input[type="checkbox"]:checked + label:before {
     margin-bottom: 0;
     position: relative;
 
-    &::before {
+    span.user-img {
 
       display: block;
       position: absolute;
@@ -2026,7 +2026,6 @@ input[type="checkbox"]:checked + label:before {
       content: "";
       border: 3px solid #fff;
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
-      background: url('http://api.randomuser.me/portraits/med/men/1.jpg');
       background-size: cover;
       border-radius: 100px;
 
@@ -2034,13 +2033,9 @@ input[type="checkbox"]:checked + label:before {
 
   }
 
-  #sean::before { background-image: url('http://api.randomuser.me/portraits/med/men/1.jpg'); }
-  #graham::before { background-image: url('http://api.randomuser.me/portraits/med/men/9.jpg'); }
-
 }
 
-.costs-table {
-
+table {
   width: 100%;
   border-collapse: collapse;
 
@@ -2048,19 +2043,24 @@ input[type="checkbox"]:checked + label:before {
 
       padding: 0;
       
-
-      td {
+      td, th {
 
         text-align: center;
         border: thin solid lightgray;
         width: 16.666667%;
         padding: 10px 0;
 
-
       }
 
+      th {
+        font-weight: normal;
+        background-color: #f8f8f8;
+      }
 
   }
+}
+
+.costs-table {
 
   .prices td::before { content: "$"; }
    margin-top: 10px; 
