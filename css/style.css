@@ -5,8 +5,7 @@
   transition: 0.2s; }
 
 ::selection {
-  background: #7ecd94;
-  color: white; }
+  background: rgba(0, 0, 0, 0.05); }
 
 ::-webkit-input-placeholder {
   color: #e3e3e3; }
