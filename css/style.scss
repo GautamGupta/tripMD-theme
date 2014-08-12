@@ -858,9 +858,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body.blog nav.sticky, body.single nav.sticky {
-  box-shadow: none !important;
-  background: transparent;
-  position: absolute;
+
 }
 body.blog article.post, body.single article.post {
   font-family: 'freight-text-pro';
@@ -2205,8 +2203,6 @@ h1.team {
 
 .people {
 
-  margin-top: -70px;
-
 }
 
 span.sub {
@@ -2252,14 +2248,15 @@ span.sub {
 
       h4 {
 
-        margin: 20px 0;
+        margin: 25px 0;
 
       }
 
       h5 {
 
-        margin: -20px 0;
+        margin: -30px 0;
         color: #888;
+        font-size: 65%;
 
       }
 
@@ -2297,3 +2294,4 @@ span.sub {
 }
 
 @import 'media-queries';
+@import 'social';

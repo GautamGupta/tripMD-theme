@@ -1,0 +1,53 @@
+.facebook {
+
+	color: #3b5998;
+
+}
+
+.twitter {
+
+	color: #00ACED;
+
+}
+
+.google {
+
+	color: #CC3732;
+
+}
+
+.linkedin {
+
+	color: #0077B5;
+
+}
+
+.email {
+
+	color: #414542;
+
+}
+
+p.social {
+
+	margin-top: -5px;
+	padding: 0;
+
+	a {
+
+		padding-right: 10px;
+		font-size: 150%;
+		position: relative;
+		-webkit-filter: grayscale(0.5);
+		opacity: 0.6;
+
+		&:hover {
+
+			-webkit-filter: grayscale(0);
+			opacity: 1;
+
+		}
+
+	}
+
+}

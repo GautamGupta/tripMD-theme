@@ -716,11 +716,6 @@ h1, h2, h3, h4, h5, h6 {
 .content p {
   color: #637d7d; }
 
-body.blog nav.sticky, body.single nav.sticky {
-  box-shadow: none !important;
-  background: transparent;
-  position: absolute; }
-
 body.blog article.post, body.single article.post {
   font-family: 'freight-text-pro'; }
 
@@ -1965,9 +1960,6 @@ h1 i, h2 i {
 h1.team {
   margin-top: 60px; }
 
-.people {
-  margin-top: -70px; }
-
 span.sub {
   font-family: calluna-sans, sans-serif;
   display: block;
@@ -1997,10 +1989,11 @@ span.sub {
     left: 105px;
     right: 0; }
     .mentors .card-person .dets h4 {
-      margin: 20px 0; }
+      margin: 25px 0; }
     .mentors .card-person .dets h5 {
-      margin: -20px 0;
-      color: #888; }
+      margin: -30px 0;
+      color: #888;
+      font-size: 65%; }
   .mentors .card-person .pic {
     position: absolute;
     top: 0;
@@ -2025,3 +2018,30 @@ span.sub {
 
   .about p {
     padding: 0 10px; } }
+.facebook {
+  color: #3b5998; }
+
+.twitter {
+  color: #00ACED; }
+
+.google {
+  color: #CC3732; }
+
+.linkedin {
+  color: #0077B5; }
+
+.email {
+  color: #414542; }
+
+p.social {
+  margin-top: -5px;
+  padding: 0; }
+  p.social a {
+    padding-right: 10px;
+    font-size: 150%;
+    position: relative;
+    -webkit-filter: grayscale(0.5);
+    opacity: 0.6; }
+    p.social a:hover {
+      -webkit-filter: grayscale(0);
+      opacity: 1; }

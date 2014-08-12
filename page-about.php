@@ -35,37 +35,53 @@ get_header();
 	
 	<h1 class="team"><i class="fa fa-users"></i><?php _e( 'Team tripMD', 'tripmd' ); ?></h1>
 
-	<div class="grid-80 push-10 people">
+	<div class="grid-100 people">
 	
 		<div class="person grid-50">
 
-			<div class="pic grid-25 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/dev.jpg"></div>
+			<div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/dev.jpg"></div>
 
-			<div class="dets grid-75 mobile-grid-75">	
+			<div class="dets grid-66 mobile-grid-75">	
 
 				<h2>Devashish Sharma</h2>
 				<p class="post"><?php _e( 'Co-Founder', 'tripmd' ); ?></p>
 
-				<p class="story">Dev grew up in Delhi and went to the University of Waterloo to study Computer Engineering. He speaks 5 different languages fluently.</p>
+				<p class="story">Dev grew up in Delhi and went to the University of Waterloo to study Computer Engineering. He speaks 5 different languages.</p>
 
-				<p class="story"><span class="sub"><?php _e( 'Countries treated in:', 'tripmd' ); ?></span> USA, Canada, India</p>
-			
+				<p class="social">
+					
+					<a href="https://www.facebook.com/devashish751" class="facebook" title="Facebook"><i class="fa fa-facebook-square"></i></a>
+					<a href="https://twitter.com/devashish751" class="twitter" title="Twitter"><i class="fa fa-twitter-square"></i></a>
+					<a href="https://plus.google.com/u/0/+DevashishSharma" class="google" title="Google"><i class="fa fa-google-plus-square"></i></a>
+					<a href="https://www.linkedin.com/in/devashishsharma" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
+					<a href="mailto:devashish@tripmd.com" class="email" title="Email"><i class="fa fa-envelope-square"></i></a>
+
+				</p>
+
 			</div>
 
 		</div>
 
 		<div class="person grid-50">
 
-			<div class="pic grid-25 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/matt.jpg"></div>
+			<div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/matt.jpg"></div>
 
-			<div class="dets grid-75 mobile-grid-75">	
+			<div class="dets grid-66 mobile-grid-75">	
 
 				<h2>Matt Beck</h2>
 				<p class="post"><?php _e( 'Co-Founder', 'tripmd' ); ?></p>
 
 				<p class="story">Matt grew and has visited over 20 different countries. He tries his best to fit in abroad by picking up the local language, food and sport.</p>
 
-				<p class="story"><span class="sub"><?php _e( 'Countries treated in:', 'tripmd' ); ?></span> USA, Canada, India, China</p>
+				<p class="social">
+					
+					<a href="https://www.facebook.com/matt.beck.562" class="facebook" title="Facebook"><i class="fa fa-facebook-square"></i></a>
+					<a href="https://twitter.com/mattbeck222" class="twitter" title="Twitter"><i class="fa fa-twitter-square"></i></a>
+					<a href="https://plus.google.com/u/0/107762021490022926387" class="google" title="Google"><i class="fa fa-google-plus-square"></i></a>
+					<a href="https://www.linkedin.com/in/matthewbeck" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
+					<a href="mailto:matt@tripmd.com" class="email" title="Email"><i class="fa fa-envelope-square"></i></a>
+
+				</p>
 			
 			</div>
 
@@ -77,7 +93,7 @@ get_header();
 
 	<div class="mentors grid-container">
 		
-		<h3><?php _e( 'Mentors', 'tripmd' ); ?></h3>
+		<h3><?php _e( 'Mentors &amp; Advisors', 'tripmd' ); ?></h3>
 
 		<div class="card-person grid-30">
 			
@@ -96,7 +112,7 @@ get_header();
 
 			<div class="dets">
 				<h4>Rishab Malik</h4>
-				<h5>EiR, GSF India</h5>
+				<h5>Operating Partner, GSF India</h5>
 			</div>
 
 		</div>
@@ -107,6 +123,28 @@ get_header();
 
 			<div class="dets">
 				<h4>Brij Bhasin</h4>
+				<h5>Operating Partner, GSF India</h5>
+			</div>
+
+		</div>
+
+		<div class="card-person grid-30">
+			
+			<div class="pic" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/mentors/samiksha.jpg);"'></div>
+
+			<div class="dets">
+				<h4>Samiksha Gupta</h4>
+				<h5>EiR, GSF India</h5>
+			</div>
+
+		</div>
+
+		<div class="card-person grid-30 push-5">
+			
+			<div class="pic" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/mentors/swati.png);"'></div>
+
+			<div class="dets">
+				<h4>Swati Bhargava</h4>
 				<h5>EiR, GSF India</h5>
 			</div>
 
