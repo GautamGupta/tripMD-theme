@@ -1524,9 +1524,10 @@ header h1 {
 
 .doc {
 
-  box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.07);
   padding-top: 20px;
-  background: white !important;
+  padding-bottom: 200px;
+  background: linear-gradient(white 70%, transparent) !important;
+  margin-bottom: -200px;
 
   .image {
 
