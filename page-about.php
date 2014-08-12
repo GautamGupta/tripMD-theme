@@ -126,7 +126,7 @@ get_header();
 
 		<div class="card-person grid-30">
 			
-			<div class="pic" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/mentors/samiksha.jpg);"'></div>
+			<div class="pic" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/mentors/samiksha.png);"'></div>
 
 			<div class="dets">
 				<h4>Samiksha Gupta</h4>
