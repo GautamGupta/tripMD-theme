@@ -33,7 +33,7 @@
 
         <div class="block full-width-form">
 
-            <div class="card">
+            <div class="card info">
 
                 <?php while ( have_posts() ) : the_post(); ?>
 
@@ -64,63 +64,70 @@
                     <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', array( 'class' => 'avatar' ) ); ?>
 
                     <h2><?php printf( __( 'Write a review for %s', 'tripmd' ), '<br /><a href="' . get_permalink() . '"><span class="doc-name">' . get_the_title() .'</span></a>' ); ?></h2>
+                    <p class="yeh-vala">Your doctor Poonam Batra needs your help! Dr. Batra has been selected to feature on TripMD, an exclusive and highly curated listing platform of the most trusted doctors worldwide. Recognized as one of Delhi’s best dentists by the expatriate and diplomatic communities for years, we are looking to spread the word of Dr. Batra’s great practice on a global scale.</p><p>
+ We put emphasis on transparency at TripMD, and feedback given on your experience with Dr. Batra will go a long way towards inform other prospective patients. Dr. Batra and TripMD kindly ask for you to fill out the review form below.
+</p><p>If you have any questions about this review page or want to learn more about what we are building at TripMD, please reach out to <a href="mailto:matt@tripmd.com">matt@tripmd.com</a> and we will get back to you ASAP!</p>
 
-                    <div class="form">
+            </div>
 
-                        <form method="post" id="review-form">
-                            
-                            <div class="name fld">
-                                <input type="text" name="tmd_review_name" placeholder="<?php _e( 'Full Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_name' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
-                                <i class="fa fa-user"></i>
-                            </div>
-                            
-                            <div class="email fld">
-                                <input type="email" name="tmd_review_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_email' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
-                                <i class="fa fa-envelope-o"></i>
-                            </div>
-                            
-                            <div class="nationality fld">
-                                <input type="text" name="tmd_review_nationality" placeholder="<?php _e( 'Nationality', 'tripmd' ); ?>" class="nationality field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_nationality' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
-                                <i class="fa fa-location-arrow"></i>
-                            </div>
-                            
-                            <div class="comment fld">
-                                <textarea name="tmd_review_comment" placeholder="<?php _e( 'Write a review...', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" onkeyup="expandtext(this);" rows="2" tabindex="<?php tmd_tab_index(); ?>"><?php tmd_sanitize_val( 'tmd_review_comment', 'textarea' ); ?></textarea>
-                                <i class="fa fa-comment-o"></i>
-                            </div>
-                            
-                            <div class="rating fld">
-                                <i class="fa fa-star-o"></i>
-                                <strong id="rat-text"><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
-                                <fieldset class="rat-star">
-                                    <?php foreach ( array( 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ), 'overall' => __( 'Overall', 'tripmd' ) ) as $key => $display_text ) : ?>
-                                        <span class="rat-title"><?php echo $display_text; ?></span>
-                                        <fieldset class="rat-star <?php echo $key; ?>">
-                                            <legend><?php _e( 'Please rate:', 'tripmd' ); ?></legend>
-                                            <?php 
-                                            foreach ( array( 1 => __( 'Bad experience', 'tripmd' ), 2 => __( 'Not upto the mark', 'tripmd' ), 3 => __( 'Fair', 'tripmd' ), 4 => __( 'Good!', 'tripmd' ), 5 => __( 'Would definitely recommend!', 'tripmd' ) ) as $rad_val => $label_text ) : ?>
-                                                <input type="radio" id="<?php echo $key . "_" . $rad_val; ?>" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
-                                                <label for="<?php echo $key . "_" . $rad_val; ?>" title="<?php echo $label_text; ?>"><?php echo $label_text; ?></label>
-                                            <?php endforeach; ?>
-                                        </fieldset>
-                                        <br />
-                                    <?php endforeach; ?>
-                                </fieldset>
-                            </div>
+            <div class="card second">
+                
+                <div class="form">
 
-                            <input type="hidden" name="action" value="review_doctor" />
-                            <input type="hidden" name="tmd_review_parent_id" value="<?php the_ID(); ?>" />
-                            <?php wp_nonce_field( 'tmd_review_doctor_nonce' ); ?>
+                    <form method="post" id="review-form">
+                        
+                        <div class="name fld">
+                            <input type="text" name="tmd_review_name" placeholder="<?php _e( 'Full Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_name' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+                            <i class="fa fa-user"></i>
+                        </div>
+                        
+                        <div class="email fld">
+                            <input type="email" name="tmd_review_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_email' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+                            <i class="fa fa-envelope-o"></i>
+                        </div>
+                        
+                        <div class="nationality fld">
+                            <input type="text" name="tmd_review_nationality" placeholder="<?php _e( 'Nationality', 'tripmd' ); ?>" class="nationality field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_nationality' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+                            <i class="fa fa-location-arrow"></i>
+                        </div>
+                        
+                        <div class="comment fld">
+                            <textarea name="tmd_review_comment" placeholder="<?php _e( 'Write a review...', 'tripmd' ); ?>" class="treatment field" data-icon="\f007" onkeyup="expandtext(this);" rows="2" tabindex="<?php tmd_tab_index(); ?>"><?php tmd_sanitize_val( 'tmd_review_comment', 'textarea' ); ?></textarea>
+                            <i class="fa fa-comment-o"></i>
+                        </div>
+                        
+                        <div class="rating fld">
+                            <i class="fa fa-star-o"></i>
+                            <strong id="rat-text"><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
+                            <fieldset class="rat-star">
+                                <?php foreach ( array( 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ), 'overall' => __( 'Overall', 'tripmd' ) ) as $key => $display_text ) : ?>
+                                    <span class="rat-title"><?php echo $display_text; ?></span>
+                                    <fieldset class="rat-star <?php echo $key; ?>">
+                                        <legend><?php _e( 'Please rate:', 'tripmd' ); ?></legend>
+                                        <?php 
+                                        foreach ( array( 1 => __( 'Bad experience', 'tripmd' ), 2 => __( 'Not upto the mark', 'tripmd' ), 3 => __( 'Fair', 'tripmd' ), 4 => __( 'Good!', 'tripmd' ), 5 => __( 'Would definitely recommend!', 'tripmd' ) ) as $rad_val => $label_text ) : ?>
+                                            <input type="radio" id="<?php echo $key . "_" . $rad_val; ?>" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
+                                            <label for="<?php echo $key . "_" . $rad_val; ?>" title="<?php echo $label_text; ?>"><?php echo $label_text; ?></label>
+                                        <?php endforeach; ?>
+                                    </fieldset>
+                                    <br />
+                                <?php endforeach; ?>
+                            </fieldset>
+                        </div>
 
-                            <a href="#" class="big fat green button submit" onclick="document.getElementById('review-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Submit Review', 'tripmd' ); ?></a>
+                        <input type="hidden" name="action" value="review_doctor" />
+                        <input type="hidden" name="tmd_review_parent_id" value="<?php the_ID(); ?>" />
+                        <?php wp_nonce_field( 'tmd_review_doctor_nonce' ); ?>
 
-                            <div class="t-center t-small t-gray"><input checked type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'I would like TripMD to keep me updated on their launch. I know they will not spam me. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label></div>
+                        <a href="#" class="big fat green button submit" onclick="document.getElementById('review-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Submit Review', 'tripmd' ); ?></a>
 
-                            <input type="submit" hidden>
+                        <div class="t-center t-small t-gray"><input checked type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'I would like TripMD to keep me updated on their launch. I know they will not spam me. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label></div>
 
-                        </form>
+                        <input type="submit" hidden>
 
-                    </div>
+                    </form>
+
+                </div>
 
                 <?php endif; ?>
 

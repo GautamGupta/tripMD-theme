@@ -1237,3 +1237,34 @@ footer {
     padding-bottom: 10px;
 
 }
+
+.card:nth-child(2) {
+
+  margin-left: 100px;
+  padding-top: 0 !important;
+
+  input[name="tmd_review_name"] {
+      
+      border-top: 0;
+
+  }
+
+}
+
+.info.card {
+  
+  // width: 35%;
+
+  p.yeh-vala {
+    display: block;
+    margin-top: 25px;
+  }
+
+  p {
+    
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+  }
+
+}
