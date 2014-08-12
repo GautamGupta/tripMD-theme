@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .home .heading h2 {
-  margin-top: 60px;
+  margin-top: 0;
 }
 
 
@@ -844,8 +844,8 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
 }
 
-.howh, suh {
-  margin: 60px 0 10px 0;
+.howh, .suh {
+  margin: 30px 0 10px 0;
 }
 
 .content h3 {
@@ -1500,7 +1500,7 @@ label {
 
 .howh {
 
-  padding-top: 40px;
+  padding-top: 0px;
 
 }
 
@@ -1701,6 +1701,8 @@ margin-top: 20px;}
   .origin {
 
     margin-top: -35px;
+    margin-bottom: 0 !important;
+    padding: 0;
 
   }
 

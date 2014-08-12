@@ -519,7 +519,6 @@ get_header(); ?>
 
             <div class="grid-container">
                 
-                <br><br>
                 <div class="heading grid-100"><h2><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" /></h2></div>
 
                 <div class="content">
@@ -565,7 +564,7 @@ get_header(); ?>
         </section>
 
         <?php if ( ! empty( $_GET['clin_reg'] ) && $_GET['clin_reg'] == 'error' ) : ?>
-        <hr/>
+        
             <section id="clin-reg-msg" class="center last">
                 <div class="grid-container">
                     <p id="message">

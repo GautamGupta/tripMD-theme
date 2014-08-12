@@ -33,7 +33,7 @@ jQuery(document).ready(function($) {
     // Speciality selection
     // http://tripmd.com/wp-admin/admin-ajax.php?action=tmd_api&method=procedures_costs&ver=0.1
 
-    if ( $("#aff").length > 0 || $(".costs-table").length > 0 ) {
+    if ($("#aff").length > 0 || $(".costs-table").length > 0) {
 
         var ajax_api = "/wp-admin/admin-ajax.php?action=tmd_api&method=procedures_costs&ver=0.1",
             i = 0,
@@ -136,7 +136,7 @@ jQuery(document).ready(function($) {
         arrowsNav: false,
         fadeinLoadedSlide: false,
         controlNavigationSpacing: 0,
-        transitionType: 'fade',
+        transitionType: 'slide',
         controlNavigation: 'tabs',
         imageScaleMode: 'fill',
         imageAlignCenter:false,
