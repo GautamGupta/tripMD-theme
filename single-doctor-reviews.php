@@ -107,14 +107,14 @@
                                     <?php endforeach; ?>
                                 </fieldset>
                             </div>
-                            
-                            <input type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'Also subscribe me to <a href="%1$s" class="green-t">tripMD</a> updates, a startup with a mission to simplify medical travel. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label>
 
                             <input type="hidden" name="action" value="review_doctor" />
                             <input type="hidden" name="tmd_review_parent_id" value="<?php the_ID(); ?>" />
                             <?php wp_nonce_field( 'tmd_review_doctor_nonce' ); ?>
 
                             <a href="#" class="big fat green button submit" onclick="document.getElementById('review-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Submit Review', 'tripmd' ); ?></a>
+
+                            <div class="t-center t-small t-gray"><input checked type="checkbox" name="tmd_review_subscribe" id="tmd_review_subscribe" tabindex="<?php tmd_tab_index(); ?>" value="1"<?php checked( tmd_get_sanitize_val( 'tmd_review_subscribe', 'checkbox' ), 1 ); ?> /><label for="tmd_review_subscribe"><?php printf( __( 'I would like TripMD to keep me updated on their launch. I know they will not spam me. <a href="%1$s" class="green-t">Learn more</a>.', 'tripmd' ), site_url() ); ?></label></div>
 
                             <input type="submit" hidden>
 

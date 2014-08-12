@@ -956,11 +956,10 @@ input[name="tmd_review_comment"] {
     font-size: 150%; }
 
 .full-width-form .rat-star {
-  margin-top: 10px;
+  margin-top: 0;
   position: relative; }
 
 .rat-star {
-  /*float:left;*/
   display: inline-block;
   border: 0;
   outline: 0;
@@ -1003,6 +1002,9 @@ input[name="tmd_review_comment"] {
   /*color: red;*/
   /*text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);*/ }
 
+.rat-star > input {
+  display: none; }
+
 .rat-star:not(:checked) > label:hover,
 .rat-star:not(:checked) > label:hover ~ label {
   color: gold;
@@ -1036,3 +1038,17 @@ footer {
 
 #content-slider-1 {
   margin-top: 0; }
+
+.t-center {
+  text-align: center !important; }
+
+.t-gray {
+  color: #999; }
+
+.t-small {
+  font-size: 90%; }
+
+#review-form {
+  padding-bottom: 10px; }
+  #review-form .submit {
+    margin-top: 0; }

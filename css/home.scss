@@ -1174,10 +1174,14 @@ input[name="tmd_review_comment"] {
 
 }
 
-.full-width-form .rat-star {
+.full-width-form {
 
-  margin-top: 10px;
-  position: relative;
+  .rat-star {
+    margin-top: 0;
+    position: relative;
+  }
+
+  
 
 }
 
@@ -1201,5 +1205,35 @@ footer {
 #content-slider-1 {
 
   margin-top: 0;
+
+}
+
+.t-center {
+
+  text-align: center !important;
+
+}
+
+.t-gray {
+
+  color: #999;
+
+} 
+
+.t-small {
+
+  font-size: 90%;
+
+}
+
+#review-form {
+
+    .submit {
+
+      margin-top: 0;
+
+    }
+
+    padding-bottom: 10px;
 
 }
