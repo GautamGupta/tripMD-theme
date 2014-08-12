@@ -1999,12 +1999,12 @@ span.sub {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100px;
+    width: 160px;
     bottom: 0;
-    height: 60% !important;
-    width: 60px;
-    margin-left: 25px;
-    margin-top: 20px;
+    height: 75px !important;
+    width: 75px;
+    margin-left: 18px;
+    margin-top: 12px;
     border-radius: 1000px;
     border: 3px solid #ddd;
     background-size: 140%;
@@ -2041,8 +2041,8 @@ p.social {
     padding-right: 10px;
     font-size: 150%;
     position: relative;
-    -webkit-filter: grayscale(0.5);
-    opacity: 0.6; }
+    -webkit-filter: grayscale(1);
+    opacity: 0.5; }
     p.social a:hover {
       -webkit-filter: grayscale(0);
       opacity: 1; }

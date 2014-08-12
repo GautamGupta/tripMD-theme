@@ -50,9 +50,7 @@ get_header();
 
 				<p class="social">
 					
-					<a href="https://www.facebook.com/devashish751" class="facebook" title="Facebook"><i class="fa fa-facebook-square"></i></a>
 					<a href="https://twitter.com/devashish751" class="twitter" title="Twitter"><i class="fa fa-twitter-square"></i></a>
-					<a href="https://plus.google.com/u/0/+DevashishSharma" class="google" title="Google"><i class="fa fa-google-plus-square"></i></a>
 					<a href="https://www.linkedin.com/in/devashishsharma" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
 					<a href="mailto:devashish@tripmd.com" class="email" title="Email"><i class="fa fa-envelope-square"></i></a>
 
@@ -75,9 +73,7 @@ get_header();
 
 				<p class="social">
 					
-					<a href="https://www.facebook.com/matt.beck.562" class="facebook" title="Facebook"><i class="fa fa-facebook-square"></i></a>
 					<a href="https://twitter.com/mattbeck222" class="twitter" title="Twitter"><i class="fa fa-twitter-square"></i></a>
-					<a href="https://plus.google.com/u/0/107762021490022926387" class="google" title="Google"><i class="fa fa-google-plus-square"></i></a>
 					<a href="https://www.linkedin.com/in/matthewbeck" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
 					<a href="mailto:matt@tripmd.com" class="email" title="Email"><i class="fa fa-envelope-square"></i></a>
 
