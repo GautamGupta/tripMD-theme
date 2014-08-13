@@ -525,7 +525,7 @@ get_header(); ?>
 
                     <div class="aligncenter">
 
-                        <h3><?php _e( 'We\'re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
+                        <h3><?php _e( 'We&rsquo;re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
 
                         <a class="big fat green button waitlist" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Get started', 'tripmd' ); ?></a>
 
@@ -567,7 +567,8 @@ get_header(); ?>
         
             <section id="clin-reg-msg" class="center last">
                 <div class="grid-container">
-                    <p id="message">
+                    <p class="error message">
+                        <i class="fa fa-times"></i>
                         <?php _e( 'Oops! There was an error registering your clinic, please try again. You can also try emailing us at support@tripmd.com.', 'tripmd' ); ?>
                     </p>
                 </div>
@@ -575,8 +576,9 @@ get_header(); ?>
         <?php elseif ( ! empty( $_GET['clin_reg'] ) && $_GET['clin_reg'] == 'success' ) : ?>
             <section id="clin-reg-msg" class="center last">
                 <div class="grid-container">
-                    <p id="message">
-                        <?php _e( 'Thank you for registering. We\'ll get back to you shortly.', 'tripmd' ); ?>
+                    <p class="success message">
+                        <i class="fa fa-check"></i>
+                        <?php _e( 'Thank you for registering. We&rsquo;ll get back to you shortly.', 'tripmd' ); ?>
                     </p>
                 </div>
             </section>

@@ -1065,3 +1065,28 @@ footer {
 .info.card p {
   margin-bottom: 0px;
   margin-top: 0px; }
+
+#clin-reg-msg {
+  padding: 30px 0 0 0;
+  border-bottom: 0 !important; }
+  #clin-reg-msg p.message {
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 110%; }
+    #clin-reg-msg p.message i {
+      font-size: 150%;
+      vertical-align: middle;
+      margin-right: 10px;
+      position: relative;
+      top: -3px; }
+  #clin-reg-msg .success {
+    color: #7ecd94;
+    border: 2px solid #7ecd94; }
+    #clin-reg-msg .success i {
+      color: #7ecd94; }
+  #clin-reg-msg .error {
+    color: #ea3636;
+    border: 2px solid #ea3636; }
+    #clin-reg-msg .error i {
+      color: #ea3636; }
