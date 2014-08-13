@@ -255,7 +255,7 @@ section {
 }
 
 section.site-main {
-  margin-top: 80px;
+  margin-top: 50px;
 }
 
 .content h3 {
@@ -1528,6 +1528,12 @@ header h1 {
   padding-bottom: 200px;
   background: linear-gradient(white 70%, transparent) !important;
   margin-bottom: -200px;
+
+  h1 i, h2 i {
+
+    margin-right: 3px;
+
+  }
 
   .image {
 

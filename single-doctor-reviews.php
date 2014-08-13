@@ -64,6 +64,7 @@
                     <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', array( 'class' => 'avatar' ) ); ?>
 
                     <h2><?php printf( __( 'Write a review for %s', 'tripmd' ), '<br /><a href="' . get_permalink() . '"><span class="doc-name">' . get_the_title() .'</span></a>' ); ?></h2>
+                    
                     <p class="yeh-vala">Your doctor Poonam Batra needs your help! Dr. Batra has been selected to feature on TripMD, an exclusive and highly curated listing platform of the most trusted doctors worldwide. Recognized as one of Delhi’s best dentists by the expatriate and diplomatic communities for years, we are looking to spread the word of Dr. Batra’s great practice on a global scale.</p><p>
  We put emphasis on transparency at TripMD, and feedback given on your experience with Dr. Batra will go a long way towards inform other prospective patients. Dr. Batra and TripMD kindly ask for you to fill out the review form below.
 </p><p>If you have any questions about this review page or want to learn more about what we are building at TripMD, please reach out to <a href="mailto:matt@tripmd.com">matt@tripmd.com</a> and we will get back to you ASAP!</p>
