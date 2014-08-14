@@ -1761,7 +1761,7 @@ margin-top: 20px;}
 
 .facility {
   
-  h1 { margin: 0;}
+  h1 { margin: 0; margin-bottom: -20px; }
 
   div {
 
@@ -1769,12 +1769,22 @@ margin-top: 20px;}
       
       width: 100%;
       outline: thick solid #eee;
-      
 
     }
 
   }
 
+}
+
+.awards {
+
+  margin-top: 30px;
+
+  h1 {
+    
+
+
+  }
 
 }
 
@@ -2316,8 +2326,6 @@ span.sub {
     margin-bottom: 0px;
 
   }
-
-  
 
 }
 

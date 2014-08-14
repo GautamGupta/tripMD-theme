@@ -1652,10 +1652,14 @@ header h1 {
     -webkit-transform: scale(0.9); }
 
 .facility h1 {
-  margin: 0; }
+  margin: 0;
+  margin-bottom: -20px; }
 .facility div img {
   width: 100%;
   outline: thick solid #eee; }
+
+.awards {
+  margin-top: 30px; }
 
 .costs h2 {
   font-family: freight-text-pro;

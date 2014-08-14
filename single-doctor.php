@@ -140,17 +140,37 @@ get_header(); ?>
         
         <div class="grid-container">
             
-            <h1><?php _e( 'Facility and Awards', 'tripmd' ); ?></h1>
+            <h1><?php _e( 'Facility', 'tripmd' ); ?></h1>
 
             <br /><br />
 
-            <div class="grid-30"><a href="<?php echo get_template_directory_uri(); ?>/img/1.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></a></div>
-            <div class="grid-30 push-5"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
-            <div class="grid-30 push-10"><a href="<?php echo get_template_directory_uri(); ?>/img/2.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></a></div>
+            <div class="grid-30"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/1.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></a></div>
+            <div class="grid-30 push-5"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
+            <div class="grid-30 push-10"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/2.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></a></div>
             <div class="grid-100" style="margin-top: 100px; !important"><br /><br /></div>
-            <div class="grid-30"><a href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
-            <div class="grid-30 push-5"><a href="<?php echo get_template_directory_uri(); ?>/img/5.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></a></div>
-            <div class="grid-30 push-10"><a href="<?php echo get_template_directory_uri(); ?>/img/4.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></a></div>
+            <div class="grid-30"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
+            <div class="grid-30 push-5"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/5.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></a></div>
+            <div class="grid-30 push-10"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/4.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></a></div>
+
+        </div>
+
+    </header>
+
+    <header class="facility awards">
+        
+        <div class="grid-container">
+            
+            <h1><?php _e( 'Awards', 'tripmd' ); ?></h1>
+
+            <br /><br />
+
+            <div class="grid-30"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/1.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></a></div>
+            <div class="grid-30 push-5"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
+            <div class="grid-30 push-10"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/2.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></a></div>
+            <div class="grid-100" style="margin-top: 100px; !important"><br /><br /></div>
+            <div class="grid-30"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
+            <div class="grid-30 push-5"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/5.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></a></div>
+            <div class="grid-30 push-10"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/4.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></a></div>
 
         </div>
 
