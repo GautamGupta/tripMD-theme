@@ -46,7 +46,7 @@ get_header();
 				<h2>Devashish Sharma</h2>
 				<p class="post"><?php _e( 'Co-Founder', 'tripmd' ); ?></p>
 
-				<p class="story">Dev grew up in Delhi and is a Computer Engineering graduate from the University of Waterloo. He also has work experience in multiple countries and speaks 5 different languages.</p>
+				<p class="story">Dev grew up in Delhi and is a Computer Engineering graduate from the University of Waterloo. He has work experience in multiple countries and speaks 5 different languages.</p>
 
 				<p class="social">
 					
@@ -69,7 +69,7 @@ get_header();
 				<h2>Matt Beck</h2>
 				<p class="post"><?php _e( 'Co-Founder', 'tripmd' ); ?></p>
 
-				<p class="story">Matt grew and has visited over 20 different countries. He tries his best to fit in abroad by picking up the local language, food and sport.</p>
+				<p class="story">Matt grew up in south-east Asia and has visited over 20 different countries. He tries his best to fit in abroad by picking up the local language, food and sport.</p>
 
 				<p class="social">
 					
