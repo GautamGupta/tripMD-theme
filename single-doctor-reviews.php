@@ -31,11 +31,11 @@
 
     <body <?php body_class( 'beta' ); ?>>
 
-        <div class="block full-width-form">
+        <div class="block full-width-form review">
 
-            <div class="card review info">
+            <div class="card info grid-container">
 
-                <div class="intro">
+                <div class="intro grid-50">
 
                 <?php while ( have_posts() ) : the_post(); ?>
 
@@ -73,7 +73,7 @@
 
                 </div>
 
-                <div class="form">
+                <div class="form grid-45 push-5">
 
                     <form method="post" id="review-form">
                         

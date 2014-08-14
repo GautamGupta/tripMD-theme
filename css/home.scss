@@ -1324,5 +1324,25 @@ footer {
 
 .review {
 
+  .card {
+
+    width: auto !important;
+    // padding: 0;
+
+    .form {
+
+      clear: none;
+
+    }
+ 
+  } 
+
+  .intro {
+
+    border-right: thin solid #ddd;
+    padding-right: 25px;
+    padding-bottom: 20px;
+
+  }
 
 }

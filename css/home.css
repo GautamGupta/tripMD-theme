@@ -1090,3 +1090,12 @@ footer {
     border: 2px solid #ea3636; }
     #clin-reg-msg .error i {
       color: #ea3636; }
+
+.review .card {
+  width: auto !important; }
+  .review .card .form {
+    clear: none; }
+.review .intro {
+  border-right: thin solid #ddd;
+  padding-right: 25px;
+  padding-bottom: 20px; }
