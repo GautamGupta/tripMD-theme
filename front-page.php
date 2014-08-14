@@ -97,7 +97,7 @@ get_header(); ?>
                     <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
                 </div>
 
-                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1.jpg" alt="" />
+                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1n.jpg" alt="" />
 
             </div>
 
