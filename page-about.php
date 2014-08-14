@@ -148,6 +148,23 @@ get_header();
 	
 	</div>
 
+	<div class="mentors believers grid-container">
+		
+		<h3><?php _e( 'Believers', 'tripmd' ); ?></h3>
+
+		<div class="card-person grid-30 push-35">
+			
+			<div class="pic gsf" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/believers/gsf.jpg);"'></div>
+
+			<div class="dets">
+				<h4>GSF India</h4>
+				<h5>Investor</h5>
+			</div>
+
+		</div>
+	
+	</div>
+
 </section>
 
 <?php get_footer(); ?>
