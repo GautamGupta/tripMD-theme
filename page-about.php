@@ -46,7 +46,7 @@ get_header();
 				<h2>Devashish Sharma</h2>
 				<p class="post"><?php _e( 'Co-Founder', 'tripmd' ); ?></p>
 
-				<p class="story">Dev grew up in Delhi and went to the University of Waterloo to study Computer Engineering. He speaks 5 different languages.</p>
+				<p class="story">Dev grew up in Delhi and is a Computer Engineering graduate from the University of Waterloo. He also has work experience in multiple countries and speaks 5 different languages.</p>
 
 				<p class="social">
 					
