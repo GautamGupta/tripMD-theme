@@ -24,9 +24,9 @@ get_header();
    <div class="grid-container">
    	
 		<h2><i class="fa fa-building"></i><?php _e( 'About tripMD', 'tripmd' ); ?></h2>
-		<p>At tripMD we are focused on bringing trust and transparency to medical travel. Patients currently suffer from a lack of familiarity with quality healthcare options overseas and don’t have a viable resource where they can discover and connect with world-class doctors abroad.</p>
+		<p>At tripMD we are focused on bringing trust and transparency to trusted healthcare options overseas. Patients currently suffer from a lack of familiarity and don’t have a viable resource where they can discover and connect with world-class doctors abroad.</p>
 
-		<p>We solve this problem by providing patients with access to an exclusive network of well-reputed healthcare providers. tripMD Doctors are highly regarded medical professionals who are trusted by local diplomats and expatriates, and through our top-of-the-line concierge services, you can reach our doctors anxiety-free for your important medical procedures.</p>
+		<p>We solve this problem by providing patients with access to an exclusive network of well-reputed healthcare providers. tripMD Doctors are highly regarded medical professionals who are trusted by local diplomats and expatriates.</p>
 
    </div>
 </section>
