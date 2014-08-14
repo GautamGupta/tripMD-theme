@@ -74,7 +74,7 @@ get_header();
 				<p class="social">
 					
 					<a href="https://twitter.com/mattbeck222" class="twitter" title="Twitter"><i class="fa fa-twitter-square"></i></a>
-					<a href="https://www.linkedin.com/in/matthewbeck" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
+					<a href="https://www.linkedin.com/profile/view?id=229438706" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
 					<a href="mailto:matt@tripmd.com" class="email" title="Email"><i class="fa fa-envelope-square"></i></a>
 
 				</p>
