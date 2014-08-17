@@ -85,7 +85,7 @@ get_header(); ?>
                 <div class="grid-40 push-10">
                     
                     <div class="subtitle"><p><?php _e( 'Specialities', 'tripmd' ); ?></p></div>
-                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'specialities', 'sep' => ' &middot; ' ) ); ?>
+                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'speciality', 'sep' => ' &middot; ' ) ); ?>
 
                 </div>
 

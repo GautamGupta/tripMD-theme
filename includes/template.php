@@ -843,7 +843,7 @@ function tmd_doctor_data( $args = '' ) {
         case 'language' :
         case 'membership' :
         case 'education' :
-        case 'specialities' :
+        case 'speciality' :
             $terms = get_the_terms( $id, $taxonomy );
 
             if ( is_wp_error( $terms ) || empty( $terms ) )
