@@ -22,15 +22,18 @@ get_header(); ?>
                     <th><?php _e( 'Intl. Patients Treated', 'tripmd' ); ?></th>
                 </tr>
                 <?php foreach ( array(
-                    __( 'North America',     'tripmd' ) => 126,
-                    __( 'Australia',         'tripmd' ) => 140,
-                    __( 'Hong Kong',         'tripmd' ) => 95,
-                    __( 'Singapore',         'tripmd' ) => 50,
-                    __( 'Rest of the World', 'tripmd' ) => 77,
+                    __( 'North America',     'tripmd' ) => 4000,
+                    __( 'West Europe',       'tripmd' ) => 2300,
+                    __( 'Japan',             'tripmd' ) => 1200,
+                    __( 'UK',                'tripmd' ) => 1100,
+                    __( 'French',            'tripmd' ) => 600,
+                    __( 'Australia',         'tripmd' ) => 500,
+                    __( 'Latin America',     'tripmd' ) => 600,
+                    __( 'Rest of the World', 'tripmd' ) => 1200,
                 ) as $location => $num_treated ) : ?>
                     <tr>
                         <td><?php echo $location; ?></td>
-                        <td><?php echo number_format_i18n( $num_treated ); ?></td>
+                        <td><?php echo number_format_i18n( $num_treated ); ?>+</td>
                     </tr>
                 <?php endforeach; ?>
             </table>
