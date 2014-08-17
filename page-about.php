@@ -24,9 +24,9 @@ get_header();
    <div class="grid-container">
    	
 		<h2><i class="fa fa-building"></i><?php _e( 'About tripMD', 'tripmd' ); ?></h2>
-		<p>TripMD is an innovative solution for trusted health care overseas.. TripMD helps patients discover and book appointments with internationally reputed doctors in major metropolitan cities to avail the best local treatment options. The doctors featured on the platform are highly regarded medical professionals who have been trusted by local diplomatic and expatriate communities for years.</p>
+		<p>At tripMD we are focused on bringing trust and transparency to trusted healthcare options overseas. Patients currently suffer from a lack of familiarity and don’t have a viable resource where they can discover and connect with world-class doctors abroad.</p>
 
-		<p>TripMD has secured relationships with some of the most respected and reputed physicians in Delhi-NCR. The co-founders, Devashish Sharma and Matthew Beck, are both global citizens looking to solve a personal problem that they have encountered while living and travelling overseas.</p>
+		<p>We solve this problem by providing patients with access to an exclusive network of well-reputed healthcare providers. tripMD Doctors are highly regarded medical professionals who are trusted by local diplomats and expatriates.</p>
 
    </div>
 </section>
@@ -39,7 +39,7 @@ get_header();
 	
 		<div class="person grid-50">
 
-			<div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/dev.jpg"></div>
+			<div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/dev.jpg" /></div>
 
 			<div class="dets grid-66 mobile-grid-75">	
 
@@ -142,23 +142,6 @@ get_header();
 			<div class="dets">
 				<h4>Swati Bhargava</h4>
 				<h5>EiR, GSF India</h5>
-			</div>
-
-		</div>
-	
-	</div>
-
-	<div class="mentors believers grid-container">
-		
-		<h3><?php _e( 'Believers', 'tripmd' ); ?></h3>
-
-		<div class="card-person grid-30 push-35">
-			
-			<div class="pic gsf" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/believers/gsf.jpg);"'></div>
-
-			<div class="dets">
-				<h4>GSF India</h4>
-				<h5>Investor</h5>
 			</div>
 
 		</div>
