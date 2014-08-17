@@ -129,7 +129,7 @@ get_header(); ?>
 
             <div class="link">
                 
-                <a class="big fat green button" href="/inquiry?tmd_bs_inquiry_for=dental"><?php _e( 'Talk to the doctor', 'tripmd' ); ?></a>
+                <a class="big fat green button" href="/inquiry?tmd_bs_inquiry_for=dental"><?php _e( 'Schedule Appointment', 'tripmd' ); ?></a>
 
             </div>
 
