@@ -57,6 +57,9 @@ function tmd_template_include( $template = '' ) {
     // Doctor reviews page
     if     ( tripmd()->doctor_post_type == get_post_type() && tmd_is_reviews() && ( $new_template = tmd_get_doctor_reviews_template() ) ) :
 
+    // Front page (country wise messaging)
+    elseif ( is_front_page() && ( $new_template = tmd_get_front_page_template() ) ) :
+
     endif;
 
     // A TripMD template file was located, so override the WordPress template
@@ -108,6 +111,24 @@ function tmd_locate_template( $template_names, $load = false, $require_once = tr
 
 /**
  * Get the doctor reviews template
+ *
+ * @uses bbp_get_displayed_user_id()
+ * @uses bbp_get_query_template()
+ * @return string Path to template file
+ */
+function tmd_get_doctor_reviews_template() {
+    $templates = array(
+        'single-' . tripmd()->doctor_post_type . '-' . tripmd()->reviews_id . '.php', // Single doctor reviews
+        'single-' . tripmd()->doctor_post_type . '.php',                              // Single doctor
+        'single.php',                                                                 // Single
+    );
+    $template = tmd_locate_template( $templates );
+
+    return $template;
+}
+
+/**
+ * Front Page
  *
  * @uses bbp_get_displayed_user_id()
  * @uses bbp_get_query_template()
@@ -822,6 +843,7 @@ function tmd_doctor_data( $args = '' ) {
         case 'language' :
         case 'membership' :
         case 'education' :
+        case 'specialities' :
             $terms = get_the_terms( $id, $taxonomy );
 
             if ( is_wp_error( $terms ) || empty( $terms ) )
@@ -834,7 +856,7 @@ function tmd_doctor_data( $args = '' ) {
             $output = join( $sep, $term_links );
 
             break;
-
+        /*
         case 'specialities' : // Not actually a taxonomy
             $specialities = get_post_meta( $id, $taxonomy, true );
             $specialities = (array) explode( ', ', $specialities );
@@ -849,6 +871,7 @@ function tmd_doctor_data( $args = '' ) {
             $output = join( $sep, $term_links );
 
             break;
+        */
     }
 
     if ( !empty( $output ) )
