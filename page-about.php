@@ -24,9 +24,9 @@ get_header();
    <div class="grid-container">
    	
 		<h2><i class="fa fa-building"></i><?php _e( 'About tripMD', 'tripmd' ); ?></h2>
-		<p>At tripMD we are focused on bringing trust and transparency to trusted healthcare options overseas. Patients currently suffer from a lack of familiarity and don’t have a viable resource where they can discover and connect with world-class doctors abroad.</p>
+		<p>TripMD is an innovative solution for trusted health care overseas.. TripMD helps patients discover and book appointments with internationally reputed doctors in major metropolitan cities to avail the best local treatment options. The doctors featured on the platform are highly regarded medical professionals who have been trusted by local diplomatic and expatriate communities for years.</p>
 
-		<p>We solve this problem by providing patients with access to an exclusive network of well-reputed healthcare providers. tripMD Doctors are highly regarded medical professionals who are trusted by local diplomats and expatriates.</p>
+		<p>TripMD has secured relationships with some of the most respected and reputed physicians in Delhi-NCR. The co-founders, Devashish Sharma and Matthew Beck, are both global citizens looking to solve a personal problem that they have encountered while living and travelling overseas.</p>
 
    </div>
 </section>
