@@ -58,7 +58,7 @@ function tmd_template_include( $template = '' ) {
     if     ( tripmd()->doctor_post_type == get_post_type() && tmd_is_reviews() && ( $new_template = tmd_get_doctor_reviews_template() ) ) :
 
     // Front page (country wise messaging)
-    elseif ( is_front_page() && ( $new_template = tmd_get_front_page_template() ) ) :
+    // elseif ( is_front_page() && ( $new_template = tmd_get_front_page_template() ) ) :
 
     endif;
 
@@ -134,7 +134,7 @@ function tmd_get_doctor_reviews_template() {
  * @uses bbp_get_query_template()
  * @return string Path to template file
  */
-function tmd_get_doctor_reviews_template() {
+function tmd_get_front_page_template() {
     $templates = array(
         'single-' . tripmd()->doctor_post_type . '-' . tripmd()->reviews_id . '.php', // Single doctor reviews
         'single-' . tripmd()->doctor_post_type . '.php',                              // Single doctor
