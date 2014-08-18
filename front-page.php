@@ -87,10 +87,15 @@ get_header(); ?>
 
                     <div class="block rsABlock">
                         <div class="centered">
-                            <h2><?php _e( 'Get quality healthcare without expensive bills and wait times.', 'tripmd' ); ?></h2>
-                            <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi.', 'tripmd' ); ?></h3>
-                            <?php /* <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a> */ ?>
-                            <a class="big fat green button<?php /* link-invitation */ ?>" href="#aff"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
+                            <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
+                                <h2><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in your city.', 'tripmd' ); ?></h2>
+                                <a class="big fat green button" href="/inquiry"><?php _e( 'Schedule Appointment', 'tripmd' ); ?></a>
+                            <?php else : ?>
+                                <h2><?php _e( 'Get quality healthcare without expensive bills and wait times.', 'tripmd' ); ?></h2>
+                                <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi.', 'tripmd' ); ?></h3>
+                                <?php /* <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a> */ ?>
+                                <a class="big fat green button<?php /* link-invitation */ ?>" href="#aff"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -322,7 +327,11 @@ get_header(); ?>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
-                                    <h2><?php _e( 'Talk to our medical experts for free', 'tripmd' ); ?></h2>
+                                    <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
+                                        <h2><?php _e( 'Based on your medical need, find a reputed doctor as trusted by the international community in your city', 'tripmd' ); ?></h2>
+                                    <?php else : ?>
+                                        <h2><?php _e( 'Talk to our medical experts for free', 'tripmd' ); ?></h2>
+                                    <?php endif; ?>
                                     <p><?php _e( 'Video chat with our medical advisors and discuss any questions you have and outline your options. Be satisfied about your informed choice before moving to the next step of choosing a doctor and a clinic.', 'tripmd' ); ?></p>
                                     <?php /* <a href="#0" class="cd-read-more">Read more</a> */ ?>
                                 </div> <!-- cd-timeline-content -->
@@ -334,21 +343,29 @@ get_header(); ?>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
-                                    <h2><?php _e( 'Reserve an appointment with your doctor', 'tripmd' ); ?></h2>
+                                    <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
+                                        <h2><?php _e( 'Book a priority appointment with a trusted doctor of your choice', 'tripmd' ); ?></h2>
+                                    <?php else : ?>
+                                        <h2><?php _e( 'Reserve an appointment with your doctor', 'tripmd' ); ?></h2>
+                                    <?php endif; ?>
                                     <p><?php _e( 'Discuss your case in detail with your doctor and confirm the date of your surgical appointment.', 'tripmd' ); ?></p>
                                 </div> <!-- cd-timeline-content -->
                             </div> <!-- cd-timeline-block -->
 
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-picture">
-                                    <i class="fa fa-plane"></i>
-                                </div> <!-- cd-timeline-img -->
+                            <?php if ( 'IN' != tripmd()->location->get_location() ) : ?>
 
-                                <div class="cd-timeline-content">
-                                    <h2><?php _e( 'Travel and lodge in comfort with our business partners', 'tripmd' ); ?></h2>
-                                    <p><?php _e( 'Get exclusive flight fares via Expedia, stay at the best hotels and guest houses approved by Airbnb and travel unfretted locally via Uber. We will have a local attendant who speaks your preferred language with you throughout your stay in your destination city.', 'tripmd' ); ?></p>
-                                </div> <!-- cd-timeline-content -->
-                            </div> <!-- cd-timeline-block -->
+                                <div class="cd-timeline-block">
+                                    <div class="cd-timeline-img cd-picture">
+                                        <i class="fa fa-plane"></i>
+                                    </div> <!-- cd-timeline-img -->
+
+                                    <div class="cd-timeline-content">
+                                        <h2><?php _e( 'Travel and lodge in comfort with our business partners', 'tripmd' ); ?></h2>
+                                        <p><?php _e( 'Get exclusive flight fares via Expedia, stay at the best hotels and guest houses approved by Airbnb and travel unfretted locally via Uber. We will have a local attendant who speaks your preferred language with you throughout your stay in your destination city.', 'tripmd' ); ?></p>
+                                    </div> <!-- cd-timeline-content -->
+                                </div> <!-- cd-timeline-block -->
+
+                            <?php endif; ?>
 
                             <div class="cd-timeline-block">
                                 <div class="cd-timeline-img cd-location">
@@ -356,7 +373,11 @@ get_header(); ?>
                                 </div> <!-- cd-timeline-img -->
 
                                 <div class="cd-timeline-content">
-                                    <h2><?php _e( 'It\'s not over for us till you recover', 'tripmd' ); ?></h2>
+                                    <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
+                                        <h2><?php _e( 'Follow-up seamlessly with your doctor', 'tripmd' ); ?></h2>
+                                    <?php else : ?>
+                                        <h2><?php _e( 'It\'s not over for us till you recover', 'tripmd' ); ?></h2>
+                                    <?php endif; ?>
                                     <p><?php _e( 'Even after your doctor has cleared you for travel, we\'ll make sure your doctor back at home has all the medical records in US standard format to seamlessly continue post-operative follow-ups.', 'tripmd' ); ?></p>
                                 </div> <!-- cd-timeline-content -->
                             </div> <!-- cd-timeline-block -->
@@ -454,7 +475,9 @@ get_header(); ?>
 
         </section>
 
-         <section class="aff" id="aff">
+        <?php if ( 'IN' != tripmd()->location->get_location() ) : ?>
+
+        <section class="aff" id="aff">
             
             <div class="grid-container">
 
@@ -514,6 +537,7 @@ get_header(); ?>
 
         </section>
 
+        <?php endif; ?>
 
         <section class="mock">
 
@@ -525,8 +549,12 @@ get_header(); ?>
 
                     <div class="aligncenter">
 
-                        <h3><?php _e( 'We&rsquo;re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
-
+                        <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
+                            <h3><?php _e( 'We&rsquo;re on a mission to make high quality healthcare accessible worldwide.', 'tripmd' ); ?></h3>
+                        <?php else : ?>
+                            <h3><?php _e( 'We&rsquo;re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
+                        <?php endif; ?>
+                        
                         <a class="big fat green button waitlist" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Get started', 'tripmd' ); ?></a>
 
                     </div>
