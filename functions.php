@@ -244,6 +244,11 @@ final class TripMD {
         require $this->includes_dir . 'api.php';
 
         /**
+         * Where does our monsieur reside?
+         */
+        require $this->includes_dir . 'location.php';
+
+        /**
          * Registration + Consultation stuff
          */
         require $this->includes_dir . 'user.php';
