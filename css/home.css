@@ -406,7 +406,7 @@ body.beta .iu .img {
   box-sizing: border-box; }
 
 .full-width-form img.logo {
-  width: 40%;
+  width: 30%;
   margin: 0 0 10px 0; }
 
 .full-width-form div.logo {
@@ -424,7 +424,7 @@ body.beta .iu .img {
   -webkit-user-select: none;
   border: none;
   border-top: thin solid #dedede;
-  width: calc(100% + 100px);
+  width: calc(100% + 110px);
   margin-left: -50px;
   box-sizing: border-box;
   padding-left: 50px;
@@ -985,7 +985,7 @@ input[name="tmd_review_comment"] {
   float: right;
   width: 1em;
   position: relative;
-  top: -3px;
+  top: 2px;
   padding: 0 .1em;
   overflow: hidden;
   white-space: nowrap;
@@ -1050,7 +1050,9 @@ footer {
   font-size: 90%; }
 
 #review-form {
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  margin-left: -3px;
+  margin-top: -2px; }
   #review-form .submit {
     margin-top: 0; }
 

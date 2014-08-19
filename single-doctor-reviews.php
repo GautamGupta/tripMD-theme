@@ -35,15 +35,11 @@
 
             <div class="card info grid-container">
 
-                <div class="intro grid-50">
-
-                <?php while ( have_posts() ) : the_post(); ?>
+                <div class="logo grid-100">
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image" /></a>
+                </div>
 
                 <div class="welcome">
-
-                    <div class="logo">
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image" /></a>
-                    </div>
 
                     <?php
                     if ( did_action( 'tmd_post_request_review_doctor' ) ) :
@@ -53,13 +49,18 @@
                             <?php endforeach;
                         else : $dont_display_form = 1; ?>
                             <p class="success">
-                                <?php _e( 'Thank you for submitting your review. Your feedback is valuable to us.', 'tripmd' ); ?><br /><br />
-                                <?php printf( __( 'You can call us 24x7 at +1-415-528-8650 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a> to know more about <a href="%1$s" class="green-t">TripMD</a>.', 'tripmd' ), site_url() ); ?>
+                                <?php _e( 'Thank you for submitting your review. Your feedback is valuable to us.', 'tripmd' ); ?><br />
+                                <?php printf( __( 'You can call us 24x7 at +91-97111-51751 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a> to know more about <a href="%1$s" class="green-t">TripMD</a>.', 'tripmd' ), site_url() ); ?>
                             </p>
                         <?php endif;
                     endif; ?>
 
                 </div>
+
+                <div class="intro grid-50">
+
+                <?php while ( have_posts() ) : the_post(); ?>
+
 
                 <?php if ( empty( $dont_display_form ) ) : ?>
 

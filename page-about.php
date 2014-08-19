@@ -60,7 +60,7 @@ get_header();
 
 		</div>
 
-		<div class="person grid-50">
+		<div class="person grid-50 push-5">
 
 			<div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/matt.jpg"></div>
 
