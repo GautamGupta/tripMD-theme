@@ -244,6 +244,11 @@ final class TripMD {
         require $this->includes_dir . 'api.php';
 
         /**
+         * Where does our monsieur reside?
+         */
+        require $this->includes_dir . 'location.php';
+
+        /**
          * Registration + Consultation stuff
          */
         require $this->includes_dir . 'user.php';
@@ -793,6 +798,35 @@ final class TripMD {
             'rewrite'                    => false,
         );
         register_taxonomy( 'education', array( 'doctor' ), $args );
+
+        $labels = array(
+            'name'                       => _x( 'Speciality', 'Taxonomy General Name', 'tripmd' ),
+            'singular_name'              => _x( 'Speciality', 'Taxonomy Singular Name', 'tripmd' ),
+            'menu_name'                  => __( 'Speciality', 'tripmd' ),
+            'all_items'                  => __( 'All Specialities', 'tripmd' ),
+            'parent_item'                => __( 'Parent Speciality', 'tripmd' ),
+            'parent_item_colon'          => __( 'Parent Speciality:', 'tripmd' ),
+            'new_item_name'              => __( 'New Speciality Name', 'tripmd' ),
+            'add_new_item'               => __( 'Add New Speciality', 'tripmd' ),
+            'edit_item'                  => __( 'Edit Speciality', 'tripmd' ),
+            'update_item'                => __( 'Update Speciality', 'tripmd' ),
+            'separate_items_with_commas' => __( 'Separate specialities with commas', 'tripmd' ),
+            'search_items'               => __( 'Search Specialities', 'tripmd' ),
+            'add_or_remove_items'        => __( 'Add or remove specialities', 'tripmd' ),
+            'choose_from_most_used'      => __( 'Choose from the most used specialities', 'tripmd' ),
+            'not_found'                  => __( 'Not Found', 'tripmd' ),
+        );
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => false,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => false,
+            'show_tagcloud'              => false,
+            'rewrite'                    => false,
+        );
+        register_taxonomy( 'speciality', array( 'doctor' ), $args );
 
     }
 

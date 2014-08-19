@@ -88,6 +88,11 @@
 								<i class="fa fa-phone"></i>
 							</div>
 							
+							<div class="date fld">
+								<input type="date" name="tmd_bs_date" placeholder="<?php _e( 'Preferred Appointment Date (optional)', 'tripmd' ); ?>" min="<?php echo date( 'Y-m-d' ); ?>" class="date field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_date' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<i class="fa fa-calendar"></i>
+							</div>
+							
 							<div class="inqquiry-for fld field">
 								<span><?php _e( 'Inquiring for:', 'tripmd' ); ?> </span><select name="tmd_bs_inquiry_for" class="inqquiry-for field in-select" data-icon="\f007" tabindex="<?php tmd_tab_index(); ?>">
 									<option disabled="disabled" selected="selected"><?php _e( 'Pick a specialization&hellip;', 'tripmd' ); ?></option>

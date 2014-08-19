@@ -39,7 +39,7 @@ get_header();
 	
 		<div class="person grid-50">
 
-			<div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/dev.jpg"></div>
+			<div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/dev.jpg" /></div>
 
 			<div class="dets grid-66 mobile-grid-75">	
 
@@ -142,23 +142,6 @@ get_header();
 			<div class="dets">
 				<h4>Swati Bhargava</h4>
 				<h5>EiR, GSF India</h5>
-			</div>
-
-		</div>
-	
-	</div>
-
-	<div class="mentors believers grid-container">
-		
-		<h3><?php _e( 'Believers', 'tripmd' ); ?></h3>
-
-		<div class="card-person grid-30 push-35">
-			
-			<div class="pic gsf" style='background-image: url(<?php echo get_template_directory_uri(); ?>/img/about/believers/gsf.jpg);"'></div>
-
-			<div class="dets">
-				<h4>GSF India</h4>
-				<h5>Investor</h5>
 			</div>
 
 		</div>

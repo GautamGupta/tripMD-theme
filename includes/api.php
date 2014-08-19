@@ -238,9 +238,7 @@ final class TMD_API {
 				);
 
 				// Get current country
-				require_once( 'external/geoiploc.php' );
-				$ip = $_SERVER['REMOTE_ADDR']; // eg. 122.161.53.53 for India
-				$output['current_country'] = getCountryFromIP( $ip );
+				$output['current_country'] = tripmd()->location->get_location();
 
 				break;
 

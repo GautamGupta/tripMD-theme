@@ -22,15 +22,18 @@ get_header(); ?>
                     <th><?php _e( 'Intl. Patients Treated', 'tripmd' ); ?></th>
                 </tr>
                 <?php foreach ( array(
-                    __( 'North America',     'tripmd' ) => 126,
-                    __( 'Australia',         'tripmd' ) => 140,
-                    __( 'Hong Kong',         'tripmd' ) => 95,
-                    __( 'Singapore',         'tripmd' ) => 50,
-                    __( 'Rest of the World', 'tripmd' ) => 77,
+                    __( 'North America',     'tripmd' ) => 4000,
+                    __( 'West Europe',       'tripmd' ) => 2300,
+                    __( 'Japan',             'tripmd' ) => 1200,
+                    __( 'UK',                'tripmd' ) => 1100,
+                    __( 'French',            'tripmd' ) => 600,
+                    __( 'Australia',         'tripmd' ) => 500,
+                    __( 'Latin America',     'tripmd' ) => 600,
+                    __( 'Rest of the World', 'tripmd' ) => 1200,
                 ) as $location => $num_treated ) : ?>
                     <tr>
                         <td><?php echo $location; ?></td>
-                        <td><?php echo number_format_i18n( $num_treated ); ?></td>
+                        <td><?php echo number_format_i18n( $num_treated ); ?>+</td>
                     </tr>
                 <?php endforeach; ?>
             </table>
@@ -82,7 +85,7 @@ get_header(); ?>
                 <div class="grid-40 push-10">
                     
                     <div class="subtitle"><p><?php _e( 'Specialities', 'tripmd' ); ?></p></div>
-                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'specialities', 'sep' => ' &middot; ' ) ); ?>
+                    <?php tmd_doctor_data( array( 'before' => '<h1>', 'after' => '</h1>', 'taxonomy' => 'speciality', 'sep' => ' &middot; ' ) ); ?>
 
                 </div>
 
@@ -101,7 +104,7 @@ get_header(); ?>
 
                     <div class="grid-50 push-10">
                         <div class="subtitle"><p><?php _e( 'International Patients Treated Annually', 'tripmd' ); ?></p></div>
-                        <h1><?php printf( __( '%1$d+ <a href="%2$s" class="fancybox">(see regionwise split)</a>', 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#breakup' ); ?></h1>
+                        <h1><?php printf( __( '%1$s+ <a href="%2$s" class="fancybox">(see regionwise split)</a>', 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#breakup' ); ?></h1>
                     </div>
                 
                 <?php endif; ?>
@@ -126,7 +129,7 @@ get_header(); ?>
 
             <div class="link">
                 
-                <a class="big fat green button" href="/inquiry?tmd_bs_inquiry_for=dental"><?php _e( 'Talk to the doctor', 'tripmd' ); ?></a>
+                <a class="big fat green button" href="/inquiry?tmd_bs_inquiry_for=dental"><?php _e( 'Schedule Appointment', 'tripmd' ); ?></a>
 
             </div>
 
