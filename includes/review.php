@@ -59,7 +59,7 @@ function tmd_review_doctor_handler() {
 
         // Add review meta
         add_comment_meta( $comment_id, 'tmd_review_nationality', trim( $_POST['tmd_review_nationality'] ), true );
-        add_comment_meta( $comment_id, 'tmd_review_subscribe', intval( $_POST['tmd_review_subscribe'] ), true );
+        add_comment_meta( $comment_id, 'tmd_review_subscribe', !empty( $_POST['tmd_review_subscribe'] ) ? 1 : 0, true );
         add_comment_meta( $comment_id, 'tmd_review_rating', serialize( $rating ), true );
     }
 }
