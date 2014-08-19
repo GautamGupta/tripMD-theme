@@ -1967,6 +1967,10 @@ h1 i, h2 i {
 h1.team {
   margin-top: 60px; }
 
+.people {
+  padding-top: 50px;
+  border-top: thin solid #ddd; }
+
 span.sub {
   font-family: calluna-sans, sans-serif;
   display: block;
@@ -1977,7 +1981,7 @@ span.sub {
 
 .mentors {
   border-top: thin solid #ddd;
-  margin-top: 40px; }
+  margin-top: 25px; }
   .mentors h3 {
     text-align: center;
     margin: 0;
