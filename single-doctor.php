@@ -164,13 +164,8 @@ get_header(); ?>
 
             <br /><br />
 
-            <div class="grid-30"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/1.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></a></div>
-            <div class="grid-30 push-5"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
-            <div class="grid-30 push-10"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/2.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></a></div>
-            <div class="grid-100" style="margin-top: 100px; !important"><br /><br /></div>
-            <div class="grid-30"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
-            <div class="grid-30 push-5"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/5.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></a></div>
-            <div class="grid-30 push-10"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/4.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></a></div>
+            <div class="grid-30"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/aw1.png" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/aw1.png" alt=""></a></div>
+            <div class="grid-30 push-5"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/aw2.png" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/aw2.png" alt=""></a></div>
 
         </div>
 
