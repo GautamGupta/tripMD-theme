@@ -41,7 +41,7 @@ function tmd_review_doctor_handler() {
         'comment_author_email' => trim( $_POST['tmd_review_email'] ),
         'comment_author_url' => null,
         'comment_content' => trim( $_POST['tmd_review_comment'] ),
-        'comment_type' => '',
+        'comment_type' => 'review',
         'comment_parent' => 0
     );
 
@@ -49,9 +49,17 @@ function tmd_review_doctor_handler() {
     if ( empty ( $comment_id ) ) {
         tmd_add_error( 'error-registration', __( 'There was a problem adding the review. Please try again or contact us at support@tripmd.com.', 'tripmd' ) );
     } else {
-        add_comment_meta( $comment_id, 'tmd_comment_type', 'review', true );
+
+        // Sanitize ratings
+        $rating = array(
+            'quality'       => intval( $_POST['tmd_review_rating']['quality']       ),
+            'communication' => intval( $_POST['tmd_review_rating']['communication'] ),
+            'friendliness'  => intval( $_POST['tmd_review_rating']['friendliness']  )
+        );
+
+        // Add review meta
         add_comment_meta( $comment_id, 'tmd_review_nationality', trim( $_POST['tmd_review_nationality'] ), true );
-        add_comment_meta( $comment_id, 'tmd_review_subscribe', trim( $_POST['tmd_review_subscribe'] ), true );
-        add_comment_meta( $comment_id, 'tmd_review_rating', serialize( $_POST['tmd_review_rating'] ), true );
+        add_comment_meta( $comment_id, 'tmd_review_subscribe', intval( $_POST['tmd_review_subscribe'] ), true );
+        add_comment_meta( $comment_id, 'tmd_review_rating', serialize( $rating ), true );
     }
 }

@@ -67,9 +67,9 @@
 
                     <h2><?php printf( __( 'Write a review for %s', 'tripmd' ), '<br /><a href="' . get_permalink() . '"><span class="doc-name">' . get_the_title() .'</span></a>' ); ?></h2>
                     
-                    <p class="yeh-vala">Your doctor Poonam Batra needs your help! Dr. Batra has been selected to feature on TripMD, an exclusive and highly curated listing platform of the most trusted doctors worldwide. Recognized as one of Delhi’s best dentists by the expatriate and diplomatic communities for years, we are looking to spread the word of Dr. Batra’s great practice on a global scale.</p><p>
-                    We put emphasis on transparency at TripMD, and feedback given on your experience with Dr. Batra will go a long way towards inform other prospective patients. Dr. Batra and TripMD kindly ask for you to fill out the review form below.
-                    </p><p>If you have any questions about this review page or want to learn more about what we are building at TripMD, please reach out to <a href="mailto:matt@tripmd.com">matt@tripmd.com</a> and we will get back to you ASAP!</p>
+                    <p class="yeh-vala">Your doctor Poonam Batra needs your help! Dr. Batra has been selected to be featured on TripMD, an exclusive and highly curated listing platform of the most trusted physicians worldwide. Recognized as one of New Delhi’s best dentists by the local expatriate and diplomatic communities, we are looking to spread the word of Dr. Batra’s great practice.</p>
+
+                    <p>We put emphasis on transparency at TripMD, and receiving your feedback on your treatment experience with Dr. Batra will go a long way towards informing other prospective patients. Dr. Batra and TripMD kindly ask for you to fill out the following review form. If you have any questions about the review process or want to learn more about what we are building at TripMD, please reach out to <a href="mailto:support@tripmd.com">support@tripmd.com</a> and we will get back to you as soon as possible!</p>
 
                 </div>
 
@@ -101,14 +101,14 @@
                             <i class="fa fa-star-o"></i>
                             <strong id="rat-text"><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
                             <fieldset class="rat-star">
-                                <?php foreach ( array( 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ), 'overall' => __( 'Overall', 'tripmd' ) ) as $key => $display_text ) : ?>
+                                <?php foreach ( array( 'quality' => __( 'Quality of Care', 'tripmd' ), 'communication' => __( 'Communication', 'tripmd' ), 'friendliness' => __( 'Friendliness', 'tripmd' ) ) as $key => $display_text ) : ?>
                                     <span class="rat-title"><?php echo $display_text; ?></span>
                                     <fieldset class="rat-star <?php echo $key; ?>">
                                         <legend><?php _e( 'Please rate:', 'tripmd' ); ?></legend>
                                         <?php 
-                                        foreach ( array( 1 => __( 'Bad experience', 'tripmd' ), 2 => __( 'Not upto the mark', 'tripmd' ), 3 => __( 'Fair', 'tripmd' ), 4 => __( 'Good!', 'tripmd' ), 5 => __( 'Would definitely recommend!', 'tripmd' ) ) as $rad_val => $label_text ) : ?>
-                                            <input type="radio" id="<?php echo $key . "_" . $rad_val; ?>" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
-                                            <label for="<?php echo $key . "_" . $rad_val; ?>" title="<?php echo $label_text; ?>"><?php echo $label_text; ?></label>
+                                        foreach ( array_reverse( array( 1 => __( 'Bad experience', 'tripmd' ), 2 => __( 'Not upto the mark', 'tripmd' ), 3 => __( 'Fair', 'tripmd' ), 4 => __( 'Good!', 'tripmd' ), 5 => __( 'Would definitely recommend!', 'tripmd' ) ), true /* preserve keys in reverse */ ) as $rad_val => $label_text ) : ?>
+                                            <input type="radio" id="<?php echo 'tmd_review_rating_' . $key . '_' . $rad_val; ?>" name="tmd_review_rating[<?php echo $key; ?>]" tabindex="<?php tmd_tab_index(); ?>" value="<?php echo $rad_val; ?>"<?php checked( ( !empty( $_POST['tmd_review_rating'][$key] ) ? $_POST['tmd_review_rating'][$key] : '' ), $rad_val ); ?> />
+                                            <label for="<?php echo 'tmd_review_rating_' . $key . '_' . $rad_val; ?>" title="<?php echo $label_text; ?>"><?php echo $label_text; ?></label>
                                         <?php endforeach; ?>
                                     </fieldset>
                                     <br />
