@@ -44,7 +44,7 @@ final class TMD_Location {
         global $geoipctry;
 
         // Return the specified country in the url
-        $country = tmd_get_sanitize_val( 'tmd_set_country' );
+        $country = strtoupper( tmd_get_sanitize_val( 'tmd_set_country' ) );
         if ( !empty( $country ) && in_array( $country, $geoipctry ) )
             return $country;
         
