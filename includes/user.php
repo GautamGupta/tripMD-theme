@@ -355,7 +355,10 @@ function tmd_clinic_register_handler() {
         get_option( 'admin_email' ), // To
         __( 'New Clinic Registeration', 'tripmd' ), // Subject
         sprintf(
-            __( 'Clinic name: %1$s\r\nLocation: %2$s\r\nEmail: %3$s\r\nPhone: %4$s', 'tripmd' ), // Message
+            __( "Clinic name: %1$s\r\n" .
+                "Location: %2$s\r\n" .
+                "Email: %3$s\r\n" .
+                "Phone: %4$s", 'tripmd' ), // Message
             strip_tags( $_POST['tmd_cr_name'] ), strip_tags( $_POST['tmd_cr_location'] ), strip_tags( $_POST['tmd_cr_email'] ), strip_tags( $_POST['tmd_cr_phone'] )
         ),
         'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
