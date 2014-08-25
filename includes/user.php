@@ -389,22 +389,44 @@ function tmd_invitation_register_handler() {
     if ( tmd_has_errors() )
         return;
 
+    $condition = ( !empty( $_POST['tmd_bs_inquiry_for'] ) ? ( $_POST['tmd_bs_inquiry_for'] . " " ) : '' )
+                . ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( trim( $_POST['tmd_bs_date'] ) ) ) == $_POST['tmd_bs_date'] ) ? ( 'on ' . $_POST['tmd_bs_date'] . ": " ) : '' )
+                . ( !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '' );
+
+    $date = date( 'Y-m-d H:i:s' );
+
     $registered = $wpdb->insert( 
         "{$wpdb->prefix}tmd_beta_users", 
         array( 
             'name' => $_POST['tmd_bs_name'], 
             'email' => $_POST['tmd_bs_email'], 
             'phone' => !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : '', 
-            'condition' => ( !empty( $_POST['tmd_bs_inquiry_for'] ) ? ( $_POST['tmd_bs_inquiry_for'] . " " ) : '' )
-                         . ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( trim( $_POST['tmd_bs_date'] ) ) ) == $_POST['tmd_bs_date'] ) ? ( 'on ' . $_POST['tmd_bs_date'] . ": " ) : '' )
-                         . ( !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '' ), 
-            'registered' => date( 'Y-m-d H:i:s' )
+            'condition' => $condition, 
+            'registered' => $date
         ), 
         '%s'
     );
 
-    if ( empty( $registered ) )
+    if ( empty( $registered ) ) {
         tmd_add_error( 'error-registration', __( 'There was a problem registering you. Please try again or contact us at support@tripmd.com.', 'tripmd' ) );
+    } else {
+
+        // Notify admin
+        wp_mail(
+            get_option( 'admin_email' ), // To
+            __( 'New Patient Inquiry', 'tripmd' ), // Subject
+            sprintf(
+                __( "Name: %1$s\r\n" .
+                    "Email: %2$s\r\n" .
+                    "Phone: %3$s\r\n" .
+                    "Registered: %4$s\r\n" .
+                    "Condition: %5$s", 'tripmd' ), // Message
+                strip_tags( $_POST['tmd_bs_name'] ), strip_tags( $_POST['tmd_bs_email'] ), strip_tags( $_POST['tmd_cr_email'] ), strip_tags( $_POST['tmd_cr_phone'] )
+            ),
+            'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
+        );
+        
+    }
 }
 
 function tmd_consultation_document_upload() {
