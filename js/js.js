@@ -110,7 +110,7 @@ jQuery(document).ready(function($) {
         arrowsNavAutoHide: true,
         fadeinLoadedSlide: false,
         controlNavigationSpacing: 10,
-        controlNavigation: 'bullets',
+        controlNavigation: 'none',
         imageScaleMode: 'fill',
         imageAlignCenter:false,
         blockLoop: true,

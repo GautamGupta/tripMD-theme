@@ -79,22 +79,25 @@ get_header(); ?>
             </div>
         </div><!-- /User login -->
 
+        <span class="dp-screenshot"><img src="<?php echo get_template_directory_uri(); ?>/img/dpscreen.png" alt=""></span>
+
         <div id="slider-with-blocks-1" class="slider royalSlider rsMinW">
+
 
             <div class="rsContent slide1">
 
                 <div class="bContainer">
 
                     <div class="block rsABlock">
-                        <div class="centered">
+                        <div class="centered grid-container">
                             <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
                                 <h2><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in your city.', 'tripmd' ); ?></h2>
                                 <a class="big fat green button" href="/inquiry"><?php _e( 'Schedule Appointment', 'tripmd' ); ?></a>
                             <?php else : ?>
-                                <h2><?php _e( 'Get quality healthcare without expensive bills and wait times.', 'tripmd' ); ?></h2>
-                                <h3><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in New Delhi.', 'tripmd' ); ?></h3>
+                                <h2><?php _e( 'The world is exotic.', 'tripmd' ); ?></h2>
+                                <h3><?php _e( 'Healthcare overseas doesn&rsquo;t have to be.', 'tripmd' ); ?></h3>
                                 <?php /* <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a> */ ?>
-                                <a class="big fat green button<?php /* link-invitation */ ?>" href="#aff"><?php _e( 'See if it\'s for you', 'tripmd' ); ?></a>
+                                <a class="big fat green button<?php /* link-invitation */ ?>" href="#aff"><?php _e( 'Get Early Access', 'tripmd' ); ?></a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -190,113 +193,37 @@ get_header(); ?>
             </div> */ ?>
         </div>
 
-        <section class="hear">
+        <section class="hear see">
+
+            <div class="bg"><img src="<?php echo get_template_directory_uri(); ?>/img/doctor.png" alt=""></div>
 
             <div class="grid-container">
 
-                <div class="heading grid-100"><h2><?php _e( 'See what our patients have to say.', 'tripmd' ); ?></h2></div>
+                <div class="heading grid-100"><h2><?php _e( 'See a trusted doctor.', 'tripmd' ); ?></h2><h3>Make an appointment inquiry with the most trusted physicians in the tripMD network.</h3></div>
 
+                <div class="grid-50 grid-parent specs">
+                    
+                    <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/dental.png" alt="">Dental</a></div>
+                    <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/cardiac.png" alt="">Cardiac</a></div>
+                    <div class="grid-50"><a href="#" class="card"><img class="ophth" src="<?php echo get_template_directory_uri(); ?>/img/ophthal.png" alt="">Opthalmology</a></div>
+                    <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/orthopaedic.png" alt="">Orthopaedic</a></div>
 
-                <span class="arrow left"><i class="fa fa-chevron-left"></i></span>
-                <span class="arrow right"><i class="fa fa-chevron-right"></i></span>
+                </div>
 
-                <div class="content">
+                <div class="grid-60">
+                    
+                    <div class="subtitle grid-100 currently"><p>Currently serving in:</p></div>
 
-                    <div id="content-slider-1" class="slider contentSlider royalSlider rsMinW">
-
-
-                        <div class="rsContent slide1">
-
-                            <div class="bContainer">
-
-                                <div class="testimonial grid-container">
-                                    
-                   <!--                  <div class="photo">
-                                        
-                                        <img src="http://api.randomuser.me/portraits/med/women/40.jpg" alt="">
-
-                                    </div>          -->         
-
-                                    <div class="dets grid-100">
-                                        
-                                        <blockquote>I was extremely happy with my dental surgery experience with TripMD. Dr. Batra’s had an amazing clinic and she made me feel comfortable throughout the entire duration of my surgery. The folks at TripMD also helped me throughout the duration of my surgery and took care of everything from my local transportation around Delhi, my accommodations at a beautiful guesthouse and my flights. I’m still in touch with Dr. Batra and will be referring more friends to her and TripMD!</blockquote>
-
-                                        <p class="name">Brenda B.</p>
-                                        <p class="origin">Dental Patient &ndash; California, USA</p>
-
-                                    </div>
-
-
-                            </div>  
-                                <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
-                            </div>
-
-                        </div>
-                                 
-
-                        <div class="rsContent slide2">
-
-                            <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-testimonial-patient.jpg" data-rsvideo="http://vimeo.com/95297775" data-rsw="860" data-rsh="484" alt="<?php _e( 'Patient Testimonial', 'tripmd' ); ?>" />
-
-                        </div>
-
-                        <div class="rsContent slide3">
-                       
-                            <div class="bContainer">
-
-                                <div class="testimonial grid-container">
-                          <!--           
-                                    <div class="photo">
-                                        
-                                        <img src="http://api.randomuser.me/portraits/med/men/79.jpg" alt="">
-
-                                    </div>  -->                 
-
-                                    <div class="dets grid-100">
-                                        
-                                        <blockquote>I’ve seen doctors in different corners of the world, but I can say hands down that I have had my best experiences with Dr. Batra. She is an amazing communicator and the quality of her care is second to none. I’m really happy to see her on the TripMD platform so that people all around the world can easily access this amazing dentist in Delhi.</blockquote>
-
-                                        <p class="name">Stewart J.</p>
-                                        <p class="origin">Dental Patient &ndash; New York, USA</p>
-
-                                    </div>
-
-
-                                 </div>  
-                                <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
-                            </div>
-
-                        </div>
-
-                        <div class="rsContent slide4">
-                       
-                            <div class="bContainer">
-
-                                <div class="testimonial grid-container">
-                                    
-                                    <!--  <div class="photo">
-                                        
-                                        <img src="http://api.randomuser.me/portraits/med/men/17.jpg" alt="">
-
-                                    </div>                  --> 
-
-                                    <div class="dets grid-100">
-                                        
-                                        <blockquote>Being a freelancer without dental coverage, I decided that it would be best if I looked for options overseas for my dental procedure (too expensive at home). When I found TripMD and Dr. Batra, it was reassuring to know that locally based Americans and Canadians have been seeing her for years. Travelling with TripMD was great because it let me focus on my recovery and enjoying Delhi instead of worrying about my travel and accommodation logistics.</blockquote>
-
-                                        <p class="name">Alexander B.</p>
-                                        <p class="origin">Dental Patient &ndash; Connecticut, USA</p>
-
-                                    </div>
-
-                                 </div>  
-                            </div>
-
-                        </div>
+                    <div class="grid-100 serving grid-parent">
+                        
+                        <div class="grid-20 city"><img src="<?php echo get_template_directory_uri(); ?>/img/delhi.jpg" alt=""><p>New Delhi</p></div>
+                        <div class="grid-20 gray city"><img src="<?php echo get_template_directory_uri(); ?>/img/mumbai.jpg" alt=""><p>Mumbai</p></div>
+                        <div class="grid-20 gray city"><img src="<?php echo get_template_directory_uri(); ?>/img/singapore.jpg" alt=""><p>Singapore</p></div>
+                        <div class="grid-20 gray city"><img src="<?php echo get_template_directory_uri(); ?>/img/johannesburg.jpg" alt=""><p>Johannesburg</p></div>
 
                     </div>
 
-                </div>
+                </div>   
 
             </div>
 
@@ -314,228 +241,135 @@ get_header(); ?>
 
 
                 <span id="how"></span>
-                <div class="heading howh grid-100"><h2>Here&rsquo;s how it works.</h2></div>
+                <div class="heading howh grid-100"><h2>Here&rsquo;s how we make healthcare simple.</h2><h3>Even booking your appointment to following up afterwards, we are there to make receiving your healthcare easier.</h3></div>
+                
+                <div class="grid-100 grid-parent howwe">
+                    
 
-                <div class="content">
-
-                    <div class="timeline">
-
-                        <section id="cd-timeline" class="cd-container">
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-picture">
-                                    <i class="fa fa-list"></i>
-                                </div> <!-- cd-timeline-img -->
-
-                                <div class="cd-timeline-content">
-                                    <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
-                                        <h2><?php _e( 'Based on your medical need, find a reputed doctor as trusted by the international community in your city', 'tripmd' ); ?></h2>
-                                    <?php else : ?>
-                                        <h2><?php _e( 'Talk to our medical experts for free', 'tripmd' ); ?></h2>
-                                    <?php endif; ?>
-                                    <p><?php _e( 'Video chat with our medical advisors and discuss any questions you have and outline your options. Be satisfied about your informed choice before moving to the next step of choosing a doctor and a clinic.', 'tripmd' ); ?></p>
-                                    <?php /* <a href="#0" class="cd-read-more">Read more</a> */ ?>
-                                </div> <!-- cd-timeline-content -->
-                            </div> <!-- cd-timeline-block -->
-
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-movie">
-                                    <i class="fa fa-user-md"></i>
-                                </div> <!-- cd-timeline-img -->
-
-                                <div class="cd-timeline-content">
-                                    <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
-                                        <h2><?php _e( 'Book a priority appointment with a trusted doctor of your choice', 'tripmd' ); ?></h2>
-                                    <?php else : ?>
-                                        <h2><?php _e( 'Reserve an appointment with your doctor', 'tripmd' ); ?></h2>
-                                    <?php endif; ?>
-                                    <p><?php _e( 'Discuss your case in detail with your doctor and confirm the date of your surgical appointment.', 'tripmd' ); ?></p>
-                                </div> <!-- cd-timeline-content -->
-                            </div> <!-- cd-timeline-block -->
-
-                            <?php if ( 'IN' != tripmd()->location->get_location() ) : ?>
-
-                                <div class="cd-timeline-block">
-                                    <div class="cd-timeline-img cd-picture">
-                                        <i class="fa fa-plane"></i>
-                                    </div> <!-- cd-timeline-img -->
-
-                                    <div class="cd-timeline-content">
-                                        <h2><?php _e( 'Travel and lodge in comfort with our business partners', 'tripmd' ); ?></h2>
-                                        <p><?php _e( 'Get exclusive flight fares via Expedia, stay at the best hotels and guest houses approved by Airbnb and travel unfretted locally via Uber. We will have a local attendant who speaks your preferred language with you throughout your stay in your destination city.', 'tripmd' ); ?></p>
-                                    </div> <!-- cd-timeline-content -->
-                                </div> <!-- cd-timeline-block -->
-
-                            <?php endif; ?>
-
-                            <div class="cd-timeline-block">
-                                <div class="cd-timeline-img cd-location">
-                                    <i class="fa fa-stethoscope"></i>
-                                </div> <!-- cd-timeline-img -->
-
-                                <div class="cd-timeline-content">
-                                    <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
-                                        <h2><?php _e( 'Follow-up seamlessly with your doctor', 'tripmd' ); ?></h2>
-                                    <?php else : ?>
-                                        <h2><?php _e( 'It\'s not over for us till you recover', 'tripmd' ); ?></h2>
-                                    <?php endif; ?>
-                                    <p><?php _e( 'Even after your doctor has cleared you for travel, we\'ll make sure your doctor back at home has all the medical records in US standard format to seamlessly continue post-operative follow-ups.', 'tripmd' ); ?></p>
-                                </div> <!-- cd-timeline-content -->
-                            </div> <!-- cd-timeline-block -->
-                        </section> <!-- cd-timeline -->
+                    <div class="grid-33">
+                        
+                        <div class="grid-100 num"><span>1<div class="connector">&nbsp;</div></span></div>                        
+                        
+                        <div class="grid-100">
+                            <h3>Browse Our Network</h3>
+                            <h4>Take a look at the highly reputed doctors in the tripMD network.</h4>
+                        </div>
+                    
+                    </div>
+                    
+                    <div class="grid-33">
+                        
+                        <div class="grid-100 num"><span>2</span></div> 
+                        <div class="grid-100">
+                               <h3>Inquire with the physician.</h3>
+                               <h4>Send an appointment inquiry to the doctor.</h4>
+                           </div>   
 
                     </div>
 
-                    <?php /*
-
-                    <div class="iu grid-100 grid-parent">
-
-                        <div class="grid-80">
-
-                            <h3>Explore treatment options at the top medical centers around the world.</h3>
-                            <p>Browse from our extensive list of experienced doctors and prestigious institutions based on the treatment you are seeking.</p>
-
+                    <div class="grid-33">
+                        
+                        <div class="grid-100 num"><span>3</span></div>    
+                        
+                        <div class="grid-100">
+                            <h3>Follow ups made easy.</h3>
+                            <h4>We make sure you and your doctor continue communicating after the treatment.</h4>
                         </div>
-
-                        <div class="grid-20">
-
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/home-f1.png" alt="">
-
-                        </div>
-
+                    
                     </div>
 
-                    <div class="iu grid-100 grid-parent">
+                </div>
 
-                        <div class="grid-80 push-20">
+        </section>
 
-                            <h3>Schedule an E-Consultation.</h3>
-                            <p>Reserve a date to have a video conversation with the doctor of your choice. We will remind you of your appointment date and give you a location to share your medical files.</p>
+        <section class="media">
 
-                        </div>
+            <div class="grid-container">
 
-                        <div class="grid-20 pull-80">
+                <span id="media"></span>
+                <div class="heading howh grid-100"><h2>Our Story.</h2></div>
+                
+                <div class="grid-100 grid-parent team">
+                        <div class="grid-100 people">
+    
+                        <div class="person grid-50">
 
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/home-f2.png" alt="">
+                            <div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/dev.jpg" /></div>
 
-                        </div>
+                            <div class="dets grid-66 mobile-grid-75">   
 
-                    </div>
+                                <h2>Devashish Sharma</h2>
+                                <p class="post"><?php _e( 'Co-Founder', 'tripmd' ); ?></p>
 
+                                <p class="story">Dev grew up in Delhi and is a Computer Engineering graduate from the University of Waterloo. He has work experience in multiple countries and speaks 5 different languages.</p>
 
-                    <div class="iu grid-100 grid-parent">
+                                <p class="social">
+                                    
+                                    <a href="https://twitter.com/devashish751" class="twitter" title="Twitter"><i class="fa fa-twitter-square"></i></a>
+                                    <a href="https://www.linkedin.com/in/devashishsharma" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
+                                    <a href="mailto:devashish@tripmd.com" class="email" title="Email"><i class="fa fa-envelope-square"></i></a>
 
-                        <div class="grid-80">
+                                </p>
 
-                            <h3>Arrange your travel and accommodation.</h3>
-                            <p>We help you find travel and accommodation for yourself and your companions.  Through our site you can find and book a comfortable spot for you to rest while you focus on your recovery.</p>
-
-                        </div>
-
-                        <div class="grid-20 img" style="background-image: url('');">
-
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/home-f3.png" alt="">
-
-                        </div>
-
-                    </div>
-
-                    <div class="iu grid-100 grid-parent">
-
-                        <div class="grid-80 push-20">
-
-                            <h3>Follow-ups made easy.</h3>
-                            <p>After you return home, we make sure that your doctors at home and overseas are keeping in touch to ensure that you are have a smooth recovery.</p>
+                            </div>
 
                         </div>
 
-                        <div class="grid-20 pull-80">
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/home-f4.png" alt="">
-                        </div>
+                        <div class="person grid-50">
 
-                        <a class="big fat green button waitlist" href="<?php echo home_url( '/invitation' ); ?>"><?php _e( 'Get early access', 'tripmd' ); ?></a>
-                        <p class="ohho"><?php _e( 'to our trusted network of doctors', 'tripmd' ); ?></p>
+                            <div class="pic grid-33 mobile-grid-25"><img src="<?php echo get_template_directory_uri(); ?>/img/about/team/matt.jpg"></div>
 
-                    </div>
+                            <div class="dets grid-66 mobile-grid-75">   
 
-                    */ ?>
+                                <h2>Matt Beck</h2>
+                                <p class="post"><?php _e( 'Co-Founder', 'tripmd' ); ?></p>
 
-                    <div class="iu grid-100 grid-parent">
+                                <p class="story">Matt grew up in south-east Asia and has visited over 20 different countries. He tries his best to fit in abroad by picking up the local language, food and sport.</p>
 
-                        <div class="grid-100 aligncenter">
-                            <h3>
-                                <?php printf( __( '%s is always with you, at every step.', 'tripmd' ), get_bloginfo( 'name' ) /* '<img src="' . get_template_directory_uri() . '/img/logo-black.png" alt="' . get_bloginfo( 'name' ) . '" />' */ ); ?>
-                                <a class="big fat green button firststep" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Take the first step', 'tripmd' ); ?></a>
-                            </h3>
+                                <p class="social">
+                                    
+                                    <a href="https://twitter.com/mattbeck222" class="twitter" title="Twitter"><i class="fa fa-twitter-square"></i></a>
+                                    <a href="https://www.linkedin.com/profile/view?id=229438706" class="linkedin" title="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
+                                    <a href="mailto:matt@tripmd.com" class="email" title="Email"><i class="fa fa-envelope-square"></i></a>
+
+                                </p>
                             
+                            </div>
+
                         </div>
+                </div>
 
-                    </div>
+        </section>
 
-            </div>
+        <section class="signup">
+
+            <div class="grid-container">
+
+                <span id="media"></span>
+                <div class="heading howh grid-100"><h2>Sign up for early access.</h2></div>
+                <br>
+                <div class="grid-35 f-inp">
+                    
+                    <input type="text" name="name" placeholder="Name">
+
+                </div>
+
+                <div class="grid-35 push-0">
+                    
+                    <input type="text" name="email" placeholder="Email">
+
+
+                </div>
+                
+                <div class="grid-30">
+                
+                    <input type="submit" class="big fat green button" id="s-up" value="Sign me up!">
+
+                </div>
 
         </section>
 
         <?php if ( 'IN' != tripmd()->location->get_location() ) : ?>
-
-        <section class="aff" id="aff">
-            
-            <div class="grid-container">
-
-                <div class="heading howh grid-100"><h2><?php esc_attr_e( 'We&rsquo;re affordable.', 'tripmd' ); ?></h2></div>
-                
-                <div class="grid-30">
-                    
-                    <div class="subtitle"><p><?php _e( 'Treatment Required', 'tripmd' ); ?></p></div>
-
-                    <select name="speciality" id="speciality" class="spec-select my-select">
-                        
-                        <option value="" selected disabled><?php _e( 'Pick a speciality', 'tripmd' ); ?>&hellip;</option>
-
-                    </select>
-
-                    <br /><br />
-
-                    <select name="orthopaedic" id="orthopaedic" class="sub my-select">
-                        
-                        <option value="" selected disabled><?php _e( 'Pick a treatment', 'tripmd' ); ?>&hellip;</option>
-
-                    </select>
-
-                    <select name="dental" id="dental" class="sub my-select">
-                        
-                        <option value="" selected disabled><?php _e( 'Pick a treatment', 'tripmd' ); ?>&hellip;</option>
-
-                    </select>
-
-                    <select name="opthalmology" id="ophthalmology" class="sub my-select">
-                        
-                        <option value="" selected disabled><?php _e( 'Pick a treatment', 'tripmd' ); ?>&hellip;</option>
-
-                    </select>
-
-                    <select name="cardiac" id="cardiac" class="sub my-select">
-                        
-                        <option value="" selected disabled><?php _e( 'Pick a treatment', 'tripmd' ); ?>&hellip;</option>
-
-                    </select>
-
-                </div>
-
-                <div class="grid-70 pred">
-                    
-                    <div class="subtitle"><p><?php _e( 'Savings', 'tripmd' ); ?></p></div>
-                    <p>
-                        <?php _e( 'Originally, $<span class="actual">30,000</span> in <span class="country">United States</span>.', 'tripmd' ); ?><br />
-                        <?php _e( 'We can reduce your bill by <span class="perc-saved">50</span>%.', 'tripmd' ); ?>
-                    </p>
-
-                </div>
-
-                <div class="int"><a class="big fat green button" href="<?php echo site_url( 'inquiry' ); ?>" id="interested"><?php esc_attr_e( 'I&rsquo;m interested!', 'tripmd' ); ?></a></div>
-
-            </div>
-
-        </section>
 
         <?php endif; ?>
 

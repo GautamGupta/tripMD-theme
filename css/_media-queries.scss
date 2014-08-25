@@ -1,0 +1,15 @@
+@media (max-width: 600px) {
+
+	nav ul.menu li:not(#menu-item-4294) {
+	
+		display: none;
+
+  }
+
+  .about {
+
+	p { padding: 0 10px; }
+
+  }
+
+}
