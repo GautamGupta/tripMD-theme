@@ -29,6 +29,10 @@
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/select/select-theme-default.css" />
 		<script src="<?php echo get_template_directory_uri(); ?>/js/select.min.js"></script>
 
+		<link rel="stylesheet" href="css/pickadate/default.css" id="theme_base">
+		<link rel="stylesheet" href="css/pickadate/default.date.css" id="theme_date">
+		<link rel="stylesheet" href="css/pickadate/default.time.css" id="theme_time">
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimal-ui">
 
 	</head>
@@ -133,6 +137,7 @@
 
 		<script type="text/javascript" src="//use.typekit.net/jlx8kbu.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		
 
 	</body>
 
