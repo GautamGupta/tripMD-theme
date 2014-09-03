@@ -1363,11 +1363,11 @@ footer {
   position: absolute;
   z-index: 1;
   bottom: 50px;
-  right: 10px;
+  right: 5vw;
 
   img {
 
-    height: 425px;
+    height: 50vh;
 
   }
 
@@ -1391,9 +1391,9 @@ footer {
     position: absolute;
     bottom: -10px;
     vertical-align: baseline;
-    right: 40px;
+    right: 80px;
     img {
-      max-height: 540px; 
+      max-height: 490px; 
     }
 
   }
@@ -1608,5 +1608,11 @@ h2.in {
   font-size: 170%;
   line-height: 1;
   margin-top: -50px;
+
+}
+
+.medium {
+
+  font-size: 125% !important;
 
 }

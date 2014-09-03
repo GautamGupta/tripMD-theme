@@ -105,7 +105,7 @@ get_header(); ?>
                     <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
                 </div>
 
-                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/udaipur.jpg" alt="" />
+                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/bg-udaipur.jpg" alt="" />
 
             </div>
 
@@ -201,7 +201,7 @@ get_header(); ?>
 
                 <div class="heading grid-100"><h2><?php _e( 'See a trusted doctor.', 'tripmd' ); ?></h2><h3>Make an appointment inquiry with the most trusted physicians in the tripMD network.</h3></div>
 
-                <div class="grid-45 grid-parent specs">
+                <div class="grid-40 grid-parent specs">
                     
                     <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/dental.png" alt="">Dental</a></div>
                     <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/cardiac.png" alt="">Cardiac</a></div>
@@ -284,7 +284,7 @@ get_header(); ?>
 
         </section>
 
-  <!--       <section class="media">
+        <section class="media">
 
             <div class="grid-container">
 
@@ -341,7 +341,7 @@ get_header(); ?>
                         </div>
                 </div>
 
-        </section> -->
+        </section>
 
         <section class="signup">
 
@@ -386,9 +386,9 @@ get_header(); ?>
                     <div class="aligncenter">
 
                         <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
-                            <h3><?php _e( 'We&rsquo;re on a mission to make high quality healthcare accessible worldwide.', 'tripmd' ); ?></h3>
+                            <h3 class="medium"><?php _e( 'We&rsquo;re on a mission to make high quality healthcare accessible worldwide.', 'tripmd' ); ?></h3>
                         <?php else : ?>
-                            <h3><?php _e( 'We&rsquo;re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
+                            <h3 class="medium"><?php _e( 'We&rsquo;re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
                         <?php endif; ?>
                         
                         <a class="big fat green button waitlist" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Get started', 'tripmd' ); ?></a>
