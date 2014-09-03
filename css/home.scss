@@ -579,6 +579,8 @@ body.beta .green-t {
   font-size: 24px;
   line-height: 32px;
   float: left;
+  position: relative;
+  z-index: 10;
 }
 
 .rsContent .block {
@@ -680,21 +682,25 @@ body.beta .green-t {
 }
 .slider {
   line-height: 1.5;
-  text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.45);
+  text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.65);
   text-align: left !important;
 }
 
 .slider h2 {
   font-family: "minion-pro", serif;
-  font-size: 250%;
+  font-size: 230%;
   text-align: left !important;
   margin-top: 0;
+  position: relative;
+  z-index: 999;
+  width: 50%;
 }
 
 .slider h3 {
   color: #f7f7f7;
   text-align: left !important;
-  font-size: 150%;
+  font-size: 115%;
+  width: 50%;
   margin: -30px 0 30px 0;
 }
 
@@ -1355,13 +1361,13 @@ footer {
 .dp-screenshot {
 
   position: absolute;
-  z-index: 998;
-  bottom: calc(50% - 160px);
-  right: 120px;
+  z-index: 1;
+  bottom: 50px;
+  right: 10px;
 
   img {
 
-    height: 375px;
+    height: 425px;
 
   }
 
@@ -1385,9 +1391,9 @@ footer {
     position: absolute;
     bottom: -10px;
     vertical-align: baseline;
-    right: 0;
+    right: 40px;
     img {
-      max-height: 660px; 
+      max-height: 540px; 
     }
 
   }
@@ -1398,11 +1404,11 @@ footer {
 
     div {
       
-      padding: 10px 10px 10px 10px;
+      padding: 5px;
 
       .card {
 
-        height: 100px;
+        height: 60px;
         padding: 0 0 15px 0;
         margin: 0;
         box-sizing: border-box;
@@ -1415,7 +1421,7 @@ footer {
 
         img {
 
-          height: 100px;
+          height: 70px;
           margin-top: 20px;
           margin-bottom: 15px;
 
@@ -1584,4 +1590,23 @@ section:nth-child(odd) {
 
 section:nth-child(even) {
   background: #fff;
+}
+
+img.rsImg {
+
+  width: 100% !important;
+  max-width: 100% !important;
+  // max-height: 100%;
+  // height: 200%;
+  // position: relative;
+  margin-top: -200px;
+
+}
+
+h2.in {
+
+  font-size: 170%;
+  line-height: 1;
+  margin-top: -50px;
+
 }

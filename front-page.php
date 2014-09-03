@@ -79,7 +79,7 @@ get_header(); ?>
             </div>
         </div><!-- /User login -->
 
-        <span class="dp-screenshot"><img src="<?php echo get_template_directory_uri(); ?>/img/dpscreen.png" alt=""></span>
+        <span class="dp-screenshot"><img src="<?php echo get_template_directory_uri(); ?>/img/search.png" alt=""></span>
 
         <div id="slider-with-blocks-1" class="slider royalSlider rsMinW">
 
@@ -91,7 +91,7 @@ get_header(); ?>
                     <div class="block rsABlock">
                         <div class="centered grid-container">
                             <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
-                                <h2><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in your city.', 'tripmd' ); ?></h2>
+                                <h2 class="in"><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in your city.', 'tripmd' ); ?></h2>
                                 <a class="big fat green button" href="/inquiry"><?php _e( 'Schedule Appointment', 'tripmd' ); ?></a>
                             <?php else : ?>
                                 <h2><?php _e( 'The world is exotic.', 'tripmd' ); ?></h2>
@@ -105,7 +105,7 @@ get_header(); ?>
                     <!-- <span class="rsABlock txtCent" data-move-effect="none">you can place it on any type of slide</span> -->
                 </div>
 
-                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/home-1n.jpg" alt="" />
+                <img class="rsImg" src="<?php echo get_template_directory_uri(); ?>/img/udaipur.jpg" alt="" />
 
             </div>
 
@@ -201,7 +201,7 @@ get_header(); ?>
 
                 <div class="heading grid-100"><h2><?php _e( 'See a trusted doctor.', 'tripmd' ); ?></h2><h3>Make an appointment inquiry with the most trusted physicians in the tripMD network.</h3></div>
 
-                <div class="grid-50 grid-parent specs">
+                <div class="grid-45 grid-parent specs">
                     
                     <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/dental.png" alt="">Dental</a></div>
                     <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/cardiac.png" alt="">Cardiac</a></div>
@@ -209,6 +209,8 @@ get_header(); ?>
                     <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/orthopaedic.png" alt="">Orthopaedic</a></div>
 
                 </div>
+                
+                <div class="clearfix"></div>
 
                 <div class="grid-60">
                     
@@ -241,7 +243,7 @@ get_header(); ?>
 
 
                 <span id="how"></span>
-                <div class="heading howh grid-100"><h2>Here&rsquo;s how we make healthcare simple.</h2><h3>Even booking your appointment to following up afterwards, we are there to make receiving your healthcare easier.</h3></div>
+                <div class="heading howh grid-100"><h2>Here&rsquo;s how we make healthcare simple.</h2><h3>From booking your appointment to following up after, we are there to make receiving your healthcare seamless.</h3></div>
                 
                 <div class="grid-100 grid-parent howwe">
                     
@@ -282,7 +284,7 @@ get_header(); ?>
 
         </section>
 
-        <section class="media">
+  <!--       <section class="media">
 
             <div class="grid-container">
 
@@ -339,7 +341,7 @@ get_header(); ?>
                         </div>
                 </div>
 
-        </section>
+        </section> -->
 
         <section class="signup">
 

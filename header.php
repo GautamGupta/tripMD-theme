@@ -54,13 +54,13 @@
 
 				<div class="grid-container">
 
-					<div class="logo grid-20 mobile-grid-50">
+					<div class="logo grid-10 mobile-grid-50">
                         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-<?php echo is_front_page() ? 'white' : 'black'; ?>.png" alt="<?php bloginfo( 'name' ); ?>" class="logo image" /></a>
 					</div>
 
                     <!-- <h1 class="menu-toggle"><?php _e( 'Menu', 'tripmd' ); ?></h1>
                     <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tripmd' ); ?></a> -->
-                    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'menu grid-80 mobile-grid-50' ) ); ?>
+                    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'menu grid-90 mobile-grid-50' ) ); ?>
 
                 </div>
 

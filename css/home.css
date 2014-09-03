@@ -528,7 +528,9 @@ body.beta .green-t {
   color: #fff;
   font-size: 24px;
   line-height: 32px;
-  float: left; }
+  float: left;
+  position: relative;
+  z-index: 10; }
 
 .rsContent .block {
   height: calc(100% - 80px);
@@ -611,19 +613,23 @@ body.beta .green-t {
     line-height: 32px; } }
 .slider {
   line-height: 1.5;
-  text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.45);
+  text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.65);
   text-align: left !important; }
 
 .slider h2 {
   font-family: "minion-pro", serif;
-  font-size: 250%;
+  font-size: 230%;
   text-align: left !important;
-  margin-top: 0; }
+  margin-top: 0;
+  position: relative;
+  z-index: 999;
+  width: 50%; }
 
 .slider h3 {
   color: #f7f7f7;
   text-align: left !important;
-  font-size: 150%;
+  font-size: 115%;
+  width: 50%;
   margin: -30px 0 30px 0; }
 
 .slider a.link-how {
@@ -1107,11 +1113,11 @@ footer {
 
 .dp-screenshot {
   position: absolute;
-  z-index: 998;
-  bottom: calc(50% - 160px);
-  right: 120px; }
+  z-index: 1;
+  bottom: 50px;
+  right: 10px; }
   .dp-screenshot img {
-    height: 375px; }
+    height: 425px; }
 
 .see {
   padding-top: 44px;
@@ -1124,15 +1130,15 @@ footer {
     position: absolute;
     bottom: -10px;
     vertical-align: baseline;
-    right: 0; }
+    right: 40px; }
     .see .bg img {
-      max-height: 660px; }
+      max-height: 540px; }
   .see .specs {
     margin-top: 20px; }
     .see .specs div {
-      padding: 10px 10px 10px 10px; }
+      padding: 5px; }
       .see .specs div .card {
-        height: 100px;
+        height: 60px;
         padding: 0 0 15px 0;
         margin: 0;
         box-sizing: border-box;
@@ -1143,7 +1149,7 @@ footer {
         text-transform: uppercase;
         font-size: 90%; }
         .see .specs div .card img {
-          height: 100px;
+          height: 70px;
           margin-top: 20px;
           margin-bottom: 15px; }
           .see .specs div .card img.ophth {
@@ -1226,3 +1232,13 @@ section:nth-child(odd) {
 
 section:nth-child(even) {
   background: #fff; }
+
+img.rsImg {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: -200px; }
+
+h2.in {
+  font-size: 170%;
+  line-height: 1;
+  margin-top: -50px; }
