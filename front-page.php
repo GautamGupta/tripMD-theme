@@ -348,26 +348,29 @@ get_header(); ?>
             <div class="grid-container">
 
                 <span id="media"></span>
-                <div class="heading howh grid-100"><h2>Sign up for early access.</h2></div>
-                <br>
-                <div class="grid-35 f-inp">
+                <div class="heading howh grid-100"><h2><?php _e( 'Sign up for early access.', 'tripmd' ); ?></h2></div>
+                <br />
+
+                <form method="post" id="beta-form" action="<?php echo site_url( '/#clin-reg-msg' ); ?>">
                     
-                    <input type="text" name="name" placeholder="Name">
+                    <div class="grid-35 f-inp">
+                        <input type="text" name="tmd_bs_name" placeholder="<?php _e( 'Name', 'tripmd' ); ?>" required="required" value="<?php tmd_sanitize_val( 'tmd_bs_name' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+                    </div>
 
-                </div>
-
-                <div class="grid-35 push-0">
+                    <div class="grid-35 push-0">
+                        <input type="email" name="tmd_bs_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" required="required" value="<?php tmd_sanitize_val( 'tmd_bs_email' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+                    </div>
                     
-                    <input type="text" name="email" placeholder="Email">
+                    <input type="hidden" name="tmd_bs_condition" value="<?php _e( 'Sign up for early access.', 'tripmd' ); ?>" />
 
+                    <input type="hidden" name="action" value="invitation_register" />
+                    <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
 
-                </div>
-                
-                <div class="grid-30">
-                
-                    <input type="submit" class="big fat green button" id="s-up" value="Sign me up!">
+                    <div class="grid-30">
+                        <input type="submit" class="big fat green button" id="s-up" value="<?php _e( 'Sign me up!', 'tripmd' ); ?>" />
+                    </div>
 
-                </div>
+                </form>
 
         </section>
 
@@ -426,6 +429,31 @@ get_header(); ?>
             </div>
 
         </section>
+
+        <?php
+        if ( did_action( 'tmd_post_request_invitation_register' ) ) :
+            if ( tmd_has_errors() ) : ?>
+                <section id="clin-reg-msg" class="center last">
+                    <div class="grid-container">
+                        <p class="error message">
+                            <?php foreach ( tmd_get_errors() as $tmd_error ) : ?>
+                                <i class="fa fa-times"></i>
+                                <?php echo $tmd_error; ?><br />
+                            <?php endforeach; ?>
+                        </p>
+                    </div>
+                </section>
+            <?php else : $dont_display_form = 1; ?>
+                <section id="clin-reg-msg" class="center last">
+                    <div class="grid-container">
+                        <p class="success message">
+                            <i class="fa fa-check"></i>
+                            <?php _e( 'Thank you for registering. We&rsquo;ll get back to you shortly.', 'tripmd' ); ?>
+                        </p>
+                    </div>
+                </section>
+            <?php endif;
+        endif; ?>
 
         <?php if ( ! empty( $_GET['clin_reg'] ) && $_GET['clin_reg'] == 'error' ) : ?>
         
