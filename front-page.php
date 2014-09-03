@@ -90,15 +90,15 @@ get_header(); ?>
 
                     <div class="block rsABlock">
                         <div class="centered grid-container">
-                            <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
-                                <h2 class="in"><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in your city.', 'tripmd' ); ?></h2>
-                                <a class="big fat green button" href="/inquiry"><?php _e( 'Schedule Appointment', 'tripmd' ); ?></a>
-                            <?php else : ?>
+                            <?php //if ( 'IN' == tripmd()->location->get_location() ) : ?>
+                                <!-- <h2 class="in"><?php _e( 'Receive medical care by reliable doctors as trusted by the international community living in your city.', 'tripmd' ); ?></h2>
+                                <a class="big fat green button" href="/inquiry"><?php _e( 'Schedule Appointment', 'tripmd' ); ?></a> -->
+                            <?php //else : ?>
                                 <h2><?php _e( 'The world is exotic.', 'tripmd' ); ?></h2>
                                 <h3><?php _e( 'Healthcare overseas doesn&rsquo;t have to be.', 'tripmd' ); ?></h3>
                                 <?php /* <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a> */ ?>
-                                <a class="big fat green button<?php /* link-invitation */ ?>" href="#aff"><?php _e( 'Get Early Access', 'tripmd' ); ?></a>
-                            <?php endif; ?>
+                                <a class="big fat green button<?php /* link-invitation */ ?>" href="#signup"><?php _e( 'Get Early Access', 'tripmd' ); ?></a>
+                            <?php // endif; ?>
                         </div>
                     </div>
 
@@ -343,7 +343,11 @@ get_header(); ?>
 
         </section>
 
+<<<<<<< HEAD
         <section class="signup" id="invitation-reg-form">
+=======
+        <section class="signup" id="signup">
+>>>>>>> 4250eaf9b9310c0ec928d4f4450aacf34c9c9160
 
             <div class="grid-container">
 
