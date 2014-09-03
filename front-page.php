@@ -203,10 +203,10 @@ get_header(); ?>
 
                 <div class="grid-40 grid-parent specs">
                     
-                    <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/dental.png" alt="">Dental</a></div>
-                    <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/cardiac.png" alt="">Cardiac</a></div>
-                    <div class="grid-50"><a href="#" class="card"><img class="ophth" src="<?php echo get_template_directory_uri(); ?>/img/ophthal.png" alt="">Opthalmology</a></div>
-                    <div class="grid-50"><a href="#" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/orthopaedic.png" alt="">Orthopaedic</a></div>
+                    <div class="grid-50"><a href="#invitation-reg-form" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/dental.png" alt="">Dental</a></div>
+                    <div class="grid-50"><a href="#invitation-reg-form" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/cardiac.png" alt="">Cardiac</a></div>
+                    <div class="grid-50"><a href="#invitation-reg-form" class="card"><img class="ophth" src="<?php echo get_template_directory_uri(); ?>/img/ophthal.png" alt="">Opthalmology</a></div>
+                    <div class="grid-50"><a href="#invitation-reg-form" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/orthopaedic.png" alt="">Orthopaedic</a></div>
 
                 </div>
                 
@@ -343,7 +343,7 @@ get_header(); ?>
 
         </section>
 
-        <section class="signup">
+        <section class="signup" id="invitation-reg-form">
 
             <div class="grid-container">
 
