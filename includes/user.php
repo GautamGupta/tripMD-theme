@@ -355,10 +355,10 @@ function tmd_clinic_register_handler() {
         get_option( 'admin_email' ), // To
         __( 'New Clinic Registeration', 'tripmd' ), // Subject
         sprintf(
-            __( "Clinic name: %1$s\r\n" .
-                "Location: %2$s\r\n" .
-                "Email: %3$s\r\n" .
-                "Phone: %4$s", 'tripmd' ), // Message
+            __( 'Clinic name: %1$s' . "\r\n" .
+                'Location: %2$s' . "\r\n" .
+                'Email: %3$s' . "\r\n" .
+                'Phone: %4$s', 'tripmd' ), // Message
             strip_tags( $_POST['tmd_cr_name'] ), strip_tags( $_POST['tmd_cr_location'] ), strip_tags( $_POST['tmd_cr_email'] ), strip_tags( $_POST['tmd_cr_phone'] )
         ),
         'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
@@ -416,11 +416,11 @@ function tmd_invitation_register_handler() {
             get_option( 'admin_email' ), // To
             __( 'New Patient Inquiry', 'tripmd' ), // Subject
             sprintf(
-                __( "Name: %1$s\r\n" .
-                    "Email: %2$s\r\n" .
-                    "Phone: %3$s\r\n" .
-                    "Registered: %4$s\r\n" .
-                    "Condition: %5$s", 'tripmd' ), // Message
+                __( 'Name: %1$s' . "\r\n" .
+                    'Email: %2$s' . "\r\n" .
+                    'Phone: %3$s' . "\r\n" .
+                    'Registered: %4$s' . "\r\n" .
+                    'Condition: %5$s', 'tripmd' ), // Message
                 strip_tags( $_POST['tmd_bs_name'] ), strip_tags( $_POST['tmd_bs_email'] ), strip_tags( $phone ), strip_tags( $date ), strip_tags( $condition )
             ),
             'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
