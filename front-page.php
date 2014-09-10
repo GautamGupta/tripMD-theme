@@ -388,11 +388,11 @@ get_header(); ?>
 
                     <div class="aligncenter">
 
-                        <?php if ( 'IN' == tripmd()->location->get_location() ) : ?>
+                        <?php // if ( 'IN' == tripmd()->location->get_location() ) : ?>
                             <h3 class="medium"><?php _e( 'We&rsquo;re on a mission to make high quality healthcare accessible worldwide.', 'tripmd' ); ?></h3>
-                        <?php else : ?>
+                        <?php /* else : ?>
                             <h3 class="medium"><?php _e( 'We&rsquo;re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
-                        <?php endif; ?>
+                        <?php endif; */ ?>
                         
                         <a class="big fat green button waitlist" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Get started', 'tripmd' ); ?></a>
 
