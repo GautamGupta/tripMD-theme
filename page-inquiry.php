@@ -119,7 +119,7 @@
 							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Get more info', 'tripmd' ); ?></a>
 							<?php /* <p class="ohho">Just <b><?php echo max( 14, 100 - tmd_user_count() ); ?></b> spots remaining!</p> */ ?>
 							<p class="ohho"><?php _e( 'Our medical experts are available 24x7 to answer your questions.', 'tripmd' ); ?>
-							<?php _e( 'Reach us at +91-97111-51751 or <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?></p>
+							<?php _e( 'Reach us at +91-83770-12073 or <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?></p>
 
 							<input type="submit" hidden>
 
