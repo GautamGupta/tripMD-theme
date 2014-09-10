@@ -389,20 +389,20 @@ function tmd_invitation_register_handler() {
     if ( tmd_has_errors() )
         return;
 
+    $phone     = !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : '';
+    $date      = date( 'Y-m-d H:i:s' );
     $condition = ( !empty( $_POST['tmd_bs_inquiry_for'] ) ? ( $_POST['tmd_bs_inquiry_for'] . " " ) : '' )
                 . ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( trim( $_POST['tmd_bs_date'] ) ) ) == $_POST['tmd_bs_date'] ) ? ( 'on ' . $_POST['tmd_bs_date'] . ": " ) : '' )
                 . ( !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '' );
-
-    $date = date( 'Y-m-d H:i:s' );
 
     $registered = $wpdb->insert( 
         "{$wpdb->prefix}tmd_beta_users", 
         array( 
             'name' => $_POST['tmd_bs_name'], 
             'email' => $_POST['tmd_bs_email'], 
-            'phone' => !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : '', 
+            'phone' => $phone, 
+            'registered' => $date,
             'condition' => $condition, 
-            'registered' => $date
         ), 
         '%s'
     );
@@ -421,7 +421,7 @@ function tmd_invitation_register_handler() {
                     "Phone: %3$s\r\n" .
                     "Registered: %4$s\r\n" .
                     "Condition: %5$s", 'tripmd' ), // Message
-                strip_tags( $_POST['tmd_bs_name'] ), strip_tags( $_POST['tmd_bs_email'] ), strip_tags( $_POST['tmd_cr_email'] ), strip_tags( $_POST['tmd_cr_phone'] )
+                strip_tags( $_POST['tmd_bs_name'] ), strip_tags( $_POST['tmd_bs_email'] ), strip_tags( $phone ), strip_tags( $date ), strip_tags( $condition )
             ),
             'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
         );
