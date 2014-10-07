@@ -1053,11 +1053,12 @@ final class TripMD {
                 break;
 
             case 'hospital' :
-                tripmd()->session['hospital_id'] = get_the_ID();
+                tripmd()->session['hospital_id']   = get_the_ID();
                 break;
 
             case 'doctor' :
-                tripmd()->session['doctor_id'] = get_the_ID();
+                tripmd()->session['hospital_id']   = get_post_ancestors( get_the_ID() )[0];
+                tripmd()->session['doctor_id']     = get_the_ID();
                 break;
         }
     }
