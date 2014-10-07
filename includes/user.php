@@ -29,6 +29,8 @@ function tmd_profile_extra_fields( $user ) { ?>
             </select>
         </div>
     </fieldset>
+
+    <?php /*
  
     <h2 class="entry-title">Medical Details</h2>
     <fieldset class="bbp-form"> 
@@ -51,6 +53,8 @@ function tmd_profile_extra_fields( $user ) { ?>
             <textarea name="allergies" id="allergies" class="regular-text"  tabindex="<?php tmd_tab_index(); ?>"><?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?></textarea><br/>
         </div>
     </fieldset>
+
+    */ ?>
 
     <h2 class="entry-title">Medical Records</h2>
     <fieldset class="bbp-form"> 
@@ -76,23 +80,23 @@ function tmd_profile_extra_fields( $user ) { ?>
             global $wp_session;
             $wp_session = WP_Session::get_instance();
 
-            if ( !get_user_meta( bbp_get_current_user_id(), 'speciality_id', true ) && 
+            if ( !get_user_meta( get_current_user_id(), 'speciality_id', true ) && 
                  !empty( $wp_session['speciality_id'] ) ) {
-                update_user_meta( bbp_get_current_user_id(), 'speciality_id', $wp_session['speciality_id'] );
+                update_user_meta( get_current_user_id(), 'speciality_id', $wp_session['speciality_id'] );
             }
-            if ( !get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) &&
+            if ( !get_user_meta( get_current_user_id(), 'procedure_id', true ) &&
                  !empty( $wp_session['procedure_id'] ) )
-                update_user_meta( bbp_get_current_user_id(), 'procedure_id', $wp_session['procedure_id'] );
-            if ( !get_user_meta( bbp_get_current_user_id(), 'hospital_id', true) &&
+                update_user_meta( get_current_user_id(), 'procedure_id', $wp_session['procedure_id'] );
+            if ( !get_user_meta( get_current_user_id(), 'hospital_id', true) &&
                  !empty( $wp_session['hospital_id'] ) )
-                update_user_meta( bbp_get_current_user_id(), 'hospital_id', $wp_session['hospital_id'] );
-            if ( !get_user_meta( bbp_get_current_user_id(), 'doctor_id', true) &&
+                update_user_meta( get_current_user_id(), 'hospital_id', $wp_session['hospital_id'] );
+            if ( !get_user_meta( get_current_user_id(), 'doctor_id', true) &&
                  !empty( $wp_session['doctor_id'] ) )
-                update_user_meta( bbp_get_current_user_id(), 'doctor_id', $wp_session['doctor_id'] );
+                update_user_meta( get_current_user_id(), 'doctor_id', $wp_session['doctor_id'] );
         ?>
-        <?php if ( get_user_meta( bbp_get_current_user_id(), 'speciality_id', true) ) : ?>
-            <?php if ( get_user_meta( bbp_get_current_user_id(), 'procedure_id', true ) ) : ?>
-                <?php if ( get_user_meta( bbp_get_current_user_id(), 'hospital_id', true ) ) : ?>
+        <?php if ( get_user_meta( get_current_user_id(), 'speciality_id', true) ) : ?>
+            <?php if ( get_user_meta( get_current_user_id(), 'procedure_id', true ) ) : ?>
+                <?php if ( get_user_meta( get_current_user_id(), 'hospital_id', true ) ) : ?>
                     <p>Book an <a href="/appointments/">appointment</a>.</p>
                 <?php else : ?>
                     <p>Please select a hospital and a doctor (optional).</p>
@@ -109,7 +113,7 @@ function tmd_profile_extra_fields( $user ) { ?>
         <?php $args = array(
             'orderby'          => 'post_date',
             'order'            => 'DESC',
-            'author'          => bbp_get_current_user_id(),
+            'author'           => get_current_user_id(),
             'post_type'        => 'consultation',
             'post_parent'      => '',
             'post_status'      => 'publish',
@@ -137,10 +141,10 @@ function tmd_profile_save_extra_fields( $user_id ) {
     /* Copy and paste this line for additional fields. Make sure to change 'twitter' to the field ID. */
     update_user_meta( $user_id, 'dob', $_POST['dob'] );
     update_user_meta( $user_id, 'gender', $_POST['gender'] );
-    update_user_meta( $user_id, 'weight', $_POST['weight'] );
+    /* update_user_meta( $user_id, 'weight', $_POST['weight'] );
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
-    update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
+    update_user_meta( $user_id, 'allergies', $_POST['allergies'] ); */
     $medicals = get_user_meta($user_id, 'medical_records', true);
     
     if ( !$medicals ||
@@ -165,8 +169,9 @@ add_action ( 'edit_user_profile_update', 'tmd_profile_save_extra_fields' );
  * Add cutom fields to registration form
  */
 function tmd_registration_extra_fields() {
+    $user = get_current_user();
 ?>
-    <a id="step1" href="javascript:void(0);">Step 1</a> | <a id="step2" href="javascript:void(0);">Step 2</a>
+    <?php /* <a id="step1" href="javascript:void(0);">Step 1</a> | <a id="step2" href="javascript:void(0);">Step 2</a> */ ?>
 
     <div id="step1_container">
 
@@ -175,10 +180,12 @@ function tmd_registration_extra_fields() {
 
         <label for="gender">Gender</label>
         <select name="gender" tabindex="<?php tmd_tab_index(); ?>">
-          <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected"; ?>>Male</option>
-          <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'female') echo "selected";  ?>>Female</option>
+          <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', get_current_user_id() )) == 'male') echo "selected"; ?>>Male</option>
+          <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', get_current_user_id() )) == 'female') echo "selected";  ?>>Female</option>
         </select>
     </div>
+    
+    <?php /*
 
     <div id="step2_container" style="display:none;">
         <label for="weight">Weight (in kgs)</label>
@@ -212,7 +219,7 @@ function tmd_registration_extra_fields() {
             current = 2;
         }
     });
-    </script>
+    </script> */ ?>
 
 <?php
 }
@@ -247,10 +254,10 @@ function tmd_registration_validate_extra_fields( $login, $email, $errors ) {
 function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = array() ) {
     update_user_meta( $user_id, 'dob', $_POST['dob'] );
     update_user_meta( $user_id, 'gender', $_POST['gender'] );
-    update_user_meta( $user_id, 'weight', $_POST['weight'] );
+    /* update_user_meta( $user_id, 'weight', $_POST['weight'] );
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
-    update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
+    update_user_meta( $user_id, 'allergies', $_POST['allergies'] ); */
 
     if ( !class_exists( 'WP_Session' ) ) // Requires WP Session plugin
         return;
@@ -296,13 +303,13 @@ function tmd_registration_handler() {
     add_filter( 'pre_user_last_name',  'tmd_registration_handler_ln' );
     add_filter( 'pre_user_nickname',   'tmd_registration_handler_nn' );
 }
-add_action( 'template_redirect', 'tmd_registration_handler', -10 );
+// add_action( 'template_redirect', 'tmd_registration_handler', -10 );
 
     /**
      * Set the username to email id unless we're in the admin section
      */
     function tmd_registration_handler_login( $username = '' ) {
-        return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( $_POST['user_email'] ) ) : $username;
+        return !empty( $_POST['user_email'] ) && !is_admin() ? sanitize_user( trim( tmd_get_sanitize_val( 'user_email' ) ) ) : $username;
     }
     add_filter( 'pre_user_login', 'tmd_registration_handler_login' ); // Always force
 
@@ -310,64 +317,64 @@ add_action( 'template_redirect', 'tmd_registration_handler', -10 );
      * Return the first name in the post paramater
      */
     function tmd_registration_handler_fn( $firstname = '' ) {
-        return !empty( $_POST['first_name'] ) ? sanitize_user( trim( $_POST['first_name'] ) ) : $firstname;
+        return sanitize_user( trim( tmd_get_sanitize_val( 'first_name', 'text', $firstname ) ) );
     }
 
     /**
      * Return the last name in the post paramater
      */
     function tmd_registration_handler_ln( $lastname = '' ) {
-        return !empty( $_POST['last_name'] ) ? sanitize_user( trim( $_POST['last_name'] ) ) : $lastname;
+        return sanitize_user( trim( tmd_get_sanitize_val( 'last_name', 'text', $lastname ) ) );
     }
 
     /**
      * Return the nickname in the post paramater
      */
     function tmd_registration_handler_nn( $nickname = '' ) {
-        return !empty( $_POST['nickname'] ) ? sanitize_user( trim( $_POST['nickname'] ) ) : $nickname;
+        return sanitize_user( trim( tmd_get_sanitize_val( 'nickname', 'text', $nickname ) ) );
     }
 
-/**
- * Clinic registration handler
- */
-function tmd_clinic_register_handler() {
-    // Redirect on fault
-    if ( empty( $_POST['tmd_cr_name'] ) ||  empty( $_POST['tmd_cr_location'] ) ||  empty( $_POST['tmd_cr_phone'] ) || empty( $_POST['tmd_cr_email'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_clinic_register_nonce' ) ) {
-        wp_redirect( home_url( '?clin_reg=error#clinic-signup' ) );
-        exit;
+    /**
+     * Splits single name string into salutation, first, last, suffix
+     * 
+     * Taken from http://stackoverflow.com/questions/8808902/best-way-to-split-a-first-and-last-name-in-php/14420217#14420217
+     * 
+     * @param string $name
+     * @return array
+     */
+    function tmd_split_name( $name ) {
+        $results = array();
+
+        $r    = explode( ' ', $name );
+        $size = count( $r );
+
+        // check first for period, assume salutation if so
+        if ( mb_strpos( $r[0], '.' ) === false ) {
+            $results['salutation'] = '';
+            $results['first']      = $r[0];
+        } else {
+            $results['salutation'] = $r[0];
+            $results['first']      = $r[1];
+        }
+
+        // check last for period, assume suffix if so
+        if ( mb_strpos( $r[$size - 1], '.' ) === false )
+            $results['suffix'] = '';
+        else
+            $results['suffix'] = $r[$size - 1];
+
+        //combine remains into last
+        $start = $results['salutation'] ? 2 : 1;
+        $end   = $results['suffix'] ? $size - 2 : $size - 1;
+
+        $last = '';
+        for ( $i = $start; $i <= $end; $i++ )
+            $last .= ' ' . $r[$i];
+        
+        $results['last'] = trim( $last );
+
+        return $results;
     }
-
-    // Register new
-    $new_clinic = array(
-        'post_title'  => $_POST['tmd_cr_name'],
-        'post_status' => 'pending',
-        'post_type'   => tripmd()->hospital_post_type
-    );
-    $post_id = wp_insert_post( $new_clinic );
-    
-    // Add data
-    add_post_meta( $post_id, 'location', trim( $_POST['tmd_cr_location'] ) );
-    add_post_meta( $post_id, 'phone',    trim( $_POST['tmd_cr_phone']    ) );
-    add_post_meta( $post_id, 'email',    trim( $_POST['tmd_cr_email']    ) );
-
-    // Notify admin
-    wp_mail(
-        get_option( 'admin_email' ), // To
-        __( 'New Clinic Registeration', 'tripmd' ), // Subject
-        sprintf(
-            __( 'Clinic name: %1$s' . "\r\n" .
-                'Location: %2$s' . "\r\n" .
-                'Email: %3$s' . "\r\n" .
-                'Phone: %4$s', 'tripmd' ), // Message
-            strip_tags( $_POST['tmd_cr_name'] ), strip_tags( $_POST['tmd_cr_location'] ), strip_tags( $_POST['tmd_cr_email'] ), strip_tags( $_POST['tmd_cr_phone'] )
-        ),
-        'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
-    );
-    
-    // Redirect to show success message
-    wp_redirect( site_url( '?clin_reg=success#clin-reg-msg' ) );
-    exit;
-}
 
 /**
  * Beta signup handler for /invitation
@@ -429,64 +436,44 @@ function tmd_invitation_register_handler() {
     }
 }
 
-function tmd_consultation_document_upload() {
-    if ( !wp_verify_nonce( $_GET['nonce'], 'document_upload' ) ) {
-        die( __( 'Are you sure you\'re doing that?', 'tripmd' ) );  
-    }
-
-    $data = array(
-        'comment_content' => $_GET['aid'],
-        'comment_type' => 'document_upload',
-        'comment_post_ID' => intval( $_GET['pid'] ),
-        'user_id' => get_current_user_id(),
-        'comment_approved' => 1,
-    );
-
-    wp_new_comment( $data );
-
-    die();
-}
-add_action( 'wp_ajax_documentUploadCB', 'tmd_consultation_document_upload' );
-add_action( 'wp_ajax_nopriv_documentUploadCB', 'tmd_consultation_document_upload' );
-
 /**
- * Splits single name string into salutation, first, last, suffix
- * 
- * Taken from http://stackoverflow.com/questions/8808902/best-way-to-split-a-first-and-last-name-in-php/14420217#14420217
- * 
- * @param string $name
- * @return array
+ * Clinic registration handler
  */
-function tmd_split_name( $name ) {
-    $results = array();
-
-    $r    = explode( ' ', $name );
-    $size = count( $r );
-
-    // check first for period, assume salutation if so
-    if ( mb_strpos( $r[0], '.' ) === false ) {
-        $results['salutation'] = '';
-        $results['first']      = $r[0];
-    } else {
-        $results['salutation'] = $r[0];
-        $results['first']      = $r[1];
+function tmd_clinic_register_handler() {
+    // Redirect on fault
+    if ( empty( $_POST['tmd_cr_name'] ) ||  empty( $_POST['tmd_cr_location'] ) ||  empty( $_POST['tmd_cr_phone'] ) || empty( $_POST['tmd_cr_email'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'tmd_clinic_register_nonce' ) ) {
+        wp_redirect( home_url( '?clin_reg=error#clinic-signup' ) );
+        exit;
     }
 
-    // check last for period, assume suffix if so
-    if ( mb_strpos( $r[$size - 1], '.' ) === false )
-        $results['suffix'] = '';
-    else
-        $results['suffix'] = $r[$size - 1];
-
-    //combine remains into last
-    $start = $results['salutation'] ? 2 : 1;
-    $end   = $results['suffix'] ? $size - 2 : $size - 1;
-
-    $last = '';
-    for ( $i = $start; $i <= $end; $i++ )
-        $last .= ' ' . $r[$i];
+    // Register new
+    $new_clinic = array(
+        'post_title'  => $_POST['tmd_cr_name'],
+        'post_status' => 'pending',
+        'post_type'   => tripmd()->hospital_post_type
+    );
+    $post_id = wp_insert_post( $new_clinic );
     
-    $results['last'] = trim( $last );
+    // Add data
+    add_post_meta( $post_id, 'location', trim( $_POST['tmd_cr_location'] ) );
+    add_post_meta( $post_id, 'phone',    trim( $_POST['tmd_cr_phone']    ) );
+    add_post_meta( $post_id, 'email',    trim( $_POST['tmd_cr_email']    ) );
 
-    return $results;
+    // Notify admin
+    wp_mail(
+        get_option( 'admin_email' ), // To
+        __( 'New Clinic Registeration', 'tripmd' ), // Subject
+        sprintf(
+            __( 'Clinic name: %1$s' . "\r\n" .
+                'Location: %2$s' . "\r\n" .
+                'Email: %3$s' . "\r\n" .
+                'Phone: %4$s', 'tripmd' ), // Message
+            strip_tags( $_POST['tmd_cr_name'] ), strip_tags( $_POST['tmd_cr_location'] ), strip_tags( $_POST['tmd_cr_email'] ), strip_tags( $_POST['tmd_cr_phone'] )
+        ),
+        'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
+    );
+    
+    // Redirect to show success message
+    wp_redirect( site_url( '?clin_reg=success#clin-reg-msg' ) );
+    exit;
 }
