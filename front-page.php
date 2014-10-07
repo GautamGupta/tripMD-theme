@@ -212,7 +212,7 @@ get_header(); ?>
                     );
                     $query = new WP_Query( $args );
 
-                    <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                    while ( $query->have_posts() ) : $query->the_post(); ?>
 
                         <div class="grid-50">
                             <a href="<?php the_permalink(); ?>" <?php post_class( 'card' ); ?>>
@@ -224,7 +224,7 @@ get_header(); ?>
                             </a>
                         </div>
 
-                    <?php endwhile; ?>
+                    <?php endwhile; wp_reset_postdata(); ?>
 
                 </div>
                 
