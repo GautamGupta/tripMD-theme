@@ -366,10 +366,12 @@ function tmd_redirect_to_field( $redirect_to = '' ) {
  * @param string $request Name of $_REQUEST to look for
  * @param string $input_type Type of input. Default: text. Accepts:
  *                            textarea|password|select|radio|checkbox
+ * @param string $default Default value if REQUEST doesn't exist.
+ *                          Defaults to false.
  * @uses tmd_get_sanitize_val() To sanitize the value.
  */
-function tmd_sanitize_val( $request = '', $input_type = 'text' ) {
-    echo tmd_get_sanitize_val( $request, $input_type );
+function tmd_sanitize_val( $request = '', $input_type = 'text', $default = false ) {
+    echo tmd_get_sanitize_val( $request, $input_type, $default );
 }
     /**
      * Return sanitized $_REQUEST value.
@@ -382,16 +384,18 @@ function tmd_sanitize_val( $request = '', $input_type = 'text' ) {
      * @param string $request Name of $_REQUEST to look for
      * @param string $input_type Type of input. Default: text. Accepts:
      *                            textarea|password|select|radio|checkbox
+     * @param string $default Default value if REQUEST doesn't exist.
+     *                          Defaults to false.
      * @uses esc_attr() To escape the string
      * @uses apply_filters() Calls 'tmd_get_sanitize_val' with the sanitized
-     *                        value, request and input type
+     *                        value, request, input type and default
      * @return string Sanitized value ready for screen display
      */
-    function tmd_get_sanitize_val( $request = '', $input_type = 'text' ) {
+    function tmd_get_sanitize_val( $request = '', $input_type = 'text', $default = false ) {
 
         // Check that requested
         if ( empty( $_REQUEST[$request] ) )
-            return false;
+            return $default;
 
         // Set request varaible
         $pre_ret_val = $_REQUEST[$request];
@@ -412,7 +416,7 @@ function tmd_sanitize_val( $request = '', $input_type = 'text' ) {
                 break;
         }
 
-        return apply_filters( 'tmd_get_sanitize_val', $retval, $request, $input_type );
+        return apply_filters( 'tmd_get_sanitize_val', $retval, $request, $input_type, $default );
     }
 
 /**
