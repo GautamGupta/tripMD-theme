@@ -28,13 +28,13 @@ $push = 0; ?>
 		<?php if ( $query->have_posts() ) : ?>
 
 			<div class="heading grid-100"><h2 class="animated fadeIn">Procedures for <?php the_title(); ?></h2></div>
-			<h4 class="animated fadeIn">Select a procedure that suits your time and budget.</h4>
+			<h4 class="animated fadeIn aligncenter">Select a procedure that suits your time and budget. <a href="#help">Skip to doctors</a>.</h4>
 
-			<div style="margin: 15px 0 120px 0">
+			<?php /* <div style="margin: 15px 0 120px 0">
 				<div class="grid-30" style="padding-top: 30px">Sort by <b>Price</b>&nbsp;&nbsp;<i class="fa fa-angle-down"></i></div>
 				<div class="grid-40"><input class="tmd-search" id="proc-search" type="search" placeholder="Search&hellip;" x-webkit-speech></input></div>
 				<div class="grid-30" style="padding-top: 30px"><a href="#help">Need help?</a></div>
-			</div>
+			</div> */ ?>
 
 			<div class="content cards grid-100 grid-parent">
 
