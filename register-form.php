@@ -5,18 +5,18 @@ Theme My Login will always look in your theme's directory first, before using th
 */
 ?>
 <div class="login" id="theme-my-login<?php $template->the_instance(); ?>">
-	<?php // $template->the_action_template_message( 'register' ); ?>
+	<?php $template->the_action_template_message( 'register' ); ?>
 	<?php $template->the_errors(); ?>
-	<form name="registerform" id="registerform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url( 'register' ); ?>" method="post">
+	<form name="template-form registerform" id="registerform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url( 'register' ); ?>" method="post">
 
 		<p>
 			<label for="name<?php $template->the_instance(); ?>"><?php _e( 'Full Name', 'tripmd' ); ?></label>
-			<input type="text" name="name" id="name<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'name' ); ?>" size="20" tabindex="<?php tmd_tab_index(); ?>" />
+			<input type="text" name="name" id="name<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'name' ); ?>" size="20" tabindex="<?php tmd_tab_index(); ?>" required="required" />
 	    </p>
 
 		<p>
 			<label for="user_email<?php $template->the_instance(); ?>"><?php _e( 'Email', 'tripmd' ); ?></label>
-			<input type="text" name="user_email" id="user_email<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'user_email' ); ?>" size="20" tabindex="<?php tmd_tab_index(); ?>" />
+			<input type="email" name="user_email" id="user_email<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'user_email' ); ?>" size="20" tabindex="<?php tmd_tab_index(); ?>" required="required" />
 		</p>
 
 		<?php do_action( 'register_form' ); ?>
@@ -28,7 +28,8 @@ Theme My Login will always look in your theme's directory first, before using th
 			<input type="hidden" name="redirect_to" value="<?php site_url( '/login?checkemail=registered' ); ?>" />
 			<input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />
 			<input type="hidden" name="action" value="register" />
+			<input type="submit" hidden="hidden" />
 		</p>
 	</form>
-	<?php $template->the_action_links( array( 'register' => false ) ); ?>
+	<?php // $template->the_action_links( array( 'register' => false ) ); ?>
 </div>
