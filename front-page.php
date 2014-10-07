@@ -46,7 +46,7 @@ get_header(); ?>
 
         <!-- User login -->
         <div style="display:none" class="fancybox-hidden block">
-            <div id="user-login" class="su" style="width:480px; height:330px;">
+            <div id="user-login" class="su full-width-form" style="width:480px; height:330px;">
                 <h1><?php _e( 'Login', 'tripmd' ); ?></h1>
 
                 <form method="post" id="loginform" name="loginform" style="color: black;" action="<?php echo site_url( '/login' ); ?>">
@@ -82,7 +82,6 @@ get_header(); ?>
         <span class="dp-screenshot"><img src="<?php echo get_template_directory_uri(); ?>/img/search.png" alt=""></span>
 
         <div id="slider-with-blocks-1" class="slider royalSlider rsMinW">
-
 
             <div class="rsContent slide1">
 
@@ -202,11 +201,30 @@ get_header(); ?>
                 <div class="heading grid-100"><h2><?php _e( 'See a trusted doctor.', 'tripmd' ); ?></h2><h3>Make an appointment inquiry with the most trusted physicians in the tripMD network.</h3></div>
 
                 <div class="grid-40 grid-parent specs">
-                    
-                    <div class="grid-50"><a href="#signup" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/dental.png" alt="">Dental</a></div>
-                    <div class="grid-50"><a href="#signup" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/cardiac.png" alt="">Cardiac</a></div>
-                    <div class="grid-50"><a href="#signup" class="card"><img class="ophth" src="<?php echo get_template_directory_uri(); ?>/img/ophthal.png" alt="">Opthalmology</a></div>
-                    <div class="grid-50"><a href="#signup" class="card"><img src="<?php echo get_template_directory_uri(); ?>/img/orthopaedic.png" alt="">Orthopaedic</a></div>
+
+                    <?php
+                    $args = array(
+                        'post_type' => tripmd()->speciality_post_type,
+                        'post_status'=>'publish',
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC',
+                        'posts_per_page' => -1
+                    );
+                    $query = new WP_Query( $args );
+
+                    <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+
+                        <div class="grid-50">
+                            <a href="<?php the_permalink(); ?>" <?php post_class( 'card' ); ?>>
+                                <?php if ( has_post_thumbnail() ) :
+                                    $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
+                                    <img src="<?php echo $thumbnail['0']; ?>" alt="" />
+                                <?php endif; ?>
+                                <?php the_title(); ?>
+                            </a>
+                        </div>
+
+                    <?php endwhile; ?>
 
                 </div>
                 
