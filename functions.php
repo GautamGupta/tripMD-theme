@@ -254,6 +254,11 @@ final class TripMD {
         require $this->includes_dir . 'user.php';
 
         /**
+         * Speciality
+         */
+        require $this->includes_dir . 'speciality.php';
+
+        /**
          * Review system
          */
         require $this->includes_dir . 'review.php';
@@ -272,6 +277,11 @@ final class TripMD {
          * Load Jetpack compatibility file.
          */
         require $this->includes_dir . 'jetpack.php';
+
+        /**
+         * Load Jetpack compatibility file.
+         */
+        // require $this->includes_dir . 'tml-custom-passwords.php';
 
         /**
          * Load Admin functions if we're inside the dashboard

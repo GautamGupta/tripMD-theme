@@ -202,7 +202,6 @@ function tmd_is_custom_post_type( $the_post = false ) {
     // Assume false
     $retval = false;
 
-    // Viewing one of the bbPress post types
     if ( in_array( get_post_type( $the_post ), tmd_get_post_types() ) )
         $retval = true;
 
@@ -216,6 +215,39 @@ function tmd_is_custom_post_type( $the_post = false ) {
      */
     function tmd_get_post_types() {
         return array( 'speciality', 'procedure', 'hospital', 'doctor', 'room', 'consultation' );
+    }
+
+/**
+ * Check if the given post type is of given post
+ *
+ * @param string $post_type Post tyle
+ * @param mixed $the_post Optional. Post object or post ID.
+ * @uses get_post_type()
+ * @uses tmd_get_post_types()
+ *
+ * @return bool
+ */
+function tmd_is_( $post_type = false, $the_post = false ) {
+
+    // Assume false
+    $retval = false;
+
+    if ( in_array( $post_type, tmd_get_post_types() ) && $post_type == get_post_type( $the_post ) )
+        $retval = true;
+
+    return $retval;
+}
+
+    /**
+     * Check if the given post is a speciality
+     *
+     * @param mixed $the_post Optional. Post object or post ID.
+     * @uses tmd_is()
+     *
+     * @return bool
+     */
+    function tmd_is_speciality( $the_post = false ) {
+        return tmd_is_( tripmd()->speciality_post_type, $the_post );
     }
 
 /**
