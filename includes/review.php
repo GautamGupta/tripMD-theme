@@ -52,9 +52,9 @@ function tmd_review_doctor_handler() {
 
         // Sanitize ratings
         $rating = array(
-            'quality'       => intval( $_POST['tmd_review_rating']['quality']       ),
-            'communication' => intval( $_POST['tmd_review_rating']['communication'] ),
-            'friendliness'  => intval( $_POST['tmd_review_rating']['friendliness']  )
+            'quality'   => intval( $_POST['tmd_review_rating']['quality']   ),
+            'etiquette' => intval( $_POST['tmd_review_rating']['etiquette'] ),
+            'facility'  => intval( $_POST['tmd_review_rating']['facility']  )
         );
 
         // Add review meta
