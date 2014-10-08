@@ -96,7 +96,7 @@ get_header(); ?>
                                 <h2><?php _e( 'The world is exotic.', 'tripmd' ); ?></h2>
                                 <h3><?php _e( 'Healthcare overseas doesn&rsquo;t have to be.', 'tripmd' ); ?></h3>
                                 <?php /* <a class="big fat green button link-how" href="#how"><?php _e( 'How does it work?', 'tripmd' ); ?></a> */ ?>
-                                <a class="big fat green button<?php /* link-invitation */ ?>" href="#signup"><?php _e( 'Get Early Access', 'tripmd' ); ?></a>
+                                <a class="big fat green button<?php /* link-invitation */ ?>" href="#treatments"><?php _e( 'Browse Treatments', 'tripmd' ); ?></a>
                             <?php // endif; ?>
                         </div>
                     </div>
@@ -192,7 +192,7 @@ get_header(); ?>
             </div> */ ?>
         </div>
 
-        <section class="hear see">
+        <section class="hear see" id="treatments">
 
             <div class="bg"><img src="<?php echo get_template_directory_uri(); ?>/img/doctor.png" alt=""></div>
 
@@ -361,7 +361,7 @@ get_header(); ?>
 
         </section>
 
-        <section class="signup" id="signup">
+        <?php /* <section class="signup" id="signup">
 
             <div class="grid-container">
 
@@ -390,7 +390,7 @@ get_header(); ?>
 
                 </form>
 
-        </section>
+        </section> */ ?>
 
         <?php if ( 'IN' != tripmd()->location->get_location() ) : ?>
 
@@ -412,7 +412,7 @@ get_header(); ?>
                             <h3 class="medium"><?php _e( 'We&rsquo;re on a mission to make quality healthcare accessible to everyone without the expensive medical bills and surgical wait times.', 'tripmd' ); ?></h3>
                         <?php endif; */ ?>
                         
-                        <a class="big fat green button waitlist" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Get started', 'tripmd' ); ?></a>
+                        <a class="big fat green button waitlist" href="#treatments"><?php _e( 'Get started', 'tripmd' ); ?></a>
 
                     </div>
 
