@@ -79,12 +79,12 @@
                     <form method="post" id="review-form">
                         
                         <div class="name fld">
-                            <input type="text" name="tmd_review_name" placeholder="<?php _e( 'Full Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_name' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+                            <input type="text" name="tmd_review_name" placeholder="<?php _e( 'Full Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_name', 'text', wp_get_current_user()->display_name ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
                             <i class="fa fa-user"></i>
                         </div>
                         
                         <div class="email fld">
-                            <input type="email" name="tmd_review_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_email' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+                            <input type="email" name="tmd_review_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_review_email', 'text', wp_get_current_user()->user_email ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
                             <i class="fa fa-envelope-o"></i>
                         </div>
                         
