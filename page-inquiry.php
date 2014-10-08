@@ -78,12 +78,12 @@
 						<form method="post" id="beta-form" action="<?php echo site_url( 'inquiry' ); ?>">
 							
 							<div class="name fld">
-								<input type="text" name="tmd_bs_name" placeholder="<?php _e( 'Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_name' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<input type="text" name="tmd_bs_name" placeholder="<?php _e( 'Name', 'tripmd' ); ?>" class="name field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_name', 'text', wp_get_current_user()->display_name ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-user"></i>
 							</div>
 							
 							<div class="email fld">
-								<input type="email" name="tmd_bs_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_email' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<input type="email" name="tmd_bs_email" placeholder="<?php _e( 'Email', 'tripmd' ); ?>" class="email field" required="required" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_email', 'text', wp_get_current_user()->user_email ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-envelope-o"></i>
 							</div>
 							
@@ -93,17 +93,26 @@
 							</div>
 							
 							<div class="date fld">
-								<input type="date" name="tmd_bs_date" placeholder="<?php _e( 'Preferred Appointment Date (optional)', 'tripmd' ); ?>" min="<?php echo date( 'Y-m-d' ); ?>" class="date field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_date' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<input type="date" name="tmd_bs_date" title="<?php _e( 'Preferred Appointment Date (optional)', 'tripmd' ); ?>" min="<?php echo date( 'Y-m-d' ); ?>" class="date field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_date' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-calendar"></i>
 							</div>
 							
 							<div class="inqquiry-for fld field">
-								<span><?php _e( 'Inquiring for:', 'tripmd' ); ?> </span><select name="tmd_bs_inquiry_for" class="inqquiry-for field in-select" data-icon="\f007" tabindex="<?php tmd_tab_index(); ?>">
+								<span><?php _e( 'Inquiring for:', 'tripmd' ); ?> </span><select name="tmd_bs_speciality_id" class="inqquiry-for field in-select" data-icon="\f007" tabindex="<?php tmd_tab_index(); ?>">
 									<option disabled="disabled" selected="selected"><?php _e( 'Pick a specialization&hellip;', 'tripmd' ); ?></option>
-									<option value="cardiac" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'cardiac' ); ?>><?php _e( 'Cardiac (heart)', 'tripmd' ); ?></option>
-									<option value="dental" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'dental' ); ?>><?php _e( 'Dental', 'tripmd' ); ?></option>
-									<option value="ophthalmology" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'ophthalmology' ); ?>><?php _e( 'Ophthalmology (eye)', 'tripmd' ); ?></option>
-									<option value="orthopaedic" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select' ), 'orthopaedic' ); ?>><?php _e( 'Orthopaedic', 'tripmd' ); ?></option>
+				                    <?php
+				                    $args = array(
+				                        'post_type' => tripmd()->speciality_post_type,
+				                        'post_status' => 'publish',
+				                        'orderby' => 'menu_order',
+				                        'order' => 'ASC',
+				                        'posts_per_page' => -1
+				                    );
+				                    $query = new WP_Query( $args );
+
+				                    while ( $query->have_posts() ) : $query->the_post(); ?>
+				                    	<option value="<?php echo get_the_ID(); ?>" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select', tripmd()->get_session( tripmd()->speciality_post_type ) ), get_the_ID() ); ?>><?php the_title(); ?></option>
+				                    <?php endwhile; wp_reset_postdata(); ?>
 								</select>
 								<i class="fa fa-stethoscope"></i>
 							</div>
@@ -113,6 +122,7 @@
 								<i class="fa fa-comment-o"></i>
 							</div>
 
+	                        <input type="hidden" name="tmd_bs_doctor_id" value="<?php tmd_sanitize_val( 'tmd_bs_doctor_id', 'text', tripmd()->get_session( tripmd()->doctor_post_type ) ); ?>" />
 	                        <input type="hidden" name="action" value="invitation_register" />
 	                        <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
 

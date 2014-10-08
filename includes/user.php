@@ -390,28 +390,29 @@ function tmd_invitation_register_handler() {
 
     if ( empty( $_POST['tmd_bs_email'] ) || !is_email( $_POST['tmd_bs_email'] ) )
         tmd_add_error( 'required-email', __( 'Please provide a valid email id.', 'tripmd' ) );
-    elseif ( $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}tmd_beta_users WHERE email = %s LIMIT 1", $_POST['tmd_bs_email'] ) ) )
+    /* elseif ( $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}tmd_beta_users WHERE email = %s LIMIT 1", $_POST['tmd_bs_email'] ) ) )
         tmd_add_error( 'exists-email', __( 'You\'ve already registered with this email id.', 'tripmd' ) );
+    */
 
     if ( tmd_has_errors() )
         return;
 
-    $phone     = !empty( $_POST['tmd_bs_phone'] ) ? $_POST['tmd_bs_phone'] : '';
-    $date      = date( 'Y-m-d H:i:s' );
-    $condition = ( !empty( $_POST['tmd_bs_inquiry_for'] ) ? ( $_POST['tmd_bs_inquiry_for'] . " " ) : '' )
-                . ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( trim( $_POST['tmd_bs_date'] ) ) ) == $_POST['tmd_bs_date'] ) ? ( 'on ' . $_POST['tmd_bs_date'] . ": " ) : '' )
-                . ( !empty( $_POST['tmd_bs_condition'] ) ? $_POST['tmd_bs_condition'] : '' );
+    $data = array(  
+        'user_id' => get_current_user_id(),
+        'speciality_id' => tmd_get_sanitize_val( 'tmd_bs_speciality_id' ), 
+        'doctor_id' => tmd_get_sanitize_val( 'tmd_bs_doctor_id' ), 
+        'name' => tmd_get_sanitize_val( 'tmd_bs_name' ), 
+        'phone' => tmd_get_sanitize_val( 'tmd_bs_phone' ), 
+        'email' => tmd_get_sanitize_val( 'tmd_bs_email' ),
+        'condition' => tmd_get_sanitize_val( 'tmd_bs_condition' ),
+        'appt_date' => ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( trim( $_POST['tmd_bs_date'] ) ) ) == $_POST['tmd_bs_date'] ) ? tmd_get_sanitize_val( $_POST['tmd_bs_date'] ) : '' ),
+        'registered' => date( 'Y-m-d H:i:s' ),
+    );
 
     $registered = $wpdb->insert( 
-        "{$wpdb->prefix}tmd_beta_users", 
-        array( 
-            'name' => $_POST['tmd_bs_name'], 
-            'email' => $_POST['tmd_bs_email'], 
-            'phone' => $phone, 
-            'registered' => $date,
-            'condition' => $condition, 
-        ), 
-        '%s'
+        "{$wpdb->prefix}tmd_beta_users",
+        $data, 
+        array( '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s' )
     );
 
     if ( empty( $registered ) ) {
@@ -421,14 +422,28 @@ function tmd_invitation_register_handler() {
         // Notify admin
         wp_mail(
             get_option( 'admin_email' ), // To
-            __( 'New Patient Inquiry', 'tripmd' ), // Subject
+            __( '[TripMD] New Patient Inquiry', 'tripmd' ), // Subject
             sprintf(
-                __( 'Name: %1$s' . "\r\n" .
-                    'Email: %2$s' . "\r\n" .
-                    'Phone: %3$s' . "\r\n" .
-                    'Registered: %4$s' . "\r\n" .
-                    'Condition: %5$s', 'tripmd' ), // Message
-                strip_tags( $_POST['tmd_bs_name'] ), strip_tags( $_POST['tmd_bs_email'] ), strip_tags( $phone ), strip_tags( $date ), strip_tags( $condition )
+                __(
+                    'User ID: %1$d' . "\r\n" .
+                    'Speciality: %2$s (%3$d)' . "\r\n" .
+                    'Doctor: %4$s (%5$d)' . "\r\n" .
+                    'Name: %6$s' . "\r\n" .
+                    'Email: %7$s' . "\r\n" .
+                    'Phone: %8$s' . "\r\n" .
+                    'Condition: %9$s' . "\r\n" .
+                    'Appointment Date: %10$s' . "\r\n" .
+                    'Registered: %11$s' . "\r\n" .
+                    '', 'tripmd' ), // Message
+                strip_tags( $data['user_id'] ),
+                strip_tags( get_the_title( $data['speciality_id'] ) ), strip_tags( $data['speciality_id'] ),
+                strip_tags( get_the_title( $data['doctor_id'] ) ), strip_tags( $data['doctor_id'] ),
+                strip_tags( $data['name'] ),
+                strip_tags( $data['email'] ),
+                strip_tags( $data['phone'] ),
+                strip_tags( $data['condition'] ),
+                strip_tags( $data['appt_date'] ),
+                strip_tags( $data['registered'] )
             ),
             'From: TripMD <support@tripmd.com>' . "\r\n" // Headers
         );
