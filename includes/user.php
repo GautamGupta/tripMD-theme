@@ -405,7 +405,7 @@ function tmd_invitation_register_handler() {
         'phone' => tmd_get_sanitize_val( 'tmd_bs_phone' ), 
         'email' => tmd_get_sanitize_val( 'tmd_bs_email' ),
         'condition' => tmd_get_sanitize_val( 'tmd_bs_condition' ),
-        'appt_date' => ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( trim( $_POST['tmd_bs_date'] ) ) ) == $_POST['tmd_bs_date'] ) ? tmd_get_sanitize_val( $_POST['tmd_bs_date'] ) : '' ),
+        'appt_date' => ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( $_POST['tmd_bs_date'] ) ) == $_POST['tmd_bs_date'] ) ? tmd_get_sanitize_val( 'tmd_bs_date' ) : '' ),
         'registered' => date( 'Y-m-d H:i:s' ),
     );
 
