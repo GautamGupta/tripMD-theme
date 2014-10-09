@@ -279,9 +279,9 @@ final class TripMD {
         require $this->includes_dir . 'jetpack.php';
 
         /**
-         * Load Jetpack compatibility file.
+         * Theme My Login Custom
          */
-        // require $this->includes_dir . 'tml-custom-passwords.php';
+        require $this->includes_dir . 'theme-my-login-custom.php';
 
         /**
          * Load Admin functions if we're inside the dashboard

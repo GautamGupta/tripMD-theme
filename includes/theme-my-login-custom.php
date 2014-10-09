@@ -1,24 +1,30 @@
 <?php
 /**
- * Plugin Name: Custom Passwords
- * Description: Enabling this module will initialize and enable custom passwords. There are no other settings for this module.
- *
- * Holds the Theme My Login Custom Passwords class
+ * To login the user after registration
+ * TML Custom Passwords custom class
  * 
  * Has TripMD Modifications
  *
- * @package Theme_My_Login
- * @subpackage Theme_My_Login_Custom_Passwords
- * @since 6.0
+ * @package TripMD
+ * @subpackage Theme_My_Login_Custom
  */
-return;
+
+function tmd_tml_new_user_registered( $user_id ) {
+    wp_set_auth_cookie( $user_id, false, is_ssl() );
+    $redirect_to = tmd_get_sanitize_val( 'redirect_to' );
+    $redirect_to = !empty( $redirect_to ) ? site_url( $redirect_to ) : site_url( 'wp-login.php?registration=complete' );
+    wp_redirect( $redirect_to );
+    exit;
+}
+add_action( 'tml_new_user_registered', 'tmd_tml_new_user_registered' );
+
 if ( class_exists( 'Theme_My_Login_Abstract' ) ) :
 /**
  * Theme My Login Custom Passwords module class
  *
  * @since 6.0
  */
-class Theme_My_Login_Custom_Passwords extends Theme_My_Login_Abstract {
+class Theme_My_Login_Custom_Passwords_TMD extends Theme_My_Login_Abstract {
 	/**
 	 * Returns singleton instance
 	 *
@@ -306,7 +312,7 @@ class Theme_My_Login_Custom_Passwords extends Theme_My_Login_Abstract {
 	}
 }
 
-Theme_My_Login_Custom_Passwords::get_object();
+Theme_My_Login_Custom_Passwords_TMD::get_object();
 
 endif;
 
