@@ -49,7 +49,7 @@ $push = 0;
 						$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ); ?>
 						<div class="image" style="background: url(<?php echo $thumbnail['0']; ?>); background-size: cover"></div>
 					<?php endif; ?>
-					<h3>Dr. <?php the_title(); ?></h3>
+					<h3><?php the_title(); ?></h3>
 					<p></p>
 
 					<?php if ( get_post_meta( get_the_ID(), 'rating', true ) ) : ?>
