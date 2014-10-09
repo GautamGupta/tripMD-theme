@@ -191,7 +191,7 @@ get_header(); ?>
                     <div class="grid-30<?php echo !empty( $push ) ? ' push-' . $push : ''; ?>">
                         <a rel="gallery-awards" href="<?php echo $award; ?>" class="fancybox">
                             <img src="<?php echo $award; ?>" alt="">
-                        </a>get_post_meta( $doctor_id, 'specialities', true )z
+                        </a>
                     </div>
 
                     <?php
