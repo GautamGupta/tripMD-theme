@@ -227,7 +227,7 @@ function tmd_is_custom_post_type( $the_post = false ) {
  *
  * @return bool
  */
-function tmd_is_( $post_type = false, $the_post = false ) {
+function tmd_is( $post_type = false, $the_post = false ) {
 
     // Assume false
     $retval = false;
@@ -247,7 +247,19 @@ function tmd_is_( $post_type = false, $the_post = false ) {
      * @return bool
      */
     function tmd_is_speciality( $the_post = false ) {
-        return tmd_is_( tripmd()->speciality_post_type, $the_post );
+        return tmd_is( tripmd()->speciality_post_type, $the_post );
+    }
+
+    /**
+     * Check if the given post is a doctor
+     *
+     * @param mixed $the_post Optional. Post object or post ID.
+     * @uses tmd_is()
+     *
+     * @return bool
+     */
+    function tmd_is_doctor( $the_post = false ) {
+        return tmd_is( tripmd()->doctor_post_type, $the_post ) && !tmd_is_reviews(); /* Logged out users can submit reviews */
     }
 
 /**
@@ -259,7 +271,6 @@ function tmd_is_( $post_type = false, $the_post = false ) {
 function tmd_is_reviews() {
     global $wp_query;
 
-    // Assume false
     $retval = false;
 
     // Check query

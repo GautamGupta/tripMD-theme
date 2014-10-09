@@ -254,9 +254,9 @@ final class TripMD {
         require $this->includes_dir . 'user.php';
 
         /**
-         * Speciality
+         * Flow - helps in ensuring the flow
          */
-        require $this->includes_dir . 'speciality.php';
+        require $this->includes_dir . 'flow.php';
 
         /**
          * Review system

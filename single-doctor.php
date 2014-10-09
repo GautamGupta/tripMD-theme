@@ -44,7 +44,7 @@ get_header(); ?>
     <header>
         
         <div class="grid-container">
-            <h1><?php _e( 'Dental Treatments', 'tripmd' ); ?></h1>
+            <h1><?php printf( __( '%s Treatments', 'tripmd' ), get_the_title( get_post_meta( get_the_ID(), 'specialities', true ) ) ); ?></h1>
         </div>
 
     </header>
@@ -139,40 +139,76 @@ get_header(); ?>
 
     <br /><br />
 
-    <header class="facility">
-        
-        <div class="grid-container">
+    <?php
+    $awards = get_post_gallery( $post->post_parent, false );
+    if ( !empty( $awards ) ) :
+        $push = 0; ?>
+
+        <header class="facility">
             
-            <h1><?php _e( 'Facility', 'tripmd' ); ?></h1>
+            <div class="grid-container">
+                
+                <h1><?php _e( 'Facility', 'tripmd' ); ?></h1>
 
-            <br /><br />
+                <br /><br />
 
-            <div class="grid-30"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/1.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/1.jpg" alt=""></a></div>
-            <div class="grid-30 push-5"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
-            <div class="grid-30 push-10"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/2.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/2.jpg" alt=""></a></div>
-            <div class="grid-100" style="margin-top: 100px; !important"><br /><br /></div>
-            <div class="grid-30"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/3.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/3.jpg" alt=""></a></div>
-            <div class="grid-30 push-5"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/5.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/5.jpg" alt=""></a></div>
-            <div class="grid-30 push-10"><a rel="gallery-facility" href="<?php echo get_template_directory_uri(); ?>/img/4.jpg" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/4.jpg" alt=""></a></div>
+                <?php foreach( $awards['src'] AS $award ) { ?>
+                    
+                    <div class="grid-30<?php echo !empty( $push ) ? ' push-' . $push : ''; ?>">
+                        <a rel="gallery-awards" href="<?php echo $award; ?>" class="fancybox">
+                            <img src="<?php echo $award; ?>" alt="">
+                        </a>
+                    </div>
 
-        </div>
+                    <?php
+                    if ( $push == 10 ) :
+                        $push = 0; ?>
+                        <div class="grid-100" style="margin-top: 100px; !important"><br /><br /></div>
+                    <?php else : $push += 5; endif; ?>
+                    
+                <?php } ?>
 
-    </header>
+            </div>
 
-    <header class="facility awards">
-        
-        <div class="grid-container">
+        </header>
+
+    <?php endif; ?>
+
+    <?php
+    $awards = get_post_gallery( get_the_ID(), false );
+    if ( !empty( $awards ) ) :
+        $push = 0; ?>
+        <header class="facility awards">
             
-            <h1><?php _e( 'Awards', 'tripmd' ); ?></h1>
+            <div class="grid-container">
+                
+                <h1><?php _e( 'Awards', 'tripmd' ); ?></h1>
 
-            <br /><br />
+                <br /><br />
 
-            <div class="grid-30"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/aw1.png" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/aw1.png" alt=""></a></div>
-            <div class="grid-30 push-5"><a rel="gallery-awards" href="<?php echo get_template_directory_uri(); ?>/img/aw2.png" class="fancybox"><img src="<?php echo get_template_directory_uri(); ?>/img/aw2.png" alt=""></a></div>
+                <?php foreach( $awards['src'] AS $award ) { ?>
+                    
+                    <div class="grid-30<?php echo !empty( $push ) ? ' push-' . $push : ''; ?>">
+                        <a rel="gallery-awards" href="<?php echo $award; ?>" class="fancybox">
+                            <img src="<?php echo $award; ?>" alt="">
+                        </a>get_post_meta( $doctor_id, 'specialities', true )z
+                    </div>
 
-        </div>
+                    <?php
+                    if ( $push == 10 ) :
+                        $push = 0; ?>
+                        <div class="grid-100" style="margin-top: 100px; !important"><br /><br /></div>
+                    <?php else : $push += 5; endif; ?>
+                    
+                <?php } ?>
 
-    </header>
+            </div>
+
+        </header>
+
+    <?php endif; ?>
+
+    <?php /* 
 
     <header class="costs">
     
@@ -210,11 +246,11 @@ get_header(); ?>
             <h2>Airbnb accomodation close to the facility would be: $25/night and up</h2>
             <h2>Or, a 5-star hotel close to facility would be: $80/night and up</h2>
             <h2>Duration of the trip: 3 days</h2>
-            <h2><b>Total: <span style="color: #7ecd94">$2,425 and up</span></b></h2> */ ?>
+            <h2><b>Total: <span style="color: #7ecd94">$2,425 and up</span></b></h2> *//* ?>
 
         </div>
 
-    </header>
+    </header> */ ?>
 
     <?php
     // If comments are open or we have at least one comment, load up the comment template

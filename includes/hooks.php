@@ -131,7 +131,8 @@ add_action( 'deleted_post',   'tmd_deleted_forum'   );
  * 3. Editing profiles, invitation page submission, etc.
  * 4. TripMD specific AJAX requests
  */
-add_action( 'tmd_template_redirect', 'tmd_speciality_redirect',   9  );
+add_action( 'tmd_template_redirect', 'tmd_speciality_redirect',   8  );
+add_action( 'tmd_template_redirect', 'tmd_doctor_redirect',       8  );
 add_action( 'tmd_template_redirect', 'tmd_post_request',          10 );
 add_action( 'tmd_template_redirect', 'tmd_get_request',           10 );
 /*
