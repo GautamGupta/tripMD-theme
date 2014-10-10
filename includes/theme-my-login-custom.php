@@ -9,14 +9,71 @@
  * @subpackage Theme_My_Login_Custom
  */
 
+/**
+ * Returns template message for requested action
+ *
+ * @param string $action Action to retrieve
+ * @return string The requested template message
+ */
+function tmd_tml_action_template_message( $message = '', $action = '' ) {
+	switch ( $action ) {
+		case 'register':
+			$message = sprintf( __( 'Register to view %s\'s featured doctors.' ), get_bloginfo( 'blog' ) );
+			break;
+		case 'lostpassword':
+			$message = __( 'Please enter your email address. You will receive a link to create a new password via email.' );
+			break;
+		case 'resetpass':
+			$message = __( 'Enter your new password below.' );
+			break;
+		default:
+			$message = '';
+	}
+
+	return $message;
+}
+add_filter( 'tml_action_template_message', 'tmd_tml_action_template_message', 1, 2 );
+
+function tmd_registration_name_split_hooks() {
+    if ( !empty( $_REQUEST['name'] ) ) { // /register page has single 'name' field, this splits it into fn and ln
+        $name = tmd_split_name( $_REQUEST['name'] );
+        $_REQUEST['first_name'] = $name['first'];
+        $_REQUEST['last_name']  = $name['last'];
+        $_REQUEST['nickname']   = $name['first'] . ' ' . $name['last'];
+    }
+
+    add_filter( 'pre_user_first_name', 'tmd_registration_handler_fn' );
+    add_filter( 'pre_user_last_name',  'tmd_registration_handler_ln' );
+    add_filter( 'pre_user_nickname',   'tmd_registration_handler_nn' );
+    // Above functions are located in user.php
+}
+add_action( 'register_post', 'tmd_registration_name_split_hooks' );
+
+/**
+ * Fix empty username error 404
+ */
+function tmd_tml_registration_errors( $errors ) {
+	$check = $errors->get_error_codes();
+	if ( count( $check ) == 1 && $check[0] == 'empty_username' )
+		$errors = new WP_Error();
+
+	return $errors;
+}
+add_filter( 'registration_errors', 'tmd_tml_registration_errors' );
+
+/**
+ * Login the user after registration
+ */
 function tmd_tml_new_user_registered( $user_id ) {
     wp_set_auth_cookie( $user_id, false, is_ssl() );
     $redirect_to = tmd_get_sanitize_val( 'redirect_to' );
-    $redirect_to = !empty( $redirect_to ) ? site_url( $redirect_to ) : site_url( 'wp-login.php?registration=complete' );
-    wp_redirect( $redirect_to );
+    $redirect_to = !empty( $redirect_to ) ? $redirect_to : site_url( 'wp-login.php?registration=complete' );
+    wp_safe_redirect( $redirect_to );
     exit;
 }
 add_action( 'tml_new_user_registered', 'tmd_tml_new_user_registered' );
+
+
 
 if ( class_exists( 'Theme_My_Login_Abstract' ) ) :
 /**
@@ -43,7 +100,7 @@ class Theme_My_Login_Custom_Passwords_TMD extends Theme_My_Login_Abstract {
 	 * @access protected
 	 */
 	protected function load() {
-		add_action( 'register_form',       array( &$this, 'password_fields' ) );
+		add_action( 'register_form',       array( &$this, 'password_fields' ), 1 );
 		add_filter( 'registration_errors', array( &$this, 'password_errors' ) );
 		add_filter( 'random_password',     array( &$this, 'set_password'    ) );
 
