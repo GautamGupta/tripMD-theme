@@ -61,16 +61,16 @@
 
                 <?php while ( have_posts() ) : the_post(); ?>
 
-
                 <?php if ( empty( $dont_display_form ) ) : ?>
 
                     <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'thumbnail', array( 'class' => 'avatar' ) ); ?>
 
                     <h2><?php printf( __( 'Write a review for %s', 'tripmd' ), '<br /><a href="' . get_permalink() . '"><span class="doc-name">' . get_the_title() .'</span></a>' ); ?></h2>
                     
-                    <p class="yeh-vala">Your doctor Poonam Batra needs your help! Dr. Batra has been selected to be featured on TripMD, an exclusive and highly curated listing platform of the most trusted physicians worldwide. Recognized as one of New Delhi’s best dentists by the local expatriate and diplomatic communities, we are looking to spread the word of Dr. Batra’s great practice.</p>
+                    <?php @list( $salutation, $first_name, $last_name ) = explode( ' ', get_the_title() ); ?>
+                    <p class="yeh-vala"><?php printf( __( 'Your doctor %1$s needs your help! Dr. %2$s has been selected to be featured on %3$s, an exclusive and highly curated listing platform of the most trusted physicians worldwide. Recognized as one of New Delhi’s best doctors by the local expatriate and diplomatic communities, we are looking to spread the word of Dr. %2$s’s great practice.' ), $first_name . ' ' . $last_name, !empty( $last_name ) ? $last_name : $first_name, get_bloginfo( 'blogname' ) ); ?></p>
 
-                    <p>We put emphasis on transparency at TripMD, and receiving your feedback on your treatment experience with Dr. Batra will go a long way towards informing other prospective patients. Dr. Batra and TripMD kindly ask for you to fill out the following review form. If you have any questions about the review process or want to learn more about what we are building at TripMD, please reach out to <a href="mailto:support@tripmd.com">support@tripmd.com</a> and we will get back to you as soon as possible!</p>
+                    <p><?php printf( __( 'We put emphasis on transparency at %3$s, and receiving your feedback on your treatment experience with Dr. %2$s will go a long way towards informing other prospective patients. Dr. %2$s and %3$s kindly ask for you to fill out the following review form. If you have any questions about the review process or want to learn more about what we are building at %3$s, please reach out to <a href="mailto:support@tripmd.com">support@tripmd.com</a> and we will get back to you as soon as possible!' ), $first_name . ' ' . $last_name, !empty( $last_name ) ? $last_name : $first_name, get_bloginfo( 'blogname' ) ); ?></p>
 
                 </div>
 

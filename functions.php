@@ -1067,7 +1067,10 @@ final class TripMD {
                 break;
 
             case 'doctor' :
-                tripmd()->session['hospital_id']   = get_post_ancestors( get_the_ID() )[0];
+                $hospital_id = get_post_ancestors( get_the_ID() )[0];
+                if ( !empty( $hospital_id ) )
+                    tripmd()->session['hospital_id'] = $hospital_id;
+                
                 tripmd()->session['doctor_id']     = get_the_ID();
                 break;
         }
