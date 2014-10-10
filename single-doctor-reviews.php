@@ -102,7 +102,7 @@
                             <i class="fa fa-star-o"></i>
                             <strong id="rat-text"><?php _e( 'Rating', 'tripmd' ); ?></strong><br />
                             <fieldset class="rat-star">
-                                <?php foreach ( array( 'quality' => __( 'Quality of Care', 'tripmd' ), 'etiquette' => __( 'Doctor Etiquette', 'tripmd' ), 'facility' => __( 'Quality of Facility', 'tripmd' ) ) as $key => $display_text ) : ?>
+                                <?php foreach ( tmd_get_review_ratings_mapping() as $key => $display_text ) : ?>
                                     <span class="rat-title"><?php echo $display_text; ?></span>
                                     <fieldset class="rat-star <?php echo $key; ?>">
                                         <legend><?php _e( 'Please rate:', 'tripmd' ); ?></legend>

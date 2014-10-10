@@ -184,7 +184,8 @@ final class TripMD {
 
         // Other identifiers
         $this->consultation_video_id = 'tmd_video';
-        $this->reviews_id            = 'reviews';
+        $this->review_id             = 'review'; // Comment type
+        $this->reviews_id            = 'reviews'; // Slug
 
         /** Queries ***********************************************************/
 

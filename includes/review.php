@@ -8,6 +8,18 @@
  */
 
 /**
+ * Return the array of rating_keys => rating_texts
+ * for reviews
+ */
+function tmd_get_review_ratings_mapping() {
+    return apply_filters( 'tmd_get_review_ratings_mapping', array(
+        'quality' => __( 'Quality of Care', 'tripmd' ),
+        'etiquette' => __( 'Doctor Etiquette', 'tripmd' ),
+        'facility' => __( 'Quality of Facility', 'tripmd' )
+    ) );
+}
+
+/**
  * Doctor review submission handler
  */
 function tmd_review_doctor_handler() {
@@ -51,15 +63,45 @@ function tmd_review_doctor_handler() {
     } else {
 
         // Sanitize ratings
-        $rating = array(
-            'quality'   => intval( $_POST['tmd_review_rating']['quality']   ),
-            'etiquette' => intval( $_POST['tmd_review_rating']['etiquette'] ),
-            'facility'  => intval( $_POST['tmd_review_rating']['facility']  )
-        );
+        $rating = array();
+        foreach ( array_keys( tmd_get_review_ratings_mapping() ) as $rating_key ) {
+            $rating[$rating_key] = intval( !empty( $_POST['tmd_review_rating'][$rating_key] ) ? $_POST['tmd_review_rating'][$rating_key] : 0 );
+        }
 
         // Add review meta
         add_comment_meta( $comment_id, 'tmd_review_nationality', trim( $_POST['tmd_review_nationality'] ), true );
         add_comment_meta( $comment_id, 'tmd_review_subscribe', !empty( $_POST['tmd_review_subscribe'] ) ? 1 : 0, true );
-        add_comment_meta( $comment_id, 'tmd_review_rating', serialize( $rating ), true );
+        add_comment_meta( $comment_id, 'tmd_review_rating', $rating, true );
     }
 }
+
+/**
+ * Handle reviews listing
+ */
+function tmd_list_reviews( $comment, $args, $depth ) {
+    $GLOBALS['comment'] = $comment;
+    $ratings = get_comment_meta( get_comment_ID(), 'tmd_review_rating', true ); ?>
+
+    <div <?php comment_class( 'grid-100' ); ?> id="comment-<?php comment_ID(); ?>" style="margin-left: 145px; padding-top: 30px;">
+        
+        <div class="grid-100">
+            <h2><span class="user-img" style="background-image:url('http://0.gravatar.com/avatar/<?php echo md5( strtolower( trim( get_comment_author_email() ) ) ); ?>?s=50&amp;d=<?php echo urlencode( 'http://api.randomuser.me/portraits/med/men/' . get_comment_ID() % 10 . '.jpg' ); ?>');"></span>
+            <b><?php echo get_comment_author_link(); ?></b>
+            <span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span>
+            <span style="margin-left: 157px; opacity: 0.25"><?php echo comment_date(); ?></span></h2>
+        </div>
+
+        <?php foreach ( tmd_get_review_ratings_mapping() as $rating => $rating_text ) :
+            if ( !isset( $ratings[$rating] ) ) continue; ?>
+
+            <div class="grid-20">
+                <div class="subtitle"><p><?php echo $rating_text; ?></p></div>
+                <?php tmd_rating( $ratings[$rating] ); ?>
+            </div>
+
+        <?php endforeach; ?>
+
+        <p class="grid-70"><?php echo get_comment_text(); ?></p>
+    </div>
+
+<?php }
