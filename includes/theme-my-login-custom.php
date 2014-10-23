@@ -71,8 +71,7 @@ function tmd_tml_new_user_registered( $user_id ) {
     wp_safe_redirect( $redirect_to );
     exit;
 }
-add_action( 'tml_new_user_registered', 'tmd_tml_new_user_registered' );
-
+// add_action( 'tml_new_user_registered', 'tmd_tml_new_user_registered' );
 
 
 if ( class_exists( 'Theme_My_Login_Abstract' ) ) :
