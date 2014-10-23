@@ -29,12 +29,7 @@
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/select/select-theme-default.css" />
 		<script src="<?php echo get_template_directory_uri(); ?>/js/select.min.js"></script>
 
-		<link rel="stylesheet" href="css/pickadate/default.css" id="theme_base">
-		<link rel="stylesheet" href="css/pickadate/default.date.css" id="theme_date">
-		<link rel="stylesheet" href="css/pickadate/default.time.css" id="theme_time">
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimal-ui">
-
 	</head>
 
 	<body <?php body_class( 'beta' ); ?>>
@@ -126,7 +121,7 @@
 	                        <input type="hidden" name="action" value="invitation_register" />
 	                        <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
 
-							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Get more info', 'tripmd' ); ?></a>
+							<a href="#" class="big fat green button submit" onclick="document.getElementById('beta-form').submit();" tabindex="<?php tmd_tab_index(); ?>"><?php _e( 'Book Appointment', 'tripmd' ); ?></a>
 							<?php /* <p class="ohho">Just <b><?php echo max( 14, 100 - tmd_user_count() ); ?></b> spots remaining!</p> */ ?>
 							<p class="ohho"><?php _e( 'Our medical experts are available 24x7 to answer your questions.', 'tripmd' ); ?>
 							<?php _e( 'Reach us at +91-83770-12073 or <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?></p>

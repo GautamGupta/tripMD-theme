@@ -18,8 +18,8 @@ function tmd_profile_extra_fields( $user ) { ?>
     <h2 class="entry-title">Personal Details</h2>
     <fieldset class="bbp-form">
         <div>
-            <label for="dob">Date of birth</label>
-            <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob" max="<?php echo date( 'Y-m-d', strtotime( '-13 years' ) ); ?>" min="<?php echo date( 'Y-m-d', strtotime( '-120 years' ) ); ?>" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
         </div>
         <div>
             <label for="gender">Gender</label>
@@ -53,8 +53,6 @@ function tmd_profile_extra_fields( $user ) { ?>
             <textarea name="allergies" id="allergies" class="regular-text"  tabindex="<?php tmd_tab_index(); ?>"><?php echo esc_attr( get_the_author_meta( 'allergies', $user->ID ) ); ?></textarea><br/>
         </div>
     </fieldset>
-
-    */ ?>
 
     <h2 class="entry-title">Medical Records</h2>
     <fieldset class="bbp-form"> 
@@ -128,6 +126,8 @@ function tmd_profile_extra_fields( $user ) { ?>
         <input name="medical_records" id="medical_records_files" value="" type="hidden">
     </fieldset>
 
+    */ ?>
+
 <?php
 }
 add_action ( 'show_user_profile', 'tmd_profile_extra_fields' );
@@ -144,7 +144,7 @@ function tmd_profile_save_extra_fields( $user_id ) {
     /* update_user_meta( $user_id, 'weight', $_POST['weight'] );
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
-    update_user_meta( $user_id, 'allergies', $_POST['allergies'] ); */
+    update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
     $medicals = get_user_meta($user_id, 'medical_records', true);
     
     if ( !$medicals ||
@@ -160,7 +160,7 @@ function tmd_profile_save_extra_fields( $user_id ) {
 
         $medicals['mystuff'] = array_merge($medicals['mystuff'], $new_medicals['mystuff']);
         update_user_meta( $user_id, 'medical_records', htmlspecialchars(json_encode($medicals)) );
-    }
+    } */
 }
 add_action ( 'personal_options_update', 'tmd_profile_save_extra_fields' );
 add_action ( 'edit_user_profile_update', 'tmd_profile_save_extra_fields' );
@@ -175,8 +175,8 @@ function tmd_registration_extra_fields() {
 
     <div id="step1_container">
 
-        <label for="dob">Date of birth</label>
-        <input type="date" name="dob" id="dob" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
+        <label for="dob">Date of Birth</label>
+        <input type="date" max="<?php echo date( 'Y-m-d', strtotime( '-13 years' ) ); ?>" min="<?php echo date( 'Y-m-d', strtotime( '-120 years' ) ); ?>" name="dob" id="dob" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
 
         <label for="gender">Gender</label>
         <select name="gender" tabindex="<?php tmd_tab_index(); ?>">
@@ -257,7 +257,7 @@ function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = a
     /* update_user_meta( $user_id, 'weight', $_POST['weight'] );
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
-    update_user_meta( $user_id, 'allergies', $_POST['allergies'] ); */
+    update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
 
     if ( !class_exists( 'WP_Session' ) ) // Requires WP Session plugin
         return;
@@ -275,7 +275,7 @@ function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = a
     if ( !empty( $wp_session['hospital_id'] ) )
         update_user_meta( $user_id, 'hospital_id',   $wp_session['hospital_id']   );
     if ( !empty( $wp_session['doctor_id'] ) )
-        update_user_meta( $user_id, 'doctor_id',     $wp_session['doctor_id']     );
+        update_user_meta( $user_id, 'doctor_id',     $wp_session['doctor_id']     ); */
 }
 add_action( 'user_register', 'tmd_registration_save_extra_fields' );
 
