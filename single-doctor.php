@@ -104,7 +104,7 @@ get_header(); ?>
 
                     <div class="grid-50 push-10">
                         <div class="subtitle"><p><?php _e( 'International Patients Treated Annually', 'tripmd' ); ?></p></div>
-                        <h1><?php printf( __( '%1$s+ <a href="%2$s" class="fancybox">(see regionwise split)</a>', 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#breakup' ); ?></h1>
+                        <h1><?php printf( __( '%1$s+' /*  <a href="%2$s" class="fancybox">(see regionwise split)</a> */, 'tripmd' ), number_format_i18n( get_post_meta( get_the_ID(), 'intl_treated', true ) ), '#breakup' ); ?></h1>
                     </div>
                 
                 <?php endif; ?>

@@ -85,7 +85,7 @@ function tmd_list_reviews( $comment, $args, $depth ) {
     <div <?php comment_class( 'grid-100' ); ?> id="comment-<?php comment_ID(); ?>" style="margin-left: 145px; padding-top: 30px;">
         
         <div class="grid-100">
-            <h2><span class="user-img" style="background-image:url('http://0.gravatar.com/avatar/<?php echo md5( strtolower( trim( get_comment_author_email() ) ) ); ?>?s=50&amp;d=<?php echo urlencode( 'http://api.randomuser.me/portraits/med/men/' . get_comment_ID() % 10 . '.jpg' ); ?>');"></span>
+            <h2><span class="user-img" style="background-image:url('http://0.gravatar.com/avatar/<?php echo md5( strtolower( trim( get_comment_author_email() ) ) ); ?>?s=50&amp;d=<?php echo urlencode( 'http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=50' ); ?>');"></span>
             <b><?php echo get_comment_author_link(); ?></b>
             <span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span>
             <span style="margin-left: 157px; opacity: 0.25"><?php echo comment_date(); ?></span></h2>
