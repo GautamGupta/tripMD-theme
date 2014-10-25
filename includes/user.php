@@ -385,6 +385,9 @@ function tmd_invitation_register_handler() {
         tmd_add_error( 'exists-email', __( 'You\'ve already registered with this email id.', 'tripmd' ) );
     */
 
+    if ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( tmd_get_sanitize_val( 'tmd_bs_date' ) ) ) != tmd_get_sanitize_val( 'tmd_bs_date' ) || tmd_get_sanitize_val( 'tmd_bs_date' ) < date( 'Y-m-d', time() + 3600 * 24 ) ) )
+        tmd_add_error( 'invalid-appt-date', __( 'Please provide an appointment date starting tomorrow.', 'tripmd' ) );
+
     if ( tmd_has_errors() )
         return;
 
@@ -396,7 +399,7 @@ function tmd_invitation_register_handler() {
         'phone' => tmd_get_sanitize_val( 'tmd_bs_phone' ), 
         'email' => tmd_get_sanitize_val( 'tmd_bs_email' ),
         'condition' => tmd_get_sanitize_val( 'tmd_bs_condition' ),
-        'appt_date' => ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( $_POST['tmd_bs_date'] ) ) == $_POST['tmd_bs_date'] ) ? tmd_get_sanitize_val( 'tmd_bs_date' ) : '' ),
+        'appt_date' => tmd_get_sanitize_val( 'tmd_bs_date' ),
         'registered' => date( 'Y-m-d H:i:s' ),
     );
 
