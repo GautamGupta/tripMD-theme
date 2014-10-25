@@ -61,6 +61,14 @@ function tmd_tml_registration_errors( $errors ) {
 }
 add_filter( 'registration_errors', 'tmd_tml_registration_errors' );
 
+function tmd_tmd_action_messages( &$theme_my_login ) {
+	$theme_my_login->errors->remove( 'pending_approval' );
+
+	if ( 'approval' == tmd_get_sanitize_val( 'pending' ) )
+		$theme_my_login->errors->add( 'pending_approval', sprintf( __( 'Thank you for signing up for %1$s - a curated platform to help expats access high quality healthcare in foreign cities. %1$s Beta is invitation only, and we are sending out invites in the order they are received. You will be notified by e-mail once your account has been reviewed.', 'theme-my-login' ), 'message' ), get_bloginfo( 'name' ) );
+}
+add_action( 'tml_request', 'tmd_tmd_action_messages', 10 );
+
 /**
  * Login the user after registration
  */
@@ -73,7 +81,18 @@ function tmd_tml_new_user_registered( $user_id ) {
 }
 // add_action( 'tml_new_user_registered', 'tmd_tml_new_user_registered' );
 
+/**
+ * Set default role as contributor on approval by admin
+ */
 add_action( 'tml_approval_role', function() { return 'contributor'; } );
+
+/**
+ * Re-add email on user reg (before approval)
+ */
+if ( class_exists( 'Theme_My_Login_Custom_Email' ) ) {
+	$custom_email = Theme_My_Login_Custom_Email::get_object();
+	add_action( 'tml_new_user_registered', array( &$custom_email, 'new_user_notification' ), 10, 2 );
+}
 
 if ( class_exists( 'Theme_My_Login_Abstract' ) ) :
 /**
