@@ -93,22 +93,30 @@
 							</div>
 							
 							<div class="inqquiry-for fld field">
-								<span><?php _e( 'Inquiring for:', 'tripmd' ); ?> </span><select name="tmd_bs_speciality_id" class="inqquiry-for field in-select" data-icon="\f007" tabindex="<?php tmd_tab_index(); ?>">
-									<option disabled="disabled" selected="selected"><?php _e( 'Pick a specialization&hellip;', 'tripmd' ); ?></option>
-				                    <?php
-				                    $args = array(
-				                        'post_type' => tripmd()->speciality_post_type,
-				                        'post_status' => 'publish',
-				                        'orderby' => 'menu_order',
-				                        'order' => 'ASC',
-				                        'posts_per_page' => -1
-				                    );
-				                    $query = new WP_Query( $args );
 
-				                    while ( $query->have_posts() ) : $query->the_post(); ?>
-				                    	<option value="<?php echo get_the_ID(); ?>" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select', tripmd()->get_session( tripmd()->speciality_post_type ) ), get_the_ID() ); ?>><?php the_title(); ?></option>
-				                    <?php endwhile; wp_reset_postdata(); ?>
-								</select>
+								<?php $selected_doctor = tmd_get_sanitize_val( 'tmd_bs_doctor_id', 'text', tripmd()->get_session( tripmd()->doctor_post_type ) ); ?>
+								<?php if ( !empty( $selected_doctor ) ) : ?>
+	                        		<input type="hidden" name="tmd_bs_doctor_id" value="<?php echo $selected_doctor; ?>" />
+	                        		<span><?php printf( __( 'Doctor: %s', 'tripmd' ), get_the_title( $selected_doctor ) ); ?></span>
+	                        	<?php else : ?>
+									<span><?php _e( 'Inquiring for:', 'tripmd' ); ?></span>
+									<select name="tmd_bs_speciality_id" class="inqquiry-for field in-select" data-icon="\f007" tabindex="<?php tmd_tab_index(); ?>">
+										<option disabled="disabled" selected="selected"><?php _e( 'Pick a specialization&hellip;', 'tripmd' ); ?></option>
+					                    <?php
+					                    $args = array(
+					                        'post_type' => tripmd()->speciality_post_type,
+					                        'post_status' => 'publish',
+					                        'orderby' => 'menu_order',
+					                        'order' => 'ASC',
+					                        'posts_per_page' => -1
+					                    );
+					                    $query = new WP_Query( $args );
+
+					                    while ( $query->have_posts() ) : $query->the_post(); ?>
+					                    	<option value="<?php echo get_the_ID(); ?>" <?php selected( tmd_get_sanitize_val( 'tmd_bs_inquiry_for', 'select', tripmd()->get_session( tripmd()->speciality_post_type ) ), get_the_ID() ); ?>><?php the_title(); ?></option>
+					                    <?php endwhile; wp_reset_postdata(); ?>
+									</select>
+								<?php endif; ?>
 								<i class="fa fa-stethoscope"></i>
 							</div>
 							
@@ -117,7 +125,6 @@
 								<i class="fa fa-comment-o"></i>
 							</div>
 
-	                        <input type="hidden" name="tmd_bs_doctor_id" value="<?php tmd_sanitize_val( 'tmd_bs_doctor_id', 'text', tripmd()->get_session( tripmd()->doctor_post_type ) ); ?>" />
 	                        <input type="hidden" name="action" value="invitation_register" />
 	                        <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
 
