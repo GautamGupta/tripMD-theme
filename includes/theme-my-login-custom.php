@@ -61,13 +61,16 @@ function tmd_tml_registration_errors( $errors ) {
 }
 add_filter( 'registration_errors', 'tmd_tml_registration_errors' );
 
-function tmd_tmd_action_messages( &$theme_my_login ) {
-	$theme_my_login->errors->remove( 'pending_approval' );
+if ( class_exists( 'Theme_My_Login_User_Moderation' ) ) : 
+	function tmd_tmd_action_messages( &$theme_my_login ) {
+		if ( 'approval' == tmd_get_sanitize_val( 'pending' ) )
+			$theme_my_login->errors->add( 'pending_approval', sprintf( __( 'Thank you for signing up for %1$s - a curated platform to help expats access high quality healthcare in foreign cities. %1$s Beta is invitation only, and we are sending out invites in the order they are received. You will be notified by e-mail once your account has been reviewed.', 'theme-my-login' ), get_bloginfo( 'name' ) ), 'message' );
+	}
+	add_action( 'tml_request', 'tmd_tmd_action_messages', 10 );
 
-	if ( 'approval' == tmd_get_sanitize_val( 'pending' ) )
-		$theme_my_login->errors->add( 'pending_approval', sprintf( __( 'Thank you for signing up for %1$s - a curated platform to help expats access high quality healthcare in foreign cities. %1$s Beta is invitation only, and we are sending out invites in the order they are received. You will be notified by e-mail once your account has been reviewed.', 'theme-my-login' ), 'message' ), get_bloginfo( 'name' ) );
-}
-add_action( 'tml_request', 'tmd_tmd_action_messages', 10 );
+	$custom_user_mod = Theme_My_Login_User_Moderation::get_object();
+	remove_action( 'tml_request', array( &$custom_user_mod, 'action_messages' ) );
+endif;
 
 /**
  * Login the user after registration
