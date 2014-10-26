@@ -88,7 +88,7 @@
 							</div>
 							
 							<div class="date fld">
-								<input type="date" name="tmd_bs_date" title="<?php _e( 'Preferred Appointment Date (optional)', 'tripmd' ); ?>" min="<?php echo date( 'Y-m-d', time() + 3600 * 24 ); ?>" class="date field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_date' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
+								<input type="date" name="tmd_bs_date" title="<?php _e( 'Preferred Appointment Date (optional)', 'tripmd' ); ?>" min="<?php echo date( 'Y-m-d', time() + 3600 * 24 ); ?>" max="<?php echo date( 'Y-m-d', strtotime( '+1 year' ) ); ?>" class="date field" data-icon="\f007" value="<?php tmd_sanitize_val( 'tmd_bs_date' ); ?>" tabindex="<?php tmd_tab_index(); ?>" />
 								<i class="fa fa-calendar"></i>
 							</div>
 							
