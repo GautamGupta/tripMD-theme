@@ -192,6 +192,70 @@ get_header(); ?>
             </div> */ ?>
         </div>
 
+        <section class="initiative" id="initiative">
+            
+            <div class="grid-container">
+
+                <div class="heading grid-100"><h2>The<span class="logo"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt=""></span> initiative.</h2>
+                <h3>Helping expatriates receive high quality healthcare while overseas.</h3></div>
+
+                <p>tripMD is an initiative started by an international team living in New Delhi with the aim of aking high quality healthcare options easily available to the growing expatriate community in the city.</p>
+
+                <div class="docs grid-100 grid-parent">
+                    
+                    <div class="doc grid-30">
+                        
+                        <p><img class="doc-image" src="<?php echo get_template_directory_uri(); ?>/img/batra.jpg" alt=""></p>
+
+                        <p class="doc-name grid-100">Dr. Poonam Batra</p>
+
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-institution"></i><p class="grid-75">MBBS, MD, MBA, BS</p></div>
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-stethoscope"></i><p class="grid-75">Knee Cap Replacement</p></div>
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-location-arrow"></i><p class="grid-75">New Delhi, India</p>
+                        </div>
+
+                        <a href="#" class="big fat green button submit">Book an Appointment</a>
+
+                    </div>
+                                 
+                    <div class="doc grid-30 push-5">
+                        
+                        <p><img class="doc-image" src="<?php echo get_template_directory_uri(); ?>/img/batra.jpg" alt=""></p>
+
+                        <p class="doc-name grid-100">Dr. Poonam Batra</p>
+
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-institution"></i><p class="grid-75">MBBS, MD, MBA, BS</p></div>
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-stethoscope"></i><p class="grid-75">Knee Cap Replacement</p></div>
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-location-arrow"></i><p class="grid-75">New Delhi, India</p>
+                        </div>
+
+                        <a href="#" class="big fat green button submit">Book an Appointment</a>
+
+                    </div>
+                                 
+                    <div class="doc grid-30 push-10">
+                        
+                        <p><img class="doc-image" src="<?php echo get_template_directory_uri(); ?>/img/batra.jpg" alt=""></p>
+
+                        <p class="doc-name grid-100">Dr. Poonam Batra</p>
+
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-institution"></i><p class="grid-75">MBBS, MD, MBA, BS</p></div>
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-stethoscope"></i><p class="grid-75">Knee Cap Replacement</p></div>
+                        <div class="doc-feature grid-100 grid-parent"><i class="grid-25 fa fa-location-arrow"></i><p class="grid-75">New Delhi, India</p>
+                        </div>
+
+                        <a href="#" class="big fat green button submit">Book an Appointment</a>
+
+                    </div>
+                    
+  
+                </div>
+
+
+            </div>
+    
+        </section>
+
         <section class="hear see" id="treatments">
 
             <div class="bg"><img src="<?php echo get_template_directory_uri(); ?>/img/doctor.png" alt=""></div>

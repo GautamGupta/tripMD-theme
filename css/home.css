@@ -729,7 +729,7 @@ body.beta .green-t {
 .howh, suh {
   margin: -10px 0 10px 0; }
 
-.hear {
+.initiative {
   margin-top: calc(100vh - 80px);
   /*padding-bottom: 0;*/ }
 
@@ -1245,3 +1245,56 @@ h2.in {
 
 .medium {
   font-size: 125% !important; }
+
+.initiative span.logo {
+  margin-left: 20px !important;
+  margin-right: 10px !important; }
+  .initiative span.logo img {
+    height: 60px;
+    vertical-align: middle;
+    margin-right: 0 !important; }
+.initiative h2 {
+  font-size: 300%; }
+.initiative h3 {
+  font-size: 160%;
+  margin-top: -15px; }
+.initiative p {
+  text-align: center;
+  font-size: 120%;
+  color: #777;
+  margin-top: -5px; }
+
+.docs {
+  margin-top: 70px; }
+  .docs .doc {
+    margin-bottom: 10px;
+    background: white !important;
+    padding-bottom: 10px !important;
+    box-shadow: 0px 2px 1px 2px rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    text-align: left;
+    border: thin solid rgba(0, 0, 0, 0.09); }
+  .docs .doc-image {
+    border-radius: 100px;
+    width: 120px;
+    border: thick solid #eee;
+    margin-top: -80px; }
+  .docs .doc-name {
+    margin-top: -50px;
+    font-size: 140%;
+    margin-bottom: -10px; }
+  .docs .doc-feature {
+    border-top: thin solid #eee;
+    padding: 12px 0 10px 0; }
+    .docs .doc-feature i {
+      text-align: right;
+      color: #666;
+      padding: 0 10px; }
+    .docs .doc-feature p {
+      padding: 0 5px;
+      margin-bottom: 0;
+      text-align: left;
+      font-size: 90%;
+      font-family: "freight-sans-pro"; }
+  .docs .submit {
+    margin-top: 8px; }
