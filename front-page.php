@@ -196,12 +196,12 @@ get_header(); ?>
             
             <div class="grid-container">
 
-                <div class="heading grid-100"><h2>The<span class="logo"><img src="<?php echo get_template_directory_uri(); ?>/img/logo-black.png" alt=""></span> initiative.</h2>
-                <h3>Helping expatriates receive high quality healthcare while overseas.</h3></div>
+                <div class="heading grid-100"><h2><?php printf( __( 'The %s initiative.', 'tripmd' ), '<span class="logo"><img src="' . get_template_directory_uri() . '/img/logo-black.png" alt=""></span>' ); ?></h2>
+                <h3><?php _e( 'Helping expatriates receive high quality healthcare while overseas.', 'tripmd' ); ?></h3></div>
 
-                <p>tripMD is an initiative started by an international team living in New Delhi with the aim of aking high quality healthcare options easily available to the growing expatriate community in the city.</p>
+                <p><?php printf( __( '%s is an initiative started by an international team living in New Delhi with the aim of making high quality healthcare options easily available to the growing expatriate community in the city.', 'tripmd' ), get_bloginfo( 'name' ) ); ?></p>
 
-                <div class="docs grid-100 grid-parent">
+                <?php /* <div class="docs grid-100 grid-parent">
                     
                     <div class="doc grid-30">
                         
@@ -248,9 +248,7 @@ get_header(); ?>
 
                     </div>
                     
-  
-                </div>
-
+                </div> */ ?>
 
             </div>
     
