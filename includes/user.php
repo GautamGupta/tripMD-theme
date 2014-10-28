@@ -13,19 +13,62 @@ add_action( 'wp_enqueue_scripts', 'tmd_registration_enqueue_media' );
 /**
  * Add additional custom field
  */
-function tmd_profile_extra_fields( $user ) { ?>
+function tmd_profile_extra_fields( $user ) {
+    global $wpdb;
+
+    $inquiries = $wpdb->get_results(
+        $wpdb->prepare(
+            "
+            SELECT id, speciality_id, doctor_id, description, appt_date, registered
+            FROM {$wpdb->prefix}tmd_beta_users
+            WHERE user_id = %d
+            ",
+            $user->ID
+        )
+    );
+
+    if ( !empty( $inquiries )  ) : ?>
  
-    <h2 class="entry-title">Personal Details</h2>
+        <h2 class="entry-title"><?php _e( 'Appointments', 'tripmd' ); ?></h2>
+
+        <table id="inquiries">
+            <tr>
+                <th><?php _e( 'Doctor', 'tripmd' ); ?></th>
+                <th><?php _e( 'Appointment Date', 'tripmd' ); ?></th>
+            </tr>
+            <?php foreach ( $inquiries as $inquiry ) : ?>
+                <tr>
+                    <td>
+                        <?php if ( empty( $inquiry->doctor_id ) ) : ?>
+                            <?php _e( 'General Inquiry', 'tripmd' ); ?>
+                        <?php else : ?>
+                            <a href="<?php echo get_permalink( $inquiry->doctor_id ); ?>"><?php echo get_the_title( $inquiry->doctor_id ); ?></a>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if ( empty( $inquiry->appt_date ) || '0000-00-00' == $inquiry->appt_date ) : ?>
+                            <?php _e( 'No specific date', 'tripmd' ); ?>
+                        <?php else : ?>
+                            <?php echo date( 'F j, Y', strtotime( $inquiry->appt_date ) ); ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+
+    <?php endif; ?>
+ 
+    <h2 class="entry-title"><?php _e( 'Personal Details', 'tripmd' ); ?></h2>
     <fieldset class="bbp-form">
         <div>
-            <label for="dob">Date of Birth</label>
-            <input type="date" name="dob" id="dob" max="<?php echo date( 'Y-m-d', strtotime( '-13 years' ) ); ?>" min="<?php echo date( 'Y-m-d', strtotime( '-120 years' ) ); ?>" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
+            <label for="dob"><?php _e( 'Date of Birth', 'tripmd' ); ?></label>
+            <input type="date" name="tmd_profile_dob" id="dob" max="<?php echo date( 'Y-m-d', strtotime( '-13 years' ) ); ?>" min="1900-01-01" value="<?php echo esc_attr( get_the_author_meta( 'dob', $user->ID ) ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
         </div>
         <div>
-            <label for="gender">Gender</label>
-            <select name="gender" tabindex="<?php tmd_tab_index(); ?>">
-              <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'male') echo "selected";  ?>>Male</option>
-              <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', $user->ID )) == 'female') echo "selected";  ?>>Female</option>
+            <label for="gender"><?php _e( 'Gender', 'tripmd' ); ?></label>
+            <select name="tmd_profile_gender" tabindex="<?php tmd_tab_index(); ?>">
+                <option value="male" <?php selected( get_the_author_meta( 'gender', $user->ID ), 'male' ); ?>><?php _e( 'Male' ); ?></option>
+                <option value="female" <?php selected( get_the_author_meta( 'gender', $user->ID ), 'female' ); ?>><?php _e( 'Female' ); ?></option>
             </select>
         </div>
     </fieldset>
@@ -137,16 +180,27 @@ function tmd_profile_save_extra_fields( $user_id ) {
 
     if ( !current_user_can( 'edit_user', $user_id ) )
         return false;
-    
-    /* Copy and paste this line for additional fields. Make sure to change 'twitter' to the field ID. */
-    update_user_meta( $user_id, 'dob', $_POST['dob'] );
-    update_user_meta( $user_id, 'gender', $_POST['gender'] );
+
+    if ( empty( $_POST['tmd_profile_dob'] ) )
+        delete_user_meta( $user_id, 'dob' );
+    elseif ( date( 'Y-m-d', strtotime( tmd_get_sanitize_val( 'tmd_profile_dob' ) ) ) == tmd_get_sanitize_val( 'tmd_profile_dob' ) && tmd_get_sanitize_val( 'tmd_profile_dob' ) <= date( 'Y-m-d', strtotime( '-13 years' ) ) )
+        update_user_meta( $user_id, 'dob', tmd_get_sanitize_val( 'tmd_profile_dob' ) );
+    else
+        tmd_add_error( 'profile-invalid-dob', __( 'Please provide a valid date of birth. You must be at least 13 years old to register.', 'tripmd' ) );
+
+    if ( empty( $_POST['tmd_profile_gender'] ) )
+        delete_user_meta( $user_id, 'gender' );
+    elseif ( in_array( tmd_get_sanitize_val( 'tmd_profile_gender' ), array( 'male', 'female' ) ) )
+        update_user_meta( $user_id, 'gender', tmd_get_sanitize_val( 'tmd_profile_gender' ) );
+    else
+        tmd_add_error( 'profile-invalid-gender', __( 'Please provide a valid gender.', 'tripmd' ) );
+
     /* update_user_meta( $user_id, 'weight', $_POST['weight'] );
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
     update_user_meta( $user_id, 'allergies', $_POST['allergies'] );
     $medicals = get_user_meta($user_id, 'medical_records', true);
-    
+
     if ( !$medicals ||
          !json_decode(htmlspecialchars_decode($medicals), true)) { 
             update_user_meta( $user_id, 'medical_records', $_POST['medical_records'] );
@@ -169,19 +223,18 @@ add_action ( 'edit_user_profile_update', 'tmd_profile_save_extra_fields' );
  * Add cutom fields to registration form
  */
 function tmd_registration_extra_fields() {
-    $user = get_current_user();
-?>
+    $user = get_current_user(); ?>
     <?php /* <a id="step1" href="javascript:void(0);">Step 1</a> | <a id="step2" href="javascript:void(0);">Step 2</a> */ ?>
 
     <div id="step1_container">
 
-        <label for="dob">Date of Birth</label>
-        <input type="date" max="<?php echo date( 'Y-m-d', strtotime( '-13 years' ) ); ?>" min="<?php echo date( 'Y-m-d', strtotime( '-120 years' ) ); ?>" name="dob" id="dob" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
+        <label for="dob"><?php _e( 'Date of Birth', 'tripmd' ); ?></label>
+            <input type="date" name="tmd_profile_dob" id="dob" max="<?php echo date( 'Y-m-d', strtotime( '-13 years' ) ); ?>" min="1900-01-01" value="<?php tmd_sanitize_val( 'tmd_profile_dob' ); ?>" class="regular-text" tabindex="<?php tmd_tab_index(); ?>" /><br />
 
-        <label for="gender">Gender</label>
-        <select name="gender" tabindex="<?php tmd_tab_index(); ?>">
-          <option value="male" <?php if (esc_attr( get_the_author_meta( 'gender', get_current_user_id() )) == 'male') echo "selected"; ?>>Male</option>
-          <option value="female"<?php if (esc_attr( get_the_author_meta( 'gender', get_current_user_id() )) == 'female') echo "selected";  ?>>Female</option>
+        <label for="gender"><?php _e( 'Gender', 'tripmd' ); ?></label>
+        <select name="tmd_profile_gender" tabindex="<?php tmd_tab_index(); ?>">
+              <option value="male" <?php selected( tmd_get_sanitize_val( 'tmd_profile_gender' ), 'male' ); ?>><?php _e( 'Male' ); ?></option>
+              <option value="female" <?php selected( tmd_get_sanitize_val( 'tmd_profile_gender' ), 'female' ); ?>><?php _e( 'Female' ); ?></option>
         </select>
     </div>
     
@@ -226,10 +279,15 @@ function tmd_registration_extra_fields() {
 add_action( 'register_form', 'tmd_registration_extra_fields' );
 
 function tmd_registration_validate_extra_fields( $login, $email, $errors ) {
-    /* if ( $_POST['name'] == '' )
-        $errors->add( 'empty_fullname', "<strong>ERROR</strong>: Please enter your full name." ); */
+    if ( !empty( $_POST['tmd_profile_dob'] ) && ( date( 'Y-m-d', strtotime( tmd_get_sanitize_val( 'tmd_profile_dob' ) ) ) != tmd_get_sanitize_val( 'tmd_profile_dob' ) || tmd_get_sanitize_val( 'tmd_profile_dob' ) > date( 'Y-m-d', strtotime( '-13 years' ) ) ) )
+        $errors->add( 'profile-invalid-dob', __( 'Please provide a valid date of birth. You must be at least 13 years old to register.', 'tripmd' ) );
 
-    /* 
+    if ( !empty( $_POST['tmd_profile_gender'] ) && !in_array( tmd_get_sanitize_val( 'tmd_profile_gender' ), array( 'male', 'female' ) ) )
+        $errors->add( 'profile-invalid-gender', __( 'Please provide a valid gender.', 'tripmd' ) );
+
+    /* if ( $_POST['name'] == '' )
+        $errors->add( 'empty_fullname', "<strong>ERROR</strong>: Please enter your full name." );
+
     if ( $_POST['dob'] == '' )
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your Date of Birth." );
 
@@ -249,11 +307,19 @@ function tmd_registration_validate_extra_fields( $login, $email, $errors ) {
         $errors->add( 'empty_dob', "<strong>ERROR</strong>: Please Enter your past allergies." );
     */
 }
-// add_action( 'register_post', 'tmd_registration_validate_extra_fields', 10, 3 );
+add_action( 'register_post', 'tmd_registration_validate_extra_fields', 10, 3 );
 
 function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = array() ) {
-    update_user_meta( $user_id, 'dob', $_POST['dob'] );
-    update_user_meta( $user_id, 'gender', $_POST['gender'] );
+    if ( empty( $_POST['tmd_profile_dob'] ) )
+        delete_user_meta( $user_id, 'dob' );
+    elseif ( date( 'Y-m-d', strtotime( tmd_get_sanitize_val( 'tmd_profile_dob' ) ) ) == tmd_get_sanitize_val( 'tmd_profile_dob' ) && tmd_get_sanitize_val( 'tmd_profile_dob' ) <= date( 'Y-m-d', strtotime( '-13 years' ) ) )
+        update_user_meta( $user_id, 'dob', tmd_get_sanitize_val( 'tmd_profile_dob' ) );
+    
+    if ( empty( $_POST['tmd_profile_gender'] ) )
+        delete_user_meta( $user_id, 'gender' );
+    elseif ( in_array( tmd_get_sanitize_val( 'tmd_profile_gender' ), array( 'male', 'female' ) ) )
+        update_user_meta( $user_id, 'gender', tmd_get_sanitize_val( 'tmd_profile_gender' ) );
+
     /* update_user_meta( $user_id, 'weight', $_POST['weight'] );
     update_user_meta( $user_id, 'height', $_POST['height'] );
     update_user_meta( $user_id, 'gobs', $_POST['gobs'] );
@@ -277,7 +343,7 @@ function tmd_registration_save_extra_fields( $user_id, $password = '', $meta = a
     if ( !empty( $wp_session['doctor_id'] ) )
         update_user_meta( $user_id, 'doctor_id',     $wp_session['doctor_id']     ); */
 }
-add_action( 'user_register', 'tmd_registration_save_extra_fields' );
+add_action( 'user_register', 'tmd_registration_save_extra_fields', 1, 3 );
 
 /**
  * Set the username as the email id on registration form submission
@@ -385,18 +451,21 @@ function tmd_invitation_register_handler() {
         tmd_add_error( 'exists-email', __( 'You\'ve already registered with this email id.', 'tripmd' ) );
     */
 
+    if ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( tmd_get_sanitize_val( 'tmd_bs_date' ) ) ) != tmd_get_sanitize_val( 'tmd_bs_date' ) || tmd_get_sanitize_val( 'tmd_bs_date' ) < date( 'Y-m-d', time() + 3600 * 24 ) || tmd_get_sanitize_val( 'tmd_bs_date' ) > date( 'Y-m-d', strtotime( '+1 year' ) ) ) )
+        tmd_add_error( 'invalid-appt-date', __( 'Please provide an appointment date starting tomorrow and within an year.', 'tripmd' ) );
+
     if ( tmd_has_errors() )
         return;
 
-    $data = array(  
+    $data = array(
         'user_id' => get_current_user_id(),
         'speciality_id' => tmd_get_sanitize_val( 'tmd_bs_speciality_id' ), 
         'doctor_id' => tmd_get_sanitize_val( 'tmd_bs_doctor_id' ), 
         'name' => tmd_get_sanitize_val( 'tmd_bs_name' ), 
         'phone' => tmd_get_sanitize_val( 'tmd_bs_phone' ), 
         'email' => tmd_get_sanitize_val( 'tmd_bs_email' ),
-        'condition' => tmd_get_sanitize_val( 'tmd_bs_condition' ),
-        'appt_date' => ( !empty( $_POST['tmd_bs_date'] ) && ( date( 'Y-m-d', strtotime( $_POST['tmd_bs_date'] ) ) == $_POST['tmd_bs_date'] ) ? tmd_get_sanitize_val( 'tmd_bs_date' ) : '' ),
+        'description' => tmd_get_sanitize_val( 'tmd_bs_condition' ),
+        'appt_date' => tmd_get_sanitize_val( 'tmd_bs_date' ),
         'registered' => date( 'Y-m-d H:i:s' ),
     );
 
@@ -432,7 +501,7 @@ function tmd_invitation_register_handler() {
                 strip_tags( $data['name'] ),
                 strip_tags( $data['email'] ),
                 strip_tags( $data['phone'] ),
-                strip_tags( $data['condition'] ),
+                strip_tags( $data['description'] ),
                 strip_tags( $data['appt_date'] ),
                 strip_tags( $data['registered'] )
             ),
