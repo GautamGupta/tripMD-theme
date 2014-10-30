@@ -79,6 +79,46 @@ get_header(); ?>
             </div>
         </div><!-- /User login -->
 
+        <!-- TripMD Pass -->
+        <div style="display:none" class="fancybox-hidden block">
+            <div id="tripmd-pass" class="su full-width-form">
+                <h1><?php printf( __( '%s Pass', 'tripmd' ), get_bloginfo( 'name' ) ); ?></h1>
+
+                <p><?php printf( __( '%s Pass is your passport to seamless healthcare. It allows you to:', 'tripmd' ), get_bloginfo( 'name' ) ); ?></p>
+
+                <ul>
+                    <li><?php _e( 'Pay for consultations online', 'tripmd' ); ?></li>
+                    <li><?php _e( 'Get re-imbursements hassle free', 'tripmd' ); ?></li>
+                    <li><?php _e( 'Save and access your medical records digitally in the cloud', 'tripmd' ); ?></li>
+                    <li><?php _e( 'Order prescription medicines at your door step', 'tripmd' ); ?></li>
+                </ul>
+
+                <p><?php printf( __( 'To enroll in %s Pass premium service, please leave your details below.', 'tripmd' ), get_bloginfo( 'name' ) ); ?></p>
+
+                <form method="post" style="color: black;" action="<?php echo site_url( '/inquiry' ); ?>">
+                    
+                    <div class="name fld">
+                        <input type="text" class="field" required="required" placeholder="<?php _e( 'Full Name', 'tripmd' ); ?>" name="tmd_bs_name" value="" />
+                        <i class="fa fa-user"></i>
+                    </div>
+
+                    <div class="email fld">
+                        <input type="email" class="last field" required="required" placeholder="<?php _e( 'Email id', 'tripmd' ); ?>" name="tmd_bs_email" value="" />
+                        <i class="fa fa-envelope-o"></i>
+                    </div>
+
+                    <input type="hidden" name="tmd_bs_condition" value="tripmd-pass" />
+
+                    <input type="hidden" name="action" value="invitation_register" />
+                    <?php wp_nonce_field( 'tmd_invitation_register_nonce' ); ?>
+
+                    <input type="submit" class="big fat green button submit" name="wp-submit" id="wp-submit" value="<?php esc_attr_e( 'Register for TripMD Pass' ); ?>" />
+
+                </form>
+
+            </div>
+        </div><!-- /TripMD Pass -->
+
         <span class="dp-screenshot"><img src="<?php echo get_template_directory_uri(); ?>/img/search.png" alt=""></span>
 
         <div id="slider-with-blocks-1" class="slider royalSlider rsMinW">

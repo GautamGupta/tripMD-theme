@@ -52,8 +52,12 @@
         					<?php endforeach;
         				else : $dont_display_form = 1; ?>
 							<p class="success">
-								<?php _e( 'Thank you for booking your appointment. Our medical expert will get in touch with you within the next 24 hours to discuss your options in more detail.', 'tripmd' ); ?><br /><br />
-								<?php _e( 'If you prefer, you can call us 24x7 at +91-83770-12073 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?>
+								<?php if ( tmd_get_sanitize_val( 'tmd_bs_condition' ) == 'tripmd-pass' ) : ?>
+									<?php _e( 'Thank you for registering for TripMD Pass. If you\'ve any queries, you can call us 24x7 at +91-83770-12073 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?>
+								<?php else : ?>
+									<?php _e( 'Thank you for booking your appointment. Our medical expert will get in touch with you within the next 24 hours to discuss your options in more detail.', 'tripmd' ); ?><br /><br />
+									<?php _e( 'If you prefer, you can call us 24x7 at +91-83770-12073 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a>.', 'tripmd' ); ?>
+								<?php endif; ?>
 
 								<a href="<?php echo site_url(); ?>" class="big fat green button submit"><?php _e( 'Return to Homepage', 'tripmd' ); ?></a>
 							</p>
