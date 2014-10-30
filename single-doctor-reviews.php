@@ -50,7 +50,7 @@
                         else : $dont_display_form = 1; ?>
                             <p class="success">
                                 <?php _e( 'Thank you for submitting your review. Your feedback is valuable to us.', 'tripmd' ); ?><br />
-                                <?php printf( __( 'You can call us 24x7 at +91-97111-51751 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a> to know more about <a href="%1$s" class="green-t">TripMD</a>.', 'tripmd' ), site_url() ); ?>
+                                <?php printf( __( 'You can call us 24x7 at +91-83770-12073 or email us at <a href="mailto:support@tripmd.com" class="green-t">support@tripmd.com</a> to know more about <a href="%1$s" class="green-t">TripMD</a>.', 'tripmd' ), site_url() ); ?>
                             </p>
                         <?php endif;
                     endif; ?>
