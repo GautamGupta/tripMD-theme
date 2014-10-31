@@ -81,7 +81,7 @@ get_header(); ?>
 
         <!-- TripMD Pass -->
         <div style="display:none" class="fancybox-hidden block">
-            <div id="tripmd-pass" class="su full-width-form">
+            <div id="tripmd-pass" class="su full-width-form" style="width:600px">
                 <h1><?php printf( __( '%s Pass', 'tripmd' ), get_bloginfo( 'name' ) ); ?></h1>
 
                 <p><?php printf( __( '%s Pass is your passport to seamless healthcare. It allows you to:', 'tripmd' ), get_bloginfo( 'name' ) ); ?></p>

@@ -257,7 +257,8 @@ input[type="checkbox"]:checked + label:before {
 }
 
 #fancybox-outer {
-  width: 480px !important;
+  width: auto !important;
+  margin-right: 20px;
 }
 
 html.beta {
@@ -463,7 +464,7 @@ body.beta .iu .img {
 .full-width-form .field {
   -webkit-appearance: none;
   outline: none;
-  -webkit-user-select: none;
+  // -webkit-user-select: none;
   border: none;
   border-top: thin solid #dedede;
   width: calc(100% + 100px);
