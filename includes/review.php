@@ -80,14 +80,15 @@ function tmd_review_doctor_handler() {
  */
 function tmd_list_reviews( $comment, $args, $depth ) {
     $GLOBALS['comment'] = $comment;
-    $ratings = get_comment_meta( get_comment_ID(), 'tmd_review_rating', true ); ?>
+    $ratings = get_comment_meta( get_comment_ID(), 'tmd_review_rating', true ); 
+    $nationality = get_comment_meta( get_comment_ID(), 'tmd_review_nationality', true ); ?>
 
     <div <?php comment_class( 'grid-100' ); ?> id="comment-<?php comment_ID(); ?>" style="margin-left: 145px; padding-top: 30px;">
         
         <div class="grid-100">
             <h2><span class="user-img" style="background-image:url('http://0.gravatar.com/avatar/<?php echo md5( strtolower( trim( get_comment_author_email() ) ) ); ?>?s=50&amp;d=<?php echo urlencode( 'http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=50' ); ?>');"></span>
             <b><?php echo get_comment_author_link(); ?></b>
-            <span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px">(verified patient)</span>
+            <span style="color: #999; -webkit-transform: scale(0.8); font-size: 90%; margin-left: 10px"><?php if ( !empty( $nationality ) ) echo '(' . $nationality . ')'; ?></span>
             <span style="margin-left: 157px; opacity: 0.25"><?php echo comment_date(); ?></span></h2>
         </div>
 
