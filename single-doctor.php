@@ -128,9 +128,7 @@ get_header(); ?>
             </div>
 
             <div class="link">
-                
                 <a class="big fat green button" href="<?php echo site_url( '/inquiry' ); ?>"><?php _e( 'Schedule Appointment', 'tripmd' ); ?></a>
-
             </div>
 
         </div>
@@ -257,6 +255,10 @@ get_header(); ?>
     if ( comments_open() || '0' != get_comments_number() ) :
         comments_template( '/comments-doctor-reviews.php' );
     endif; ?>
+
+    <div class="aligncenter">
+        <a class="big fat green button" href="<?php the_permalink(); ?>reviews/"><?php _e( 'Write a Review', 'tripmd' ); ?></a>
+    </div>
 
 	<?php /* 
     <small class="animated fadeIn">You&rsquo;re nearly done.</small>
