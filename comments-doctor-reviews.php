@@ -24,7 +24,7 @@ if ( post_password_required() || !have_comments() )
             wp_list_comments( array(
                 'type'     => tripmd()->review_id,
                 'callback' => 'tmd_list_reviews',
-                'orderby'  => 'desc'
+                'reverse_top_level' => true
             ) );
         ?>
 
