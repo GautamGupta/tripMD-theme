@@ -23,7 +23,8 @@ if ( post_password_required() || !have_comments() )
         <?php
             wp_list_comments( array(
                 'type'     => tripmd()->review_id,
-                'callback' => 'tmd_list_reviews'
+                'callback' => 'tmd_list_reviews',
+                'orderby'  => 'desc'
             ) );
         ?>
 
